@@ -1,16 +1,10 @@
 
-<script setup lang="ts">
-import HomeView from './views/SearchFilter.vue'
-import Filter from '../components/FilterForSearchView.vue'
-import SearchResult from '../components/SearchResult.vue'
-
-</script>
 
 <template>
  
-  <Filter/>
+  <FilterForSearchView/>
 <br>
-  <SearchResult/>
+  <SearchResult :session_data="session_data" />
 
 
 </template>
@@ -18,3 +12,36 @@ import SearchResult from '../components/SearchResult.vue'
 <style>
 
 </style>
+
+
+<script>
+import FilterForSearchView from '../components/FilterForSearchView.vue'
+import SearchResult from '../components/SearchResult.vue'
+
+export default {
+
+  components: {
+    FilterForSearchView,SearchResult
+  },
+  
+  data : function() {
+      return {
+
+      }
+  },
+  props: ['session_data'],
+  emits: ['sessionCreated'],
+
+created() {
+  console.log("APP CREATED")
+    },
+
+methods: {
+    },
+
+watch : {
+      }
+}
+</script>
+
+
