@@ -3,22 +3,13 @@
   <div class="w-100">
 
 
-    <div v-if=" !showObjectAndMyInventoryModal">
+    <div v-if=" !showModalDetails && !showObjectAndMyInventoryModal ">
         <FilterForSearchView  />
     </div>
 
-    <div v-if="showModalDetails">
-      <text @click="showModalDetails=false ">X</text>
-      <InventoryObjectDetailed  v-on:showObjectAndMyInventory='showObjectAndMyInventory'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
-    </div>
     <!-- 
     <InventoryList  v-on:closeThisModal="closeInventoryList" v-if="showModalInventoryList" />
     -->
-    <div v-if="showObjectAndMyInventoryModal">
-      
-      <ShowObjectAndMyInventory  />
-    </div>
-
     <!-- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
     <div v-if="showObjectAndMyInventoryModal==false && showModalDetails==false  ">
         <div class="d-flex justify-content-between">
@@ -42,6 +33,33 @@
     </div>
 
 
+    <!-- 1 Show Object Details-->
+    <div v-if="showModalDetails">
+      <text @click="showModalDetails=false ">X</text>
+      <InventoryObjectDetailed  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
+    </div>
+      <!-- Buttons to go 2-->
+      <div>
+        <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showMyInventory=true" type="button" class="btn btn-primary">Hacer oferta por este producto</button>
+        <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
+      </div>
+
+    <!-- 2 Show FORM to Share-->
+    <div v-if="showMyInventory">
+        <InventoryList />
+    </div>
+      <!-- Buttons to go 3-->
+      <div v-if="showMyInventory">
+        <button @click="showObjectAndMyInventoryModal=true ; showMyInventory=false ; showModalDetails=false "  type="button" class="btn btn-secondary">ENVIAR </button>
+      </div>
+        
+    <!-- 3 Show FORM to Share-->
+    <div v-if="showObjectAndMyInventoryModal">
+        <ShowObjectAndMyInventory  /> 
+    </div>
+
+
+
 
   </div>
 
@@ -58,16 +76,18 @@ import InventoryObject from './InventoryObject.vue'
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import ShowObjectAndMyInventory from './ShowObjectAndMyInventory.vue'
 import FilterForSearchView from '../components/FilterForSearchView.vue'
+import InventoryList from '../components/InventoryList.vue' 
 
 export default {
 
   components: {
-    InventoryObject,InventoryObjectDetailed,ShowObjectAndMyInventory,FilterForSearchView
+    InventoryObject,InventoryObjectDetailed,ShowObjectAndMyInventory,FilterForSearchView,InventoryList
   },
   
   data : function() {
       return {
         showModalDetails: false,
+        showMyInventory:false ,
       
         showObjectAndMyInventoryModal : false  
       }
