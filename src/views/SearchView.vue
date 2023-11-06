@@ -2,6 +2,7 @@
 <template>
  
 
+
   <SearchResult :session_data="session_data" />
 
 
@@ -15,6 +16,7 @@
 <script>
 
 import SearchResult from '../components/SearchResult.vue'
+
 
 export default {
 
