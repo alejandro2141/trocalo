@@ -1,24 +1,19 @@
 <template>
 <div style="width:400px">
+  <div v-if="!showConfirmSend">
 
+    <div>
+      Estas cambiando: <br>
 
+      Objeto nombre largo 4<br>
+      Objeto nombre largo 3<br>
+      Objeto nombre largo 2<br>
 
-  Estas cambiando: 
-
-  <!-- Desire Object + Plus -->
-    <div class="d-flex align-content-stretch flex-wrap">
-        <InventoryObject      @click="showPartnerObjectDetailed=true"/> 
-        <InventoryObject      @click="showPartnerObjectDetailed=true"/> 
+      por los siguientes objetos de tu inventario:<br>
+      Objeto nombre largo 4<br>
+      Objeto nombre largo 3<br>
+      Objeto nombre largo 2<br>
     </div>
- Por los siguientes productos. 
-  <!-- Desire Object + Plus -->
-    <div class="d-flex align-content-stretch flex-wrap">
-        <InventoryObject      @click="showMyObjectDetailed=true"/> 
-        <InventoryObject      @click="showMyObjectDetailed=true"/> 
-    </div>
-
-    <br>
-
     <div>
        Abierto a intercambiar por otros productos.  Si. 
     </div>
@@ -32,7 +27,8 @@
     </div>
 
     <button @click="showConfirmSend=true;"  type="button" class="btn btn-success">Enviar</button>
-   
+  
+  </div> 
 
 
     <div v-if="showConfirmSend">
