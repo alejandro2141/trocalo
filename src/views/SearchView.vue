@@ -1,9 +1,7 @@
 
-
 <template>
  
-  <FilterForSearchView/>
-<br>
+
   <SearchResult :session_data="session_data" />
 
 
@@ -15,13 +13,13 @@
 
 
 <script>
-import FilterForSearchView from '../components/FilterForSearchView.vue'
+
 import SearchResult from '../components/SearchResult.vue'
 
 export default {
 
   components: {
-    FilterForSearchView,SearchResult
+      SearchResult
   },
   
   data : function() {
