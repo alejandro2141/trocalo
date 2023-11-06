@@ -3,10 +3,11 @@
   <div class="w-100 m-2 border border-1 bg-secondary"  >
 
    
-
+<!--
     <div @click="$emit('closeThisModal')" class="">
          X
     </div>
+-->
     <div class="d-flex justify-content-between">
         Selecciona Objetos de tu Inventario
     </div>
