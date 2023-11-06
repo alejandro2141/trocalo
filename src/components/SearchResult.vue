@@ -2,13 +2,24 @@
 
   <div class="w-100">
 
-    <InventoryObjectDetailed v-if="showModalDetails" v-on:showObjectAndMyInventory='showObjectAndMyInventory'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
-<!-- 
+
+    <div v-if=" !showObjectAndMyInventoryModal">
+        <FilterForSearchView  />
+    </div>
+
+    <div v-if="showModalDetails">
+      <text @click="showModalDetails=false ">X</text>
+      <InventoryObjectDetailed  v-on:showObjectAndMyInventory='showObjectAndMyInventory'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
+    </div>
+    <!-- 
     <InventoryList  v-on:closeThisModal="closeInventoryList" v-if="showModalInventoryList" />
--->
-<ShowObjectAndMyInventory  v-if="showObjectAndMyInventoryModal" />
+    -->
+    <div v-if="showObjectAndMyInventoryModal">
+      
+      <ShowObjectAndMyInventory  />
+    </div>
 
-
+    <!-- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
     <div v-if="showObjectAndMyInventoryModal==false && showModalDetails==false  ">
         <div class="d-flex justify-content-between">
             Objetos Publicos
@@ -30,6 +41,8 @@
         </div>
     </div>
 
+
+
   </div>
 
 </template>
@@ -44,12 +57,12 @@
 import InventoryObject from './InventoryObject.vue'
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import ShowObjectAndMyInventory from './ShowObjectAndMyInventory.vue'
-
+import FilterForSearchView from '../components/FilterForSearchView.vue'
 
 export default {
 
   components: {
-    InventoryObject,InventoryObjectDetailed,ShowObjectAndMyInventory
+    InventoryObject,InventoryObjectDetailed,ShowObjectAndMyInventory,FilterForSearchView
   },
   
   data : function() {
