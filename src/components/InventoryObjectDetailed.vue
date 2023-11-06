@@ -33,12 +33,6 @@
             Otros
         </div>
 
-        <button v-if="session_data!=null && session_data.user!=null" @click="$emit('showObjectAndMyInventory',object_details)"   type="button" class="btn btn-primary">Hacer oferta por este producto</button>
-        <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
-        
-       
-
-
     </div> 
 
   </div>
@@ -67,7 +61,7 @@ export default {
     },
 
     props: ['session_data','object_details'],
-    emits: ['closeModalObjectDetails','showMyInventoryList'],
+    emits: ['closeModalObjectDetails','showMyInventory'],
 
   created() {
 		console.log("created lala inventory Object detailed")
