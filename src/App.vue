@@ -3,7 +3,8 @@
   <div class="m-1 "  style="margin:0px; padding:0px;  width: 450px;">
 
     <div class=" d-flex justify-content-around">
-        <RouterLink class="" to="/search">Buscar</RouterLink>
+        <!-- <a href="/">Buscar</a>-->
+        <RouterLink  class="" to="/searchView">Buscar</RouterLink>    
         <RouterLink v-if="session_data.user!=null"  class="" to="/login">{{session_data.user}}</RouterLink>
         <RouterLink v-else  class="" to="/login">Tu Cuenta</RouterLink>
     </div> 
@@ -11,7 +12,7 @@
   </div>
   <br>
   
-  <RouterView v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
+  <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
  
 </template>
 
@@ -29,7 +30,7 @@ export default {
   
     data : function() {
         return {
-          session_data : {}
+          session_data : {user:"JUan Alejandro Morales", pass:"eeee"}
         }
     },
 
