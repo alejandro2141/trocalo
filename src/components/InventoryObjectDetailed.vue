@@ -6,13 +6,14 @@
 <!-- 
 <div  class="position-absolute top-50 start-50 translate-middle bg-dark">
 -->
-<div  class="">
+<div  class="" style="width:350px">
 
     <div class="border border-1" style="width: 100%">
+    <!--
         <div>
             <text @click="$emit('closeModalObjectDetails')"> x </text>
         </div>
-        
+    -->
         <div>
             Play station 3
         </div>
@@ -32,7 +33,7 @@
             Otros
         </div>
 
-        <button @click="$emit('showObjectAndMyInventory',object_details)" v-if="session_data!=null && session_data.user!=null"  type="button" class="btn btn-primary">Hacer oferta por este producto</button>
+        <button v-if="session_data!=null && session_data.user!=null" @click="$emit('showObjectAndMyInventory',object_details)"   type="button" class="btn btn-primary">Hacer oferta por este producto</button>
         <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
         
        
