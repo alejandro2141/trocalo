@@ -4,8 +4,8 @@
  <div>
 
     <div class="border border-1 rounded">
-        Cakito_123  se interesa x:<br>
-        Objeto 
+        Cakito_123   <br>
+        Play Station 3 con 4 juegos.
     </div>
 
 
