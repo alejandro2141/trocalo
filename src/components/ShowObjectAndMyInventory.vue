@@ -5,9 +5,9 @@
     <div v-if="!showSenderConfirmation">
 
       <div class="w-100 m-2 "  >
-        Propuesta Intercambio   <a href="/"> X </a>
+       
       </div>
-      Objeto de tu interes
+      Objeto de interes
 
       <!-- Desire Object + Plus -->
       <div class="d-flex align-content-stretch flex-wrap">
@@ -27,7 +27,7 @@
           <InventoryObjectDetailed />
         </div>
 
-      Selecciona Objetos de tu inventario para intercambiar
+      A cambiar por
 
       <!-- Desire Object + Plus -->
       <div class="d-flex align-content-stretch flex-wrap">
