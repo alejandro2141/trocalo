@@ -2,29 +2,24 @@
 <template>
   <div class="m-4 p-0"  style="width: 350px;">
 
-    <div class=" d-flex justify-content-between">
+    <div class=" d-flex justify-content-between text-white" style="font-size : 20px ">
         <!-- <a href="/">Buscar</a>-->
-        <RouterLink  class="" to="/searchView">Buscar</RouterLink>    
+        <RouterLink  class=""  to="/searchView">Buscar</RouterLink>    
         <RouterLink v-if="session_data.user!=null"  class="" to="/login">{{session_data.user}}</RouterLink>
         <RouterLink v-else  class="" to="/login">Tu Cuenta</RouterLink>
     </div> 
 
-    <div v-if="session_data!=null && session_data.user!=null" class="d-flex justify-content-between" >
+    <div v-if="session_data!=null && session_data.user!=null" class="mt-2 d-flex justify-content-between  text-white" style="font-size : 20px " >
       <RouterLink  class="" to="/MyInventory">Inventario</RouterLink>    
       <RouterLink  class="" to="/OfReceived">Recibidas</RouterLink>    
       <RouterLink  class="" to="/OfSent">Enviadas</RouterLink>    
     </div>
 
-
-
     <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
+
   </div>
 
 
- 
-
-
- 
  
 </template>
 
