@@ -6,31 +6,52 @@
 <!-- 
 <div  class="position-absolute top-50 start-50 translate-middle bg-dark">
 -->
-<div  class="" style="width:350px">
+<div  class=" mt-0" style="width:350px ; font-size:16px">
 
-    <div class="border border-1" style="width: 100%">
+    <div class="" style="width: 100%">
     <!--
         <div>
             <text @click="$emit('closeModalObjectDetails')"> x </text>
         </div>
     -->
-        <div>
-            Play station 3
+        <div style="font-size:20px">
+            Play station 3 
         </div>
-        <div>
-            Caquito_123
+        <div style="font-size:16px">
+           De Caquito_123
         </div>
-        <div class="bg-secondary" style="width:300px; height:300px">
+        <div class="bg-secondary" style="width:350px; height:300px">
             IMAGE
         </div>
-        <div>
+        
+        <div class="d-flex justify-content-start ">
+                <div class="bg-secondary m-1 " style="width:60px; height:60px">
+                    IMAGE
+                </div>
+                <div class="bg-secondary m-1" style="width:60px; height:60px">
+                    IMAGE
+                </div>
+                <div class="bg-secondary m-1" style="width:60px; height:60px">
+                    IMAGE
+                </div>
+                <div class="bg-secondary m-1" style="width:60px; height:60px">
+                    IMAGE
+                </div>
+        </div>
+
+        <div >
             No tiene reallados, con solo un control, no tienen juegos y esta desbloqueada
         </div>
-        <br>
+        <div class="mt-1" style="font-size:20px">
+           Cambiaria por:  
+        </div>
         <div>
             xbox con juegos 
             Bicicleta aro 23
             Otros
+        </div>
+        <div class="mt-1" style="font-size:20px">
+           Cambiaria por otros objetos:  Si
         </div>
 
     </div> 
