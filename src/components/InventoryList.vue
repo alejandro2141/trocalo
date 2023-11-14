@@ -1,42 +1,30 @@
 <template>
 
-  <div class="w-100 m-2 border border-1 bg-secondary"  >
+<div class="w-100  "  >
 
-   
 <!--
     <div @click="$emit('closeThisModal')" class="">
          X
     </div>
 -->
-   
 
-      <div class="input-group">
-        <div class="form-outline">
-          <input type="search" id="form1" class="form-control" />
-          <label class="form-label" for="form1">Search</label>
-        </div>
-        <button type="button" class="btn btn-primary">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-
+    <div class="d-flex justify-content-between">
+        <input class="form-control form-control-sm w-50 bg-dark text-white"  type="text" minlength="4" maxlength="20" size="7" placeholder="buscar"> 
+       
+    </div>
+    <br>
     <div class="d-flex flex-wrap"> 
     
-      <InventoryObject @click="showModalDetails=true" />
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-      <InventoryObject class="m-1"/>
-        
+      <div v-for="index in inventoryObjects" :key="index" > 
+
+        <InventoryObject class="m-1"   />
+         
+      </div>
+    
+
     </div>
 
-  </div>
+</div>
 
 </template>
 
@@ -57,7 +45,9 @@ export default {
   
   data : function() {
       return {
-        showModalDetails: false
+        showModalDetails: false,
+        inventoryObjects : [false,false,false,false,false,false,false,false,false,false,false,false ] ,
+        
       }
   },
   props: ['session_data'],
