@@ -1,10 +1,7 @@
 
 <template>
- 
-
 
   <SearchResult :session_data="session_data" />
-
 
 </template>
 
