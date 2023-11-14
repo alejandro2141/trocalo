@@ -5,7 +5,7 @@
 
   <div class="m-2">
 
-    <div class="border border-1 rounded" style="width:100px">
+    <div class="" style="width:100px">
         <div>
          
         </div>
