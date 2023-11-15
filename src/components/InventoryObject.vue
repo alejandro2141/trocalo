@@ -32,7 +32,7 @@
                 <div v-if="showProductDetails" class="text-secondary">
                     No tiene reallados, con solo contro ...
                 </div>
-                <div v-if="showDeleteOption" class="d-flex flex-row-reverse text-danger"> <i class="bi bi-x-lg display-5"></i> </div>
+                <div v-if="showDeleteOption" class="d-flex flex-row-reverse text-danger"> <i class="bi bi-x-lg "></i> </div>
 
                 <br>
                 <div v-if="showProductPreference">
