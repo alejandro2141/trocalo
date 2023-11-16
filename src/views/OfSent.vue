@@ -1,9 +1,39 @@
 
 <template>
- 
- <div>
-    Sent
- </div>
+
+<div>
+
+<div v-if="showItemList" >
+    <OfReceivedItem  class="m-1" @click="showItemList=false" />
+    <OfReceivedItem  class="m-1" />
+
+
+
+    <br>
+    <text class="text-danger">------------ Finalizadas -----------</text>
+
+    <OfReceivedItem  :ended=true  class="m-1" />
+    <OfReceivedItem  :ended=true  class="m-1" />
+    <OfReceivedItem  :ended=true  class="m-1" />
+    <OfReceivedItem  :ended=true  class="m-1" />
+    <OfReceivedItem  :ended=true  class="m-1" />
+    <OfReceivedItem  :ended=true  class="m-1" />
+
+
+
+</div>
+
+<div v-else >
+
+  <div class="position-absolute top-0 start-10 bg-dark" >
+    <div class="d-flex justify-content-end"> <i @click="showItemList=true" class="display-1 bi bi-x-lg"></i>  </div>
+    <ExchangeProposalSent />
+  </div>
+
+</div>
+
+</div>
+
 
 </template>
 
@@ -14,14 +44,22 @@
 
 <script>
 
+import OfReceivedItemList from '../components/OfReceivedItemList.vue'
+import OfReceivedItem from     '../components/OfReceivedItem.vue'
+import InventoryList  from     '../components/InventoryList.vue'
+import ExchangeProposalSent from   '../components/ExchangeProposalSent.vue'
+
+
 
 export default {
 
-  components: {
+   components: {
+    OfReceivedItemList,OfReceivedItem,InventoryList,ExchangeProposalSent
   },
   
   data : function() {
       return {
+        showItemList : true , 
 
       }
   },
