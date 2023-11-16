@@ -2,9 +2,15 @@
 <template>
  
  <div>
+  
+   
 
     <div class="border border-1 rounded">
-        Cakito_123   <br>
+      <div v-if=ended class="text-danger">
+      FINALIZADA
+      </div>
+      
+      Cakito_123   <br>
         Play Station 3 con 4 juegos.
     </div>
 
@@ -38,7 +44,7 @@ export default {
 
       }
   },
-  props: ['session_data'],
+  props: ['session_data','ended'],
   emits: [],
 
 created() {
