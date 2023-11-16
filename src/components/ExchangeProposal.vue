@@ -6,9 +6,7 @@
 
       <div class="w-100 m-2 "  >
       </div>
-      <div  style="font-size:20px "  class="d-flex justify-content-center">
-              Propuesta de Intercambio
-      </div>
+     
       
   <!-- SHOW STEP 1-->
       <div v-if="showStep1" >
@@ -132,7 +130,7 @@
 
 
  <!-- ******************************* -->
-  <!--             SHOW STEP 2         -->
+  <!--             SHOW STEP 3         -->
   <!-- ******************************* -->
     
   <div v-if="showStep3" style="width: 350px;">
@@ -197,7 +195,44 @@
           </div>
           <!-- END FOOTER -->
       </div>
-  <!-- END SHOW STEP 2-->
+  <!-- END SHOW STEP 3-->
+
+
+  <!-- ******************************* -->
+  <!--             SHOW STEP 4         -->
+  <!-- ******************************* -->
+    
+  <div v-if="showStep4" style="width: 350px;">
+       <!-- TITLE -->
+          <br>
+          <div style="font-size:20px">
+            Propuesta de Intercambio Enviada  
+          </div>
+          <br>
+
+          <div style="font-size:20px">
+            Si Caquito_123_xusi  acepta el intercambio Usted debera pagar el cargo por Recogida y Entrega  $ 17.000
+          </div>
+          <br>
+          
+          <div style="font-size:20px">
+            Puede seguir esta propuesta en <text class="text-success">Enviadas</text>
+          </div>
+
+          <!-- END FOOTER -->
+
+          <!-- FOOTER -->
+          <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+              <div class="d-flex justify-content-center">
+                  <i @click="showStep2=true; showStep1 = false ; showPartnerInventory=false ; showMyInventory=false " class="bi bi-house"></i> 
+              </div>
+          </div>
+          <!-- END FOOTER -->
+
+      </div>
+  <!-- END SHOW STEP 4-->
+
+
 
 
 
@@ -317,6 +352,8 @@ export default {
 
         showStep1 : true , 
         showStep2 : false , 
+        showStep3 : false , 
+        showStep4 : false , 
         }
   },
   props: ['session_data'],
