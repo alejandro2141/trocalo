@@ -1,6 +1,6 @@
 <template>
 
-<div class="w-100  "  >
+<div class=""  >
 
 <!--
     <div @click="$emit('closeThisModal')" class="">
@@ -9,7 +9,8 @@
 -->
 
     <div class="d-flex justify-content-between">
-        <input class="form-control form-control-sm w-50 bg-dark text-white"  type="text" minlength="4" maxlength="20" size="7" placeholder="buscar"> 
+        
+      <input class="form-control form-control-sm w-50 bg-dark text-white"  type="text" minlength="4" maxlength="20" size="7" placeholder="buscar"> 
        
     </div>
     <br>
