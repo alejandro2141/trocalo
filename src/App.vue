@@ -4,9 +4,9 @@
 
     <div class=" d-flex justify-content-between text-white" style="font-size : 20px ">
         <!-- <a href="/">Buscar</a>-->
-        <RouterLink  class=""  to="/searchView">Buscar</RouterLink>    
-        <RouterLink v-if="session_data.user!=null"  class="" to="/login">{{session_data.user}}</RouterLink>
-        <RouterLink v-else  class="" to="/login">Tu Cuenta</RouterLink>
+        <RouterLink  class="text-white"  to="/searchView">Buscar</RouterLink>    
+        <RouterLink v-if="session_data.user!=null"  class="text-white" to="/login">{{session_data.user.split(" ")[0] }}</RouterLink>
+        <RouterLink v-else  class="text-white" to="/login">Tu Cuenta</RouterLink>
     </div> 
 
     <div v-if="session_data!=null && session_data.user!=null" class="mt-2 d-flex justify-content-between  text-white" style="font-size : 20px " >
@@ -41,7 +41,7 @@ export default {
 
     data : function() {
         return {
-          session_data : {user:"JUan Alejandro Morales", pass:"eeee"}
+          session_data : {user:"Juan Alejandro Morales", pass:"eeee"}
         }
     },
 
