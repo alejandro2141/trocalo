@@ -4,17 +4,30 @@
 <div>
 
     <div v-if="showItemList" >
-        <OfReceivedItem @click="showItemList=false" />
-        <OfReceivedItem />
-        <OfReceivedItem />
-        <OfReceivedItem />
-        <OfReceivedItem />
-        <OfReceivedItem />
-        
+        <OfReceivedItem  class="m-1" @click="showItemList=false" />
+        <OfReceivedItem  class="m-1" />
+        <OfReceivedItem  class="m-1" />
+        <OfReceivedItem  class="m-1" />
+        <OfReceivedItem  class="m-1" />
+        <OfReceivedItem  class="m-1" />
+        <OfReceivedItem  class="m-1" />
+
+
+        <br>
+        <text class="text-danger">------------ Finalizadas -----------</text>
+
+        <OfReceivedItem  :ended=true  class="m-1" />
+
+
     </div>
+
     <div v-else >
-        <i @click="showItemList=true" class="display-1 bi bi-x-lg"></i>
-        <ShowObjectAndMyInventory />
+
+      <div class="position-absolute top-0 start-10 bg-dark" >
+        <div class="d-flex justify-content-end"> <i @click="showItemList=true" class="display-1 bi bi-x-lg"></i>  </div>
+        <ExchangeProposalReceived />
+      </div>
+    
     </div>
  
 </div>
@@ -29,15 +42,16 @@
 <script>
   
 import OfReceivedItemList from '../components/OfReceivedItemList.vue'
-import OfReceivedItem from '../components/OfReceivedItem.vue'
-import InventoryList  from '../components/InventoryList.vue'
-import ShowObjectAndMyInventory from '../components/ShowObjectAndMyInventory.vue'
+import OfReceivedItem from     '../components/OfReceivedItem.vue'
+import InventoryList  from     '../components/InventoryList.vue'
+import ExchangeProposalReceived from   '../components/ExchangeProposalReceived.vue'
+
 
 export default {
 
 
   components: {
-    OfReceivedItemList,OfReceivedItem,InventoryList,ShowObjectAndMyInventory
+    OfReceivedItemList,OfReceivedItem,InventoryList,ExchangeProposalReceived
   },
   
   data : function() {
