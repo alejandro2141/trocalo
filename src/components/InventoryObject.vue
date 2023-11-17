@@ -16,29 +16,24 @@
     </div>
     <div v-else> 
 
-    <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
-    
+        <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
 
-        
-        
-        
                 <div class="bg-white"  style="width:100px; height:100px">
                 IMAGE
                 </div>
                 <div>
-                    Play station 3
+                   {{object.name}}
                 </div>
                 
                 <div v-if="showProductDetails" class="text-secondary">
-                    No tiene reallados, con solo contro ...
+                    {{object.description}}
                 </div>
-                <div v-if="showDeleteOption" class="d-flex flex-row-reverse text-danger"> <i class="bi bi-x-lg "></i> </div>
-
+             
                 <br>
                 <div v-if="showProductPreference">
-                    xbox con juegos 
-                    Bicicleta aro 23
-                    Otros
+                    {{object.alt1}}<br>
+                    {{object.alt2}}<br>
+                    {{object.alt3}}<br>
                 </div>
 
         </div>
@@ -70,7 +65,7 @@ export default {
         }
     },
 
-    props: ['showProductDetails','showProductPreference','isActive','showDeleteOption', 'showConfirmMode' ],
+    props: ['showProductDetails','showProductPreference','isActive','showDeleteOption', 'showConfirmMode' ,'object' ],
     emits: [],
 
 	created() {
