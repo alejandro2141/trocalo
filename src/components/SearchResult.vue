@@ -7,37 +7,25 @@
         <FilterForSearchView  />
     </div>
 
-    <!-- 
-    <InventoryList  v-on:closeThisModal="closeInventoryList" v-if="showModalInventoryList" />
-    -->
-    <!-- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
+    
+    <!-- 1- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
     <div v-if="showExchangeProposal==false && showModalDetails==false  ">
         
         <div class="d-flex flex-wrap"> 
-        
-          <InventoryObject @click="showModalDetails=true" :showProductDetails="false" :showProductPreference="false"   class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-          <InventoryObject class="m-1"/>
-            
+          <div v-for="obj in objects" :key="index" > 
+            <InventoryObject @click="objectDetails=obj ;showModalDetails=true;" :object=obj :showProductDetails="false" :showProductPreference="false"   class="m-1"/>
+          </div>
         </div>
+    
     </div>
 
-
-    <!-- 1 Show Object Details-->
+    <!-- 2- Show Object Details-->
     <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
           <div class="" >
                   <div class="d-flex justify-content-end"> 
                   <i @click="showModalDetails=false" class="bi bi-x-lg display-1" ></i>
                   </div>
-                  <InventoryObjectDetailed  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
+                  <InventoryObjectDetailed  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
           </div>
           
           <div class="m-4 pb-4" v-if="showModalDetails">
@@ -46,54 +34,21 @@
           </div>        
     </div>
 
-     <!-- 1 Show Object Details-->
-     <div v-if="showExchangeProposal" class="position-absolute top-0 start-10 bg-dark" >
+     <!-- 3 Show Exchange Proposal -->
+    <div v-if="showExchangeProposal" class="position-absolute top-0 start-10 bg-dark" >
           <div class="d-flex justify-content-end"> 
             <i @click="showExchangeProposal=false ;  showModalDetails=true" class="bi bi-x-lg display-1" ></i>
           </div>
          
          
           <div>
-            <ExchangeProposal/>
+            <ExchangeProposal :objectProposal=objectDetails />
           </div>        
     </div>
 
 
-
-
-    <!-- 1 Show Object Details-
-    <div v-if="showModalDetails" class="" >
-
-      <div class="d-flex justify-content-end"> <i @click="showModalDetails=false" class="bi bi-x-lg display-1" ></i></div>
-          <InventoryObjectDetailed  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
-      </div>
-
-      <div class="m-4 pb-4" v-if="showModalDetails">
-          <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showMyInventory=true" type="button" class="btn btn-primary">Hacer oferta por este producto</button>
-          <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
-      </div>        
-
-    </div>
-  -->
-    <!-- 2 Show FORM to Share
-    <div v-if="showMyInventory">
-        <InventoryList />
-    </div>-->
-      <!-- Buttons to go 3
-      <div v-if="showMyInventory">
-        <button @click="showObjectAndMyInventoryModal=true ; showMyInventory=false ; showModalDetails=false "  type="button" class="btn btn-secondary">ENVIAR </button>
-      </div>
-        -->
-    <!-- 3 Show FORM to Share
-    <div v-if="showObjectAndMyInventoryModal">
-        <ShowObjectAndMyInventory  /> 
-    </div>
--->
-
-
 </div>
   
-
 </template>
 
 <style scoped>
@@ -119,8 +74,21 @@ export default {
       return {
         showModalDetails: false,
         showMyInventory:false ,
-      
-        showExchangeProposal : false  
+        showExchangeProposal : false  ,
+
+        objectDetails : null, 
+
+        //trae desde BKND
+        objects : [         {name:"playStation 2", description : "Consola en buen estado con 2 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_222"  , otherObj: true }, 
+                            {name:"playStation 3", description : "Consola en buen estado con 3 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_333"  , otherObj: false}, 
+                            {name:"playStation 4", description : "Consola en buen estado con 4 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_444" , otherObj: true }, 
+                            {name:"playStation 5", description : "Consola en buen estado con 5 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_555" , otherObj: false}, 
+                            {name:"playStation 6", description : "Consola en buen estado con 6 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_6666", otherObj: true}, 
+                            {name:"playStation 7", description : "Consola en buen estado con 7 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_7777", otherObj: false}, 
+                            {name:"playStation 8", description : "Consola en buen estado con 8 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_8888", otherObj: true}, 
+                           ],
+
+
       }
   },
   props: ['session_data'],
