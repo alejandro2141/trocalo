@@ -1,13 +1,11 @@
-
 <template>
  
  <div>
 
-
   <div v-if="step1">
 
     <div>
-      <input type="text" placeholder="Buscar"   id="searchText" name="searchText" class="form-control mt-1 bg-dark text-white border-white" required minlength="4" maxlength="20" size="7" />
+      <input type="text" placeholder="Titulo"   id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark    text-white border-white" required minlength="4" maxlength="20"  />
     </div>
 
     <div class="d-flex flex-wrap w-100">
@@ -30,7 +28,7 @@
     </div>
 
     <div>
-      <textarea class="form-control mt-1 bg-dark text-white border-white" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <textarea  placeholder="Descripcion del objeto" class="form-control-lg mt-1 bg-dark text-white border-white" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
     
     <br>
@@ -39,13 +37,13 @@
           Cambiaria Por: 
         </p>
         <div>
-          <input type="text" placeholder="Buscar"   id="searchText" name="searchText" class="form-control mt-1 bg-dark text-white border-white" required minlength="4" maxlength="20" size="7" />
+          <input type="text" placeholder="Robot asesino Gigante"   id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark text-white border-white" required minlength="4" maxlength="20"  />
         </div>
         <div>
-          <input type="text" placeholder="Buscar"   id="searchText" name="searchText" class="form-control mt-1 bg-dark text-white border-white" required minlength="4" maxlength="20" size="7" />
+          <input type="text" placeholder="Delorean polarizado"   id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark text-white border-white" required minlength="4" maxlength="20"  />
         </div>
         <div>
-          <input type="text" placeholder="Buscar"   id="searchText" name="searchText" class="form-control mt-1 bg-dark text-white border-white" required minlength="4" maxlength="20" size="7" />
+          <input type="text" placeholder="Ferrary 4fwd"   id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark text-white border-white" required minlength="4" maxlength="20"  />
         </div>
     </div>
     
@@ -99,8 +97,13 @@
 
 <style>
 input::placeholder {
-  color: white;
-  font-size: 1.2em;
+  color: #888;
+  font-size: 0.9em;
+  font-style: italic;
+}
+textareainput::placeholder {
+  color: #888;
+  font-size: 0.9em;
   font-style: italic;
 }
 
