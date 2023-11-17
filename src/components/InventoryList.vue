@@ -10,20 +10,20 @@
 
     <div class="d-flex justify-content-between">
         
-      <input class="form-control form-control-sm w-50 bg-dark text-white"  type="text" minlength="4" maxlength="20" size="7" placeholder="buscar"> 
+      <input class="form-control-sm form-control-sm w-50 bg-dark border-white text-white"  type="text" minlength="4" maxlength="20" size="7" placeholder="Filtrar..."> 
        
     </div>
     <br>
     <div class="d-flex flex-wrap"> 
     
-      <div v-for="index in inventoryObjects" :key="index" > 
-
-        <InventoryObject class="m-1"   />
-         
+      <div v-for="obj in inventoryObjects" :key="index" > 
+        <InventoryObject :object=obj class="m-1"   />
       </div>
-    
 
     </div>
+
+
+    
 
 </div>
 
@@ -47,7 +47,14 @@ export default {
   data : function() {
       return {
         showModalDetails: false,
-        inventoryObjects : [false,false,false,false,false,false,false,false,false,false,false,false ] ,
+        inventoryObjects : [{name:"playStation 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {name:"playStation 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {name:"playStation 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {name:"playStation 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {name:"playStation 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {name:"playStation 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {name:"playStation 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                           ],
         
       }
   },
