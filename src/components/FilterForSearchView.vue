@@ -13,7 +13,7 @@
         <text>| </text>
         <text>+Mas </text> 
          &nbsp;&nbsp; &nbsp;  <input type="text" placeholder="Buscar"   id="searchText" name="searchText" class="form-control-sm mt-1 bg-dark text-white border-white" required minlength="4" maxlength="20" size="7" />
-         &nbsp;&nbsp;<i class="p-1 bg-dark text-white bi bi-search-heart"></i>
+        
     </div>
     <br> 
    
