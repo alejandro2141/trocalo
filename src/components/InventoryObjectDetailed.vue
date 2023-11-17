@@ -15,10 +15,10 @@
         </div>
     -->
         <div style="font-size:20px">
-            Play station 3 
+            {{object.name}}
         </div>
         <div style="font-size:16px">
-           De Caquito_123
+            {{object.owner}}
         </div>
         <div class="bg-secondary" style="width:350px; height:300px">
             IMAGE
@@ -40,18 +40,25 @@
         </div>
 
         <div >
-            No tiene reallados, con solo un control, no tienen juegos y esta desbloqueada
+            {{object.description}}
         </div>
         <div class="mt-1" style="font-size:20px">
            Cambiaria por:  
         </div>
         <div>
-            xbox con juegos 
-            Bicicleta aro 23
-            Otros
+            {{object.alt1}}<br>
+            {{object.alt2}}<br>
+            {{object.alt3}}<br>
         </div>
         <div class="mt-1" style="font-size:20px">
-           Cambiaria por otros objetos:  Si
+           Cambiaria por otros objetos:  
+           <div v-if="object.otherObj">
+                SI
+           </div>
+           <div v-else >
+                NO
+           </div>
+
         </div>
 
     </div> 
@@ -81,7 +88,7 @@ export default {
         }
     },
 
-    props: ['session_data','object_details'],
+    props: ['session_data','object_details','object' ],
     emits: ['closeModalObjectDetails','showMyInventory'],
 
   created() {
