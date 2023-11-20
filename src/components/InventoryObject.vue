@@ -11,7 +11,7 @@
                 IMAGE
                 </div>
                 <div  class="d-flex align-items-center m-2">
-                    Play station 3
+                    {{object.name}}
                 </div>
     </div>
     <div v-else> 
