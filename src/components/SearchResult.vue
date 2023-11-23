@@ -3,13 +3,13 @@
   <div class="w-100 ">
 
 
-    <div class="mt-2" v-if=" !showModalDetails && !showExchangeProposal ">
+    <div class="m-2" v-if=" !showModalDetails && !showExchangeProposal ">
         <FilterForSearchView  />
     </div>
 
     
     <!-- 1- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
-    <div v-if="showExchangeProposal==false && showModalDetails==false  ">
+    <div v-if="showExchangeProposal==false && showModalDetails==false" >
         
         <div class="d-flex flex-wrap"> 
           <div v-for="obj in objects" :key="index" > 
@@ -25,7 +25,7 @@
                   <div class="d-flex justify-content-end"> 
                   <i @click="showModalDetails=false" class="bi bi-x-lg display-1" ></i>
                   </div>
-                  <InventoryObjectDetailed  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
+                  <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
           </div>
           
           <div class="m-4 pb-4" v-if="showModalDetails">
@@ -79,13 +79,13 @@ export default {
         objectDetails : null, 
 
         //trae desde BKND
-        objects : [         {name:"playStation 2", description : "Consola en buen estado con 2 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_222"  , otherObj: true }, 
-                            {name:"playStation 3", description : "Consola en buen estado con 3 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_333"  , otherObj: false}, 
-                            {name:"playStation 4", description : "Consola en buen estado con 4 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_444" , otherObj: true }, 
-                            {name:"playStation 5", description : "Consola en buen estado con 5 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_555" , otherObj: false}, 
-                            {name:"playStation 6", description : "Consola en buen estado con 6 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_6666", otherObj: true}, 
-                            {name:"playStation 7", description : "Consola en buen estado con 7 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_7777", otherObj: false}, 
-                            {name:"playStation 8", description : "Consola en buen estado con 8 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_8888", otherObj: true}, 
+        objects : [         {name:"AlguienPlay 1", description : "Consola en buen estado con 2 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_222"  , otherObj: true }, 
+                            {name:"AlguienPlay 2", description : "Consola en buen estado con 3 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_333"  , otherObj: false}, 
+                            {name:"AlguienPlay 3", description : "Consola en buen estado con 4 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_444" , otherObj: true }, 
+                            {name:"AlguienPlay 4", description : "Consola en buen estado con 5 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_555" , otherObj: false}, 
+                            {name:"AlguienPlay 5", description : "Consola en buen estado con 6 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_6666", otherObj: true}, 
+                            {name:"AlguienPlay 6", description : "Consola en buen estado con 7 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_7777", otherObj: false}, 
+                            {name:"AlguienPlay 7", description : "Consola en buen estado con 8 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_8888", otherObj: true}, 
                            ],
 
 
