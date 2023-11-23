@@ -4,15 +4,15 @@
 
     <div class=" d-flex justify-content-between text-white" style="font-size : 20px ">
         <!-- <a href="/">Buscar</a>-->
-        <RouterLink  class="text-white" :class="{'text-decoration-underline' :underline_search}" @click="setUnderline(1)"   to="/searchView">Buscar</RouterLink>    
-        <RouterLink v-if="session_data.user!=null"  class="text-white" :class="{'text-decoration-underline' :underline_account}" @click="setUnderline(2)" to="/login">{{session_data.user.split(" ")[0] }}</RouterLink>
-        <RouterLink v-else  class="text-white"   :class="{'text-decoration-underline' :underline_login}" @click="setUnderline(3)"  to="/login">Tu Cuenta</RouterLink>
+        <RouterLink  class="" :class="{'text-success'  :underline_search}" @click="setUnderline(1)"   to="/searchView">  <i class="display-1 bi bi-search-heart"></i>  </RouterLink>    
+        <RouterLink v-if="session_data.user!=null"  class="" :class="{'text-decoration-underline' :underline_account}" @click="setUnderline(2)" to="/login">{{session_data.user.split(" ")[0] }}</RouterLink>
+        <RouterLink v-else  class=""   :class="{'text-decoration-underline' :underline_login}" @click="setUnderline(3)"  to="/login">Tu Cuenta</RouterLink>
     </div> 
     
-    <div v-if="session_data!=null && session_data.user!=null" class="mt-2 d-flex justify-content-between  text-white" style="font-size : 20px " >
-      <RouterLink  class="text-white" :class="{'text-decoration-underline' :underline_inventory}" @click="setUnderline(4)" to="/MyInventory">Inventario</RouterLink>    
-      <RouterLink  class="text-white" :class="{'text-decoration-underline' :underline_received}" @click="setUnderline(5)" to="/OfReceived">Recibidas</RouterLink>    
-      <RouterLink  class="text-white" :class="{'text-decoration-underline' :underline_sent}" @click="setUnderline(6)"  to="/OfSent">Enviadas</RouterLink>    
+    <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
+      <RouterLink  class="" :class="{'text-success' :underline_inventory}" @click="setUnderline(4)" to="/MyInventory"><i class="display-2 bi bi-backpack4"></i></RouterLink>    
+      <RouterLink  class="" :class="{'text-success' :underline_received}" @click="setUnderline(5)" to="/OfReceived"><i class="display-2  bi bi-cloud-download"></i></RouterLink>    
+      <RouterLink  class="" :class="{'text-success' :underline_sent}" @click="setUnderline(6)"  to="/OfSent"><i class="display-2  bi bi-cloud-upload"></i></RouterLink>    
     </div>
     
     <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
@@ -28,7 +28,8 @@
 
 a{
   text-decoration: none ;
-  transition: 2.4s;
+  color : white
+  /*transition: 0.4s;*/
 
 }
 
@@ -53,7 +54,7 @@ export default {
         return {
           session_data : {user:"Juan Alejandro Morales", pass:"eeee"} ,
           
-          underline_search:false,
+          underline_search:true,
           underline_account: false ,
           underline_login: false ,
 
