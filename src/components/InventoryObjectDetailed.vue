@@ -88,7 +88,7 @@ export default {
         }
     },
 
-    props: ['session_data','object_details','object' ],
+    props: ['session_data','object_details','object', 'showMakeOffer' ],
     emits: ['closeModalObjectDetails','showMyInventory'],
 
   created() {
