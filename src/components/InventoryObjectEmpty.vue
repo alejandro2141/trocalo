@@ -3,29 +3,13 @@
 
 <template>
 
-  <div class="m-2">
-
-    <div class="" style="width:100px">
-        <div>
-         
-        </div>
+    <div class="" style="width:100px; height:100px;  display: flex; justify-content: center;  align-items: center; border-style: dashed;">
         
-        <div class="bg-dark" style="">
+        
+
             <i class="display-1 bi bi-plus-lg"></i>
-        </div>
-
-
-        <div v-if="showProductDetails">
-           aaa
-        </div>
-        <br>
-        <div v-if="showProductPreference">
-           ffffff
-        </div>
         
     </div> 
-
-  </div>
 
 </template>
 
