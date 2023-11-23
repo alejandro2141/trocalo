@@ -31,9 +31,9 @@
              
                 <br>
                 <div v-if="showProductPreference">
-                    {{object.alt1}}<br>
-                    {{object.alt2}}<br>
-                    {{object.alt3}}<br>
+                    {{object.alt1}}
+                    {{object.alt2}}
+                    {{object.alt3}}
                 </div>
 
         </div>
