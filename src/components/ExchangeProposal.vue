@@ -19,6 +19,10 @@
               <div  style="font-size:16px "  class="m-2 w-100">
                 Selecciona Objetos que ofreces a cambio
               </div>
+
+             
+
+
               <div class="d-flex flex-wrap">
                 <div v-for="obj in DBmyInventoryObjects" :key="index" > 
                   <InventoryObject @click="addRemoveOfferList(obj)" :object=obj  :showProductDetails="false"  /> 
@@ -28,10 +32,19 @@
 
           <!-- FOOTER -->
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+            <div class="d-flex justify-content-center"> 
+                    <div  @click="showStep2=true; showStep1 = false ; showPartnerInventory=false ; showMyInventory=false ; objectProposalList.push(objectProposal) " class="border border-2 border-success w-25 text-center">
+                        <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                    </div>
+              </div>
+            <!-- 
               <div class="d-flex justify-content-center">
                   <i @click="showStep2=true; showStep1 = false ; showPartnerInventory=false ; showMyInventory=false ; objectProposalList.push(objectProposal) " class="bi bi-caret-right"></i> 
               </div>
-          </div>
+              -->
+          
+          
+            </div>
           <!-- END FOOTER -->
       </div>
   <!-- END SHOW STEP 1-->
@@ -67,7 +80,7 @@
 
             <div v-for="obj in objectProposalList" :key="index" > 
               <InventoryObject :object=obj :showDeleteOption="true"  :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
-              <div class=" d-flex justify-content-center text-danger"> <i class="bi bi-x-lg "></i> </div>
+              <div class=" d-flex justify-content-center text-danger" @click="removeFromObjectProposalList(obj)"> <i class="bi bi-x-lg "></i> </div>
             </div>
 
             <InventoryObjectEmpty   @click="showPartnerInventory=!showPartnerInventory; showMyInventory=false ;" />
@@ -78,6 +91,7 @@
           <div  style="font-size:16px "  class="m-2">
                 Objetos seleccionados que ofreces a cambio:
           </div>
+          
            <!-- LIST MY OBJECT  -->
           <div  class="d-flex align-content-stretch flex-wrap">
             <div v-for="obj in objectsOfferList" :key="index" > 
@@ -96,28 +110,38 @@
         -->
           <br>
 
-
           <!-- FOOTER -->
-          <div v-if="!showMyInventory" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+          <div v-if="!(showMyInventory || showPartnerInventory)" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
               <div   class="d-flex justify-content-center">
                 <div @click="showStep3=true; showStep2 = false">
                   <i class="bi bi-caret-right"></i> 
-                  <i class="bi bi-caret-right"></i> 
+                
                 </div>
               </div>
           </div>
+
           <!-- END FOOTER -->
       </div>
   <!-- END SHOW STEP 2-->
 
-          <!-- LIST Partner INVENTORY -->
+          <!-- ****************** -->
+          <!-- LIST MY INVENTORY  -->
+          <!-- ****************** -->
           <div v-if="showPartnerInventory && !showStep1" class="position-absolute top-0 start-10 bg-dark" style="width: 350px; height:1700px">
-              <div style="transition: width 2s;" class="d-flex justify-content-end">
-                  <i  @click="showPartnerInventory=false; objectProposalList=objectProposalList.concat(objectProposalList_temp);objectProposalList_temp.length=0 " style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
+              <div style="" class="d-flex justify-content-end">
+                  <i  @click="showPartnerInventory=false;"  style="font-size:50px;" class="display-1 bi bi-x-lg text-danger"></i>
               </div>
               <div  style="font-size:16px "  class="m-2">
                   Agrega otros objetos del inventario de Kakito_123 a esta propuesta de cambio
                    <br>
+
+                   <div class="d-flex justify-content-center"> 
+                    <div  @click="objectProposalList=objectProposalList.concat(objectProposalList_temp);objectProposalList_temp.length=0;showPartnerInventory=false;" class="border border-2 border-success w-25 text-center">
+                        <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                    </div>
+                  </div>
+
+
                 <!--  <button  @click="showStep2=true; showPartnerInventory=false; objectProposalList=objectProposalList.concat(objectProposalList_temp)" type="button" class="btn btn-success">Agregar</button> -->
               </div>
               <!-- <InventoryList /> -->
@@ -128,14 +152,24 @@
               </div>
           </div>
 
+          <!-- ****************** -->
           <!-- LIST MY INVENTORY  -->
+          <!-- ****************** -->
           <div v-if="showMyInventory"  class="position-absolute top-0 start-10 bg-dark" style="width: 350px; height:1700px">
             <div style="transition: width 2s;" class="d-flex justify-content-end">
-                <i  @click="showMyInventory=false;objectsOfferList=objectsOfferList.concat(objectsOfferList_temp); objectsOfferList_temp.length=0" style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
+                <i  @click="showMyInventory=false; objectsOfferList_temp.length=0" style="font-size:50px;" class="display-1 bi bi-x-lg text-danger"></i>
             </div>
             <div  style="font-size:16px "  class="m-2">
                 Mejora tu Propuesta agregando otros objetos de tu Inventario
                 <br>
+
+                <div class="d-flex justify-content-center"> 
+                    <div  @click="showMyInventory=false;objectsOfferList=objectsOfferList.concat(objectsOfferList_temp); objectsOfferList_temp.length=0" class="border border-2 border-success w-25 text-center">
+                        <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                    </div>
+                </div>
+
+
                <!-- <button  @click="showStep2=true; showMyInventory=false; objectsOfferList=objectsOfferList.concat(objectsOfferList_temp)" type="button" class="btn btn-success">Agregar</button> -->
             </div>
           <!-- <InventoryList /> -->
@@ -210,7 +244,7 @@
               <div @click="showStep4=true; showStep3 = false"  class="d-flex justify-content-center">
                   <i class="bi bi-caret-right"></i> 
                   <i class="bi bi-caret-right"></i> 
-                  <i class="bi bi-caret-right"></i> 
+                 
               </div>
 
             </div>
@@ -429,10 +463,12 @@ methods: {
     
     removeFromObjectsOfferList(obj)
     {
-      //let aux= this.objectsOfferList.find(elem => elem.id ==  obj.id  )
       this.objectsOfferList= this.objectsOfferList.filter(element => element.id !== obj.id );
-     
-      //console.log("remove "+JSON.stringify(aux))
+    },
+
+    removeFromObjectProposalList(obj)
+    {
+      this.objectProposalList= this.objectProposalList.filter(element => element.id !== obj.id );
     },
 
     addRemoveOfferList(obj)
