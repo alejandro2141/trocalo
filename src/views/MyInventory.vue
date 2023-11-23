@@ -4,7 +4,7 @@
 
     <div v-if="!showNewObjectForm">
         <div class="d-flex justify-content-center">
-            <i  @click="showNewObjectForm=true" style="font-size:50px;" class="bi bi-plus-lg"></i>
+            <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
         </div>
         <br>
         <InventoryList />
