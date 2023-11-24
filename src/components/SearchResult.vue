@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w-100 ">
+  <div  style="width:400px"   >
 
 
     <div class="m-2" v-if=" !showModalDetails && !showExchangeProposal ">
@@ -13,16 +13,25 @@
         
         <div class="d-flex flex-wrap"> 
           <div v-for="obj in objects" :key="index" > 
-            <InventoryObject @click="objectDetails=obj ;showModalDetails=true;" :object=obj :showProductDetails="false" :showProductPreference="false"   class="m-1"/>
+            <InventoryObject @click="objectDetails=obj ;showModalDetails=true;" :object=obj  class="m-1"/>
           </div>
         </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     
     </div>
 
     <!-- 2- Show Object Details-->
-    <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
-          <div class="" >
-                  <div class="d-flex justify-content-end"> 
+    <div v-if="showModalDetails"   class="w-100 position-absolute top-0 start-0 bg-dark " >
+      <div class="d-flex justify-content-center">
+        <div>
+          <div class="w-100" >
+                  <div class="d-flex justify-content-end m-1"> 
                   <i @click="showModalDetails=false" class="bi bi-x-lg display-1" ></i>
                   </div>
                   <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
@@ -31,19 +40,31 @@
           <div class="m-4 pb-4" v-if="showModalDetails">
                   <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showExchangeProposal=true ; showModalDetails=false  " type="button" class="btn btn-primary">Hacer oferta por este producto</button>
                   <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
-          </div>        
+          </div>    
+        </div>
+      </div>  
     </div>
 
      <!-- 3 Show Exchange Proposal -->
-    <div v-if="showExchangeProposal" class="position-absolute top-0 start-10 bg-dark" >
-          <div class="d-flex justify-content-end"> 
+    <div v-if="showExchangeProposal"   class="w-100 position-absolute top-0 start-0 bg-dark " >
+      
+      <div class="d-flex justify-content-center">
+        
+        <div class="w-100">
+        <!-- DONT NEEDED
+          <div class="d-flex justify-content-end m-2 bg-danger"  > 
             <i @click="showExchangeProposal=false ;  showModalDetails=true" class="bi bi-x-lg display-1" ></i>
           </div>
+        -->
          
-         
-          <div>
-            <ExchangeProposal :objectProposal=objectDetails />
-          </div>        
+          <div class="">
+            <ExchangeProposal v-on:emitShowObjectDetails="showExchangeProposal=false ;  showModalDetails=true" :objectProposal=objectDetails />
+          </div>
+          
+
+        </div>
+      </div>
+
     </div>
 
 
