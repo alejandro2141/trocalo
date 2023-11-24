@@ -3,45 +3,69 @@
 
 <template>
 
-  <div class=""   >
+  <div class=""    >
 
-
-    <div v-if="showConfirmMode" class="d-flex justify-content-start" >
-                <div class="bg-white"  style="width:100px; height:100px">
-                IMAGE
-                </div>
-                <div  class="d-flex align-items-center m-2">
-                    {{object.name}}
-                </div>
-    </div>
-    <div v-else> 
-
+    
+    <div v-if="horizontal"> 
         <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
 
                 <div class="bg-white"  style="width:100px; height:100px">
                 IMAGE
                 </div>
+
                 <div>
-                   {{object.name}}
+                    <div>
+                    {{object.name}}
+                    </div>
+                    <div v-if="showProductDetails" class="text-secondary">
+                        {{object.description}}
+                    </div>
+                    <br>
+                    <div v-if="showProductPreference">
+                        {{object.alt1}}
+                        {{object.alt2}}
+                        {{object.alt3}}
+                    </div>
                 </div>
-                
-                <div v-if="showProductDetails" class="text-secondary">
-                    {{object.description}}
+        </div>
+    </div> 
+
+    <div  v-else-if="horizontal_short"> 
+        <div  @click="selectObject=!selectObject"  class="d-flex justify-content-start border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style=" border-style: dotted"   >
+
+                <div class="bg-white" style="width:100px; height:100px" >
+                IMAGE
                 </div>
-             
-                <br>
-                <div v-if="showProductPreference">
-                    {{object.alt1}}
-                    {{object.alt2}}
-                    {{object.alt3}}
+
+                <div class="m-1">
+
+                    <div>
+                    {{object.name}}
+                    </div>
+                    <div v-if="showProductDetails" class="text-secondary">
+                        {{object.description}}
+                    </div>
+
                 </div>
 
         </div>
-        
-        
-        
-    
     </div> 
+
+    <div v-else class="" >
+        <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted" >
+                <div class="bg-white"  style="width:100px; height:100px">
+                IMAGE
+                </div>
+               
+                <div  class="d-flex align-items-center m-0">
+                    {{object.name}}<br>
+                    {{object.description}}
+                </div>
+        </div>
+
+    </div>
+
+
 
   </div>
 
@@ -65,7 +89,7 @@ export default {
         }
     },
 
-    props: ['showProductDetails','showProductPreference','isActive','showDeleteOption', 'showConfirmMode' ,'object' ],
+    props: ['showProductDetails','horizontal_short','horizontal' ,'object' ],
     emits: [],
 
 	created() {
