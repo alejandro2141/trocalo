@@ -1,7 +1,24 @@
+<script setup>
+import InventoryObject from '../components/InventoryObject.vue'
+import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
+import InventoryList from '../components/InventoryList.vue' 
+import NewObjectForm from '../components/NewObjectForm.vue'
+</script>
+
 <template>
  
  <div>
 
+    <div>
+        <div class="d-flex justify-content-center">
+            <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
+        </div>
+        <br>
+        <InventoryList />
+    </div>
+   
+
+   <!--
     <div v-if="!showNewObjectForm">
         <div class="d-flex justify-content-center">
             <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
@@ -15,6 +32,7 @@
         </div>
         <NewObjectForm />
     </div>
+    -->
 
  </div>
 
@@ -27,20 +45,8 @@
 
 <script>
 
-import InventoryObject from '../components/InventoryObject.vue'
-import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
-import InventoryList from '../components/InventoryList.vue' 
-import NewObjectForm from '../components/NewObjectForm.vue'
-
-
-
 export default {
 
-
-  components: {
-    InventoryObject,InventoryObjectDetailed,InventoryList,NewObjectForm
-  },
-  
   data : function() {
       return {
         showNewObjectForm : false, 
