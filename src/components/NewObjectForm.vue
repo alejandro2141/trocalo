@@ -1,3 +1,11 @@
+<script setup>
+import InventoryObject from '../components/InventoryObject.vue'
+import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
+import InventoryList from '../components/InventoryList.vue' 
+
+
+</script>
+
 <template>
  
  <div>
@@ -112,19 +120,15 @@ textareainput::placeholder {
 
 <script>
 
-import InventoryObject from '../components/InventoryObject.vue'
-import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
-import InventoryList from '../components/InventoryList.vue' 
-
 
 
 export default {
 
-
+/*
   components: {
     InventoryObject,InventoryObjectDetailed,InventoryList
   },
-  
+  */
   data : function() {
       return {
         step1 : true ,
