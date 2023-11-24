@@ -1,7 +1,10 @@
 <script setup>
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import InventoryObject from './InventoryObject.vue' 
+import InventoryList from '../components/InventoryList.vue' 
+import NewObjectForm from '../components/NewObjectForm.vue'
 </script>
+
 
 
 
@@ -15,11 +18,11 @@ import InventoryObject from './InventoryObject.vue'
     </div>
 -->
 
-    <div class="d-flex justify-content-center">
-        
-      <input style="text-align:center; font-size:30px" class="form-control-sm form-control-sm w-75 bg-dark border-white text-white"  type="text" minlength="4" maxlength="20" size="7" placeholder="&#9729;&#9730;&#9832;&#9731;&#9814;"> 
-       
+    <div class="d-flex justify-content-around">
+      <input style="text-align:center; font-size:20px" class="form-control-sm form-control-sm w-50 bg-dark border-white text-white"  type="text" minlength="4" maxlength="20" size="7" placeholder="&#9729;&#9730;&#9832;&#9731;&#9814;"> 
+      <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
     </div>
+
     <br>
     <div class="d-flex flex-wrap"> 
     
@@ -38,7 +41,13 @@ import InventoryObject from './InventoryObject.vue'
           </div>
     </div>
 
-    
+
+    <div v-if="showNewObjectForm"  class="position-absolute top-0 start-10 bg-dark" >
+        <div style="transition: width 2s;" class="d-flex justify-content-end">
+            <i  @click="showNewObjectForm=false" style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
+        </div>
+        <NewObjectForm />
+    </div>
 
 </div>
 
@@ -60,6 +69,7 @@ export default {
   data : function() {
       return {
         showModalDetails: false,
+        showNewObjectForm: false ,
         inventoryObjects : [{name:"myplay 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {name:"myplay 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {name:"myplay 3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
@@ -67,8 +77,7 @@ export default {
                             {name:"myplay 5", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {name:"myplay 6", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {name:"myplay 7", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                           ],
-        
+                           ],   
       }
   },
   props: ['session_data'],
