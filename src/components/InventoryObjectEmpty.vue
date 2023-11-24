@@ -3,6 +3,14 @@
 
 <template>
 
+
+<div class="d-flex justify-content-center w-100" >
+         <i class="display-1 bi bi-plus-lg"></i>
+</div>
+
+    
+
+<!-- 
     <div class="" style="width:100px; height:100px;  display: flex; justify-content: center;  align-items: center; border-style: dashed;">
         
         
@@ -10,6 +18,8 @@
             <i class="display-1 bi bi-plus-lg"></i>
         
     </div> 
+-->
+
 
 </template>
 
