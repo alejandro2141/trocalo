@@ -15,20 +15,34 @@
       <div v-if="showStep1"  class="position-absolute top-0 start-0 bg-dark" >
           
           <!-- Your Inventory  -->
-          <div class="" style="width:350px" >
-              <div  style="font-size:16px "  class="m-2 w-100">
-                Selecciona Objetos que ofreces a cambio
+
+          <div class="d-flex justify-content-center "  >
+            <div>
+      
+              <div class="d-flex justify-content-end m-0 "  > 
+                <i @click="goToObjectDetails()" class="bi bi-x-lg display-1" ></i>
               </div>
 
-             
+              <div  style="font-size:16px "  class="m-2 w-100">
+                Selecciona Objetos de tu Inventario
+              </div>
+              <br>
 
-
-              <div class="d-flex flex-wrap">
+              <div class="d-flex flex-wrap ">
                 <div v-for="obj in DBmyInventoryObjects" :key="index" > 
-                  <InventoryObject @click="addRemoveOfferList(obj)" :object=obj  :showProductDetails="false"  /> 
+                  <InventoryObject @click="addRemoveOfferList(obj)" :object=obj  :showProductDetails="false" class="m-1" /> 
                 </div>
               </div>
+
+
+            </div>
           </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
 
           <!-- FOOTER -->
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
@@ -55,11 +69,16 @@
   <!--             SHOW STEP 2         -->
   <!-- ******************************* -->
     
-    <div v-if="showStep2" style="width: 350px;">
+    <div v-if="showStep2">
        <!-- TITLE -->
+        
+        <div class="d-flex justify-content-end m-0 "  > 
+                <i @click="goToObjectDetails()" class="bi bi-x-lg display-1" ></i>
+        </div>
+
         <br>
           <div class="d-flex justify-content-between">
-              <div>Propuesta válida por: </div>
+              <div style="font-size:16px " >Propuesta válida por: </div>
           
               <div class="w-25">
                   <select class="form-control" id="sel1">
@@ -72,33 +91,41 @@
           </div>
           <br>
 
-          <div  style="font-size:16px "  class="d-flex justify-content-center">
+          <div  style="font-size:16px "  class="d-flex justify-content-start">
               Objeto de tu interes, pertenece a kakito_123
           </div>
           <!-- LIST PARTNER OBJECT-->
           <div  class="d-flex align-content-stretch flex-wrap">
 
-            <div v-for="obj in objectProposalList" :key="index" > 
-              <InventoryObject :object=obj :showDeleteOption="true"  :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
-              <div class=" d-flex justify-content-center text-danger" @click="removeFromObjectProposalList(obj)"> <i class="bi bi-x-lg "></i> </div>
+
+            <div v-for="obj in objectProposalList" :key="index" class="d-flex justify-content-start" > 
+              <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
+              <div class="text-danger" @click="removeFromObjectProposalList(obj)"> <i class="bi bi-x-lg "></i> </div>
             </div>
 
-            <InventoryObjectEmpty   @click="showPartnerInventory=!showPartnerInventory; showMyInventory=false ;" />
+            <div style="width:100px" class="d-flex justify-content-center" >
+                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showPartnerInventory=!showPartnerInventory; showMyInventory=false ;" ></i>
+            </div>
+
           </div>
           <!-- END LIST PARTNER OBJECT-->
-    
+    <br>
           
-          <div  style="font-size:16px "  class="m-2">
-                Objetos seleccionados que ofreces a cambio:
+          <div  style="font-size:16px "  class="d-flex justify-content-start">
+                Objetos que ofreces a cambio:
           </div>
           
            <!-- LIST MY OBJECT  -->
           <div  class="d-flex align-content-stretch flex-wrap">
-            <div v-for="obj in objectsOfferList" :key="index" > 
-              <InventoryObject :object=obj :showDeleteOption="true"  :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
-              <div class="d-flex justify-content-center text-danger" @click="removeFromObjectsOfferList(obj)"> <i class="bi bi-x-lg "></i> </div>
+            <div v-for="obj in objectsOfferList" :key="index" class="d-flex justify-content-start"  > 
+              <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/>
+              <div class="text-danger" @click="removeFromObjectsOfferList(obj)"> <i class="bi bi-x-lg "></i> </div>
             </div>
-              <InventoryObjectEmpty   @click="showMyInventory=!showMyInventory;showPartnerInventory=false " />
+
+          <div style="width:100px" class="d-flex justify-content-center" >
+            <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showMyInventory=!showMyInventory;showPartnerInventory=false "  ></i>
+          </div>
+
           </div>
         <!--
           <div class="d-flex justify-content-between">  
@@ -125,21 +152,23 @@
   <!-- END SHOW STEP 2-->
 
           <!-- ****************** -->
-          <!-- LIST MY INVENTORY  -->
+          <!-- LIST PARTNER  INVENTORY  -->
           <!-- ****************** -->
-          <div v-if="showPartnerInventory && !showStep1" class="position-absolute top-0 start-10 bg-dark" style="width: 350px; height:1700px">
+          <div v-if="showPartnerInventory && !showStep1" class="position-absolute top-0 start-10 bg-dark" style=" height:1700px">
               <div style="" class="d-flex justify-content-end">
-                  <i  @click="showPartnerInventory=false;"  style="font-size:50px;" class="display-1 bi bi-x-lg text-danger"></i>
+                  <i  @click="showPartnerInventory=false;"  style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
               </div>
               <div  style="font-size:16px "  class="m-2">
                   Agrega otros objetos del inventario de Kakito_123 a esta propuesta de cambio
                    <br>
 
+                <!--
                    <div class="d-flex justify-content-center"> 
                     <div  @click="objectProposalList=objectProposalList.concat(objectProposalList_temp);objectProposalList_temp.length=0;showPartnerInventory=false;" class="border border-2 border-success w-25 text-center">
                         <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
                     </div>
                   </div>
+                -->
 
 
                 <!--  <button  @click="showStep2=true; showPartnerInventory=false; objectProposalList=objectProposalList.concat(objectProposalList_temp)" type="button" class="btn btn-success">Agregar</button> -->
@@ -150,25 +179,36 @@
                   <InventoryObject @click="addRemoveObjectsProposalList_temp(obj)" :object=obj  :showProductDetails="false"  /> 
                 </div>
               </div>
+
+                <!-- FOOTER -->
+                <div  class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+                    <div   class="d-flex justify-content-center">
+                        <div  @click="objectProposalList=objectProposalList.concat(objectProposalList_temp);objectProposalList_temp.length=0;showPartnerInventory=false;" class="border border-2 border-success w-25 text-center">
+                          <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                        </div>   
+                    </div>
+                </div>
+
           </div>
 
           <!-- ****************** -->
           <!-- LIST MY INVENTORY  -->
           <!-- ****************** -->
-          <div v-if="showMyInventory"  class="position-absolute top-0 start-10 bg-dark" style="width: 350px; height:1700px">
+          <div v-if="showMyInventory"  class="position-absolute top-0 start-10 bg-dark" style="height:1700px">
             <div style="transition: width 2s;" class="d-flex justify-content-end">
-                <i  @click="showMyInventory=false; objectsOfferList_temp.length=0" style="font-size:50px;" class="display-1 bi bi-x-lg text-danger"></i>
+                <i  @click="showMyInventory=false; objectsOfferList_temp.length=0" style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
             </div>
-            <div  style="font-size:16px "  class="m-2">
-                Mejora tu Propuesta agregando otros objetos de tu Inventario
-                <br>
 
+            <div  style="font-size:16px "  class="m-2">
+                Mejora tu Propuesta agregando otros objetos de tu Inventario 
+                <br>
+            <!--
                 <div class="d-flex justify-content-center"> 
                     <div  @click="showMyInventory=false;objectsOfferList=objectsOfferList.concat(objectsOfferList_temp); objectsOfferList_temp.length=0" class="border border-2 border-success w-25 text-center">
                         <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
                     </div>
                 </div>
-
+              -->
 
                <!-- <button  @click="showStep2=true; showMyInventory=false; objectsOfferList=objectsOfferList.concat(objectsOfferList_temp)" type="button" class="btn btn-success">Agregar</button> -->
             </div>
@@ -179,6 +219,17 @@
                 </div>
             </div>
 
+
+              <!-- FOOTER -->
+              <div  class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+                    <div   class="d-flex justify-content-center">
+                        <div  @click="showMyInventory=false;objectsOfferList=objectsOfferList.concat(objectsOfferList_temp); objectsOfferList_temp.length=0" class="border border-2 border-success w-25 text-center">
+                          <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                        </div>   
+                    </div>
+              </div>
+
+
           </div>
 
 
@@ -186,35 +237,47 @@
   <!--             SHOW STEP 3         -->
   <!-- ******************************* -->
     
-  <div v-if="showStep3" style="width: 350px;">
+  <div v-if="showStep3" style="width: 400px;">
        <!-- TITLE -->
           <br>
+
           <div style="font-size:20px">
-           Costo recogida y entrega $17.000 a tu cargo. 
+           Revise la propuesta antes de Enviar
+          </div>
+          <br>
+
+          <div style="font-size:16px">
+           El costo recogida y entrega a tu cargo <br>
+            $17.000 
           </div>
           <br>
           
-          <div  style="font-size:16px "  class="d-flex justify-content-center">
+          <div style="font-size:16px" class="d-flex justify-content-between">
+              <div>Propuesta válida por: 25 dias </div>
+          </div>
+          <br>
+
+          <div  style="font-size:16px"  class="d-flex justify-content-start">
               Objeto de tu interes, pertenece a kakito_123
           </div>
           <!-- LIST PARTNER OBJECT-->
           <div  class="">
           
             <div v-for="obj in objectProposalList" :key="index" > 
-              <InventoryObject :object=obj   :showConfirmMode=true :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
+              <InventoryObject :horizontal_short="true" :showProductDetails="true"  :object=obj    @click="showPartnerObjectDetailed=true"/> 
             </div>
             
           </div>
           <!-- END LIST PARTNER OBJECT-->
         
-          
-          <div  style="font-size:16px "  class="m-2">
+          <br>
+          <div  style="font-size:16px " class="d-flex justify-content-start">
                 Objetos seleccionados que ofreces a cambio:
           </div>
            <!-- LIST MY OBJECT  -->
           <div  class="">
             <div v-for="obj in objectsOfferList" :key="index" > 
-              <InventoryObject :object=obj  :showConfirmMode=true :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
+              <InventoryObject  :horizontal_short="true" :showProductDetails="true"  :object=obj   @click="showPartnerObjectDetailed=true"/> 
             </div>
 
           </div>
@@ -227,9 +290,7 @@
           </div>
         -->
         
-          <div style="font-size:20px" class="d-flex justify-content-between">
-              <div>Propuesta válida por: 25 dias </div>
-          </div>
+         
 
 
           <!-- FOOTER -->
@@ -242,7 +303,7 @@
               </div>
 
               <div @click="showStep4=true; showStep3 = false"  class="d-flex justify-content-center">
-                  <i class="bi bi-caret-right"></i> 
+                  <text style="font-size:20px">Enviar</text> 
                   <i class="bi bi-caret-right"></i> 
                  
               </div>
@@ -443,13 +504,19 @@ export default {
         }
   },
   props: ['session_data','objectProposal'],
-  emits: ['closeThisModal'],
+  emits: ['closeThisModal','emitShowObjectDetails'],
 
 created() {
   console.log("APP CREATED")
     },
 
 methods: {
+
+    goToObjectDetails()
+    {
+      console.log("goto Object Details")
+      this.$emit('emitShowObjectDetails');
+    },
 
     addRemoveObjectsProposalList_temp(obj)
     {
