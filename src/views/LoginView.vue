@@ -13,20 +13,20 @@ import UserData from '../components/UserData.vue'
 
        
         <div class="d-flex flex-row-reverse bd-highlight"> 
-                    <a HREF="/" type="button" class=""><i class="display-5 bi bi-x-lg text-white"></i></a>
+                    <a HREF="/" type="button" class=""><i class="display-2 bi bi-x-lg text-white"></i></a>
         </div>
        
-        <div style="height:80px"></div>
+        <div style="height:10px"></div>
 
-       
-        <div class="d-flex justify-content-around ">
-            <div class=" arrow-up text-secondary " :class="{ 'fw-bold': showMyInfo }"  @click="showMyInfo=!showMyInfo; sendComments=false "> Mi <br>Informacion </div>
-            <div class="p-4 bg-danger" :class="{ 'fw-bold': sendComments }" @click="sendComments=!sendComments ; showMyInfo=false"> Tus <br>Comentarios </div>
+        <!--
+         <div class="d-flex justify-content-around ">
+            <div class="" :class="{ 'fw-bold': showMyInfo }"  @click="showMyInfo=!showMyInfo; sendComments=false "> Mi <br>Informacion </div>
+            <div class="" :class="{ 'fw-bold': sendComments }" @click="sendComments=!sendComments ; showMyInfo=false"> Tus <br>Comentarios </div>
         </div>
-
+        -->
              
         <Transition> 
-                <div v-if="showMyInfo">
+                <div v-if="true">
                     <UserData :session_data="session_data"/>
                 </div>
             
@@ -34,7 +34,7 @@ import UserData from '../components/UserData.vue'
             
 
           <Transition> 
-            <ContactUsForm  v-if="sendComments" />
+            <ContactUsForm  v-if="true" />
         </Transition>    
         <div style="height:200px"></div>
         <br>
