@@ -19,8 +19,15 @@ import NewObjectForm from '../components/NewObjectForm.vue'
 -->
 
     <div class="d-flex justify-content-around">
-      <input style="text-align:center; font-size:20px" class="form-control-sm form-control-sm w-50 bg-dark border-white text-white"  type="text" minlength="4" maxlength="20" size="7" placeholder="&#9729;&#9730;&#9832;&#9731;&#9814;"> 
-      <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
+      
+      <div>
+        <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
+      </div>
+    
+      <div class="d-flex align-items-center d-flex flex-row-reverse">
+        <input style="text-align:center; font-size:25px" class="form-control-sm form-control-sm w-50 bg-dark border-primary text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="&#9729;&#9730;&#9832;&#9731;&#9814;"> 
+      </div>
+     
     </div>
 
     <br>
@@ -39,8 +46,8 @@ import NewObjectForm from '../components/NewObjectForm.vue'
                   </div>
                   <InventoryObjectDetailed  :object="objectDetails"  :session_data="session_data" />
           </div>
+          <div style="height:300px"></div>
     </div>
-
 
     <div v-if="showNewObjectForm"  class="position-absolute top-0 start-10 bg-dark" >
         <div style="transition: width 2s;" class="d-flex justify-content-end">
