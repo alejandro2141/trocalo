@@ -21,22 +21,30 @@ import NewObjectForm from '../components/NewObjectForm.vue'
     <div class="d-flex justify-content-around">
       
       <div>
-        <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
+        <i  @click="showNewObjectForm=true" style="font-size:45px;" class=" text-secondary bi bi-plus-lg"></i>
+      </div>
+
+      <div class="align-self-center text-secondary">
+       Tus Objetos 
       </div>
     
       <div class="d-flex align-items-center d-flex flex-row-reverse">
-        <input style="text-align:center; font-size:25px" class="form-control-sm form-control-sm w-50 bg-dark border-primary text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="&#9729;&#9730;&#9832;&#9731;&#9814;"> 
+        <input style="text-align:center; font-size:15px" class="form-control-sm form-control-sm w-50 bg-dark border-white text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="..."> 
       </div>
      
     </div>
 
     <br>
-    <div class="d-flex flex-wrap"> 
-    
-      <div v-for="obj in inventoryObjects" :key="index" > 
-        <InventoryObject @click="objectDetails=obj ;showModalDetails=true;"  :object=obj class="m-1"   />
-      </div>
+    <div>
+        <div class="d-flex flex-wrap"> 
+        
+          <div v-for="obj in inventoryObjects" :key="index" > 
+            <InventoryObject @click="objectDetails=obj ;showModalDetails=true;"  :object=obj class="m-1"   />
+          </div>
 
+          
+        </div>
+        <div style="height:300px"></div>
     </div>
 
     <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
