@@ -15,7 +15,7 @@ import NewObjectForm from '../components/NewObjectForm.vue'
             <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
         </div>
         -->
-        <br>
+       
         <InventoryList />
     </div>
    
