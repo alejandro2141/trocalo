@@ -10,7 +10,7 @@
         <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
 
                 <div class="bg-white"  style="width:100px; height:100px">
-                IMAGE
+                    <img class=""  style="width:100px; height:100px" src="" /> 
                 </div>
 
                 <div>
@@ -34,7 +34,7 @@
         <div  @click="selectObject=!selectObject"  class="d-flex justify-content-start border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style=" border-style: dotted"   >
 
                 <div class="bg-white" style="width:100px; height:100px" >
-                IMAGE
+                    <img class=""  style="width:100px; height:100px" src="" /> 
                 </div>
 
                 <div class="m-1">
@@ -54,7 +54,7 @@
     <div v-else class="" >
         <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted" >
                 <div class="bg-white"  style="width:100px; height:100px">
-                IMAGE
+                    <img class=""  style="width:100px; height:100px" src="" /> 
                 </div>
                
                 <div  class="d-flex align-items-center m-0">
