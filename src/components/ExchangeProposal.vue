@@ -12,11 +12,12 @@
   <!-- ******************************* -->
   <!--             SHOW STEP 1         -->
   <!-- ******************************* -->
-      <div v-if="showStep1"  class="position-absolute top-0 start-0 bg-dark" >
+      <div v-if="showStep1"  class="position-absolute top-0 start-0 bg-dark w-100"  >
           
           <!-- Your Inventory  -->
 
-          <div class="d-flex justify-content-center "  >
+          <div class="w-100 d-flex justify-content-center">
+          <div  style="width:350px"  >
             <div>
       
               <div class="d-flex justify-content-end m-0 "  > 
@@ -24,7 +25,7 @@
               </div>
 
               <div  style="font-size:16px "  class="m-2 w-100">
-                Selecciona Objetos de tu Inventario
+                Selecciona de tu Inventario para intercambiar 
               </div>
               <br>
 
@@ -35,8 +36,10 @@
               </div>
 
 
-            </div>
           </div>
+        </div>
+        
+      </div>
           <br>
           <br>
           <br>
@@ -44,9 +47,9 @@
           <br>
           <br>
 
-          <!-- FOOTER -->
-          <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
-            <div class="d-flex justify-content-center"> 
+            <!-- FOOTER -->
+            <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+              <div class="d-flex justify-content-center"> 
                     <div  @click="showStep2=true; showStep1 = false ; showPartnerInventory=false ; showMyInventory=false ; objectProposalList.push(objectProposal) " class="border border-2 border-success w-25 text-center">
                         <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
                     </div>
@@ -69,25 +72,33 @@
   <!--             SHOW STEP 2         -->
   <!-- ******************************* -->
     
-    <div v-if="showStep2">
+    <div v-if="showStep2" class="w-100">
        <!-- TITLE -->
-        
+      <div  class="w-100 d-flex justify-content-center"  > 
+      <div style="width:350px"> 
+
         <div class="d-flex justify-content-end m-0 "  > 
                 <i @click="goToObjectDetails()" class="bi bi-x-lg display-1" ></i>
         </div>
 
         <br>
           <div class="d-flex justify-content-between">
-              <div style="font-size:16px " >Propuesta válida por: </div>
+              <div class="align-self-center" style="font-size:16px " >Propuesta válida por: </div>
           
               <div class="w-25">
-                  <select class="form-control" id="sel1">
-                    <option>1 dia</option>
-                    <option>2 dias</option>
-                    <option>3 dias</option>
-                    <option>4 dias</option>
-                  </select>
+                  <select class="form-control bg-dark border-white text-white" id="sel1">
+                    <option selected="30">30 dias</option>
+                    <option>5 dias</option>
+                    <option>10 dias</option>
+                    <option>15 dias</option>
+                    <option>20 dias</option>
+                    <option>30 dias</option>
+                    <option>40 dias</option>
+                    <option>60 dias</option>
+                    <option>100 dias</option>
+                     </select>
               </div>
+              <div></div>
           </div>
           <br>
 
@@ -135,7 +146,9 @@
             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
           </div>
         -->
-          <br>
+
+      </div>  
+      </div>
 
           <!-- FOOTER -->
           <div v-if="!(showMyInventory || showPartnerInventory)" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
@@ -154,7 +167,11 @@
           <!-- ****************** -->
           <!-- LIST PARTNER  INVENTORY  -->
           <!-- ****************** -->
-          <div v-if="showPartnerInventory && !showStep1" class="position-absolute top-0 start-10 bg-dark" style=" height:1700px">
+          <div v-if="showPartnerInventory && !showStep1" class="position-absolute top-0 start-10 bg-dark w-100" style=" height:1700px">
+              
+            <div class="w-100 d-flex justify-content-center">
+              <div style="width:350px">
+            
               <div style="" class="d-flex justify-content-end">
                   <i  @click="showPartnerInventory=false;"  style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
               </div>
@@ -189,12 +206,19 @@
                     </div>
                 </div>
 
+            </div>
+          </div>
+
           </div>
 
           <!-- ****************** -->
           <!-- LIST MY INVENTORY  -->
           <!-- ****************** -->
-          <div v-if="showMyInventory"  class="position-absolute top-0 start-10 bg-dark" style="height:1700px">
+          <div v-if="showMyInventory"  class="position-absolute top-0 start-0 bg-dark w-100" style="height:1700px">
+
+          <div class="w-100 d-flex justify-content-center">
+          <div style="width:350px">
+
             <div style="transition: width 2s;" class="d-flex justify-content-end">
                 <i  @click="showMyInventory=false; objectsOfferList_temp.length=0" style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
             </div>
@@ -218,7 +242,8 @@
                   <InventoryObject @click="addRemoveObjectsOfferList_temp(obj)" :object=obj  :showProductDetails="false"  /> 
                 </div>
             </div>
-
+          </div>
+          </div>
 
               <!-- FOOTER -->
               <div  class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
