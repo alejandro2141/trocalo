@@ -55,7 +55,7 @@ export default {
 
     data : function() {
         return {
-          session_data : {user:"Juan Alejandro Morales", pass:"eeee"} ,
+          session_data : {user:"JAMO123", active:true , pass:"eeee", name:"Juan Alejandro Morales Miranda", rut:"139093712"  , phone1:"56975397200", phone2:"56975397200" , address_street:"Avenida San Pablo" , address_number:"123" , address_apartment:true , address_house:true ,  address_zone1:"Independencia" ,  address_zone2:"Region Metropolitana" ,  address_city:"Santiago" ,  address_country:"Chile"  } ,
           
           underline_search:true,
           underline_account: false ,
