@@ -16,14 +16,15 @@ import UserData from '../components/UserData.vue'
                     <a HREF="/" type="button" class=""><i class="display-5 bi bi-x-lg text-white"></i></a>
         </div>
        
-        <div style="height:100px"></div>
+        <div style="height:80px"></div>
 
        
-            
-        <div :class="{ h1: showMyInfo }"  @click="showMyInfo=!showMyInfo; sendComments=false "> Mi Informacion </div>
-        
-        <div :class="{ h1: sendComments }" @click="sendComments=!sendComments ; showMyInfo=false"> Envianos tu Comentarios </div>
-      
+        <div class="d-flex justify-content-around ">
+            <div class=" arrow-up text-secondary " :class="{ 'fw-bold': showMyInfo }"  @click="showMyInfo=!showMyInfo; sendComments=false "> Mi <br>Informacion </div>
+            <div class="p-4 bg-danger" :class="{ 'fw-bold': sendComments }" @click="sendComments=!sendComments ; showMyInfo=false"> Tus <br>Comentarios </div>
+        </div>
+
+             
         <Transition> 
                 <div v-if="showMyInfo">
                     <UserData :session_data="session_data"/>
@@ -33,7 +34,7 @@ import UserData from '../components/UserData.vue'
             
 
           <Transition> 
-            <ContactUsForm v-if="sendComments" />
+            <ContactUsForm  v-if="sendComments" />
         </Transition>    
         <div style="height:200px"></div>
         <br>
@@ -82,6 +83,17 @@ import UserData from '../components/UserData.vue'
 .v-leave-to {
   opacity: 0;
 }
+
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  
+  border-bottom:75px solid yellow;
+}
+
+
 </style>
 
 
