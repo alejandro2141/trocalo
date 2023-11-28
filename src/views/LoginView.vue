@@ -1,8 +1,56 @@
+<script setup>
+import { ref } from 'vue'
+import ContactUsForm from '../components/ContactUsForm.vue' 
+import UserData from '../components/UserData.vue' 
+</script>
+
+
+
 <template>
-  <div class="about">
-    <h1>LoginView</h1>
-    
-    
+  <div class="w-100 position-absolute top-0 start-0 bg-dark ">
+   
+    <div v-if="session_data!=null && session_data.user!=null" class="text-center" >
+
+       
+        <div class="d-flex flex-row-reverse bd-highlight"> 
+                    <a HREF="/" type="button" class=""><i class="display-5 bi bi-x-lg text-white"></i></a>
+        </div>
+       
+        <div style="height:100px"></div>
+
+       
+            
+        <div :class="{ h1: showMyInfo }"  @click="showMyInfo=!showMyInfo; sendComments=false "> Mi Informacion </div>
+        
+        <div :class="{ h1: sendComments }" @click="sendComments=!sendComments ; showMyInfo=false"> Envianos tu Comentarios </div>
+      
+        <Transition> 
+                <div v-if="showMyInfo">
+                    <UserData :session_data="session_data"/>
+                </div>
+            
+        </Transition>    
+            
+
+          <Transition> 
+            <ContactUsForm v-if="sendComments" />
+        </Transition>    
+        <div style="height:200px"></div>
+        <br>
+        <br>
+     
+
+      
+        
+       
+        
+
+    </div>
+
+    <div v-else>
+
+        <h1>Ingreso</h1>
+
         <div class="container">   
             <label>Username : </label>   
             <input type="text"  v-model="user" autocomplete="off" autocorrect="off" spellcheck="false"  placeholder="Enter Username" name="username" required>  
@@ -16,13 +64,24 @@
             <br>
             Forgot <text> password? </text>   
         </div>   
-        
+    
+    </div>
 
   
   </div>
 </template>
 
 <style>
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>
 
 
@@ -35,6 +94,8 @@ export default {
         return {
         user : null ,
         pass : null ,
+        sendComments:false ,
+        showMyInfo : false,
         }
     },
 
