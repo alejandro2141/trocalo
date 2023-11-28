@@ -1,9 +1,9 @@
 <template>
 
-  <div  style="width:400px"   >
+  <div  style="width:400px" class="m-0"   >
 
 
-    <div class="m-2" v-if=" !showModalDetails && !showExchangeProposal ">
+    <div class="m-0 " v-if=" !showModalDetails && !showExchangeProposal ">
         <FilterForSearchView  />
     </div>
 
@@ -17,12 +17,9 @@
           </div>
         </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+          
+        <div style="height:300px">
+        </div> 
     
     </div>
 
@@ -37,12 +34,15 @@
                   <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
           </div>
           
-          <div class="m-4 pb-4" v-if="showModalDetails">
-                  <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Hacer oferta por este producto</button>
+          <div class="m-4 pb-4 d-flex justify-content-center" v-if="showModalDetails">
+                  <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
                   <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
           </div>    
         </div>
-      </div>  
+      </div>
+          
+        <div style="height:200px">
+        </div>  
     </div>
 
      <!-- 3 Show Exchange Proposal -->
