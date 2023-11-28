@@ -11,9 +11,12 @@ import { ref } from 'vue'
 <div class="text-center">
     <div v-if="true"  id="form" class=" p-1 " style="margin-top: 2em;">
         <div class="form-row">
+        
         <!--
-            <p class="text-center h4">Envianos un mensaje</p>
-        class="text-center"
+            <p class="text-center h4">Envianos un mensaje <i class="bi bi-send"></i></p>
+        -->
+        <!--
+            class="text-center"
             <div class="form-group ">
                 <input type="email" style="border-radius: 10px;" autocomplete="off" class="form-control" id="inputEmail4" placeholder="Ingrese su Email" v-model="email">
             </div>
@@ -30,7 +33,7 @@ import { ref } from 'vue'
         <input type="email" maxlength="40" style="border-radius: 10px;" autocomplete="off" class="form-control w-75 m-1 " id="inputEmail4" placeholder="" v-model="email">
         </div>
     -->
-        <text class="text-secondary">Mensaje</text>
+        <text class="text-secondary" style="font-size:30px"><i class="bi bi-envelope"></i> </text>
         <div class="d-flex justify-content-center">
 						
                         <div>
@@ -40,17 +43,17 @@ import { ref } from 'vue'
 						
 		</div>
 <br>
-        Incluye tu Ánimo<br>
-        <div class="m-1 d-flex justify-content-between">
+        Como te sientes?<br>
+        <div class="m-1 d-flex justify-content-evenly">
 							
 							<text>
-								<i @click="animo =1;" class="text-danger bi bi-emoji-angry display-3 m-4 " :class="{ 'border border-5 border-primary' : animo ==1 }"  style="border-radius: 30px; " > </i><br>
+								<i @click="animo =1;" class="text-danger bi bi-emoji-angry display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==1 }"  style="border-radius: 30px; " > </i><br>
                             </text>
 							<text>
-							<i @click="animo =2;" class="text-secondary bi bi-emoji-neutral display-3 m-4 " :class="{ 'border border-5 border-primary' : animo ==2 }"  style="border-radius: 30px; " ></i><br>
+							<i @click="animo =2;" class="text-secondary bi bi-emoji-neutral display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==2 }"  style="border-radius: 30px; " ></i><br>
                             </text>
 							<text>
-							<i @click="animo =3;"  class="text-success bi bi-emoji-heart-eyes display-3 m-4 " :class="{ 'border border-5 border-primary' : animo ==3 }"  style="border-radius: 30px; "></i><br>
+							<i @click="animo =3;"  class="text-success bi bi-emoji-heart-eyes display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==3 }"  style="border-radius: 30px; "></i><br>
                             </text>
 							<!--
 							<i @click="animo =4;text_message=text_message.concat(' Tiene errores de software.  Arreglalo infame programador !!. ') " class="text-white bi bi-bug h4 p-2"></i><br>
@@ -61,7 +64,7 @@ import { ref } from 'vue'
         <br>
         <br>
         <div class="d-flex justify-content-center  ">
-            <div @click="sendComments()" class="border border-2 p-3 bg-primary text-white " style="border-radius: 15px;" >
+            <div @click="sendComments()" class=" p-3 bg-primary text-white " style="border-radius: 15px;" >
                 <text> Enviar <i class="bi bi-send " ></i> </text>
             </div>
         </div>
