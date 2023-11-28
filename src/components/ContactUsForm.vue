@@ -8,12 +8,12 @@ import { ref } from 'vue'
 
 
 <template  >
-<div>
+<div class="text-center">
     <div v-if="true"  id="form" class=" p-1 " style="margin-top: 2em;">
         <div class="form-row">
         <!--
             <p class="text-center h4">Envianos un mensaje</p>
-        
+        class="text-center"
             <div class="form-group ">
                 <input type="email" style="border-radius: 10px;" autocomplete="off" class="form-control" id="inputEmail4" placeholder="Ingrese su Email" v-model="email">
             </div>
@@ -21,23 +21,25 @@ import { ref } from 'vue'
            
             <textarea v-model="message" style="border-radius: 15px;" id="w3review" placeholder="Ingrese su Mensaje" name="w3review" rows="4" cols="50" class="p-3"></textarea>
         -->
-    <div v-if="show_confirm == !true">
-       
-
+    <div class="text-center" v-if="show_confirm == !true">
+    <!--
         <text class="text-secondary">Tu Email</text>
         <br>
+        
+        <div class="d-flex justify-content-center">
         <input type="email" maxlength="40" style="border-radius: 10px;" autocomplete="off" class="form-control w-75 m-1 " id="inputEmail4" placeholder="" v-model="email">
-      
+        </div>
+    -->
         <text class="text-secondary">Mensaje</text>
-        <div class="d-flex justify-content-start">
+        <div class="d-flex justify-content-center">
 						
                         <div>
-                            <textarea maxlength="100" style="border-radius: 10px; "  class="form-control h-90 w-90 m-2 p-3" id="story" v-model="text_message" name="story"  placeholder="incluye aquí tus comentarios">
+                            <textarea maxlength="100" style="border-radius: 10px; "  class="form-control-lg h-100 w-90 m-2 p-3" id="story" v-model="text_message" name="story"  placeholder="incluye aquí tus comentarios">
 							</textarea>
 						</div>
 						
 		</div>
-
+<br>
         Incluye tu Ánimo<br>
         <div class="m-1 d-flex justify-content-between">
 							
