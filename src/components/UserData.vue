@@ -9,8 +9,9 @@ import { ref } from 'vue'
    
     <div class="d-flex justify-content-between mt-3">
          <cameraCapturer></cameraCapturer><br>
-
+    <!--
         <i class="bi bi-person-bounding-box display-1 "></i>
+    -->
        
            <p class="h4 text-center  mt-3  "> {{ session_data.name }} </p> 
            <text></text>        
