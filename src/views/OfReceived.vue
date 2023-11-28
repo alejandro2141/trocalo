@@ -1,7 +1,9 @@
 
 <template>
  
-<div>
+<div class="">
+  <div style="height:60px">
+  </div>
 
     <div v-if="showItemList" >
         <OfReceivedItem  class="m-1" @click="showItemList=false" />
