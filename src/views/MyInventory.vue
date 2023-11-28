@@ -10,9 +10,11 @@ import NewObjectForm from '../components/NewObjectForm.vue'
  <div>
 
     <div>
+        <!--
         <div class="d-flex justify-content-center">
             <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
         </div>
+        -->
         <br>
         <InventoryList />
     </div>
