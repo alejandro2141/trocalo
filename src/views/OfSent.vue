@@ -4,6 +4,10 @@
 <div>
 
 <div v-if="showItemList" >
+
+  <div style="height:60px">
+  </div>
+  
     <OfReceivedItem  class="m-1" @click="showItemList=false" />
     <OfReceivedItem  class="m-1" />
 
