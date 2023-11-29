@@ -9,25 +9,27 @@
   <div v-if="showStep1" >
         <p style="font-size:20px" >Propuesta de Intercambio Recibida</p>
        <!-- TITLE -->
-          <div style="font-size:20px" class="mb-4 d-flex justify-content-between">
-              <div>Propuesta válida por:  25 dias </div>
+          <div style="font-size:20px" class="mb-4 ">
+              <text>Tiempo Propuesta </text> &nbsp;&nbsp;&nbsp;
+              <text class="text-success" style="font-size:40px" > 25 dias </text>
+              
           </div>       
           
-          <div  style="font-size:16px "  class="d-flex justify-content-center">
-              Kakito_123 esta interesado en los siguientes objetos:  
+          <div  style="font-size:16px "  class="text-start">
+              Kakito_123 le interesa tu objeto/s:  
           </div>
           <!-- LIST MY OFFER OBJECT  -->
           <div v-for="obj in yourOfferObjects" :key="index" class="mb-4" > 
-              <InventoryObject @click="showModalDetails=true; objectDetails=obj" :object="obj"  :showConfirmMode="true"  :showProductDetails="false" class="mb-1" /> 
+              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>
           <!-- END LIST MY OFFER OBJECT  --> 
          
-          <div  style="font-size:16px "  class="m-2">
-            Y propone cambiarlo por los siguientes objetos: 
+          <div  style="font-size:16px "  class="text-start">
+            Te propone cambiarlo por los siguientes: 
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects" :key="index" > 
-              <InventoryObject @click="showModalDetails=true; objectDetails=obj" :object="obj"  :showConfirmMode="true"  :showProductDetails="false"  class="mb-1"  /> 
+              <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
           <!-- END LIST PARTNER OFFER OBJECT  -->
 
@@ -79,8 +81,8 @@
         <p style="font-size:20px"> ¿ Esta seguro que desea aceptar este cambio ?</p><br>
         
         <div class="d-flex justify-content-around">
-            <button @click="showAcceptProposalConfirmation=true; showAcceptProposal=false;showStep1=false" type="button" class="btn btn-success">Success</button>
-            <button type="button" class="btn btn-danger">Danger</button>
+            <button @click="showAcceptProposalConfirmation=true; showAcceptProposal=false;showStep1=false" type="button" class="btn btn-success">Si, acepto esta propuesta </button>
+            <button type="button" class="btn btn-danger">Cancelar</button>
         </div>
     </div>
 
@@ -97,13 +99,53 @@
         
 
         <div class="fixed-bottom  d-flex justify-content-center display-1 text-success w-100 bg-dark p-3 " >
-            <i class="bi bi-house"></i>
+           <a href="/OfReceived" >  <i class="text-success bi bi-house"></i> </a>
         </div>
 
     </div>
   <!-- ******************************* -->
-  <!--       END ACCEPT PROPOSAL FLOW         -->
+  <!--       END ACCEPT PROPOSAL FLOW  -->
   <!-- ******************************* -->
+
+  <!-- ******************************* -->
+  <!--       REJECT PROPOSAL FLOW      -->
+  <!-- ******************************* -->
+  <div v-if="showRejectProposal" class="" style="height: 400px;">
+        
+        <div style="height: 100px;"></div>
+        <br>
+        
+        <p style="font-size:20px"> ¿ Esta seguro que desea rechazar este cambio ?</p><br>
+        
+        <div class="d-flex justify-content-around">
+         
+        <button @click="showRejectProposalConfirmation=false; showRejectProposal=false;showStep1=true" type="button" class="btn btn-success">Regresar</button>
+        <button @click="showRejectProposalConfirmation=true; showRejectProposal=false;showStep1=false" type="button" class="btn btn-danger">Si, deseo rechazar</button>
+        </div>
+    </div>
+
+    <div v-if="showRejectProposalConfirmation" class="" style="height: 400px;">
+        
+        <div style="height: 200px;"></div>
+        <br>
+        
+        <p style="font-size:20px" class="text-center"> Esta oferta ha sido rechazada <br>
+          <text> Se ha eliminado de tu lista de Ofertas Recibidas </text>
+        </p>
+        
+        <br>
+        
+
+        <div class="fixed-bottom  d-flex justify-content-center text-success w-100 bg-dark p-3 " >
+           <a href="/OfReceived" > <i style="font-size:60px" class="text-success bi bi-house"></i> </a>
+        </div>
+
+    </div>
+  <!-- ******************************* -->
+  <!--       END ACCEPT PROPOSAL FLOW  -->
+  <!-- ******************************* -->
+
+
 
 
 
@@ -114,8 +156,38 @@
     
   <div v-if="showEditProposal" style="width: 350px;">
        <!-- TITLE -->
-          <div  style="font-size:16px "  class="d-flex justify-content-center">
-              kakito_123 esta interesado en el siguiente objeto/s: 
+          <div  style="font-size:16px "  class="m-2 d-flex justify-content-center">
+             Modifica Propuesta para contra ofertar
+              
+          </div>
+
+
+          <br>
+        <!--
+          <div class="d-flex justify-content-between">
+              <div class="align-self-center" style="font-size:16px " >Propuesta válida por: </div>
+          
+              <div class="w-25">
+                  <select class="form-control bg-dark border-white text-white" id="sel1">
+                    <option selected="30">30 dias</option>
+                    <option>5 dias</option>
+                    <option>10 dias</option>
+                    <option>15 dias</option>
+                    <option>20 dias</option>
+                    <option>30 dias</option>
+                    <option>40 dias</option>
+                    <option>60 dias</option>
+                    <option>100 dias</option>
+                     </select>
+              </div>
+              <div></div>
+          </div>
+
+        -->
+          <br>
+          <div  style="font-size:16px "  class="d-flex justify-content-start">
+               
+             kakito_123 le interesa tu objeto: 
           </div>
           <!-- LIST PARTNER OBJECT-->
         <!--
@@ -130,11 +202,16 @@
           <div  class="d-flex align-content-stretch flex-wrap">
 
             <div v-for="obj in yourOfferObjects " :key="index" > 
-              <InventoryObject :object=obj  :showProductDetails="true"  class="m-1" @click="showPartnerObjectDetailed=true"/> 
-              <div  style="border-radius: 25px;" class="m-1 d-flex justify-content-center text-danger border border-1 border-danger" @click="removeFromObjectProposalList(obj)"> <i class="bi bi-x-lg "></i> </div>
+              <div class="d-flex justify-content-start">
+                <InventoryObject  :horizontal_short='true' :showProductDetails='true' :object=obj  class="m-1" @click="showPartnerObjectDetailed=true"/> 
+                <div  style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > <i style="font-size:40px" @click="removeFromObjectProposalList(obj)"  class=" bi bi-x-lg "></i> </div>
+              </div>
             </div>
 
-            <InventoryObjectEmpty   @click="showMyInventory=!showMyInventory; showMyInventory=false ; showStep2=false " />
+            <div style="width:100px" class="d-flex justify-content-center" >
+                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showMyInventory='true';" ></i>
+            </div>
+         
           </div>
 
           
@@ -154,14 +231,17 @@
           <div  class="d-flex align-content-stretch flex-wrap">
 
             <div v-for="obj in partnerOfferObjects" :key="index" > 
-              <InventoryObject :object=obj :showDeleteOption="true"  :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
-              <div class=" d-flex justify-content-center text-danger" @click="removeFromObjectProposalList(obj)"> <i class="bi bi-x-lg "></i> </div>
+              <div class="d-flex justify-content-start">
+                <InventoryObject :horizontal_short='true' :showProductDetails='true' :object=obj  @click="showPartnerObjectDetailed=true"/> 
+                <div  style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > <i style="font-size:40px" @click="removeFromObjectProposalList(obj)"  class=" bi bi-x-lg "></i> </div>
+              </div>
             </div>
 
-            <InventoryObjectEmpty   @click="showPartnerInventory=!showPartnerInventory; showPartnerInventory=false ; showStep2=false " />
+            <div style="width:100px" class="d-flex justify-content-center" >
+                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showPartnerInventory='true';" ></i>
+            </div>
+
           </div>
-
-
 
         <!--
           <div class="d-flex justify-content-between">  
@@ -172,7 +252,7 @@
           </div>
         -->
           <br>
-
+        <!--
           <div class="d-flex justify-content-between">
               <div>Propuesta válida por: </div>
           
@@ -185,6 +265,7 @@
                   </select>
               </div>
           </div>
+        -->
 
           <!-- FOOTER -->
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
@@ -378,6 +459,7 @@ export default {
         showRejectProposal : false ,
         showAcceptProposal : false ,
         showAcceptProposalConfirmation : false ,
+        showRejectProposalConfirmation : false ,
         
         showEditProposal : false , 
         showEditProposalSummary : false ,
