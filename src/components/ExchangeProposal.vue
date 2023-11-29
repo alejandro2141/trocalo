@@ -263,9 +263,12 @@
   <!--             SHOW STEP 3         -->
   <!-- ******************************* -->
     
-  <div v-if="showStep3" style="width: 400px;">
+  <div v-if="showStep3" class="w-100">
        <!-- TITLE -->
-          <br>
+          
+       <div  class="w-100 d-flex justify-content-center"  > 
+       <div style="width:350px"> 
+
 
           <div style="font-size:20px">
            Revise la propuesta antes de Enviar
@@ -315,9 +318,10 @@
             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
           </div>
         -->
-        
-         
+       
 
+      </div>
+      </div>
 
           <!-- FOOTER -->
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
@@ -346,7 +350,11 @@
   <!--             SHOW STEP 4         -->
   <!-- ******************************* -->
     
-  <div v-if="showStep4" style="width: 350px;">
+  <div v-if="showStep4" class="w-100">
+
+    <div  class="w-100 d-flex justify-content-center"  > 
+    <div style="width:350px"> 
+
        <!-- TITLE -->
           <br>
           <div style="font-size:20px">
@@ -364,7 +372,7 @@
           </div>
 
           <!-- END FOOTER -->
-
+          <div style="height:200px"></div>
           <!-- FOOTER -->
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
@@ -375,6 +383,10 @@
               </div>
           </div>
           <!-- END FOOTER -->
+
+    </div>
+    </div>
+
 
       </div>
   <!-- END SHOW STEP 4-->
