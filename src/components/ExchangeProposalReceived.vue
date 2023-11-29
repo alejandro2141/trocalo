@@ -1,3 +1,13 @@
+
+<script setup>
+import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
+import InventoryObject from './InventoryObject.vue'
+import InventoryList from './InventoryList.vue'
+import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
+import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
+</script>
+
+
 <template>
 <div    style="width: 350px;" >
     
@@ -204,12 +214,12 @@
             <div v-for="obj in yourOfferObjects " :key="index" > 
               <div class="d-flex justify-content-start">
                 <InventoryObject  :horizontal_short='true' :showProductDetails='true' :object=obj  class="m-1" @click="showPartnerObjectDetailed=true"/> 
-                <div  style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > <i style="font-size:40px" @click="removeFromObjectProposalList(obj)"  class=" bi bi-x-lg "></i> </div>
+                <div  style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > <i style="font-size:40px" @click="removeFromYourOfferObjects(obj)"  class=" bi bi-x-lg "></i> </div>
               </div>
             </div>
 
             <div style="width:100px" class="d-flex justify-content-center" >
-                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showMyInventory='true';" ></i>
+                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showMyInventory='true'; " ></i>
             </div>
          
           </div>
@@ -227,18 +237,18 @@
           -->
 
 
-          <!-- LIST MY OBJECT-->
+          <!-- LIST PARTNER OBJECT -->
           <div  class="d-flex align-content-stretch flex-wrap">
 
             <div v-for="obj in partnerOfferObjects" :key="index" > 
               <div class="d-flex justify-content-start">
                 <InventoryObject :horizontal_short='true' :showProductDetails='true' :object=obj  @click="showPartnerObjectDetailed=true"/> 
-                <div  style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > <i style="font-size:40px" @click="removeFromObjectProposalList(obj)"  class=" bi bi-x-lg "></i> </div>
+                <div  style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > <i style="font-size:40px" @click="removeFromPartnerOfferObjects(obj)"  class=" bi bi-x-lg "></i> </div>
               </div>
             </div>
 
             <div style="width:100px" class="d-flex justify-content-center" >
-                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showPartnerInventory='true';" ></i>
+                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showPartnerInventory='true';  " ></i>
             </div>
 
           </div>
@@ -252,6 +262,7 @@
           </div>
         -->
           <br>
+          
         <!--
           <div class="d-flex justify-content-between">
               <div>Propuesta válida por: </div>
@@ -281,7 +292,102 @@
   <!-- ******************************* -->
   <!--         SHOW EDIT PROPOSAL      -->
   <!-- ******************************* -->
-   
+
+
+
+          <!-- ************************** -->
+          <!-- LIST PARTNER  INVENTORY    -->
+          <!-- ************************** -->
+          <div v-if="showPartnerInventory" class="position-absolute top-0 start-10 bg-dark w-100" style=" height:1700px">
+              
+              <div class="w-100 d-flex justify-content-center">
+                <div style="width:350px">
+              
+                <div style="" class="d-flex justify-content-end">
+                    <i  @click="showPartnerInventory=false;"  style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
+                </div>
+                <div  style="font-size:16px "  class="m-2">
+                    Agrega otros objetos del inventario de Kakito_123 a esta propuesta de cambio
+                     <br>
+  
+                  <!--
+                     <div class="d-flex justify-content-center"> 
+                      <div  @click="objectProposalList=objectProposalList.concat(objectProposalList_temp);objectProposalList_temp.length=0;showPartnerInventory=false;" class="border border-2 border-success w-25 text-center">
+                          <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                      </div>
+                    </div>
+                  -->
+  
+  
+                  <!--  <button  @click="showStep2=true; showPartnerInventory=false; objectProposalList=objectProposalList.concat(objectProposalList_temp)" type="button" class="btn btn-success">Agregar</button> -->
+                </div>
+                <!-- <InventoryList /> -->
+                <div class="d-flex flex-wrap">
+                  <div v-for="obj in DBPartnerInventoryObjects" :key="index"  > 
+                    <InventoryObject @click="addRemoveFromPartnerOfferObjects_temp(obj)" :object=obj  :showProductDetails="false"  /> 
+                  </div>
+                </div>
+  
+                  <!-- FOOTER -->
+                  <div  class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+                      <div   class="d-flex justify-content-center">
+                          <div  @click="partnerOfferObjects=partnerOfferObjects.concat(partnerOfferObjects_temp);partnerOfferObjects_temp.length=0;showPartnerInventory=false;" class="border border-2 border-success w-25 text-center">
+                            <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                          </div>   
+                      </div>
+                  </div>
+  
+                </div>
+              </div>
+    
+            </div> 
+
+
+         <!-- ****************** -->
+          <!-- LIST MY INVENTORY  -->
+          <!-- ****************** -->
+          <div v-if="showMyInventory"  class="position-absolute top-0 start-0 bg-dark w-100" style="height:1700px">
+
+            <div class="w-100 d-flex justify-content-center">
+            <div style="width:350px">
+
+              <div style="transition: width 2s;" class="d-flex justify-content-end">
+                  <i  @click="showMyInventory=false; objectsOfferList_temp.length=0" style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
+              </div>
+
+              <div  style="font-size:16px "  class="m-2">
+                  Mejora tu Propuesta agregando otros objetos de tu Inventario 
+                  <br>
+              <!--
+                  <div class="d-flex justify-content-center"> 
+                      <div  @click="showMyInventory=false;objectsOfferList=objectsOfferList.concat(objectsOfferList_temp); objectsOfferList_temp.length=0" class="border border-2 border-success w-25 text-center">
+                          <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                      </div>
+                  </div>
+                -->
+
+                <!-- <button  @click="showStep2=true; showMyInventory=false; objectsOfferList=objectsOfferList.concat(objectsOfferList_temp)" type="button" class="btn btn-success">Agregar</button> -->
+              </div>
+            <!-- <InventoryList /> -->
+              <div class="d-flex flex-wrap">
+                  <div v-for="obj in DBmyInventoryObjects" :key="index"  > 
+                    <InventoryObject @click="addRemoveFromYourOfferObjects_temp(obj)" :object=obj  :showProductDetails="false"  /> 
+                  </div>
+              </div>
+            </div>
+            </div>
+
+                <!-- FOOTER -->
+                <div  class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+                      <div   class="d-flex justify-content-center">
+                          <div  @click="showMyInventory=false; yourOfferObjects=yourOfferObjects.concat(yourOfferObjects_temp); yourOfferObjects_temp.length=0" class="border border-2 border-success w-25 text-center">
+                            <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+                          </div>   
+                      </div>
+                </div>
+          </div>
+
+
 
   <!-- ******************************* -->
   <!--         SHOW EDIT PROPOSAL  SUMMARY      -->
@@ -290,31 +396,47 @@
     <div v-if="showEditProposalSummary" style="width: 350px;">
     
          <!-- TITLE -->
-            <div  style="font-size:16px "  class="d-flex justify-content-center">
+            <div  style="font-size:16px "  class="d-flex justify-content-start">
               Resumen propuesta modificada
             </div>
          
-          <br>
-          
-          <div  style="font-size:16px "  class="d-flex justify-content-center">
+          <div style="font-size:20px" class="mb-4 ">
+              <text>Tiempo Propuesta </text> &nbsp;&nbsp;&nbsp;
+              <text class="text-success" style="font-size:40px" > 25 dias </text>
+          </div>  
+
+          <div  style="font-size:16px "  class="d-flex justify-content-start">
               Objeto queinteresan a kakito_123
           </div>
-          <!-- LIST PARTNER OBJECT-->
-          <div  class="">
-              <InventoryObject class="m-1" :showConfirmMode="true"  :showProductDetails="false" /> 
-              <InventoryObject class="m-1" :showConfirmMode="true"  :showProductDetails="false" /> 
-          </div>
-          <!-- END LIST PARTNER OBJECT-->
+          <!-- LIST MY OBJECT/S  OF proposal-->
+       
+              <div  class="d-flex align-content-stretch flex-wrap">
 
-        
+                <div v-for="obj in yourOfferObjects " :key="index" > 
+                  <div class="d-flex justify-content-start">
+                    <InventoryObject  :horizontal_short='true' :showProductDetails='true' :object=obj  class="m-1" @click="showPartnerObjectDetailed=true"/> 
+                   </div>
+                </div>
+
+           
+              </div>
+          <!--  END -->
+       
           
-          <div  style="font-size:16px "  class="m-2">
+          <div  style="font-size:16px "  class="d-flex justify-content-start">
                 Te ofrece los siguientes objetos:
           </div>
-           <!-- LIST MY OBJECT  -->
+           
+         
+          <!-- LIST PARTNER OBJECTS HE OFFER TO CHANGE  -->
           <div  class="d-flex align-content-stretch flex-wrap">
-             <InventoryObject class="m-1" :showConfirmMode="true"  :showProductDetails="false" /> 
-             <InventoryObject class="m-1" :showConfirmMode="true"  :showProductDetails="false" /> 
+
+            <div v-for="obj in partnerOfferObjects" :key="index" > 
+              <div class="d-flex justify-content-start">
+                <InventoryObject :horizontal_short='true' :showProductDetails='true' :object=obj  @click="showPartnerObjectDetailed=true"/> 
+              </div>
+            </div>
+
           </div>
         <!--
           <div class="d-flex justify-content-between">  
@@ -324,18 +446,14 @@
             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
           </div>
         -->
-        
-          <div style="font-size:20px" class="d-flex justify-content-between">
-              <div>Propuesta válida por: 25 dias </div>
-          </div>
-
+   
 
           <!-- FOOTER -->
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
 
             <div class="d-flex justify-content-between">
 
-              <div @click="showStep2=true; showStep3 = false"  class="d-flex justify-content-center">
+              <div @click="showEditProposal=true; showEditProposalSummary = false"  class="d-flex justify-content-center">
                 <i class="bi bi-skip-start"></i> 
               </div>
 
@@ -378,9 +496,9 @@
           <!-- END FOOTER -->
 
           <!-- FOOTER -->
-          <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+          <div class="fixed-bottom  text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
-                  <i @click="showStep2=true; showStep1 = false ; showPartnerInventory=false ; showMyInventory=false " class="bi bi-house"></i> 
+                 <a href="/OfReceived"> <i style="font-size:40px" class="bi bi-house"></i> </a>
               </div>
           </div>
           <!-- END FOOTER -->
@@ -437,19 +555,13 @@
 
 
 <script>
-import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
-import InventoryObject from './InventoryObject.vue'
-import InventoryList from './InventoryList.vue'
-import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
-import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
-
 
 export default {
-
+/*
   components: {
     InventoryObjectDetailed,InventoryList,InventoryObjectEmpty,InventoryObject,ShowSenderTransactionConfirmation
   },
-  
+*/  
   data : function() {
       return {
 
@@ -470,13 +582,21 @@ export default {
         showStep3 : false , 
         showStep4 : false , 
 
-        yourOfferObjects  : [    {name:"myplay 1", description : "Consola en buen estado con 2 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_222"  , otherObj: true }, 
-                            ],
+        showMyInventory :false ,
+        showPartnerInventory : false ,
 
-        partnerOfferObjects : [  {name:"AlguienPlay 1", description : "Consola en buen estado con 2 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_222"  , otherObj: true }, 
-                            {name:"AlguienPlay 2", description : "Consola en buen estado con 3 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_333"  , otherObj: false}, 
-                            {name:"AlguienPlay 3", description : "Consola en buen estado con 4 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_444" , otherObj: true }, 
-                             ],
+        yourOfferObjects_temp    : [] ,
+        partnerOfferObjects_temp : [] ,
+
+        yourOfferObjects  : [ {id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                          ],
+
+        partnerOfferObjects : [ 
+                    {id:1 ,name:"Partner Inv ps1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {id:2 ,name:"Partner Inv 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {id:3 ,name:"Partner Inv 3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+
+                                     ],
 
         DBmyInventoryObjects :[{id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {id:2 , name:"My inv PS 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
@@ -508,14 +628,35 @@ created() {
 
 methods: {
     
-    closeModalObjectDetails()
+
+    addRemoveFromYourOfferObjects_temp(obj)
     {
-      this.showModalDetails= false
+      this.yourOfferObjects_temp.push(obj) 
+    },
+
+    addRemoveFromPartnerOfferObjects_temp(obj)
+    {
+      this.partnerOfferObjects_temp.push(obj) 
+    },
+
+    removeFromYourOfferObjects(obj)
+    {
+      this.yourOfferObjects= this.yourOfferObjects.filter(element => element.id !== obj.id );
+    },
+
+    removeFromPartnerOfferObjects(obj)
+    {
+      this.partnerOfferObjects= this.partnerOfferObjects.filter(element => element.id !== obj.id );
     },
 
     goToMainSearch()
     {
       console.log("goTOMainSearch")
+    },
+    
+    closeModalObjectDetails()
+    {
+      this.showModalDetails= false
     },
 
     },
