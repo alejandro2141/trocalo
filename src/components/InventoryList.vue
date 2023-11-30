@@ -18,18 +18,18 @@ import NewObjectForm from '../components/NewObjectForm.vue'
     </div>
 -->
 
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-between">
       
       <div>
         <i  @click="showNewObjectForm=true" style="font-size:45px;" class=" text-secondary bi bi-plus-lg"></i>
       </div>
 
-      <div class="align-self-center text-secondary">
+      <div style="font-size:20px" class="text-secondary d-flex align-items-center">
        Tus Objetos 
       </div>
     
-      <div class="d-flex align-items-center d-flex flex-row-reverse">
-        <input style="text-align:center; font-size:15px" class="form-control-sm form-control-sm w-50 bg-dark border-white text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="..."> 
+      <div class="d-flex align-items-center d-flex flex-row-reverse "  >
+        <input  style="text-align:center; font-size:15px; width:100px" class="form-control-sm form-control-sm bg-dark border-white text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="..."> 
       </div>
      
     </div>
