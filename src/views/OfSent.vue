@@ -1,3 +1,12 @@
+<script setup>
+
+import OfReceivedItemList from '../components/OfReceivedItemList.vue'
+import OfReceivedItem from     '../components/OfReceivedItem.vue'
+import InventoryList  from     '../components/InventoryList.vue'
+import ExchangeProposalSent from   '../components/ExchangeProposalSent.vue'
+
+</script>
+
 
 <template>
 
@@ -5,13 +14,17 @@
 
 <div v-if="showItemList" >
 
-  <div style="height:60px">
+  <div style="height:20px">
   </div>
   
+      <div style="font-size:20px" class="text-secondary w-100 text-center">
+       Enviadas
+      </div>
+
+    <br>
+
     <OfReceivedItem  class="m-1" @click="showItemList=false" />
     <OfReceivedItem  class="m-1" />
-
-
 
     <br>
     <text class="text-danger">------------ Finalizadas -----------</text>
@@ -48,18 +61,7 @@
 
 <script>
 
-import OfReceivedItemList from '../components/OfReceivedItemList.vue'
-import OfReceivedItem from     '../components/OfReceivedItem.vue'
-import InventoryList  from     '../components/InventoryList.vue'
-import ExchangeProposalSent from   '../components/ExchangeProposalSent.vue'
-
-
-
 export default {
-
-   components: {
-    OfReceivedItemList,OfReceivedItem,InventoryList,ExchangeProposalSent
-  },
   
   data : function() {
       return {
