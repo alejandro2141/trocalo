@@ -2,9 +2,13 @@
 <template>
  
 <div class="">
-  <div style="height:60px">
+  <div style="height:20px">
   </div>
 
+    <div style="font-size:20px" class="text-secondary w-100 text-center">
+       Recibidas
+    </div>
+<br>
     <div v-if="showItemList" >
         <OfReceivedItem  class="m-1" @click="showItemList=false" />
         <OfReceivedItem  class="m-1" />
