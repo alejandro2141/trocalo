@@ -1,3 +1,13 @@
+<script setup>
+import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
+import InventoryObject from './InventoryObject.vue'
+import InventoryList from './InventoryList.vue'
+import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
+import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
+
+</script>
+
+
 <template>
 <div    style="width: 350px;" >
   <!-- ******************************* -->
@@ -6,30 +16,36 @@
     
   <div v-if="showStep1" >
         <p style="font-size:20px" >Propuestas de Intercambio Enviada</p>
-       <!-- TITLE -->
-          <div style="font-size:20px" class="d-flex justify-content-between">
-              <div>Propuesta válida por: 25 dias </div>
-          </div>       
+        
+
+          <div style="font-size:20px" class="mb-4 text-center">
+              <text>Tiempo Propuesta Restante<br>
+               </text> 
+              <text class="text-success" style="font-size:40px" > 25 dias </text>
+          </div>   
+
+
           <div  style="font-size:16px "  class="d-flex justify-content-center">
               Te interesan los siguientes objetos de Kakito_123:  
           </div>
          
-          <!-- LIST PARTNER OBJECT-->
-          <div  class="">
-              <InventoryObject class="m-1" :showConfirmMode="true"  :showProductDetails="false" /> 
-              <InventoryObject class="m-1" :showConfirmMode="true"  :showProductDetails="false" /> 
+        <!-- LIST PARTNER OFFER OBJECT  -->
+          <div v-for="obj in partnerOfferObjects" :key="index" > 
+              <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
-          <!-- END LIST PARTNER OBJECT-->
+        <!-- END LIST PARTNER OFFER OBJECT  -->
           
           <div  style="font-size:16px "  class="m-2">
             Y propones cambiarlos por los siguientes objetos: 
           </div>
-           <!-- LIST MY OBJECT  -->
-          <div  class="d-flex align-content-stretch flex-wrap">
-             <InventoryObject class="m-1" :showConfirmMode="true"  :showProductDetails="false" /> 
-             <InventoryObject class="m-1" :showConfirmMode="true"  :showProductDetails="false" /> 
+        
+        <!-- LIST MY OFFER OBJECT  -->
+           <div v-for="obj in yourOfferObjects" :key="index" class="mb-4" > 
+              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>
-        <!--
+        <!-- END LIST MY OFFER OBJECT  --> 
+                
+          <!--
           <div class="d-flex justify-content-between">  
             <div class="form-check-label" for="flexCheckChecked">
               Estas Dispuesto a cambiar por otros productos. 
@@ -42,7 +58,7 @@
           <!-- FOOTER -->
           <div class="display-1 text-success w-100 bg-dark p-3 ">  
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-center">
 
 
               <div @click="showCancelMessage=true;  showStep1=false "  class="">
@@ -81,12 +97,12 @@
         <div style="height: 100px;"></div>
         <br>
         
-        <p style="font-size:20px"> Propuesta Cancelada  
+        <p style="font-size:20px" class="text-center">  Propuesta Cancelada  
         </p>
         <br>
         
         <div class="fixed-bottom  d-flex justify-content-center display-1 text-success w-100 bg-dark p-3 " >
-            <i class="bi bi-house"></i>
+           <a href="/OfSent"> <i class="text-success bi bi-house"></i> </a>
         </div>
 
     </div>
@@ -106,18 +122,8 @@
 
 
 <script>
-import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
-import InventoryObject from './InventoryObject.vue'
-import InventoryList from './InventoryList.vue'
-import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
-import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
-
 
 export default {
-
-  components: {
-    InventoryObjectDetailed,InventoryList,InventoryObjectEmpty,InventoryObject,ShowSenderTransactionConfirmation
-  },
   
   data : function() {
       return {
@@ -125,7 +131,15 @@ export default {
         showCancelMessage : false ,
         showCancelMessageConfirmation : false ,
 
+        yourOfferObjects  : [ {id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                              {id:1 , name:"My bici aro 20", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                              {id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            ],
 
+        partnerOfferObjects : [ 
+                            {id:1 ,name:"Partner Inv ps1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                            {id:2 ,name:"Partner Inv 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+                              ],
 
         }
   },
