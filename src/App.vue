@@ -14,10 +14,10 @@
       </div> 
       
       <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
+        <RouterLink  style="font-size : 50px ; border-radius: 10px;"  class="p-0"  :class="[ underline_search ? 'bg-success' : 'bg-dark' ]"  @click="setUnderline(1)"   to="/searchView"> &nbsp;&nbsp; <i class="bi bi-search"></i>  &nbsp;&nbsp;</RouterLink>    
         <RouterLink   style="font-size : 50px ; border-radius: 10px;" class="p-0" :class="{'bg-success' :underline_received}" @click="setUnderline(5)" to="/OfReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
         <RouterLink   style="font-size : 50px ; border-radius: 10px;" class="p-0" :class="{'bg-success' :underline_sent}" @click="setUnderline(6)"  to="/OfSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
-        <RouterLink  style="font-size : 50px ; border-radius: 10px;"  class="p-0"  :class="[ underline_search ? 'bg-success' : 'bg-dark' ]"  @click="setUnderline(1)"   to="/searchView"> &nbsp;&nbsp; <i class="bi bi-search"></i>  &nbsp;&nbsp;</RouterLink>    
-      </div>
+       </div>
       
       <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
 
