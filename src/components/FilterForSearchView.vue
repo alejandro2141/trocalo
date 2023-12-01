@@ -21,8 +21,13 @@
         <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(6) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(6)" > <i style="font-size:40px" class="bi bi-car-front"></i> </text>
         <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(7) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(7)" > <i style="font-size:40px" class="bi bi-wrench"></i> </text>
         <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(8) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(8)" > <i style="font-size:40px" class="bi bi-sunglasses"></i> </text>
-        <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(9) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(9)" > <i style="font-size:40px" class="bi bi-suitcase2"></i> </text>
+      <!--  <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(9) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(9)" > <i style="font-size:40px" class="bi bi-suitcase2"></i> </text>
+      -->
+      <!-- 
         <text><i class="bi bi-list p-2 text-white"></i></text>
+      -->
+
+        <text><i class="bi bi-arrow-return-left text-white"></i></text>
     <!--
         <text><i class="bi bi-house"></i></text>
         <text>| </text>
