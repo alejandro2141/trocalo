@@ -23,7 +23,7 @@ import ExchangeProposal from '../components/ExchangeProposal.vue'
     <div v-if="showExchangeProposal==false && showModalDetails==false" >
         
         <div v-if="objects_filtered !=null" class="d-flex flex-wrap"> 
-          <div v-for="obj in objects_filtered" :key="index" > 
+          <div v-for="obj in objects_filtered"  > 
             <InventoryObject @click="objectDetails=obj ;showModalDetails=true;" :object=obj  class="m-1"/>
           </div>
         </div>
