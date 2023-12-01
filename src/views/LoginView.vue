@@ -8,22 +8,21 @@ import UserData from '../components/UserData.vue'
 
 <template>
   <div class="w-100 position-absolute top-0 start-0 bg-dark ">
+
+    <div class=" m-1 p-0 w-100" >
+    <div class="d-flex justify-content-center" >
+    <div  style="width: 350px;">
+
    
     <div v-if="session_data!=null && session_data.user!=null" class="text-center" >
 
        
         <div class="d-flex flex-row-reverse bd-highlight"> 
-                    <a HREF="/" type="button" class=""><i class="display-2 bi bi-x-lg text-white"></i></a>
+                    <a @click="$router.push('searchView')" type="button" class=""><i class="display-2 bi bi-x-lg text-white"></i></a>
         </div>
        
         <div style="height:10px"></div>
 
-        <!--
-         <div class="d-flex justify-content-around ">
-            <div class="" :class="{ 'fw-bold': showMyInfo }"  @click="showMyInfo=!showMyInfo; sendComments=false "> Mi <br>Informacion </div>
-            <div class="" :class="{ 'fw-bold': sendComments }" @click="sendComments=!sendComments ; showMyInfo=false"> Tus <br>Comentarios </div>
-        </div>
-        -->
              
         <Transition> 
                 <div v-if="true">
@@ -33,41 +32,88 @@ import UserData from '../components/UserData.vue'
         </Transition>    
             
 
-          <Transition> 
+        <Transition> 
             <ContactUsForm  v-if="true" />
         </Transition>    
         <div style="height:200px"></div>
-        <br>
-        <br>
-     
-
-      
-        
-       
-        
 
     </div>
 
+    <!-- SESION IS NULL SO SHOW LOGIN -->
     <div v-else>
 
-        <h1>Ingreso</h1>
+      <div>
+      
+        
+        <div class=" m-3 bg-dark" style=" border-radius: 15px;">
 
-        <div class="container">   
-            <label>Username : </label>   
-            <input type="text"  v-model="user" autocomplete="off" autocorrect="off" spellcheck="false"  placeholder="Enter Username" name="username" required>  
-            <label>Password : </label>   
-            <input type="password" v-model="pass" autocomplete="off" autocorrect="off" spellcheck="false"  placeholder="Enter Password" name="password" required>  
-            <br>
-            <button @click="sendLogin(user,pass)" >Login</button>   
-            <button type="button" > Cancel</button>    
-            <br>
-            <input type="checkbox" checked="checked"> Remember me   
-            <br>
-            Forgot <text> password? </text>   
-        </div>   
-    
+        <div class="d-flex justify-content-end"><a  @click="$router.push('searchView')"  class="text-white"><i class="display-5 bi bi-x-lg"></i></a></div>
+
+
+            <div class="d-flex justify-content-center mt-5">
+                    <div class=""  > 
+                        <!--
+                        <a HREF="/index.html" class="display-4 text-decoration-none" style="color :#2e5668"> 
+                        <i class="bi bi-clipboard-pulse" style="font-size: 2rem; color: cornflowerblue;"></i>
+                            horapo 
+                        </a>
+                        --> 
+                        <a HREF="/nested/publicSearch.html" class="text-decoration-none" style="color :#2e5668"> 
+                            <text class="display-4">Cambialo</text>  
+                        </a> 
+                    
+                        <div class="text-secondary">Lo tienes, lo quiero,  te lo cambio 
+                        </div>
+                    </div>
+            </div>
+		
+           
+            <div id="formLogin" class="mx-auto p-3"  style="width: 95%;">
+                <form autocomplete="on" >
+                   <input  v-model="form_token" id="form_token" name="form_token" type="hidden"  > 
+                   <input class="form-control form-control-lg ml-2" v-model="form_email" id="form_email" name="form_email"  type="email" placeholder="Email" aria-label=".form-control-lg example"   style=" border-radius: 15px;" >
+                   <br/>
+                   <input class="form-control form-control-lg" v-model="form_pass" id="form_pass" name="form_pass"  type="password" placeholder="Contraseña" aria-label=".form-control-lg example"  style=" border-radius: 15px;" >
+                    <br/> 
+
+                    <i  type="submit" v-on:click="sendLogin()" class="btn  btn-lg btn-block text-white bg-secondary " style="width: 100%; border-radius: 15px;"  >{{ login_message }} <i class="m-2 p-2 bi bi-arrow-right-square"></i> </i>
+                </form>   
+            </div>
+
+             <p  v-if="!requestReceived" @click="showRecoverPassword=!showRecoverPassword; requestReceived=false" class="m-4 text-secondary"><small>¿Olvidaste tu contraseña?</small></p>
+             
+             <div v-if="showRecoverPassword" style="width: 300px;">
+                <div class="mb-3" >
+                    <label for="exampleInputEmail1" class="form-label">Ingrese su correo registrado</label>
+                    <input v-model="emailToRecover" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Enviaremos a su correo registrado un link para actualizar su contraseña</div>
+                </div> 
+                
+                <button v-on:click="recoverPassword(); showRecoverPassword = false; requestReceived=true  " type="button" class="btn btn-secondary">Recuperar</button>
+
+             </div>
+
+             <div v-if="requestReceived">
+                Le enviaremos información para recuperar su cuenta.
+             </div>
+            
+            <div class="m-5 p-5 ">
+            </div>
+
+        </div>		
+
+      </div>
+     
+
+
+
+
     </div>
+    <!-- END SESSION IS NULL -->
 
+  </div>
+</div>
+</div>
   
   </div>
 </template>
@@ -108,6 +154,7 @@ export default {
         pass : null ,
         sendComments:false ,
         showMyInfo : false,
+        showRecoverPassword : false ,
         }
     },
 
@@ -123,6 +170,7 @@ export default {
 
 
   methods: {
+
         sendLogin(user_d,pass_d)
         {
             console.log("Login - user: "+user_d+" password:"+pass_d)
@@ -130,10 +178,14 @@ export default {
                             user : user_d,
                             pass : pass_d
                             }
+
+            let session_data_result = {user:"JAMO123", active:true , pass:"eeee", name:"Juan Alejandro Morales Miranda", rut:"139093712"  , phone1:"56975397200", phone2:"56975397200" , address_street:"Avenida San Pablo" , address_number:"123" , address_apartment:true , address_house:true ,  address_zone1:"Independencia" ,  address_zone2:"Region Metropolitana" ,  address_city:"Santiago" ,  address_country:"Chile"  } 
+        
             //query backend for login
-            this.$emit('sessionCreated',session_data); 
+            this.$emit('sessionCreated',session_data_result); 
             console.log("Login - Emit Sent")
-            this.$router.push('search') 
+          
+            //this.$router.push('/dashboard')
 
         }
 
