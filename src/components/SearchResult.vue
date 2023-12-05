@@ -47,7 +47,7 @@ import ExchangeProposal from '../components/ExchangeProposal.vue'
           
           <div class="m-4 pb-4 d-flex justify-content-center" v-if="showModalDetails">
                   <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
-                  <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
+                  <button v-else  type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
           </div>    
         </div>
       </div>
