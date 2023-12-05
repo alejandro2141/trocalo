@@ -5,7 +5,14 @@
    
     <div  style="width: 350px;">
 
-      <div v-if="session_data==null" class="d-flex justify-content-end text-white">
+      <div v-if="session_data==null" class="d-flex justify-content-between">
+          
+          <text></text>
+
+          <RouterLink style="color: rgb(46, 86, 104);" class='text-decoration-none'  @click="setUnderline(7)"  to="/searchView"> 
+             <text style="font-size:30px"> TROKA <i  class="bi bi-shuffle"> </i> </text>
+          </RouterLink>
+
           <RouterLink  class="" :class="{'text-decoration-underline' :underline_login}" @click="setUnderline(3)"  to="/login"> 
               <i style="font-size:40px" class="bi bi-key"></i>
           </RouterLink>
