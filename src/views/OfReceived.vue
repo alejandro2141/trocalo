@@ -1,3 +1,11 @@
+<script setup>
+  
+import OfReceivedItemList from '../components/OfReceivedItemList.vue'
+import OfReceivedItem from     '../components/OfReceivedItem.vue'
+import InventoryList  from     '../components/InventoryList.vue'
+import ExchangeProposalReceived from   '../components/ExchangeProposalReceived.vue'
+</script>
+
 
 <template>
  
@@ -31,7 +39,7 @@
 
       <div class="position-absolute top-0 start-10 bg-dark" >
         <div class="d-flex justify-content-end"> <i @click="showItemList=true" class="display-1 bi bi-x-lg"></i>  </div>
-        <ExchangeProposalReceived />
+        <ExchangeProposalReceived v-on:closeExchangeProposalReceived="closeExchangeProposalReceived" />
       </div>
     
     </div>
@@ -46,19 +54,8 @@
 
 
 <script>
-  
-import OfReceivedItemList from '../components/OfReceivedItemList.vue'
-import OfReceivedItem from     '../components/OfReceivedItem.vue'
-import InventoryList  from     '../components/InventoryList.vue'
-import ExchangeProposalReceived from   '../components/ExchangeProposalReceived.vue'
-
 
 export default {
-
-
-  components: {
-    OfReceivedItemList,OfReceivedItem,InventoryList,ExchangeProposalReceived
-  },
   
   data : function() {
       return {
@@ -73,6 +70,12 @@ created() {
     },
 
 methods: {
+  
+    closeExchangeProposalReceived()
+    {
+      this.showItemList=true
+    }
+
     },
 
 watch : {
