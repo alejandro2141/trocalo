@@ -2,6 +2,7 @@
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import InventoryObject from './InventoryObject.vue' 
 import InventoryList from '../components/InventoryList.vue' 
+import InventoryObjectEmpty from '../components/InventoryObjectEmpty.vue' 
 import NewObjectForm from '../components/NewObjectForm.vue'
 </script>
 
@@ -16,17 +17,15 @@ import NewObjectForm from '../components/NewObjectForm.vue'
     <!-- Main Options -->
     <div class="d-flex justify-content-between">
       <div>
-        <i  @click="showNewObjectForm=true" style="font-size:45px;" class=" text-secondary bi bi-plus-lg"></i>
       </div>
 
-      <div style="font-size:20px" class="text-secondary d-flex align-items-center">
-       Tus Objetos 
-      </div>
-    
-      <div class="d-flex align-items-center d-flex flex-row-reverse "  >
-        <input  v-model="ftext" style="text-align:center; font-size:15px; width:100px" class="form-control-sm form-control-sm bg-dark border-white text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="..."> 
+      <div class="d-flex align-items-center  "  >
+        <input  v-model="ftext" style="text-align:center; width:190px;  font-size:23px ;border-radius:15px" class="form-control-sm form-control-sm bg-dark border-0 text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="( Mi Inventario )"> 
       </div>
      
+      <div>
+      </div>
+    
     </div>
     <!-- End Main Options -->
     <br>
@@ -34,7 +33,7 @@ import NewObjectForm from '../components/NewObjectForm.vue'
     <!-- LIST ALL INVENTORY OBJECTS-->
     <div>
         <div class="d-flex flex-wrap"> 
-        
+          <InventoryObjectEmpty  @click="showNewObjectForm=true" class="m-1"  />
           <div v-for="obj in inventory_objects_filtered"  > 
             <InventoryObject @click="objectDetails=obj ;showModalDetails=true;"  :object=obj class="m-1"   />
           </div>
@@ -69,18 +68,54 @@ import NewObjectForm from '../components/NewObjectForm.vue'
         <div style="" class="d-flex justify-content-end">
             <i  @click="showConfirmDelete=false" style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
         </div>
-        Estas seguro que deseas eliminar este Objecto de tu Inventario ? <br>
-        Este objeto será eliminado de tu inventario y cualquier propuesta que contenga este objeto tambien será eliminada. 
+      <div style="height:100px">
       </div>
-   <!-- END ARE YOU SURE YOU WANT TO REMOVE THIS OBJECT -->
+          <div class="text-center">
+            <text style="font-size:20px">¿Eliminará de tu Inventario ?</text> <br>
+          </div>
+        <br>
+        <i class="bi bi-circle text-danger"></i> Este objeto será eliminado de tu inventario.<br>
+        <i class="bi bi-circle text-danger"></i> Se eliminaran tambien Propuestas de Intercambios que tengan este objeto. 
+     
+        <div class="d-flex justify-content-center mt-4">
+        <button @click="showConfirmDeleteDone=true; showConfirmDelete=false" type="button" class="btn btn-danger">Eliminar  <i class="bi bi-arrow-right-short"></i> <i class="bi bi-trash"></i></button>
+        </div>
 
+        <div style="height:800px">
+        </div>
+     
+      </div>
+
+    <!-- DELETE CONFIRMATION -->
+    <div v-if="showConfirmDeleteDone"  class="position-absolute top-0 start-10 bg-dark w-100" >
+       
+        <div style="height:100px">
+        </div>
+
+        <div class="text-center">
+          <text style="font-size:20px"> objeto Eliminado </text> <br>
+        </div>
+        
+        <br>
+      
+        <div class="d-flex justify-content-center mt-4">
+        <button @click="closeInventoyList" type="button" class="btn btn-secondary"> Regresar </button>
+        </div>
+
+        <div style="height:800px">
+      </div>
+    </div>
+    <!-- DELETE CONFIRMATION -->
+    
+
+   <!-- END ARE YOU SURE YOU WANT TO REMOVE THIS OBJECT -->
 
     <!-- NEW OBJECT FORM -->
     <div v-if="showNewObjectForm"  class="position-absolute top-0 start-10 bg-dark" >
         <div style="transition: width 2s;" class="d-flex justify-content-end">
             <i  @click="showNewObjectForm=false" style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
         </div>
-        <NewObjectForm />
+        <NewObjectForm  v-on:closeNewObjectForm="closeNewObjectForm" />
     </div>
     <!-- END NEW OBJECT FORM -->
 
@@ -109,6 +144,7 @@ export default {
         showModalDetails: false,
         showConfirmDelete : false ,
         showNewObjectForm: false ,
+        showConfirmDeleteDone : false ,
         inventoryObjects : [{id:1, name:"myplayabc1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {id:2,name:"myplaybcde2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {id:3,name:"myplayef3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
@@ -122,7 +158,7 @@ export default {
       }
   },
   props: ['session_data'],
-  emits: ['closeThisModal'],
+  emits: ['closeThisModal','closeInventoyList'],
 
 created() {
   console.log("APP CREATED")
@@ -131,6 +167,20 @@ created() {
     },
 
 methods: {
+
+    closeInventoyList()
+    {
+      this.$emit('closeInventoyList')
+      this.showConfirmDeleteDone=false 
+      this.showConfirmDelete = false 
+      this.showModalDetails = false 
+    },
+
+
+    closeNewObjectForm()
+    {
+      this.showNewObjectForm=false
+    },
     
     filterByText(ftext)
     {
