@@ -23,6 +23,7 @@ import UserData from '../components/UserData.vue'
        
         <div style="height:10px"></div>
 
+        
              
         <Transition> 
                 <div v-if="true">
@@ -30,11 +31,96 @@ import UserData from '../components/UserData.vue'
                 </div>
             
         </Transition>    
-            
+
+        <!-- CHANGE MY DATA -->
+        <div  style="font-size:20px" class="d-flex justify-content-center mt-1 text-white">
+         <text @click="showInsertEmail_Data=!showInsertEmail_Data" class="border p-2 " style="border-radius:15px"  > &nbsp;&nbsp;&nbsp;&nbsp; Modificar Mis Datos &nbsp;&nbsp;&nbsp;&nbsp; <br> <i class="bi bi-person-lines-fill"></i></text>
+        </div>
+
+        <!--  INSER EMAIL CHANGE DATA -->
+        <div v-if="showInsertEmail_Data" class="position-absolute top-0 start-0 bg-dark w-100 ">
+          <div class="d-flex justify-content-center w-100">
+
+            <div> 
+
+              <div class="d-flex justify-content-end">
+                    <text @click="showInsertEmail_Data=false" type="button" class=""><i class="display-2 bi bi-x-lg text-white" ></i></text>
+              </div>
+             
+            <div style="height:200px"></div>
+                <text>Te enviaremos un link para modificar tus datos al correo actualmente registrado </text>
+                
+                <br><br>
+                 <button  @click="showInsertEmail_Data=false"  type="button" class="btn btn-secondary">Si, enviar a mi correo</button>
+                <!-- 
+                <br>
+                <input type="text" placeholder=" Ingresa tu correo aqui para modificar tus datos" v-model="email_changeData" style="text-align:center; font-size:20px ;border-radius:15px" class=" mt-1 bg-dark text-white border border-1 p-0" required minlength="4" maxlength="60" size="13" />
+                -->
+                <div style="height:1900px"></div>
+            </div>
+
+          </div>
+        </div>
+        <!--  INSER EMAIL CHANGE DATA -->
+        
+
+        <br>
+         <!-- CHANGE MY DATA -->  
+
+         <!-- CLOSE SESION -->
+        <div  style="font-size:20px" class="d-flex justify-content-center mt-1 text-success">
+         <text class="border p-2 " style="border-radius:15px" @click="$emit('sessionCreated',null ); " > &nbsp;&nbsp;&nbsp;&nbsp; Cerrar Sesion &nbsp;&nbsp;&nbsp;&nbsp; <br> Exit<i class="bi bi-door-open"></i> <i class="bi bi-person-walking"></i> </text>
+        </div>
+        <br>
+         <!-- CLOSE SESION -->  
+
+
+
+        <!-- CAMBIAR PASSWORD -->
+        <div  style="font-size:20px" class="d-flex justify-content-center mt-1 text-warning   ">
+         <text @click="showInsertEmail_password=!showInsertEmail_password" class="border p-2 " style="border-radius:15px"  > Cambiar Password <br> 
+          <i class="bi bi-key"></i> </text>
+        </div>
+
+        <!--  INSER EMAIL CHANGE PASSWORD -->
+        <div v-if="showInsertEmail_password" class="position-absolute top-0 start-0 bg-dark w-100 ">
+          <div class="d-flex justify-content-center w-100">
+
+            <div> 
+
+              <div class="d-flex justify-content-end">
+                    <text @click="showInsertEmail_password=false" type="button" class=""><i class="display-2 bi bi-x-lg text-white" ></i></text>
+              </div>
+             
+            <div style="height:200px"></div>
+                <text>Te enviaremos un link para cambiar tu contraseña al correo actualmente registrado </text>
+                
+                <br><br>
+                 <button  @click="showInsertEmail_password=false"  type="button" class="btn btn-secondary">Si, enviar a mi correo</button>
+                <!-- 
+                <br>
+                <input type="text" placeholder=" Ingresa tu correo aqui para modificar tus datos" v-model="email_changeData" style="text-align:center; font-size:20px ;border-radius:15px" class=" mt-1 bg-dark text-white border border-1 p-0" required minlength="4" maxlength="60" size="13" />
+                -->
+                <div style="height:1900px"></div>
+            </div>
+
+          </div>
+        </div>
+        <!--  INSER EMAIL CHANGE PASSWORD -->
+
+
+
+
+        <br>
+         <!-- CAMBIAR PASSWORD -->  
+
+        <hr>
 
         <Transition> 
+          <div class="border" style="border-radius:15px; " >
             <ContactUsForm  v-if="true" />
-        </Transition>    
+          </div>
+          </Transition>    
         <div style="height:200px"></div>
 
     </div>
@@ -47,7 +133,11 @@ import UserData from '../components/UserData.vue'
         
         <div class=" m-3 bg-dark" style=" border-radius: 15px;">
 
-        <div class="d-flex justify-content-end"><a  @click="$router.push('searchView')"  class="text-white"><i class="display-5 bi bi-x-lg"></i></a></div>
+        <div class="d-flex justify-content-end">
+          <a  @click="$router.push('searchView')"  class="text-white"><i class="display-5 bi bi-x-lg"></i></a> 
+        </div>
+       
+     
 
 
             <div class="d-flex justify-content-center mt-5">
@@ -155,6 +245,11 @@ export default {
         sendComments:false ,
         showMyInfo : false,
         showRecoverPassword : false ,
+
+
+        showInsertEmail_Data : false, 
+        showInsertEmail_password : false ,
+
         }
     },
 
