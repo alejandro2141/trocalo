@@ -16,7 +16,7 @@ import NewObjectForm from '../components/NewObjectForm.vue'
         </div>
         -->
        
-        <InventoryList />
+        <InventoryList v-on:closeInventoyList="closeInventoyList"/>
     </div>
    
 
@@ -62,6 +62,11 @@ created() {
     },
 
 methods: {
+    closeInventoyList()
+    {
+        console.log("close invertory List from My Inventory")
+    }
+
     },
 
 watch : {
