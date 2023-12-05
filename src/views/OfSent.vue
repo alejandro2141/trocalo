@@ -44,7 +44,8 @@ import ExchangeProposalSent from   '../components/ExchangeProposalSent.vue'
 
   <div class="position-absolute top-0 start-10 bg-dark" >
     <div class="d-flex justify-content-end"> <i @click="showItemList=true" class="display-1 bi bi-x-lg"></i>  </div>
-    <ExchangeProposalSent />
+
+    <ExchangeProposalSent v-on:closeExchangeProposalSent="closeExchangeProposalSent" />
   </div>
 
 </div>
@@ -76,6 +77,12 @@ created() {
     },
 
 methods: {
+
+    closeExchangeProposalSent()
+    {
+      this.showItemList=true
+    }
+
     },
 
 watch : {
