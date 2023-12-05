@@ -17,7 +17,7 @@
         <div style="font-size:20px">
           &nbsp;&nbsp;&nbsp;&nbsp;  {{object.name}}
         </div>
-        <div style="font-size:16px">
+        <div  style="font-size:16px">
             <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i>   {{object.owner}}
         </div>
         <div class="bg-secondary" style="width:350px; height:300px">
