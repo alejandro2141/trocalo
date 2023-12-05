@@ -62,8 +62,9 @@ import { ref } from 'vue'
 		</div>
 
         <br>
-        <div class="d-flex justify-content-center  ">
-            <button @click="sendComments()"  type="button" class="btn btn-secondary"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
+        <div class="d-flex justify-content-evenly  ">
+            <button @click="showComments()"  type="button" class="btn btn-secondary"> <text> <i class="bi bi-signal"></i> </text></button>
+            <button @click="sendComments();show_confirm=true"  type="button" class="btn btn-secondary"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
         </div>
         <br>
     </div>
@@ -75,9 +76,32 @@ import { ref } from 'vue'
         </text>
        <br>
 
-        <a  class="btn btn-primary" HREF="/index.html" > Regresar  </a>
+        <a  @click="show_confirm=false; text_message='Mensaje enviado...' " class="btn btn-primary" > Regresar  </a>
     </div>
 
+
+
+    <div v-if="show_comments" class=" text-start  w-100 m-2"  >
+                
+                <text>Estamos trabajando para solucionar: </text>
+               <br>
+                <div v-for="comment in comments" :key="comment.id" class="mt-2 " >
+                
+                    <div v-if="comment.reply" >
+                        <i class="h2 bi bi-emoji-laughing-fill text-primary"></i><text class="fw-bold"> HORAPO team : 
+
+                        </text>{{comment.message}}<br>  
+                    </div>
+                    <div v-else>
+                        <i v-if="comment.animo == 1" class="bi bi-emoji-angry h2 text-danger" ></i>
+                        <i v-if="comment.animo == 2 || comment.animo == 0 " class="bi bi-emoji-neutral h2 text-secondary"></i>
+                        <i v-if="comment.animo == 3" class="bi bi-emoji-heart-eyes h2 text-success"></i>
+                       <text>{{ new Date(comment.date_time).toLocaleDateString() }}  {{comment.message}}</text> <br>
+                    </div>
+
+               
+                </div>
+    </div>
 
     </div>
 </div>
@@ -99,8 +123,24 @@ export default {
        text_message: "",
        email: "" ,
        animo : null , 
-       show_confirm : false 
-    }
+       show_confirm : false , 
+       show_comments : false ,
+
+       comments: [ {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date: new Date("2022-03-25")  },
+                   {id:1, reply:true , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
+                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },    
+    
+    ]
+    
+}
   },
 
  props: [],
@@ -111,9 +151,15 @@ export default {
     async sendComments()
     {
         console.log("Sending Comments: "+this.message);
-
-
+        let aux= {id:123, reply:false , message: this.text_message, animo: this.animo , date_time: new Date("2022-03-25")  }
+        this.comments.push(aux)
     },
+    async showComments()
+    {
+        console.log("show Comments ");
+        this.show_comments=!this.show_comments
+    },
+
   }
 }
 </script>
