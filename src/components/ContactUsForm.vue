@@ -9,7 +9,7 @@ import { ref } from 'vue'
 
 <template  >
 <div class="text-center">
-    <div v-if="true"  id="form" class=" p-1 " style="margin-top: 2em;">
+    <div v-if="true"  id="form" class=" p-0 " style="margin-top: 2em;">
         <div class="form-row">
         
         <!--
@@ -33,18 +33,18 @@ import { ref } from 'vue'
         <input type="email" maxlength="40" style="border-radius: 10px;" autocomplete="off" class="form-control w-75 m-1 " id="inputEmail4" placeholder="" v-model="email">
         </div>
     -->
-        <text class="text-secondary" style="font-size:30px"><i class="bi bi-envelope"></i> </text>
+        <text class="text-secondary" style="font-size:20px">¿ Como te sientes ? <i class="bi bi-envelope"></i> </text>
         <div class="d-flex justify-content-center">
 						
                         <div>
-                            <textarea maxlength="100" style="border-radius: 10px; "  class="form-control-lg h-100 w-90 m-2 p-3" id="story" v-model="text_message" name="story"  placeholder="incluye aquí tus comentarios">
+                            <textarea maxlength="100" style="border-radius: 10px; "  class="form-control-lg h-100 w-90 m-1 " id="story" v-model="text_message" name="story"  placeholder="Muy bien...">
 							</textarea>
 						</div>
 						
 		</div>
 <br>
-        Como te sientes?<br>
-        <div class="m-1 d-flex justify-content-evenly">
+     <!--    Como te sientes? <br>-->
+        <div class="m-0 d-flex justify-content-evenly">
 							
 							<text>
 								<i @click="animo =1;" class="text-danger bi bi-emoji-angry display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==1 }"  style="border-radius: 30px; " > </i><br>
@@ -62,13 +62,10 @@ import { ref } from 'vue'
 		</div>
 
         <br>
-        <br>
         <div class="d-flex justify-content-center  ">
-            <div @click="sendComments()" class=" p-3 bg-primary text-white " style="border-radius: 15px;" >
-                <text> Enviar <i class="bi bi-send " ></i> </text>
-            </div>
+            <button @click="sendComments()"  type="button" class="btn btn-secondary"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
         </div>
-        
+        <br>
     </div>
 
 
