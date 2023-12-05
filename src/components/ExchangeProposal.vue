@@ -1,3 +1,11 @@
+<script setup>
+import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
+import InventoryObject from './InventoryObject.vue'
+import InventoryList from './InventoryList.vue'
+import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
+import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
+</script>
+
 <template>
 <div  style=""  >
  
@@ -357,18 +365,23 @@
 
        <!-- TITLE -->
           <br>
-          <div style="font-size:20px">
-            Propuesta de Intercambio Enviada  
+          <div style="font-size:20px" class="w-100 text-center">
+            Propuesta de Intercambio Enviada 
           </div>
           <br>
 
-          <div style="font-size:20px">
-            Si Caquito_123_xusi  acepta el intercambio Usted debera pagar el cargo por Recogida y Entrega  $ 17.000
+          <div style="font-size:16px" >
+            <p> Caquito_123_xusi  podrá  Aceptar, Rechazar o Editar tu propuesta.</p> 
+            <br>
+                        
+            Si él acepta tu deberas pagar el cargo por Recogida y Entrega<br>
+            <div class="text-center"> <text style="font-size:30px">  $ 17.000 </text>
+            </div>
           </div>
           <br>
           
-          <div style="font-size:20px">
-            Puede seguir esta propuesta en <a href="/OfSent" class="text-success"> Enviadas</a> 
+          <div style="font-size:16px">
+            Desde ahora puedes seguir esta propuesta en <a @click="$router.push({ name: 'ofSent' })" class="text-success"> Enviadas</a> 
           </div>
 
           <!-- END FOOTER -->
@@ -377,7 +390,7 @@
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
 
-                <a href="/" class="text-success">
+                <a @click="$router.push({ name: 'searchView' })" class="text-success">
                   <i  class="bi bi-house"></i> 
                 </a>
               </div>
@@ -399,25 +412,25 @@
 
 
   <!-- ******************************* -->
-        <div v-if="showStep5">
+<!--
+  <div v-if="showStep5">
 
-      <!-- Show Object Details  -->  
         <div v-if="showPartnerObjectDetailed">
             <InventoryObjectDetailed />
         </div>
 
 
-      <!-- Desire Object + Plus -->
+     
       <div class="d-flex align-content-stretch flex-wrap">
             <InventoryObject      @click="showMyObjectDetailed=true"/> 
             <InventoryObjectEmpty @click="showMyInventory=!showMyInventory" />
         </div>
-      <!-- Show Object Details  -->  
+     
         <div v-if="showMyObjectDetailed">
           <text @click="showMyObjectDetailed=false">X</text> 
           <InventoryObjectDetailed />
         </div>  
-      <!-- Show Inventory Partner -->
+     
         <div v-if="showMyInventory">
             <InventoryList />
         </div>
@@ -456,7 +469,7 @@
 
       </div>
 
-     
+    
 
     </div>
 
@@ -465,9 +478,11 @@
       <text @click="showSenderConfirmation=false">x</text>
       <ShowSenderTransactionConfirmation />
     </div>
-
+-->
 
 </div>
+</div>
+
 </template>
 
 <style scoped>
@@ -476,18 +491,10 @@
 
 
 <script>
-import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
-import InventoryObject from './InventoryObject.vue'
-import InventoryList from './InventoryList.vue'
-import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
-import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
 
 
 export default {
 
-  components: {
-    InventoryObjectDetailed,InventoryList,InventoryObjectEmpty,InventoryObject,ShowSenderTransactionConfirmation
-  },
   
   data : function() {
       return {
