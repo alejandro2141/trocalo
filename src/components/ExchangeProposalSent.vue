@@ -84,8 +84,13 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
         <p style="font-size:20px"> ¿ Esta seguro que desea Cancelar esta oferta ?</p><br>
         
         <div class="d-flex justify-content-around">
-            <button @click="showCancelMessage=false ; showAcceptProposal=false;showStep1=true" type="button" class="btn btn-success">Regresar</button>
-            <button @click="showCancelMessageConfirmation=true;showCancelMessage=false ; " type="button" class="btn btn-danger">Si deseo Cancelar esta Oferta </button>
+            
+            <button @click="showCancelMessageConfirmation=true;showCancelMessage=false ;" type="button" class="btn btn-danger">Si deseo Cancelar <br> esta Oferta </button>
+            
+            <button @click="showCancelMessage=false ; showAcceptProposal=false;showStep1=true" type="button" class="btn btn-success"> 
+                <i class="bi bi-arrow-left-square"></i> Regresar
+            </button>
+        
         </div>
     </div>
 
@@ -97,13 +102,14 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
         <div style="height: 100px;"></div>
         <br>
         
-        <p style="font-size:20px" class="text-center">  Propuesta Cancelada  
+        <p style="font-size:20px" class="text-center">  Propuesta de Intercambio ha sido Cancelada 
         </p>
         <br>
-        
-        <div class="fixed-bottom  d-flex justify-content-center display-1 text-success w-100 bg-dark p-3 " >
-           <a href="/OfSent"> <i class="text-success bi bi-house"></i> </a>
-        </div>
+        <p style="font-size:20px" @click="$emit('closeExchangeProposalSent')" class="text-center text-success"> 
+          <i class="bi bi-arrow-left-square"></i> Regresar  a Enviadas
+        </p>
+
+
 
     </div>
 
@@ -144,7 +150,7 @@ export default {
         }
   },
   props: ['session_data'],
-  emits: ['closeThisModal'],
+  emits: ['closeExchangeProposalSent'],
 
 created() {
   console.log("APP CREATED")
