@@ -117,7 +117,7 @@ import UserData from '../components/UserData.vue'
         <hr>
 
         <Transition> 
-          <div class="border" style="border-radius:15px; " >
+          <div class="" style="border-radius:15px; " >
             <ContactUsForm  v-if="true" />
           </div>
           </Transition>    
