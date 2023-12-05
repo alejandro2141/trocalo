@@ -55,25 +55,27 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
       
         <br>
           <!-- FOOTER -->
-          <div class="display-1 text-success w-100 bg-dark p-3 ">  
+          <div class=" text-success w-100 bg-dark p-3 ">  
 
-            <div class="d-flex justify-content-between">
+            <div  style="font-size:25px" class="d-flex justify-content-between">
 
               <div @click="showAcceptProposal=true; showStep1=false "  class="">
-                <button type="button" class="btn btn-success">Acepto</button>
+                <button type="button" class="btn btn-success p-3">Acepto</button>
               </div>
 
-              <div @click="showEditProposal=true;  showStep1=false "  class="">
-                <i class="text-success bi bi-pencil"></i>
+              <div style="" @click="showEditProposal=true;  showStep1=false "  class="border border-1 border-secondary">
+                  <button type="button" class="btn btn-secondary">Editar  <i class="bi bi-pencil"></i> <br> Propuesta</button>  
               </div>
 
               <div @click="showRejectProposal=true;  showStep1=false "  class="">
-                <button type="button" class="btn btn-danger">Rechazo</button>
+                <button type="button" class="btn btn-danger p-3">Rechazo</button>
               </div>
 
             </div>
 
           </div>
+
+
           <!-- END FOOTER -->
     </div>
   <!-- ******************************* -->
@@ -92,7 +94,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
         
         <div class="d-flex justify-content-around">
             <button @click="showAcceptProposalConfirmation=true; showAcceptProposal=false;showStep1=false" type="button" class="btn btn-success">Si, acepto esta propuesta </button>
-            <button type="button" class="btn btn-danger">Cancelar</button>
+            <button @click="showAcceptProposalConfirmation=false; showAcceptProposal=false;showStep1=true "   type="button" class="btn btn-danger" > <i class="bi bi-arrow-left-square"></i> Cancelar</button>
         </div>
     </div>
 
@@ -101,16 +103,21 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
         <div style="height: 100px;"></div>
         <br>
         
-        <p style="font-size:20px"> Perfecto, ya estamos enviando la notificacion a Kakito_123 que has aceptado el intercambio de objetos. 
-          <br> El deberá confirmar en un plazo máximo de 24 horas
+        <p style="font-size:20px"> Gracias, ya estamos notificando a Kakito_123 que has aceptado el intercambio de objetos. 
+          <br> El deberá confirmar en un plazo máximo de 3 dias. 
         </p>
         
         <br>
-        
-
-        <div class="fixed-bottom  d-flex justify-content-center display-1 text-success w-100 bg-dark p-3 " >
-           <a href="/OfReceived" >  <i class="text-success bi bi-house"></i> </a>
+        <div class="d-flex justify-content-center text-success">
+          <a style="font-size:25px" @click="$emit('closeExchangeProposalReceived')" > <i class="bi bi-arrow-left-square"></i> Regresar  </a>
         </div>
+
+      <!-- 
+        <div class="fixed-bottom  d-flex justify-content-center display-1 text-success w-100 bg-dark p-3 " >
+           <a @click="$emit('closeExchangeProposalReceived')" >  <i class="text-success bi bi-house"></i> </a>
+        </div>
+      -->
+      
 
     </div>
   <!-- ******************************* -->
@@ -129,7 +136,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
         
         <div class="d-flex justify-content-around">
          
-        <button @click="showRejectProposalConfirmation=false; showRejectProposal=false;showStep1=true" type="button" class="btn btn-success">Regresar</button>
+        <button @click="showRejectProposalConfirmation=false; showRejectProposal=false;showStep1=true" type="button" class="btn btn-success"><i class="bi bi-arrow-left-square"></i>Regresar</button>
         <button @click="showRejectProposalConfirmation=true; showRejectProposal=false;showStep1=false" type="button" class="btn btn-danger">Si, deseo rechazar</button>
         </div>
     </div>
@@ -139,16 +146,21 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
         <div style="height: 200px;"></div>
         <br>
         
-        <p style="font-size:20px" class="text-center"> Esta oferta ha sido rechazada <br>
-          <text> Se ha eliminado de tu lista de Ofertas Recibidas </text>
+        <p style="font-size:20px" class="text-center"> Esta Propuesta ha sido rechazada <br>
+          <text> Se ha eliminado de tu lista de Propuestas Recibidas </text>
         </p>
         
         <br>
         
-
-        <div class="fixed-bottom  d-flex justify-content-center text-success w-100 bg-dark p-3 " >
-           <a href="/OfReceived" > <i style="font-size:60px" class="text-success bi bi-house"></i> </a>
+        <div class="d-flex justify-content-center text-success">
+          <a style="font-size:25px" @click="$emit('closeExchangeProposalReceived')" > <i class="bi bi-arrow-left-square"></i>Regresar  </a>
         </div>
+
+      <!-- 
+        <div class="fixed-bottom  d-flex justify-content-center text-success w-100 bg-dark p-3 " >
+           <a @click="$emit('closeExchangeProposalReceived')" > <i style="font-size:60px" class="text-success bi bi-house"></i> </a>
+        </div>
+      -->
 
     </div>
   <!-- ******************************* -->
@@ -490,7 +502,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
           <br>
           
           <div style="font-size:20px">
-            Puede seguir esta propuesta en <text class="text-success">Enviadas</text>
+            Puede seguir esta propuesta en <text @click="$router.push({ name: 'ofSent' })" class="text-success">Enviadas</text>
           </div>
 
           <!-- END FOOTER -->
@@ -498,7 +510,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
           <!-- FOOTER -->
           <div class="fixed-bottom  text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
-                 <a href="/OfReceived"> <i style="font-size:40px" class="bi bi-house"></i> </a>
+                 <a @click="$router.push({ name: 'searchView' })" > <i style="font-size:40px" class="bi bi-house"></i> </a>
               </div>
           </div>
           <!-- END FOOTER -->
@@ -620,7 +632,7 @@ export default {
       }
   },
   props: ['session_data'],
-  emits: ['closeThisModal'],
+  emits: ['closeExchangeProposalReceived'],
 
 created() {
   console.log("APP CREATED")
