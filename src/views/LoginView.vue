@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 import ContactUsForm from '../components/ContactUsForm.vue' 
 import UserData from '../components/UserData.vue' 
+
+import RegisterForm from '../components/RegisterForm.vue' 
+
 </script>
 
 
@@ -170,9 +173,26 @@ import UserData from '../components/UserData.vue'
                 </form>   
             </div>
 
-             <p  v-if="!requestReceived" @click="showRecoverPassword=!showRecoverPassword; requestReceived=false" class="m-4 text-secondary"><small>¿Olvidaste tu contraseña?</small></p>
-             
-             <div v-if="showRecoverPassword" style="width: 300px;">
+
+<!-- REGISTER FORM -->
+             <div  v-if="!requestReceived" @click="showRegisterForm=!showRegisterForm; requestReceived=false" class="d-flex justify-content-center w-100">
+                <small class="text-secondary">Registarme</small>
+             </div>
+            
+            <div v-if='showRegisterForm' class="position-absolute top-0 start-0 bg-dark w-100 h-100 d-flex justify-content-center ">
+              
+              <div style="width:350px" >
+                            
+                <p  @click="showRegisterForm=false "  class="text-white text-end"><i class="display-5 bi bi-x-lg"></i></p> 
+                <RegisterForm  />
+              
+              </div>
+            </div>
+<!-- REGISTER FORM -->
+
+            <div  v-if="!requestReceived" @click="showRecoverPassword=!showRecoverPassword; requestReceived=false" class="m-4 text-secondary"><small>¿Olvidaste tu contraseña?</small></div>
+ 
+            <div v-if="showRecoverPassword" style="width: 300px;">
                 <div class="mb-3" >
                     <label for="exampleInputEmail1" class="form-label">Ingrese su correo registrado</label>
                     <input v-model="emailToRecover" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -249,6 +269,7 @@ export default {
 
         showInsertEmail_Data : false, 
         showInsertEmail_password : false ,
+        showRegisterForm : false ,
 
         }
     },
