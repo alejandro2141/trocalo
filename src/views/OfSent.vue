@@ -2,6 +2,7 @@
 
 import OfReceivedItemList from '../components/OfReceivedItemList.vue'
 import OfReceivedItem from     '../components/OfReceivedItem.vue'
+import OfSentItem from     '../components/OfSentItem.vue'
 import InventoryList  from     '../components/InventoryList.vue'
 import ExchangeProposalSent from   '../components/ExchangeProposalSent.vue'
 
@@ -12,43 +13,44 @@ import ExchangeProposalSent from   '../components/ExchangeProposalSent.vue'
 
 <div>
 
-<div v-if="showItemList" >
+
 
   <div style="height:20px">
   </div>
   
+  <!--
       <div style="font-size:20px" class="text-secondary w-100 text-center">
        Enviadas
       </div>
 
     <br>
+    -->
+   
+    <p class="text-white text-center" style="font-size:20px">Enviadas </p>
 
-    <OfReceivedItem  class="m-1" @click="showItemList=false" />
-    <OfReceivedItem  class="m-1" />
+    <OfSentItem  class="m-1" @click="showItemList=false" />
+    <OfSentItem  class="m-1" />
 
     <br>
-    <text class="text-danger">------------ Finalizadas -----------</text>
+    <p class=" text-center" style="font-size:16px">Aceptadas </p>
 
-    <OfReceivedItem  :ended=true  class="m-1" />
-    <OfReceivedItem  :ended=true  class="m-1" />
-    <OfReceivedItem  :ended=true  class="m-1" />
-    <OfReceivedItem  :ended=true  class="m-1" />
-    <OfReceivedItem  :ended=true  class="m-1" />
-    <OfReceivedItem  :ended=true  class="m-1" />
+    <OfSentItem  :accepted=true  class="m-1" />
+    <OfSentItem  :accepted=true  class="m-1" />
+
+    <br>
+    <p class="text-secondary text-center" style="font-size:16px">Finalizadas </p>
+    <div class="text-secondary">
+      <OfSentItem  :ended=true  class="m-1" />
+      <OfSentItem  :ended=true  class="m-1" />
+      <OfSentItem  :ended=true  class="m-1" />
+      <OfSentItem  :ended=true  class="m-1" />
+      <OfSentItem  :ended=true  class="m-1" />
+      <OfSentItem  :ended=true  class="m-1" />
+    </div>
 
 
-
-</div>
-
-<div v-else >
-
-  <div class="position-absolute top-0 start-10 bg-dark" >
-    <div class="d-flex justify-content-end"> <i @click="showItemList=true" class="display-1 bi bi-x-lg"></i>  </div>
-
-    <ExchangeProposalSent v-on:closeExchangeProposalSent="closeExchangeProposalSent" />
+  <div style="height:120px">
   </div>
-
-</div>
 
 </div>
 
