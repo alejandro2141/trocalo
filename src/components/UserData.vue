@@ -8,7 +8,7 @@ import { ref } from 'vue'
     <div class="p-3 mb-2 text-white bg-dark " >
    
     <div class="d-flex justify-content-between mt-3">
-         <cameraCapturer></cameraCapturer><br>
+      
     <!--
         <i class="bi bi-person-bounding-box display-1 "></i>
     -->
