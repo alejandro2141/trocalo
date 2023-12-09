@@ -8,12 +8,17 @@
     <div class="border border-1 rounded" :class="{'text-success border-success': accepted }"   >
         <div class="d-flex justify-content-between">
             <div>      
-            Cakito_123   <br>
-            Play Station 3 con 4 juegos.
+            {{offer.owner}}   <br>
+            {{offer.name}}
             </div>
             
-            <div style="font-size:20px" :class="{'text-success': accepted }"  >
-                $17.000
+            <div v-if="offer.status<3 " style="font-size:16px" :class="{'text-success': accepted }"  >
+                ${{offer.amount}}
+            </div>
+
+
+            <div  style="font-size:12px" :class="{'text-success': accepted }"  >
+                {{evaluateOfferStatus(offer.status)}}
             </div>
 
             <div>
@@ -52,13 +57,37 @@ export default {
 
       }
   },
-  props: ['session_data','accepted'],
+  props: ['session_data','accepted','offer'],
   emits: [],
 
 created() {
     },
 
 methods: {
+
+    evaluateOfferStatus(val)
+    {
+       
+        switch (val) {
+                case 1:
+                    return ('Enviada')
+                    break;
+                case 2:
+                    return ('Aceptada')
+                    break;
+                case 3:
+                    return ('Rechazada')
+                    break;
+                case 4:
+                    return ('Expirada')
+                    break;
+                default:
+                    return ('Failed Status')
+                    break;
+                }
+    }
+
+
     },
 
 watch : {
