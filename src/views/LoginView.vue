@@ -271,6 +271,13 @@ export default {
         showInsertEmail_password : false ,
         showRegisterForm : false ,
 
+        form_token:null ,
+        form_email:null ,
+        form_pass:null ,
+
+        login_message:null ,
+        requestReceived:null ,
+
         }
     },
 
