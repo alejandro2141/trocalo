@@ -15,6 +15,10 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
   <!-- ******************************* -->
     
   <div v-if="showStep1" >
+
+
+    <div class="d-flex justify-content-end"> <i  @click="$emit('closeExchangeProposalSent')" class="display-1 bi bi-x-lg"></i>  </div>
+
         <p style="font-size:20px" >Propuestas de Intercambio Enviada</p>
         
 
@@ -30,7 +34,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
           </div>
          
         <!-- LIST PARTNER OFFER OBJECT  -->
-          <div v-for="obj in partnerOfferObjects" :key="index" > 
+          <div v-for="obj in partnerOfferObjects"  > 
               <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
         <!-- END LIST PARTNER OFFER OBJECT  -->
@@ -40,7 +44,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
           </div>
         
         <!-- LIST MY OFFER OBJECT  -->
-           <div v-for="obj in yourOfferObjects" :key="index" class="mb-4" > 
+           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
               <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>
         <!-- END LIST MY OFFER OBJECT  --> 
@@ -74,7 +78,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
    
 
     <!-- ******************************* -->
-    <!--       ACCEPT PROPOSAL FLOW      -->
+    <!--       CANCEL PROPOSAL FLOW      -->
     <!-- ******************************* -->
     <div v-if="showCancelMessage" class="" style="height: 400px;">
         
@@ -95,7 +99,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
     </div>
 
     <!-- ******************************************* -->
-    <!--       ACCEPT PROPOSAL FLOW CONFIRMATION     -->
+    <!--       CANCEL CONFRIM PROPOSAL FLOW          -->
     <!-- ******************************************* -->
     <div v-if="showCancelMessageConfirmation" class="" style="height: 400px;">
         
@@ -109,10 +113,9 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
           <i class="bi bi-arrow-left-square"></i> Regresar  a Enviadas
         </p>
 
-
-
     </div>
 
+    
      <!-- SPACE FILLER -->
      <p style="height:300px">
     </p>
