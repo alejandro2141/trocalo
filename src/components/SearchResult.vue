@@ -4,6 +4,7 @@ import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import FilterForSearchView from '../components/FilterForSearchView.vue'
 import InventoryList from '../components/InventoryList.vue' 
 import ExchangeProposal from '../components/ExchangeProposal.vue'
+import Article from '../classes/Article.js'
 </script>
 
 <template>
@@ -101,18 +102,18 @@ export default {
 
         //trae desde BKND
                            
-        objects : [         {id:1 , name:"abcgame 1", description : "Consola en buen estado con 2 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_222"  , otherObj: true , category_1: 1 ,  category_2: 2  }, 
-                            {id:2 , name:"bcdesport  2", description : "Consola en buen estado con 3 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_333"  , otherObj: false , category_1: 2  , category_2: 3 }, 
-                            {id:3 , name:"efghi 3", description : "Consola en buen estado con 4 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_444" , otherObj: true , category_1: 3  , category_2: 4}, 
-                            {id:4 , name:"abhijkl 4", description : "Consola en buen estado con 5 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_555" , otherObj: false, category_1: 4  , category_2: 5} , 
-                            {id:5 , name:"AlguienPlay 5", description : "Consola en buen estado con 6 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_6666", otherObj: true, category_1: 5  , category_2: 6}, 
-                            {id:6 , name:"AlguienPlay 6", description : "Consola en buen estado con 7 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_7777", otherObj: false, category_1: 6  , category_2: 7}, 
-                            {id:7 , name:"AlguienPlay 7", description : "Consola en buen estado con 8 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_8888", otherObj: true, category_1: 7  , category_2: 8}, 
-                           ],
+        objects : [   
+                  new Article ( "abcgame 1", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
+                  new Article ("cdegame 2", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
+                  new Article ("fghgame 3", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
+                  new Article ("ghijkgame 4", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
+                  new Article ("ijklmame 5", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  4 , 3 ) ,
+                  new Article ("klmgame 6", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 1 ,  2 , 5 ) ,
+                  new Article ("lmnogame 7", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  2 , 4 ) ,
+                  ],
 
         objects_filtered : null ,
 
-      
       }
   },
   props: ['session_data'],
@@ -152,9 +153,6 @@ methods: {
       {
         this.objects_filtered=this.objects
       }
-
-
-
     },
 
     closeObjectAndMyInventoryModal()
