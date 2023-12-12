@@ -5,14 +5,25 @@
   
    
 
-    <div class="border border-1 rounded">
-      <div v-if=ended class="text-danger">
-      FINALIZADA
-      </div>
-      
-      Cakito_123   <br>
-        Play Station 3 con 4 juegos.
+   <div class="border border-1 rounded" :class="{'text-success border-success': accepted }"   >
+        <div class="d-flex justify-content-between">
+            <div>      
+            {{offer.owner}}   <br>
+            {{offer.name}}
+            </div>
+            
+         
+
+            <div  style="font-size:12px" :class="{'text-success': accepted }"  >
+                {{evaluateOfferStatus(offer.status)}}
+            </div>
+
+            <div>
+                <i style="font-size:30px" :class="{'text-success': accepted }" class="bi bi-cloud-upload p-2"></i>
+            </div>
+        </div>
     </div>
+
 
 
  </div>
@@ -44,13 +55,40 @@ export default {
 
       }
   },
-  props: ['session_data','ended'],
+  props: ['session_data','accepted' ,'offer' ],
   emits: [],
 
 created() {
     },
 
 methods: {
+
+  evaluateOfferStatus(val)
+    {
+       
+        switch (val) {
+                case 1:
+                    return ('Enviada')
+                    break;
+                case 2:
+                    return ('Aceptada')
+                    break;
+                case 3:
+                    return ('Rechazada')
+                    break;
+                case 4:
+                    return ('Expirada')
+                    break;
+                case 5:
+                    return ('Recibida')
+                    break;
+                default:
+                    return ('Failed Status')
+                    break;
+                }
+    }
+
+    
     },
 
 watch : {
