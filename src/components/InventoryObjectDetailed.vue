@@ -50,9 +50,9 @@
         -->
 
         <div class="m-2">
-            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i>  {{object.alt1}}<br>
-            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> {{object.alt2}}<br>
-            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> {{object.alt3}}<br>
+            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i>  {{object.alternative1}}<br>
+            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> {{object.alternative2}}<br>
+            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> {{object.alternative3}}<br>
             <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> Cambiaría por Otros Objetos
                 <text v-if="object.otherObj" style="font-size:25px" class="text-success">
                         SI
