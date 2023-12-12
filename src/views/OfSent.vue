@@ -6,7 +6,7 @@ import OfSentItem from     '../components/OfSentItem.vue'
 import InventoryList  from     '../components/InventoryList.vue'
 import ExchangeProposalSent from   '../components/ExchangeProposalSent.vue'
 import ExchangeProposalSentAccepted from   '../components/ExchangeProposalSentAccepted.vue'
-
+import ExchangeProposalSentEnded  from   '../components/ExchangeProposalSentEnded.vue'
 
 </script>
 
@@ -27,44 +27,55 @@ import ExchangeProposalSentAccepted from   '../components/ExchangeProposalSentAc
 
     <br>
     -->
-   
+
+<!-- OF SENT -->
     <p class="text-white text-center" style="font-size:20px">Enviadas </p>
     <p class="text-secondary" style="font-size:12px" >A la espera de que el otro usuario acepte el intercambio </p>
-
     <div v-for="of in ofSent"  > 
         <OfSentItem  class="m-1" @click="showExchangeProposalSent=true"  :offer='of'  />
     </div>
-
+<!-- OF SENT -->
 
     <br>
+
+<!-- OF SENT ACCEPTED -->
     <p class=" text-center" style="font-size:16px">Aceptadas </p>
     <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado de transporte y despacho para completar el intercambio de objetos </p>
-    
     <div v-for="of in ofAccepted"  > 
         <OfSentItem  class="m-1" :accepted='true' @click="showExchangeProposalSentAccepted=true"  :offer='of'  />
     </div>
-
-
+<!-- OF SENT ACCEPTED -->
+  
     <br>
+
+<!-- OF SENT ENDED -->
     <p class="text-secondary text-center" style="font-size:16px">Finalizadas </p>
     <div class="text-secondary">
       <div v-for="of in ofEnded"  > 
-        <OfSentItem  class="m-1" @click="showExchangeProposal=true"  :offer='of'  />
+        <OfSentItem  class="m-1" @click="showExchangeProposalSentEnded=true"  :offer='of'  />
       </div>
     </div>
-
+<!-- OF SENT ENDED -->
 
 
     <div  v-if="showExchangeProposalSent"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-        <ExchangeProposalSent  v-on:closeExchangeProposalSent="closeExchangeProposalSent" />
+        <ExchangeProposalSent  v-on:closeExchangeProposalSent="closeModal" />
     </div>
 
 
     <div  v-if="showExchangeProposalSentAccepted"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-         <ExchangeProposalSentAccepted  v-on:close="closeExchangeProposalSentAccepted" />
+         <ExchangeProposalSentAccepted  v-on:close="closeModal" />
+    </div>
+
+    <div  v-if="showExchangeProposalSentEnded"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
+         <ExchangeProposalSentEnded   v-on:close="closeModal" />
     </div>
 
 
+
+
+
+    
 
 
   <div style="height:120px">
@@ -88,7 +99,7 @@ export default {
       return {
         showExchangeProposalSent : false , 
         showExchangeProposalSentAccepted : false ,
-
+        showExchangeProposalSentEnded : false ,
 
         ofSent : [  
                             {id:1 , name:"abcgame 1", description : "Consola en buen estado con 2 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_222"  , otherObj: true , category_1: 1 ,  category_2: 2 ,  amount: '17990'  , status: 1  }, 
@@ -129,16 +140,12 @@ created() {
 
 methods: {
 
-    closeExchangeProposalSent()
+    closeModal()
     {
       this.showExchangeProposalSent=false
-    },
-
-    closeExchangeProposalSentAccepted()
-    {
       this.showExchangeProposalSentAccepted=false
-    }
-
+      this.showExchangeProposalSentEnded=false
+    },
 
     },
 
