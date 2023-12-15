@@ -18,34 +18,34 @@ import InventoryList from '../components/InventoryList.vue'
 
     <div class="d-flex flex-wrap w-100">
 
-      <div @click="$refs.show_uploadPicture_1_input.click()" style="width:200px; height:200px ; border-radius:15px" class="bg-white m-1 text-center">
+      <div @click="$refs.show_uploadPicture_1_input.click()" style="width:200px; height:200px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_1_preview" style="font-size:100px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_1' class="uploading-image" style="width:200px; height:200px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_1_input" type="file" accept="image/jpeg" @change='uploadImage_1' style="display: none">
+          <input ref="show_uploadPicture_1_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_1' style="display: none">
       </div>
 
-      <div @click="$refs.show_uploadPicture_2_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-white m-1 text-center">
+      <div @click="$refs.show_uploadPicture_2_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_2_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_2' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_2_input" type="file" accept="image/jpeg" @change='uploadImage_2' style="display: none">
+          <input ref="show_uploadPicture_2_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_2' style="display: none">
       </div>
 
-      <div @click="$refs.show_uploadPicture_3_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-white m-1 text-center">
+      <div @click="$refs.show_uploadPicture_3_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_3_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_3' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_3_input" type="file" accept="image/jpeg" @change='uploadImage_3' style="display: none">
+          <input ref="show_uploadPicture_3_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_3' style="display: none">
       </div>
 
-      <div @click="$refs.show_uploadPicture_4_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-white m-1 text-center">
+      <div @click="$refs.show_uploadPicture_4_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_4_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_4' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_4_input" type="file" accept="image/jpeg" @change='uploadImage_4' style="display: none">
+          <input ref="show_uploadPicture_4_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_4' style="display: none">
       </div>
 
-      <div @click="$refs.show_uploadPicture_5_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-white m-1 text-center">
+      <div @click="$refs.show_uploadPicture_5_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_5_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_5' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_5_input" type="file" accept="image/jpeg" @change='uploadImage_5' style="display: none">
+          <input ref="show_uploadPicture_5_input" type="file" accept="image/jpeg;capture=camera"  @change='uploadImage_5' style="display: none">
       </div>
 
       
