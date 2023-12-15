@@ -19,7 +19,7 @@ import NewObjectForm from '../components/NewObjectForm.vue'
       <div>
       </div>
 
-      <div class="d-flex align-items-center  "  >
+      <div class="d-flex align-items-center mt-3 "  >
         <input  v-model="ftext" style="text-align:center; width:190px;  font-size:23px ;border-radius:15px" class="form-control-sm form-control-sm bg-dark border-0 text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="( Mi Inventario )"> 
       </div>
      
@@ -126,6 +126,16 @@ import NewObjectForm from '../components/NewObjectForm.vue'
 </template>
 
 <style scoped>
+
+
+::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Edge 12-18 */
+  color: white;
+}
 
 </style>
 
