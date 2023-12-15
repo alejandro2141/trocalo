@@ -381,12 +381,13 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
           <br>
           
           <div style="font-size:16px">
-            Desde ahora puedes seguir esta propuesta en <a @click="$router.push({ name: 'ofSent' })" class="text-success"> Enviadas</a> 
+            Desde ahora puedes seguir esta propuesta en <a @click="$router.push({ name: 'ProposalsSent' })" class="text-success"> Enviadas</a> 
           </div>
 
           <!-- END FOOTER -->
           <div style="height:200px"></div>
           <!-- FOOTER -->
+          <!-- 
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
 
@@ -395,6 +396,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
                 </a>
               </div>
           </div>
+          -->
           <!-- END FOOTER -->
 
     </div>
