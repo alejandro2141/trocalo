@@ -4,13 +4,13 @@
 <template>
   <div class="m-0" style="font-size:30px ;width:350px">
 
-    <div class="text-secondary ">
+    <div class="text-white">
 
       <div class="d-flex justify-content-around">
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="font-size:40px" class="bi bi-controller "></i> </text>
         -->
-        <input type="text" placeholder=" (  Buscar  ) " v-model="textFilter" style="text-align:center; font-size:23px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-white border-0 p-0" required minlength="4" maxlength="20" size="7" />
+        <input type="text" placeholder=" (  Busca lo que quieres  ) " v-model="textFilter" style="text-align:center; color:white font-size:23px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-white border-0 p-0" required minlength="4" maxlength="30" size="14" />
        <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(2) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="font-size:40px" class="bi bi-bicycle "></i> </text>
         -->
@@ -62,6 +62,15 @@
 </template>
 
 <style scoped>
+
+::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Edge 12-18 */
+  color: white;
+}
 
 </style>
 
