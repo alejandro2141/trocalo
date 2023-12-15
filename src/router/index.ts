@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SearchView from '../views/SearchView.vue'
+import ViewSearch from '../views/ViewSearch.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,48 +7,48 @@ const router = createRouter({
     {
       path: '/',
       name: 'mainView',
-      component: SearchView
+      component: ViewSearch
     },
    
     {
-      path: '/login',
-      name: 'login',
+      path: '/ViewLogin',
+      name: 'ViewLogin',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/LoginView.vue')
+      component: () => import('../views/ViewLogin.vue')
     },
     {
-      path: '/searchView',
-      name: 'searchView',
+      path: '/ViewSearch',
+      name: 'ViewSearch',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/SearchView.vue')
+      component: () => import('../views/ViewSearch.vue')
     },
     {
-      path: '/myInventory',
-      name: 'myInventory',
+      path: '/ViewMyInventory',
+      name: 'ViewMyInventory',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/MyInventory.vue')
+      component: () => import('../views/ViewMyInventory.vue')
     },
     {
-      path: '/ofReceived',
-      name: 'ofReceived',
+      path: '/ViewProposalsReceived',
+      name: 'ViewProposalsReceived',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/OfReceived.vue')
+      component: () => import('../views/ViewProposalsReceived.vue')
     },
     {
-      path: '/ofSent',
-      name: 'ofSent',
+      path: '/ViewProposalsSent',
+      name: 'ViewProposalsSent',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/OfSent.vue')
+      component: () => import('../views/ViewProposalsSent.vue')
     }
 
 
