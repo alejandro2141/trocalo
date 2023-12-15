@@ -104,11 +104,11 @@ export default {
                            
         objects : [   
                   new Article ( "abcgame 1", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
-                  new Article ("cdegame 2", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
-                  new Article ("fghgame 3", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
-                  new Article ("ghijkgame 4", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
-                  new Article ("ijklmame 5", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  4 , 3 ) ,
-                  new Article ("klmgame 6", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 1 ,  2 , 5 ) ,
+                  new Article ("cdegame 2", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 2 ,  2 , 3 ) ,
+                  new Article ("fghgame 3", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 2 ,  2 , 3 ) ,
+                  new Article ("ghijkgame 4", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 3 ,  2 , 3 ) ,
+                  new Article ("ijklmame 5", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 4 ,  4 , 3 ) ,
+                  new Article ("klmgame 6", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 5 ,  2 , 5 ) ,
                   new Article ("lmnogame 7", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  2 , 4 ) ,
                   ],
 
@@ -147,7 +147,7 @@ methods: {
       // this.categories.includes(val)
       if (categories !=null && categories.length>0)
       {  
-        this.objects_filtered=this.objects.filter(element =>  categories.includes(element.category_1) ); 
+        this.objects_filtered=this.objects.filter(element =>  categories.includes(element.category1) ); 
       }
       else 
       {
