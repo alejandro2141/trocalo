@@ -9,7 +9,7 @@ import NewObjectForm from '../components/NewObjectForm.vue'
  
  <div>
 
-    <div>
+    <div v-if='session_data!=null'>
         <!--
         <div class="d-flex justify-content-center">
             <i  @click="showNewObjectForm=true" style="font-size:50px;" class=" text-primary bi bi-plus-lg"></i>
@@ -17,6 +17,9 @@ import NewObjectForm from '../components/NewObjectForm.vue'
         -->
        
         <InventoryList v-on:closeInventoyList="closeInventoyList"/>
+    </div>
+    <div v-else>
+        Ir a Login
     </div>
    
 
