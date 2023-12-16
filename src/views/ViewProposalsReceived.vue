@@ -13,6 +13,8 @@ import InventoryList  from     '../components/InventoryList.vue'
 <template>
  
 <div class="">
+  <div v-if='session_data!=null'>
+
   <div style="height:20px">
   </div>
 
@@ -74,7 +76,13 @@ import InventoryList  from     '../components/InventoryList.vue'
         <ExchangeProposalReceived v-on:closeExchangeProposalReceived="closeExchangeProposalReceived" />
       </div>
     -->
+  </div>
+  <div v-else>
+        Ir a Login
+    </div>
+
 </div>
+
 
 </template>
 
