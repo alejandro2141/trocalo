@@ -19,7 +19,7 @@
       </div>
 
       <div v-if="session_data!=null && session_data.user!=null" class=" d-flex justify-content-between text-white" style="font-size : 20px ">
-          <RouterLink  style="font-size : 50px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? 'bg-success text-white' : 'bg-dark' ]"  @click="setUnderline(1)"   to="/ViewSearch"> &nbsp;&nbsp; <i class="bi bi-search"></i>  &nbsp;&nbsp;</RouterLink>    
+          <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"  @click="setUnderline(1)"   to="/ViewSearch">  Recambio </RouterLink>    
            <!-- <a href="/">Buscar</a>  :class="[isActive ? activeClass : '', errorClass]"  --> 
             <RouterLink   class="text-secondary mt-3" :class="{'text-decoration-underline' :underline_account}" @click="setUnderline(2)" to="/Viewlogin">{{session_data.user.split(" ")[0] }}</RouterLink> 
       </div> 
