@@ -15,6 +15,7 @@ import ExchangeProposalSentEnded  from   '../components/ExchangeProposalSentEnde
 <div>
 
 
+  <div v-if='session_data!=null'>
 
   <div style="height:20px">
   </div>
@@ -79,6 +80,13 @@ import ExchangeProposalSentEnded  from   '../components/ExchangeProposalSentEnde
 
   <div style="height:120px">
   </div>
+
+
+</div>
+<div v-else>
+        Ir a Login
+    </div>
+   
 
 </div>
 
