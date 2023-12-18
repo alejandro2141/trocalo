@@ -1,3 +1,8 @@
+<script setup>
+import { BKND_CONFIG } from '../config.js'
+import { RouterLink, RouterView } from 'vue-router'
+
+</script>
 
 <template>
   <div class=" m-1 p-0 w-100" >
@@ -68,13 +73,11 @@ color:white
 
 
 <script>
-import { RouterLink, RouterView } from 'vue-router'
 
 
 export default {
   
-  components: {
-    },
+
 
     data : function() {
         return {
