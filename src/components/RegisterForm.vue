@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
-
+import { BKND_CONFIG } from '../../config.js'
 </script>
 
 <template  >
@@ -12,7 +12,8 @@ import axios from 'axios'
                 <div class="form-row">
         <p style="font-size: 1.5em" class="text-center" >Registro Usuario</p>
 
-
+        {{BKND_CONFIG}}<br>
+        {{BKND_CONFIG.BKND_HOST}}
                 <div class="form-group  d-flex justify-content-evenly">
                     <div class=" m-1 ">
                         <label for="inputNames" class="text-center w-100">Primer Nombre</label>
@@ -28,11 +29,11 @@ import axios from 'axios'
                 <div class="form-group d-flex justify-content-evenly">
                     <div class=" m-1 ">
                         <label for="inputLastName" class="text-center w-100">Apellido Paterno</label>
-                        <input type="text" autocomplete="off"  class="form-control" id="inputLastName" placeholder="" v-model="last_name1">
+                        <input type="text" autocomplete="off"  class="form-control" id="inputLastName" placeholder="" v-model="lastName1">
                     </div>
                     <div class=" m-1 ">
                         <label for="inputSecondLastName" class="text-center w-100">Apellido Materno</label>
-                        <input type="text"  autocomplete="off" class="form-control" id="inputSecondLastName" placeholder="" v-model="last_name2">
+                        <input type="text"  autocomplete="off" class="form-control" id="inputSecondLastName" placeholder="" v-model="lastName2">
                     </div>
                 </div>
 
@@ -153,8 +154,8 @@ export default {
        showForm : true ,
        name1 : null ,
        name2 : null ,
-       last_name1 : null ,
-       last_name2 : null ,
+       lastName1 : null ,
+       lastName2 : null ,
        email  : "" ,
        doc_id  : null ,
        passwd  : null ,
@@ -199,27 +200,28 @@ export default {
            console.log("send Register Form");
            var r = true;
           
-        
            if (confirm("Confirmar para enviar formulario") == true) {
 
             //alert("Gracias por su Registro, Pronto nos pondremos en contacto con usted")
 
                 const json = { 
-                    name : this.name,
-                    last_name1 : this.last_name1,
-                    last_name2 : this.last_name2,
+                    name1 : this.name1,
+                    name2 : this.name2,
+                    lastName1 : this.lastName1,
+                    lastName2 : this.lastName2,
                     email	: this.email,
                     doc_id	: this.doc_id,
-                    passwd	:	this.passwd,
+                    pass	:	this.passwd,
                     personal_address:	this.personal_address,
                     personal_phone	: this.personal_phone,
                    /// specialty	:	this.specialty,
                    specialty	:	this.specialty ,
-                   
-                        };
-                 //app.config.globalProperties.dbhost = 'http://192.168.0.114:8080' ;       
+                    };
+
+
+                //app.config.globalProperties.dbhost = 'http://192.168.0.114:8080' ;       
                 console.log ("sendFormRegister  REQUEST :"+ JSON.stringify(json)  );
-                let response_json = await axios.post("/public_register_professional",json );
+                let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_register_user",json );
                 console.log ("sendFormRegister  RESPONSE:"+JSON.stringify(response_json.data)) ;
                 //app = response_json.data[0];
                 //alert("Gracias por su Registro");
