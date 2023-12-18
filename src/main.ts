@@ -7,6 +7,9 @@ import App from './App.vue'
 import router from './router'
 
 
+import { BKND_CONFIG } from '../config.js'
+
+
 import * as Vue from 'vue' // in Vue 3
 import axios from 'axios'
 import VueAxios from 'vue-axios'
