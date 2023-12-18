@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios';
-
-
+import axios from 'axios'
 
 </script>
 
@@ -13,26 +11,6 @@ import axios from 'axios';
             <form autocomplete="off">
                 <div class="form-row">
         <p style="font-size: 1.5em" class="text-center" >Registro Usuario</p>
-
-
-            <div class="form-group">
-                    <label for="inputSpecialty">Ingrese su especialidad</label>
-                    <br>
-                <!-- 
-                    <input type="text"  autocomplete="off"  class="form-control" id="specialty" placeholder="Ej: Kinesiologia, psicologia, terapia.." v-model="specialty">
-                -->
-                    <select class="form-select form-select-lg"  name="languages" id="lang" v-model="specialty" placeholder="XXX" >
-                        <option value="100">Kinesiología</option>
-                        <option value="200">Psicología</option>
-                        <option value="300">Fonoaudiología</option>
-                        <option value="400">Nutrición</option>
-                        <option value="500">Terapia Ocupacional</option>
-                        <option value="600">Psicopedagogía</option>
-                        <option value="700">Enfermería</option>
-                        <option value="800">Masoterapia</option>
-                    </select>
-            </div>
-
 
 
                 <div class="form-group  d-flex justify-content-evenly">
@@ -173,7 +151,8 @@ export default {
   data : function() {
     return {
        showForm : true ,
-       name : null ,
+       name1 : null ,
+       name2 : null ,
        last_name1 : null ,
        last_name2 : null ,
        email  : "" ,
@@ -240,7 +219,7 @@ export default {
                         };
                  //app.config.globalProperties.dbhost = 'http://192.168.0.114:8080' ;       
                 console.log ("sendFormRegister  REQUEST :"+ JSON.stringify(json)  );
-                let response_json = await axios.post(this.BKND_CONFIG.BKND_HOST+"/public_register_professional",json );
+                let response_json = await axios.post("/public_register_professional",json );
                 console.log ("sendFormRegister  RESPONSE:"+JSON.stringify(response_json.data)) ;
                 //app = response_json.data[0];
                 //alert("Gracias por su Registro");
