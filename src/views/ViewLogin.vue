@@ -2,8 +2,10 @@
 import { ref } from 'vue'
 import ContactUsForm from '../components/ContactUsForm.vue' 
 import UserData from '../components/UserData.vue' 
-
 import RegisterForm from '../components/RegisterForm.vue' 
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 </script>
 
@@ -302,8 +304,11 @@ export default {
                             pass : pass_d
                             }
 
+
+                            
             let session_data_result = {user:"JAMO123", active:true , pass:"eeee", name:"Juan Alejandro Morales Miranda", rut:"139093712"  , phone1:"56975397200", phone2:"56975397200" , address_street:"Avenida San Pablo" , address_number:"123" , address_apartment:true , address_house:true ,  address_zone1:"Independencia" ,  address_zone2:"Region Metropolitana" ,  address_city:"Santiago" ,  address_country:"Chile"  } 
         
+
             //query backend for login
             this.$emit('sessionCreated',session_data_result); 
             console.log("Login - Emit Sent")
