@@ -12,54 +12,47 @@ import { BKND_CONFIG } from '../../config.js'
                 <div class="form-row">
         <p style="font-size: 1.5em" class="text-center" >Registro Usuario</p>
 
-        {{BKND_CONFIG}}<br>
-        {{BKND_CONFIG.BKND_HOST}}
-                <div class="form-group  d-flex justify-content-evenly">
-                    <div class=" m-1 ">
-                        <label for="inputNames" class="text-center w-100">Primer Nombre</label>
-                        <input type="text" autocomplete="off" class="form-control" id="inputFirstName" placeholder="" v-model="name1">
-                    </div>
-                    <div class="m-1 ">
-                        <label for="inputNames" class="text-center w-100">Segundo Nombre</label>
-                        <input type="text" autocomplete="off" class="form-control" id="inputSecondName" placeholder="" v-model="name2">
-                    </div>
+        
+                <div class="form-group m-1">
+                        <input type="text" autocomplete="off" class="form-control" id="names" placeholder="Nombres" v-model="names">
                 </div>
-
-                                
+            
                 <div class="form-group d-flex justify-content-evenly">
                     <div class=" m-1 ">
-                        <label for="inputLastName" class="text-center w-100">Apellido Paterno</label>
-                        <input type="text" autocomplete="off"  class="form-control" id="inputLastName" placeholder="" v-model="lastName1">
+                        <input type="text" autocomplete="off"  class="form-control" id="inputLastName" placeholder="Appellido Paterno" v-model="last_name1">
                     </div>
                     <div class=" m-1 ">
-                        <label for="inputSecondLastName" class="text-center w-100">Apellido Materno</label>
-                        <input type="text"  autocomplete="off" class="form-control" id="inputSecondLastName" placeholder="" v-model="lastName2">
+                        <input type="text"  autocomplete="off" class="form-control" id="inputSecondLastName" placeholder="Appellido Materno" v-model="last_name2">
                     </div>
                 </div>
 
+                <div class="form-group  m-1">
+                       <input type="email"  autocomplete="off" class="form-control" id="inputEmail4" placeholder="Email@" v-model="email">
+                </div>
+
+                 <div class="form-group  mt-2">
+                        <input type="email"  autocomplete="off" class="form-control"  placeholder="Rut" v-model="id_number">
+                </div>
+                
                 <div class="d-flex justify-content-between">
-
-                    <div class="form-group  m-1">
-                        <label for="inputEmail4">Tu Email</label>
-                        <input type="email"  autocomplete="off" class="form-control" id="inputEmail4" placeholder="" v-model="email">
-                    </div>
-
-                    <div class="form-group m-1">
-                        <label v-if="personal_phone!= null && personal_phone.length < 10 " >Tu N° de Teléfono</label> 
+                    
+                    <div class="mt-2">
+                        <label v-if="phone!= null && phone.length < 10 " >N° de Teléfono</label> 
                         <label v-else class="text-danger">Ingrese teléfon Válido <i>+569xxxxxxxx</i></label> 
 
                         <div class="d-flex align-items-start " >
                             <div class=" p-2">
-                            +56    
+                                +56    
                             </div>
                             <div>
-                            <input type="text"  autocomplete="off" class="form-control" id="inputPhone" placeholder="Ej: XXXXXXXXX" v-model="personal_phone">
+                                <input type="text"  autocomplete="off" class="form-control" id="inputPhone" placeholder="Ej: XXXXXXXXX" v-model="phone">
                             </div>
                         </div>
-
                     </div>
-                    
+                   
                 </div>
+
+               
                 <!--
                 <div class="form-group ">
                     <label for="inputDocId">N° Cedula RUT </label>
@@ -96,13 +89,51 @@ import { BKND_CONFIG } from '../../config.js'
 
 
                 </div>
+                <br><br>
+                <p style="font-size:20px">Dirección</p>
                 <div class="form-group">
 
+                    <div class=" m-1 ">
+                         <input type="text" autocomplete="off" placeholder="Calle"  class="form-control" id="inputLastName" v-model="address_street_name">
+                    </div>
+                   
+                    <div class="form-group  d-flex justify-content-evenly" >
+                        <div class=" m-1 ">
+                            <input type="text"  autocomplete="off" class="form-control " id="inputSecondLastName" placeholder="Numero" v-model="address_street_number">
+                        </div>
+                    
+                        <div class=" m-1 ">
+                            <input type="text"  autocomplete="off" class="form-control " id="inputSecondLastName" placeholder="Dpto" v-model="address_street_apartment">
+                        </div>
+                    </div>
+                    
+
+
+                <div class="form-group">
+                    <label for="inputSpecialty">Comuna</label>
+                    <br>
+                <!-- 
+                    <input type="text"  autocomplete="off"  class="form-control" id="specialty" placeholder="Ej: Kinesiologia, psicologia, terapia.." v-model="specialty">
+                -->
+                    <select class="form-select form-select"  name="languages" id="lang" v-model="address_location_zone" placeholder="XXX" >
+                        <option value="100">Independencia</option>
+                        <option value="200">Santiago</option>
+                        <option value="300">Recoleta</option>
+                    </select>
+                </div>
+
+
+                   
+                    Ingrese alguna referencia de su direccion. 
+                    <textarea type="text"  autocomplete="off" class="form-control" id="inputAddress" placeholder="Incluya la mayor descripcion posible de su direccion" v-model="address_reference"> </textarea>
+
+
+                <!--
                 <label v-if="personal_address!= null && personal_address.length < 40 " >Su direccion donde recibirá los objetos</label> 
                 <label v-else class="text-danger">Dirección No es Válida</label> 
 
                 <textarea type="text"  autocomplete="off" class="form-control" id="inputAddress" placeholder="Incluya la mayor descripcion posible de su direccion" v-model="personal_address"> </textarea>
-                  
+                -->
                 
                 </div>
 
@@ -124,11 +155,11 @@ import { BKND_CONFIG } from '../../config.js'
                 <i class="bi bi-emoji-heart-eyes text-success" style="font-size: 2.5em;" ></i>  
                 <text class="" style="font-size: 1.1em;" > 
                    
-                    &nbsp;&nbsp;&nbsp; Gracias por su registro <br>Te enviaremos informacion de acceso a tu correo</text>
+                    &nbsp;&nbsp;&nbsp; Gracias por su registro <br> Ya puedes ingresar al portal de intercambio de objetos. </text>
             </p>
             
             <p class="text-center">
-                <a  class="btn btn-primary" HREF="/index.html" >Ir a HORAPO </a>
+                <a  @click="$router.push({ name: 'ViewSearch' })" class="btn btn-success"  >Ir a Login </a>
             </p>
 
           
@@ -152,17 +183,22 @@ export default {
   data : function() {
     return {
        showForm : true ,
-       name1 : null ,
-       name2 : null ,
-       lastName1 : null ,
-       lastName2 : null ,
+       names : null ,
+       last_name1 : null ,
+       last_name2 : null ,
        email  : "" ,
-       doc_id  : null ,
+       phone  : "" ,
+       id_number  : null ,
        passwd  : null ,
        passwd2  : null ,
-       personal_address  : "" ,
-       personal_phone  : "" ,
-       specialty  : "Especialidad" ,
+
+
+       address_street_name  : "" ,
+       address_street_number  : "" ,
+       address_street_apartment  : "" ,
+       address_location_zone  : "" ,
+       address_reference : "" ,
+       
        showKnowMore1 : false ,
        showPassword1 : false ,
        showPassword2 : false ,
@@ -205,19 +241,20 @@ export default {
             //alert("Gracias por su Registro, Pronto nos pondremos en contacto con usted")
 
                 const json = { 
-                    name1 : this.name1,
-                    name2 : this.name2,
-                    lastName1 : this.lastName1,
-                    lastName2 : this.lastName2,
+                    names : this.names,
+                    last_name1 : this.last_name1,
+                    last_name2 : this.last_name2,
                     email	: this.email,
-                    doc_id	: this.doc_id,
-                    pass	:	this.passwd,
-                    personal_address:	this.personal_address,
-                    personal_phone	: this.personal_phone,
-                   /// specialty	:	this.specialty,
-                   specialty	:	this.specialty ,
-                    };
+                    phone : this.phone ,
+                    id_number	: this.id_number,
+                    passwd	:	this.passwd,
+                    address_street_name:	this.address_street_name,
+                    address_street_number : this.address_street_number,
+                    address_street_apartment : this.address_street_apartment,
+                    address_location_zone : this.address_location_zone,
+                    address_reference : this.address_reference
 
+                    };
 
                 //app.config.globalProperties.dbhost = 'http://192.168.0.114:8080' ;       
                 console.log ("sendFormRegister  REQUEST :"+ JSON.stringify(json)  );
