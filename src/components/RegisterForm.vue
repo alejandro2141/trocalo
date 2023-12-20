@@ -94,16 +94,16 @@ import { BKND_CONFIG } from '../../config.js'
                 <div class="form-group">
 
                     <div class=" m-1 ">
-                         <input type="text" autocomplete="off" placeholder="Calle"  class="form-control" id="inputLastName" v-model="address_street_name">
+                         <input type="text" autocomplete="off" placeholder="Calle"  class="form-control" id="address_street_name" v-model="address_street_name">
                     </div>
                    
                     <div class="form-group  d-flex justify-content-evenly" >
                         <div class=" m-1 ">
-                            <input type="text"  autocomplete="off" class="form-control " id="inputSecondLastName" placeholder="Numero" v-model="address_street_number">
+                            <input type="text"  autocomplete="off" class="form-control " id="address_street_number" placeholder="Numero" v-model="address_street_number">
                         </div>
                     
                         <div class=" m-1 ">
-                            <input type="text"  autocomplete="off" class="form-control " id="inputSecondLastName" placeholder="Dpto" v-model="address_street_apartment">
+                            <input type="text"  autocomplete="off" class="form-control " id="address_street_apartment" placeholder="Dpto" v-model="address_street_apartment">
                         </div>
                     </div>
                     
@@ -183,20 +183,20 @@ export default {
   data : function() {
     return {
        showForm : true ,
-       names : null ,
-       last_name1 : null ,
-       last_name2 : null ,
+       names : "" ,
+       last_name1 : "" ,
+       last_name2 : "" ,
        email  : "" ,
        phone  : "" ,
-       id_number  : null ,
+       id_number  : 0 ,
        passwd  : null ,
        passwd2  : null ,
 
 
        address_street_name  : "" ,
-       address_street_number  : "" ,
-       address_street_apartment  : "" ,
-       address_location_zone  : "" ,
+       address_street_number  : 0 ,
+       address_street_apartment  : 0 ,
+       address_location_zone  : 0 ,
        address_reference : "" ,
        
        showKnowMore1 : false ,
