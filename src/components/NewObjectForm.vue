@@ -4,6 +4,8 @@ import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
 import InventoryList from '../components/InventoryList.vue' 
 
 
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
 </script>
 
 <template>
@@ -195,6 +197,7 @@ methods: {
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = e =>{ this.previewImage_1 = e.target.result;};
+
     this.show_uploadPicture_1_preview=true
     },
 
@@ -235,6 +238,14 @@ methods: {
       reader.readAsDataURL(image);
       reader.onload = e =>{ this.previewImage_5 = e.target.result;};
     this.show_uploadPicture_5_preview=true
+    },
+
+//  IMAGE upload
+    upload(session,image)
+    {
+
+//      let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/upload_object_image",session,image );
+
     },
 
 
