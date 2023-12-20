@@ -7,6 +7,7 @@ import RegisterForm from '../components/RegisterForm.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import { BKND_CONFIG } from '../../config.js'
 </script>
 
 
@@ -298,16 +299,44 @@ export default {
 
         async sendLogin()
         {
-            console.log("Login - user: "+this.form_email+" password:"+this.form_pass)
+            console.log("Login attemp user: "+this.form_email+" password:"+this.form_pass)
            const login_data = {
-                            user : this.form_email,
-                            pass : this.form_pass
-                            }
-
+                              user : this.form_email,
+                              pass : this.form_pass
+                              }
+          console.log("Sending to Login")
           let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_login_user",login_data );
+          //console.log("Response Login : "+JSON.stringify(response_json ))
+
+          let session_data_result = {} 
+          if (response_json !=null && response_json.data !=null  )
+          {
+            session_data_result.user = response_json.data.token
+            session_data_result.user =  response_json.data.names
+            session_data_result.name =  response_json.data.names
+            session_data_result.rut =  response_json.data.id_number
+            session_data_result.phone1 = response_json.data.phone
+            session_data_result.address_street =  response_json.data.address_street_name
+            session_data_result.address_number =  response_json.data.address_street_number
+            session_data_result.address_apartment =  response_json.data.address_street_apartment
+            session_data_result.address_zone1 =  response_json.data.address_location_zone
+            session_data_result.address_zone2 =  "No Set"
+            session_data_result.address_city  =  "No Set"
+            session_data_result.address_country =   "Chile"
+            session_data_result.token  =   response_json.data.token
+            
+            this.$emit('sessionCreated',session_data_result);
+            console.log("session data created:"+JSON.stringify( session_data_result) )
+          }
+          else 
+          {
+            session_data_result = null 
+          }
+          console.log("Login User Session Data : "+JSON.stringify(session_data_result))
          
-          
-          console.log("Response Login : "+JSON.stringify(response_json))
+
+           
+
         /*
           let session_data_result = {user:"JAMO123", active:true , pass:"eeee", name:"Juan Alejandro Morales Miranda", rut:"139093712"  , phone1:"56975397200", phone2:"56975397200" , address_street:"Avenida San Pablo" , address_number:"123" , address_apartment:true , address_house:true ,  address_zone1:"Independencia" ,  address_zone2:"Region Metropolitana" ,  address_city:"Santiago" ,  address_country:"Chile"  } 
         
