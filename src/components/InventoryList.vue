@@ -115,7 +115,7 @@ import NewObjectForm from '../components/NewObjectForm.vue'
         <div style="transition: width 2s;" class="d-flex justify-content-end">
             <i  @click="showNewObjectForm=false" style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
         </div>
-        <NewObjectForm  v-on:closeNewObjectForm="closeNewObjectForm" />
+        <NewObjectForm :session_data="session_data" v-on:closeNewObjectForm="closeNewObjectForm" />
     </div>
     <!-- END NEW OBJECT FORM -->
 
