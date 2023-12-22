@@ -324,6 +324,7 @@ export default {
             session_data_result.address_city  =  "No Set"
             session_data_result.address_country =   "Chile"
             session_data_result.token  =   response_json.data.token
+            session_data_result.id  =   response_json.data.id
             
             this.$emit('sessionCreated',session_data_result);
             console.log("session data created:"+JSON.stringify( session_data_result) )
