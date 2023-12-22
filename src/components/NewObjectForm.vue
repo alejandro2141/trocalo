@@ -83,7 +83,7 @@ import axios from 'axios'
     <br>
     <div style="font-size:20px" class=" text-success w-100 bg-dark p-3 text-center" >
        <text> Guardar en mi inventario </text> <br>
-       <i @click="step1=false;showRequestConfirmation=true" class="bi bi-cloud-arrow-up"></i> 
+       <i @click=" upload_product() ; step1=false;showRequestConfirmation=true" class="bi bi-cloud-arrow-up"></i> 
     </div>
     
 
@@ -180,6 +180,7 @@ export default {
   emits: ['closeNewObjectForm'],
 
 created() {
+  console.log("NewObjectForm Session_data : "+JSON.stringify(this.session_data))
     },
 
 methods: {
@@ -196,9 +197,15 @@ methods: {
       const image = e.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(image);
-      reader.onload = e =>{ this.previewImage_1 = e.target.result;};
+      reader.onload = e =>{ 
+        this.previewImage_1 = e.target.result;
+      //  this.upload(e.target.result, 1 )
 
-    this.show_uploadPicture_1_preview=true
+      };
+
+      
+    
+      this.show_uploadPicture_1_preview=true
     },
 
  //  IMAGE 2 
@@ -241,12 +248,50 @@ methods: {
     },
 
 //  IMAGE upload
-    upload(session,image)
+/*
+async upload(reader, img_num)
     {
-
-//      let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/upload_object_image",session,image );
+        
+          const data_image = {
+                          img_num : img_num ,
+                          session_data : this.session_data ,                 
+                          image : reader,    
+                              }
+          console.log("Sending to /user_upload_product_image " + JSON.stringify(data_image) )
+          
+          let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/user_upload_product_image",data_image );
 
     },
+*/
+
+//  IMAGE upload
+    async upload_product()
+    {
+        
+          const data_product = {
+                          name : this.input_name , 
+                          description : this.input_description , 
+
+                          exchange_option1 : this.input_exchange_option1  ,
+                          exchange_option2 : this.input_exchange_option2 ,
+                          exchange_option3 : this.input_exchange_option3 ,
+                          exchange_other :   this.input_exchange_other,
+
+                          session_data : this.session_data ,                 
+                          image1 : this.previewImage_1,
+                          image2 : this.previewImage_2,
+                          image3 : this.previewImage_3,
+                          image4 : this.previewImage_4,
+                          image5 : this.previewImage_5,   
+
+                              }
+          console.log("Sending to /user_create_product" + JSON.stringify(data_product) )
+          
+          let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/user_create_product",data_product );
+
+    },
+
+
 
 
 
