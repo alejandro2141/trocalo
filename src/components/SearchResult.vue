@@ -107,15 +107,7 @@ export default {
 
         //trae desde BKND
                            
-        objects : [   
-                  new Article ( "abcgame 1", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  2 , 3 ) ,
-                  new Article ("cdegame 2", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 2 ,  2 , 3 ) ,
-                  new Article ("fghgame 3", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 2 ,  2 , 3 ) ,
-                  new Article ("ghijkgame 4", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 3 ,  2 , 3 ) ,
-                  new Article ("ijklmame 5", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 4 ,  4 , 3 ) ,
-                  new Article ("klmgame 6", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , false ,  "Kaquito_222"  , 5 ,  2 , 5 ) ,
-                  new Article ("lmnogame 7", "Consola en buen estado con 2 juegos" , "Bicicleta" ,"X BOX"  ,"Maquina de cortar pasto" , true ,  "Kaquito_222"  , 1 ,  2 , 4 ) ,
-                  ],
+        objects : [ ],
 
         objects_filtered : null ,
 
@@ -127,12 +119,11 @@ export default {
   emits: ['sessionCreated'],
 
 created() {
-  console.log("APP CREATED")
+    console.log("APP CREATED")
 
     let response_json = axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects",this.search_params);
     this.objects = response_json ; 
     this.objects_filtered=this.objects ; 
-
     },
 
 methods: {
