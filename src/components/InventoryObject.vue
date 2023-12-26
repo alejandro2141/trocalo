@@ -15,16 +15,16 @@
 
                 <div>
                     <div>
-                    {{object.name}}
+                    {{object.title}}
                     </div>
                     <div v-if="showProductDetails" class="text-secondary">
                         {{object.description}}
                     </div>
                     <br>
                     <div v-if="showProductPreference">
-                        {{object.alt1}}
-                        {{object.alt2}}
-                        {{object.alt3}}
+                        {{object.alternative1}}
+                        {{object.alternative2}}
+                        {{object.alternative3}}
                     </div>
                 </div>
         </div>
@@ -40,7 +40,7 @@
                 <div class="m-1">
 
                     <div>
-                    {{object.name}}
+                    {{object.title}}
                     </div>
                     <div v-if="showProductDetails" class="text-secondary">
                         {{object.description}}
@@ -58,7 +58,7 @@
                 </div>
                
                 <div  class="d-flex align-items-center m-0">
-                    {{object.name}}<br>
+                    {{object.title}}<br>
                     {{object.description}}
                 </div>
         </div>
