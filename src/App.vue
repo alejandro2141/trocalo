@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
    
     <div  style="width: 350px;">
 
-      <div v-if="session_data==null" class="d-flex justify-content-between">
+      <div  v-if="session_data==null"  class="d-flex justify-content-between">
           
           <text></text>
 
