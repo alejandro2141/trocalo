@@ -5,6 +5,10 @@ import FilterForSearchView from '../components/FilterForSearchView.vue'
 import InventoryList from '../components/InventoryList.vue' 
 import ExchangeProposal from '../components/ExchangeProposal.vue'
 import Article from '../classes/Article.js'
+
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
+
 </script>
 
 <template>
@@ -98,6 +102,7 @@ export default {
         showMyInventory:false ,
         showExchangeProposal : false  ,
 
+
         objectDetails : null, 
 
         //trae desde BKND
@@ -114,6 +119,8 @@ export default {
 
         objects_filtered : null ,
 
+        search_params : null ,
+
       }
   },
   props: ['session_data'],
@@ -122,7 +129,9 @@ export default {
 created() {
   console.log("APP CREATED")
 
-    this.objects_filtered=this.objects
+    let response_json = axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects",this.search_params);
+    this.objects = response_json ; 
+    this.objects_filtered=this.objects ; 
 
     },
 
