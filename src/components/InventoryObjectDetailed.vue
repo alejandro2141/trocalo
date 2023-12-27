@@ -1,4 +1,8 @@
 <script setup>
+
+import { PATH_PRODUCT_IMG } from '../../config.js'
+
+
 </script>
 
 <template>
@@ -15,27 +19,27 @@
         </div>
     -->
         <div style="font-size:20px">
-          &nbsp;&nbsp;&nbsp;&nbsp;  {{object.name}}
+          &nbsp;&nbsp;&nbsp;&nbsp;  {{object.title}}
         </div>
         <div  style="font-size:16px">
             <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i>   {{object.owner}}
         </div>
         <div class="bg-secondary" style="width:350px; height:300px">
-            <img class=""  style="width:350px; height:300px" src="" /> 
+            <img class=""  style="width:350px; height:300px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1"  /> 
         </div>
         
         <div class="d-flex justify-content-start ">
                 <div class="bg-secondary m-1 " style="width:80px; height:80px">
-                    <img class=""  style="width:80px; height:80px" src="" /> 
+                    <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref2"  /> 
                 </div>
                 <div class="bg-secondary m-1" style="width:80px; height:80px">
-                    <img class=""  style="width:80px; height:80px" src="" /> 
+                    <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref3" /> 
                 </div>
                 <div class="bg-secondary m-1" style="width:80px; height:80px">
-                    <img class=""  style="width:80px; height:80px" src="" /> 
+                    <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref4" /> 
                 </div>
                 <div class="bg-secondary m-1" style="width:80px; height:80px">
-                    <img class=""  style="width:80px; height:80px" src="" /> 
+                    <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref5" /> 
                 </div>
         </div>
 
