@@ -14,5 +14,10 @@ let BKND_CONFIG = {
     BKND_TIME : 1000,
     BNKD_USER : 'abc'
   };
-export { BKND_CONFIG } ;
+
+// let PATH_PRODUCT_IMG = "public/productImages/" ;
+ let PATH_PRODUCT_IMG = "/public/productImages/" ;
+
+
+export { BKND_CONFIG, PATH_PRODUCT_IMG } ;
 
