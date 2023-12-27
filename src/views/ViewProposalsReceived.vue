@@ -138,13 +138,27 @@ created() {
     },
 
 methods: {
-  
+
+    async getProposalsReceived(searchParams)
+    {
+    let params= {};
+
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_proposals_received", this.session_data);
+    console.log("/private_get_proposals_received Response:"+JSON.stringify(jsonResponse.data))
+    
+    //this.inventoryObjects = jsonResponse.data
+    //this.inventory_objects_filtered=this.inventoryObjects
+
+    },
+
+    
     closeModal()
     {
       this.showExchangeProposalReceived = false  
       this.showExchangeProposalReceivedAccepted = false 
       this.showExchangeProposalReceivedEnded = false 
     }
+
 
     },
 
