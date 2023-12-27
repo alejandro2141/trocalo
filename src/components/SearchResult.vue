@@ -29,6 +29,7 @@ import axios from 'axios'
         
         <div v-if="objects_filtered !=null" class="d-flex flex-wrap"> 
           <div v-for="obj in objects_filtered"  > 
+         
             <InventoryObject @click="objectDetails=obj ;showModalDetails=true;" :object=obj  class="m-1"/>
           </div>
         </div>
@@ -74,7 +75,7 @@ import axios from 'axios'
         -->
          
           <div class="">
-            <ExchangeProposal v-on:emitShowObjectDetails="showExchangeProposal=false ;  showModalDetails=true" :objectProposal=objectDetails />
+            <ExchangeProposal  :session_data="session_data" v-on:emitShowObjectDetails="showExchangeProposal=false ;  showModalDetails=true" :objectProposal=objectDetails />
           </div>
           
 
@@ -101,15 +102,13 @@ export default {
         showModalDetails: false,
         showMyInventory:false ,
         showExchangeProposal : false  ,
-
-
         objectDetails : null, 
 
         //trae desde BKND
                            
         objects : [ ],
 
-        objects_filtered : null ,
+        objects_filtered : [] ,
 
         search_params : null ,
 
@@ -120,13 +119,19 @@ export default {
 
 created() {
     console.log("APP CREATED")
-
-    let response_json = axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects",this.search_params);
-    this.objects = response_json ; 
-    this.objects_filtered=this.objects ; 
+    this.getObjects(this.search_params)
+    console.log("APP CREATED : Objects :"+JSON.stringify(this.objects))
     },
 
 methods: {
+
+    async getObjects(searchParams)
+    {
+    let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects",searchParams);
+    console.log("/public_search_objects Response:"+JSON.stringify(response_json.data))
+    this.objects = response_json.data ; 
+    this.objects_filtered=this.objects ; 
+    },
   
     filterByText(ftext)
     {
