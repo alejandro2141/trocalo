@@ -1,16 +1,18 @@
 <script setup>
+import { PATH_PRODUCT_IMG } from '../../config.js'
+
 </script>
 
 <template>
 
   <div class=""    >
-
     
     <div v-if="horizontal"> 
         <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
 
                 <div class="bg-white"  style="width:100px; height:100px">
-                    <img class=""  style="width:100px; height:100px" src="" /> 
+               
+                    <img  style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" /> 
                 </div>
 
                 <div>
@@ -34,7 +36,7 @@
         <div  @click="selectObject=!selectObject"  class="d-flex justify-content-start border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style=" border-style: dotted"   >
 
                 <div class="bg-white" style="width:100px; height:100px" >
-                    <img class=""  style="width:100px; height:100px" src="" /> 
+                    <img class=""  style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" /> 
                 </div>
 
                 <div class="m-1">
@@ -54,7 +56,8 @@
     <div v-else class="" >
         <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted" >
                 <div class="bg-white"  style="width:100px; height:100px">
-                    <img class=""  style="width:100px; height:100px" src="" /> 
+                   <!--  <img class=""  style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />  -->
+                   <img class="" style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />
                 </div>
                
                 <div  class="d-flex align-items-center m-0">
