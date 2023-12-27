@@ -4,6 +4,10 @@ import InventoryObject from './InventoryObject.vue'
 import InventoryList from './InventoryList.vue'
 import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
 import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
+
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
+
 </script>
 
 <template>
@@ -340,7 +344,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
                 <i class="bi bi-skip-start"></i> 
               </div>
 
-              <div @click="showStep4=true; showStep3 = false"  class="d-flex justify-content-center">
+              <div @click="sendProposal(); showStep3 = false"  class="d-flex justify-content-center">
                   <text style="font-size:20px">Enviar</text> 
                   <i class="bi bi-caret-right"></i> 
                  
@@ -521,14 +525,8 @@ export default {
         objectProposalList_temp : [] ,
        
 
-        DBmyInventoryObjects :[{id:1 , name:"My PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:2 , name:"My PS 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:3 , name:"My PS 3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:4 , name:"My PS 4", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:5 , name:"My PS 5", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:6 , name:"My PS 6", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:7 , name:"My PS 7", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                           ],
+        DBmyInventoryObjects :[],
+        /*
         DBPartnerInventoryObjects : [{id:1 ,name:"partner ps1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {id:2 ,name:"playStation 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {id:3 ,name:"playStation 3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
@@ -545,7 +543,7 @@ export default {
         DBObjectsYouOffer  : [{name:"Offer my Microscopio 100x2", description : "Esta en excelentes condiciones" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                              {name:"Soldador estaño electronica", description : "Trae tresp untas de contacto" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             ],
-
+        */
 
 
         }
@@ -555,9 +553,41 @@ export default {
 
 created() {
   console.log("APP CREATED")
+    this.getMyObjects()
+
+
     },
 
 methods: {
+
+    async sendProposal()
+    {
+      console.log("sendProposal");
+      this.showStep4=true ; 
+    /*
+    let params= {};
+
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_my_objects", this.session_data);
+    console.log("/private_get_my_objects Response:"+JSON.stringify(jsonResponse.data))
+    
+    this.DBmyInventoryObjects = jsonResponse.data
+
+    */
+    //this.inventory_objects_filtered=this.inventoryObjects
+    },
+
+    
+    async getMyObjects()
+    {
+    let params= {};
+
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_my_objects", this.session_data);
+    console.log("/private_get_my_objects Response:"+JSON.stringify(jsonResponse.data))
+    
+    this.DBmyInventoryObjects = jsonResponse.data
+    //this.inventory_objects_filtered=this.inventoryObjects
+    },
+
 
     goToObjectDetails()
     {
