@@ -4,9 +4,10 @@ import InventoryObject from './InventoryObject.vue'
 import InventoryList from '../components/InventoryList.vue' 
 import InventoryObjectEmpty from '../components/InventoryObjectEmpty.vue' 
 import NewObjectForm from '../components/NewObjectForm.vue'
+
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
 </script>
-
-
 
 
 <template>
@@ -155,14 +156,7 @@ export default {
         showConfirmDelete : false ,
         showNewObjectForm: false ,
         showConfirmDeleteDone : false ,
-        inventoryObjects : [{id:1, name:"myplayabc1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:2,name:"myplaybcde2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:3,name:"myplayef3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:4,name:"myplayfghijk4", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:5,name:"myplayklmn5", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:6,name:"myplayabcdefgh6", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:7,name:"myplayhijklmn7", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                           ],   
+        inventoryObjects : [],   
         inventory_objects_filtered : null ,
                     
       }
@@ -172,11 +166,25 @@ export default {
 
 created() {
   console.log("APP CREATED")
-  this.inventory_objects_filtered=this.inventoryObjects
+  this.getMyObjects()
 
+  
     },
 
 methods: {
+
+    async getMyObjects(searchParams)
+    {
+    let params= {};
+
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_my_objects", this.session_data);
+    console.log("/private_get_my_objects Response:"+JSON.stringify(jsonResponse.data))
+    
+    this.inventoryObjects = jsonResponse.data
+    this.inventory_objects_filtered=this.inventoryObjects
+
+ 
+    },
 
     closeInventoyList()
     {
@@ -197,7 +205,7 @@ methods: {
     console.log("Filter By Text in Search Result:"+ftext)
         if(ftext!=null)
         {
-        this.inventory_objects_filtered= this.inventoryObjects.filter(element =>  element.name.toLowerCase().includes(ftext) );
+        this.inventory_objects_filtered= this.inventoryObjects.filter(element =>  element.title.toLowerCase().includes(ftext) );
         }
         else 
         {
