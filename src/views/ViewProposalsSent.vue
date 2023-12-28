@@ -1,11 +1,12 @@
 <script setup>
-
-
 import ProposalSent from     '../components/ProposalSent.vue'
 /*import InventoryList  from     '../components/InventoryList.vue'*/
 import ExchangeProposalSent from   '../components/ExchangeProposalSent.vue'
 import ExchangeProposalSentAccepted from   '../components/ExchangeProposalSentAccepted.vue'
 import ExchangeProposalSentEnded  from   '../components/ExchangeProposalSentEnded.vue'
+
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
 
 </script>
 
@@ -71,13 +72,6 @@ import ExchangeProposalSentEnded  from   '../components/ExchangeProposalSentEnde
          <ExchangeProposalSentEnded   v-on:close="closeModal" />
     </div>
 
-
-
-
-
-    
-
-
   <div style="height:120px">
   </div>
 
@@ -133,19 +127,29 @@ export default {
                             {id:5 , name:"AlguienPlay 5", description : "Consola en buen estado con 6 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito1_6666", otherObj: true, category_1: 5  , category_2: 6,  amount: '17990' , status: 4  }, 
                         ],
 
-
-
-
-
       }
   },
   props: ['session_data'],
   emits: [],
 
 created() {
+    this.getProposalsSent()
     },
 
 methods: {
+
+    async getProposalsSent()
+    {
+    console.log("Get Proposals update list")
+    let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_proposals_sent",this.session_data);
+    console.log("/private_get_proposals_sent Response:"+JSON.stringify(response_json.data))
+    let proposals = response_json.data
+
+    //filter 
+    this.ofSent = proposals.filter(item => item.status ==  1).sort((a, b) => (a.id > b.id) ? 1 : -1);
+
+    },
+
 
     closeModal()
     {
