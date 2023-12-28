@@ -42,7 +42,7 @@ import axios from 'axios'
               <br>
 
               <div class="d-flex flex-wrap ">
-                <div v-for="obj in DBmyInventoryObjects" :key="index" > 
+                <div v-for="obj in DBmyInventoryObjects"  > 
                   <InventoryObject @click="addRemoveOfferList(obj)" :object=obj  :showProductDetails="false" class="m-1" /> 
                 </div>
               </div>
@@ -121,7 +121,7 @@ import axios from 'axios'
           <div  class="d-flex align-content-stretch flex-wrap">
 
 
-            <div v-for="obj in objectProposalList" :key="index" class="d-flex justify-content-start" > 
+            <div v-for="obj in objectProposalList"  class="d-flex justify-content-start" > 
               <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
               <div class="text-danger" @click="removeFromObjectProposalList(obj)"> <i class="bi bi-x-lg "></i> </div>
             </div>
@@ -141,7 +141,7 @@ import axios from 'axios'
           
            <!-- LIST MY OBJECT  -->
           <div  class="d-flex align-content-stretch flex-wrap">
-            <div v-for="obj in objectsOfferList" :key="index" class="d-flex justify-content-start"  > 
+            <div v-for="obj in objectsOfferList"  class="d-flex justify-content-start"  > 
               <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/>
               <div class="text-danger" @click="removeFromObjectsOfferList(obj)"> <i class="bi bi-x-lg "></i> </div>
             </div>
@@ -205,7 +205,7 @@ import axios from 'axios'
               </div>
               <!-- <InventoryList /> -->
               <div class="d-flex flex-wrap">
-                <div v-for="obj in DBPartnerInventoryObjects" :key="index"  > 
+                <div v-for="obj in DBPartnerInventoryObjects"  > 
                   <InventoryObject @click="addRemoveObjectsProposalList_temp(obj)" :object=obj  :showProductDetails="false"  /> 
                 </div>
               </div>
@@ -251,7 +251,7 @@ import axios from 'axios'
             </div>
           <!-- <InventoryList /> -->
             <div class="d-flex flex-wrap">
-                <div v-for="obj in DBmyInventoryObjects" :key="index"  > 
+                <div v-for="obj in DBmyInventoryObjects"   > 
                   <InventoryObject @click="addRemoveObjectsOfferList_temp(obj)" :object=obj  :showProductDetails="false"  /> 
                 </div>
             </div>
@@ -304,7 +304,7 @@ import axios from 'axios'
           <!-- LIST PARTNER OBJECT-->
           <div  class="">
           
-            <div v-for="obj in objectProposalList" :key="index" > 
+            <div v-for="obj in objectProposalList"  > 
               <InventoryObject :horizontal_short="true" :showProductDetails="true"  :object=obj    @click="showPartnerObjectDetailed=true"/> 
             </div>
             
@@ -317,7 +317,7 @@ import axios from 'axios'
           </div>
            <!-- LIST MY OBJECT  -->
           <div  class="">
-            <div v-for="obj in objectsOfferList" :key="index" > 
+            <div v-for="obj in objectsOfferList"  > 
               <InventoryObject  :horizontal_short="true" :showProductDetails="true"  :object=obj   @click="showPartnerObjectDetailed=true"/> 
             </div>
 
@@ -344,7 +344,7 @@ import axios from 'axios'
                 <i class="bi bi-skip-start"></i> 
               </div>
 
-              <div @click="sendProposal(); showStep3 = false"  class="d-flex justify-content-center">
+              <div @click="sendProposal()"  class="d-flex justify-content-center">
                   <text style="font-size:20px">Enviar</text> 
                   <i class="bi bi-caret-right"></i> 
                  
@@ -385,7 +385,7 @@ import axios from 'axios'
           <br>
           
           <div style="font-size:16px">
-            Desde ahora puedes seguir esta propuesta en <a @click="$router.push({ name: 'ProposalsSent' })" class="text-success"> Enviadas</a> 
+            Desde ahora puedes seguir esta propuesta en <a @click="$router.push({ name: 'ViewProposalsSent' })" class="text-success"> Enviadas</a> 
           </div>
 
           <!-- END FOOTER -->
@@ -519,12 +519,11 @@ export default {
         showStep4 : false , 
 
         objectsOfferList : [] , 
-        objectsOfferList_temp : [],
+      //  objectsOfferList_temp : [],
 
         objectProposalList : [] ,
-        objectProposalList_temp : [] ,
+      // objectProposalList_temp : [] ,
        
-
         DBmyInventoryObjects :[],
         /*
         DBPartnerInventoryObjects : [{id:1 ,name:"partner ps1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
@@ -552,7 +551,7 @@ export default {
   emits: ['closeThisModal','emitShowObjectDetails'],
 
 created() {
-  console.log("APP CREATED")
+    console.log("APP CREATED")
     this.getMyObjects()
 
 
@@ -563,16 +562,22 @@ methods: {
     async sendProposal()
     {
       console.log("sendProposal");
-      this.showStep4=true ; 
-    /*
-    let params= {};
-
-    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_my_objects", this.session_data);
-    console.log("/private_get_my_objects Response:"+JSON.stringify(jsonResponse.data))
+      this.showStep4=true  
+      this.showStep3 = false
     
-    this.DBmyInventoryObjects = jsonResponse.data
+    let params= { 
+            session_data      : this.session_data   ,
+            object_wanted     : this.objectProposalList  , 
+            objects_offered   : this.objectsOfferList ,
+          };
 
-    */
+
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/save_proposal", params );
+    console.log("/save_proposal Response:"+JSON.stringify(jsonResponse.data))
+    
+    //this.DBmyInventoryObjects = jsonResponse.data
+
+    
     //this.inventory_objects_filtered=this.inventoryObjects
     },
 
