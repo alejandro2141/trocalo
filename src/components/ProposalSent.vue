@@ -9,7 +9,7 @@
         <div class="d-flex justify-content-between">
             <div>      
             {{offer.owner}}   <br>
-            {{offer.name}}
+            {{offer.title}}
             </div>
             
             <div v-if="offer.status<3 " style="font-size:16px" :class="{'text-success': accepted }"  >
