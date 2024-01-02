@@ -115,7 +115,10 @@ import axios from 'axios'
           <br>
 
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-              Objeto de tu interes, pertenece a kakito_123
+            <div>
+              Objeto de tu interes, pertenece a:
+               <text class="fw-bold">{{objectProposalList[0].owner_name }}</text>
+            </div>
           </div>
           <!-- LIST PARTNER OBJECT-->
           <div  class="d-flex align-content-stretch flex-wrap">
@@ -189,7 +192,7 @@ import axios from 'axios'
                   <i  @click="showPartnerInventory=false;"  style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
               </div>
               <div  style="font-size:16px "  class="m-2">
-                  Agrega otros objetos del inventario de Kakito_123 a esta propuesta de cambio
+                  Agrega otros objetos del inventario de{{objectProposalList[0].owner_name }} a esta propuesta de cambio
                    <br>
 
                 <!--
@@ -299,7 +302,9 @@ import axios from 'axios'
           <br>
 
           <div  style="font-size:16px"  class="d-flex justify-content-start">
-              Objeto de tu interes, pertenece a kakito_123
+            <div>
+              Objeto de tu interes, pertenece a  <text class="fw-bold"> {{objectProposalList[0].owner_name }}</text>
+            </div>
           </div>
           <!-- LIST PARTNER OBJECT-->
           <div  class="">
