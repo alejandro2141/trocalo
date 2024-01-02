@@ -5,6 +5,9 @@ import InventoryList from './InventoryList.vue'
 import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
 import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
 
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
+
 </script>
 
 
@@ -20,7 +23,6 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
     <div class="d-flex justify-content-end"> <i  @click="$emit('closeExchangeProposalSent')" class="display-1 bi bi-x-lg"></i>  </div>
 
         <p style="font-size:20px" >Propuestas de Intercambio Enviada</p>
-        
 
           <div style="font-size:20px" class="mb-4 text-center">
               <text>Tiempo Propuesta Restante<br>
@@ -28,9 +30,8 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
               <text class="text-success" style="font-size:40px" > 25 dias </text>
           </div>   
 
-
           <div  style="font-size:16px "  class="d-flex justify-content-center">
-              Te interesan los siguientes objetos de Kakito_123:  
+              Te interesan los siguientes objetos de {{offer.object_owner_name}}:  
           </div>
          
         <!-- LIST PARTNER OFFER OBJECT  -->
@@ -140,27 +141,53 @@ export default {
         showCancelMessage : false ,
         showCancelMessageConfirmation : false ,
 
-        yourOfferObjects  : [ {id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                              {id:1 , name:"My bici aro 20", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                              {id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            ],
+        yourOfferObjects  : [],
 
-        partnerOfferObjects : [ 
-                            {id:1 ,name:"Partner Inv ps1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:2 ,name:"Partner Inv 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                              ],
+        partnerOfferObjects : [],
 
         }
   },
-  props: ['session_data'],
+  props: ['session_data','offer'],
   emits: ['closeExchangeProposalSent'],
 
 created() {
   console.log("APP CREATED")
+  //Get the objects are in the proposal 
+     this.loadObjects() 
+
+
     },
 
 methods: {
     
+    async loadObjects()
+    {
+      let objaux= [ this.offer.dest_object1,this.offer.source_object1,this.offer.source_object2,this.offer.source_object3,this.offer.source_object4,this.offer.source_object5 ]  
+
+      objaux = objaux.filter(function (el) { return el != null; });
+
+      let json_request =  { 
+        session_data : this.session_data, 
+        objects_ids: objaux 
+          }
+
+      console.log("JSON :"+JSON.stringify(json_request) )
+    
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_objects", json_request);
+    console.log("/private_get_objects  Response:"+JSON.stringify(jsonResponse.data))
+    
+    this.partnerOfferObjects.push(jsonResponse.data[0])
+
+    this.yourOfferObjects.push(jsonResponse.data[1])
+    this.yourOfferObjects.push(jsonResponse.data[2])
+    this.yourOfferObjects.push(jsonResponse.data[3])
+    this.yourOfferObjects.push(jsonResponse.data[4])
+
+    console.log("partnerOfferObjects :"+JSON.stringify(this.partnerOfferObjects) )
+    console.log("yourOfferObjects :"+JSON.stringify(this.yourOfferObjects) )
+
+    },
+
     closeModalObjectDetails()
     {
       this.showModalDetails= false
