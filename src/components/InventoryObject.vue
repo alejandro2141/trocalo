@@ -7,7 +7,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
   <div class=""    >
     
-    <div v-if="horizontal"> 
+    <div v-if="horizontal &&  object!=null"> 
         <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
 
                 <div class="bg-white"  style="width:100px; height:100px">
@@ -32,10 +32,10 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         </div>
     </div> 
 
-    <div  v-else-if="horizontal_short"> 
+    <div  v-else-if="horizontal_short &&  object!=null"> 
         <div  @click="selectObject=!selectObject"  class="d-flex justify-content-start border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style=" border-style: dotted"   >
 
-                <div class="bg-white" style="width:100px; height:100px" >
+                <div v-if="object!=null" class="bg-white" style="width:100px; height:100px" >
                     <img class=""  style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" /> 
                 </div>
 
@@ -54,7 +54,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
     </div> 
 
     <div v-else class="" >
-        <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted" >
+        <div v-if="object!=null" @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted" >
                 <div class="bg-white"  style="width:100px; height:100px">
                    <!--  <img class=""  style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />  -->
                    <img class="" style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />
