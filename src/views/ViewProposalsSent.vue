@@ -33,7 +33,7 @@ import axios from 'axios'
     <p class="text-white text-center" style="font-size:20px">Enviadas </p>
     <p class="text-secondary" style="font-size:12px" >A la espera de que el otro usuario acepte el intercambio </p>
     <div v-for="of in ofSent"  > 
-        <ProposalSent  class="m-1" @click="showExchangeProposalSent=true"  :offer='of'  />
+        <ProposalSent  class="m-1" @click="showExchangeProposalSent=true ; offerSent=of"  :offer='of'  />
     </div>
 <!-- OF SENT -->
 
@@ -43,7 +43,7 @@ import axios from 'axios'
     <p class=" text-center" style="font-size:16px">Aceptadas </p>
     <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado de transporte y despacho para completar el intercambio de objetos </p>
     <div v-for="of in ofAccepted"  > 
-        <ProposalSent class="m-1" :accepted='true' @click="showExchangeProposalSentAccepted=true"  :offer='of'  />
+        <ProposalSent class="m-1" :accepted='true' @click="showExchangeProposalSentAccepted=true ; offerSentAccepted=of"  :offer='of'  />
     </div>
 <!-- OF SENT ACCEPTED -->
   
@@ -53,23 +53,21 @@ import axios from 'axios'
     <p class="text-secondary text-center" style="font-size:16px">Finalizadas </p>
     <div class="text-secondary">
       <div v-for="of in ofEnded"  > 
-        <ProposalSent  class="m-1" @click="showExchangeProposalSentEnded=true"  :offer='of'  />
+        <ProposalSent  class="m-1" @click="showExchangeProposalSentEnded=true;  offerSentEnded=of"  :offer='of'  />
       </div>
     </div>
 <!-- OF SENT ENDED -->
 
-
     <div  v-if="showExchangeProposalSent"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-        <ExchangeProposalSent  v-on:closeExchangeProposalSent="closeModal" />
+        <ExchangeProposalSent :session_data="this.session_data" :offer="offerSent" v-on:closeExchangeProposalSent="closeModal" />
     </div>
 
-
     <div  v-if="showExchangeProposalSentAccepted"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-         <ExchangeProposalSentAccepted  v-on:close="closeModal" />
+         <ExchangeProposalSentAccepted :session_data="this.session_data" :offer="offerSentAccepted" v-on:close="closeModal" />
     </div>
 
     <div  v-if="showExchangeProposalSentEnded"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-         <ExchangeProposalSentEnded   v-on:close="closeModal" />
+         <ExchangeProposalSentEnded  :session_data="this.session_data" :offer="offerSentEnded"  v-on:close="closeModal" />
     </div>
 
   <div style="height:120px">
@@ -101,6 +99,10 @@ export default {
         showExchangeProposalSent : false , 
         showExchangeProposalSentAccepted : false ,
         showExchangeProposalSentEnded : false ,
+
+        offerSent:null,
+        offerSentAccepted:null,
+        offerSentEnded:null,
 
         ofSent : [  
                             {id:1 , name:"abcgame 1", description : "Consola en buen estado con 2 juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true , owner: "Kaquito_222"  , otherObj: true , category_1: 1 ,  category_2: 2 ,  amount: '17990'  , status: 1  }, 
