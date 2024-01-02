@@ -22,7 +22,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
           &nbsp;&nbsp;&nbsp;&nbsp;  {{object.title}}
         </div>
         <div  style="font-size:16px">
-            <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i>   {{object.owner}}
+            <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i>   {{object.owner_name}}
         </div>
         <div class="bg-secondary" style="width:350px; height:300px">
             <img class=""  style="width:350px; height:300px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1"  /> 
