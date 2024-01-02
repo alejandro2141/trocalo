@@ -3,12 +3,10 @@
  
  <div>
   
-   
-
     <div class="border border-1 rounded" :class="{'text-success border-success': accepted }"   >
         <div class="d-flex justify-content-between">
             <div>      
-            {{offer.owner}}   <br>
+            {{offer.object_owner_name}}   <br>
             {{offer.title}}
             </div>
             
@@ -69,16 +67,16 @@ methods: {
     {
        
         switch (val) {
-                case 1:
+                case '1':
                     return ('Enviada')
                     break;
-                case 2:
+                case '2':
                     return ('Aceptada')
                     break;
-                case 3:
+                case '3':
                     return ('Rechazada')
                     break;
-                case 4:
+                case '4':
                     return ('Expirada')
                     break;
                 default:
