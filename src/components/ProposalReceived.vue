@@ -8,17 +8,22 @@
    <div class="border border-1 rounded" :class="{'text-success border-success': accepted }"   >
         <div class="d-flex justify-content-between">
             <div>      
-            {{offer.owner}}   <br>
-            {{offer.name}}
+                [Nombre quien envia propuesta] esta interesado en <br>
+             
+            {{offer.title}}
             </div>
                      
 
             <div  style="font-size:12px" :class="{'text-success': accepted }"  >
-                {{evaluateOfferStatus(offer.status)}}
+              
             </div>
 
             <div>
-                <i style="font-size:30px" :class="{'text-success': accepted }" class="bi bi-cloud-upload p-2"></i>
+                <i class="m-2 h2 bi bi-clock"></i>
+                <!-- 
+                <i class="bi bi-clock-history"></i>
+                <i class="bi bi-clock-fill"></i>
+                -->
             </div>
         </div>
     </div>
@@ -66,13 +71,13 @@ methods: {
     {
        
         switch (val) {
-                case 1:
-                    return ('Enviada')
+                case '1':
+                    return ('Recibida')
                     break;
-                case 2:
+                case '100':
                     return ('Aceptada')
                     break;
-                case 3:
+                case '200':
                     return ('Rechazada')
                     break;
                 case 4:
