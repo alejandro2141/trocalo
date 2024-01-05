@@ -1,10 +1,14 @@
-
 <script setup>
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import InventoryObject from './InventoryObject.vue'
 import InventoryList from './InventoryList.vue'
 import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
 import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
+
+
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
+
 </script>
 
 
@@ -29,7 +33,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
           </div>       
           
           <div  style="font-size:16px "  class="text-start">
-              Kakito_123 le interesa tu objeto/s:  
+            [Nombre quien envia propuesta] le interesa tu objeto/s:  
           </div>
           <!-- LIST MY OFFER OBJECT  -->
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
@@ -96,7 +100,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
         <p style="font-size:20px"> ¿ Esta seguro que desea aceptar este cambio ?</p><br>
         
         <div class="d-flex justify-content-around">
-            <button @click="showAcceptProposalConfirmation=true; showAcceptProposal=false;showStep1=false" type="button" class="btn btn-success">Si, acepto esta propuesta </button>
+            <button @click="acceptProposal(offer.id); showAcceptProposalConfirmation=true; showAcceptProposal=false;showStep1=false" type="button" class="btn btn-success">Si, acepto esta propuesta </button>
             <button @click="showAcceptProposalConfirmation=false; showAcceptProposal=false;showStep1=true "   type="button" class="btn btn-danger" > <i class="bi bi-arrow-left-square"></i> Cancelar</button>
         </div>
     </div>
@@ -140,7 +144,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
         <div class="d-flex justify-content-around">
          
         <button @click="showRejectProposalConfirmation=false; showRejectProposal=false;showStep1=true" type="button" class="btn btn-success"><i class="bi bi-arrow-left-square"></i>Regresar</button>
-        <button @click="showRejectProposalConfirmation=true; showRejectProposal=false;showStep1=false" type="button" class="btn btn-danger">Si, deseo rechazar</button>
+        <button @click="cancelProposal(offer.id);showRejectProposalConfirmation=true; showRejectProposal=false;showStep1=false" type="button" class="btn btn-danger">Si, deseo rechazar</button>
         </div>
     </div>
 
@@ -183,49 +187,16 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
        <!-- TITLE -->
           <div  style="font-size:16px "  class="m-2 d-flex justify-content-center">
              Modifica Propuesta para contra ofertar
-              
           </div>
-
-
           <br>
-        <!--
-          <div class="d-flex justify-content-between">
-              <div class="align-self-center" style="font-size:16px " >Propuesta válida por: </div>
-          
-              <div class="w-25">
-                  <select class="form-control bg-dark border-white text-white" id="sel1">
-                    <option selected="30">30 dias</option>
-                    <option>5 dias</option>
-                    <option>10 dias</option>
-                    <option>15 dias</option>
-                    <option>20 dias</option>
-                    <option>30 dias</option>
-                    <option>40 dias</option>
-                    <option>60 dias</option>
-                    <option>100 dias</option>
-                     </select>
-              </div>
-              <div></div>
-          </div>
 
-        -->
-          <br>
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-               
-             kakito_123 le interesa tu objeto: 
+              [proposal origin owner] le interesa tu objeto:
           </div>
-          <!-- LIST PARTNER OBJECT-->
-        <!--
-          <div  class="d-flex align-content-stretch flex-wrap">
-              <InventoryObject :showDeleteOption="true"  :showProductDetails="true" /> 
-              <InventoryObjectEmpty   @click="showPartnerInventory=!showPartnerInventory; showMyInventory=false ;showStep2=false " />
-          </div>
-        -->
-          <!-- END LIST PARTNER OBJECT-->
 
           <!-- LIST MY OBJECT-->
           <div  class="d-flex align-content-stretch flex-wrap">
-
+            
             <div v-for="obj in yourOfferObjects "  > 
               <div class="d-flex justify-content-start">
                 <InventoryObject  :horizontal_short='true' :showProductDetails='true' :object=obj  class="m-1" @click="showPartnerObjectDetailed=true"/> 
@@ -234,72 +205,46 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
             </div>
 
             <div style="width:100px" class="d-flex justify-content-center" >
-                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showMyInventory='true'; " ></i>
+                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="loadMyInventory();showMyInventory='true'; " ></i>
             </div>
          
           </div>
 
           
           <div  style="font-size:16px "  class="m-2">
-                Y te ofrece los siguientes objetos
+                Y te ofrece los siguientes objetos : 
           </div>
-          <!-- LIST MY OBJECT  -->
-          <!--
-           <div  class="d-flex align-content-stretch flex-wrap">
-              <InventoryObject  :showDeleteOption="true" :showProductDetails="true" /> 
-              <InventoryObjectEmpty   @click="showMyInventory=!showMyInventory;showPartnerInventory=false ;showStep2=false " />
-          </div>
-          -->
-
-
+        
           <!-- LIST PARTNER OBJECT -->
           <div  class="d-flex align-content-stretch flex-wrap">
 
             <div v-for="obj in partnerOfferObjects"  > 
               <div class="d-flex justify-content-start">
                 <InventoryObject :horizontal_short='true' :showProductDetails='true' :object=obj  @click="showPartnerObjectDetailed=true"/> 
-                <div  style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > <i style="font-size:40px" @click="removeFromPartnerOfferObjects(obj)"  class=" bi bi-x-lg "></i> </div>
+                <div style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > 
+                  <i style="font-size:40px" @click="removeFromPartnerOfferObjects(obj)"  class=" bi bi-x-lg "></i> 
+                </div>
               </div>
             </div>
 
             <div style="width:100px" class="d-flex justify-content-center" >
-                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showPartnerInventory='true';  " ></i>
+                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="loadPartnerInventory();showPartnerInventory='true';  " ></i>
             </div>
 
           </div>
 
-        <!--
-          <div class="d-flex justify-content-between">  
-            <div class="form-check-label" for="flexCheckChecked">
-              Estas Dispuesto a cambiar por otros productos. 
-            </div >
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-          </div>
-        -->
           <br>
-          
-        <!--
-          <div class="d-flex justify-content-between">
-              <div>Propuesta válida por: </div>
-          
-              <div class="w-25">
-                  <select class="form-control" id="sel1">
-                    <option>1 dia</option>
-                    <option>2 dias</option>
-                    <option>3 dias</option>
-                    <option>4 dias</option>
-                  </select>
-              </div>
-          </div>
-        -->
-
           <!-- FOOTER -->
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
-              <div   class="d-flex justify-content-center">
-                <div @click="showEditProposalSummary=true; showEditProposal = false">
-                  <i class="bi bi-caret-right"></i> 
-                  <i class="bi bi-caret-right"></i> 
-                </div>
+              <div   class="d-flex justify-content-between">
+                  <div @click="showEditProposal=false ;showStep1=true"  class="d-flex justify-content-center">
+                    <i class="bi bi-skip-start"></i> 
+                  </div>
+              
+                  <div @click="showEditProposalSummary=true; showEditProposal = false">
+                    <i class="bi bi-caret-right"></i> 
+                    <i class="bi bi-caret-right"></i> 
+                  </div>
               </div>
           </div>
           <!-- END FOOTER -->
@@ -367,7 +312,7 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
             <div style="width:350px">
 
               <div style="transition: width 2s;" class="d-flex justify-content-end">
-                  <i  @click="showMyInventory=false; objectsOfferList_temp.length=0" style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
+                  <i  @click="showMyInventory=false;" style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
               </div>
 
               <div  style="font-size:16px "  class="m-2">
@@ -467,12 +412,12 @@ import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmati
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
 
             <div class="d-flex justify-content-between">
-
-              <div @click="showEditProposal=true; showEditProposalSummary = false"  class="d-flex justify-content-center">
+ 
+             <div @click="showEditProposal=true; showEditProposalSummary = false"  class="d-flex justify-content-center">
                 <i class="bi bi-skip-start"></i> 
               </div>
 
-              <div @click="showEditProposalSummaryConfirmation=true; showEditProposalSummary = false"  class="d-flex justify-content-center">
+              <div @click="sendProposalUpdated();showEditProposalSummaryConfirmation=true; showEditProposalSummary = false"  class="d-flex justify-content-center">
                   <i class="bi bi-caret-right"></i> 
                   <i class="bi bi-caret-right"></i> 
                   <i class="bi bi-caret-right"></i> 
@@ -603,46 +548,133 @@ export default {
         yourOfferObjects_temp    : [] ,
         partnerOfferObjects_temp : [] ,
 
-        yourOfferObjects  : [ {id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                          ],
+        yourOfferObjects  : [],
 
-        partnerOfferObjects : [ 
-                    {id:1 ,name:"Partner Inv ps1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:2 ,name:"Partner Inv 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:3 ,name:"Partner Inv 3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
+        partnerOfferObjects : [ ],
 
-                                     ],
-
-        DBmyInventoryObjects :[{id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:2 , name:"My inv PS 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:3 , name:"My inv PS 3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:4 , name:"My inv 4", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:5 , name:"My inv 5", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:6 , name:"My inv 6", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:7 , name:"My inv 7", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                           ],
+        DBmyInventoryObjects :[ ],
         
-        DBPartnerInventoryObjects : [{id:1 ,name:"Partner Inv ps1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:2 ,name:"Partner Inv 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:3 ,name:"Partner Inv 3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:4 ,name:"Partner Inv 4", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:5 ,name:"Partner Inv 5", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:6 ,name:"Partner Inv 6", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:7 ,name:"Partner Inv 7", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                           ],
+        DBPartnerInventoryObjects : [  ],
 
-      
+        closeModalObjectDetails : false ,
+
       }
   },
-  props: ['session_data'],
+  props: ['session_data','offer'],
   emits: ['closeModal'],
 
 created() {
   console.log("APP CREATED")
+  this.loadObjects()
     },
 
 methods: {
+
+    async sendProposalUpdated()
+    {
+      let json_request =  { 
+        session_data : this.session_data, 
+        proposal_original: this.offer , 
+        destObjects: this.yourOfferObjects , 
+        sourceObjects: this.partnerOfferObjects ,
+        }
+
+      console.log("/private_update_proposal REQUEST JSON :"+JSON.stringify(json_request) )
     
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_update_proposal", json_request);
+    console.log("/private_update_proposal  Response:"+JSON.stringify(jsonResponse.data))
+    
+    },
+
+
+    async cancelProposal(id)
+    {
+      let json_request =  { 
+        session_data : this.session_data, 
+        proposal_id: id 
+          }
+
+      console.log("cancelProposal JSON :"+JSON.stringify(json_request) )
+    
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_proposal_cancel", json_request);
+    console.log("/private_proposal_cancel  Response:"+JSON.stringify(jsonResponse.data))
+    },
+  
+    async acceptProposal(id)
+    {
+      let json_request =  { 
+        session_data : this.session_data, 
+        proposal_id: id 
+          }
+
+      console.log("acceptProposal JSON :"+JSON.stringify(json_request) )
+    
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_proposal_accept", json_request);
+    console.log("/private_proposal_accept  Response:"+JSON.stringify(jsonResponse.data))
+    }, 
+    
+
+    async loadObjects()
+    {
+      
+      let objaux= [ this.offer.dest_object1,this.offer.source_object1,this.offer.source_object2,this.offer.source_object3,this.offer.source_object4,this.offer.source_object5 ]  
+
+      objaux = objaux.filter(function (el) { return el != null; });
+
+      let json_request =  { 
+        session_data : this.session_data, 
+        objects_ids: objaux 
+          }
+
+      console.log("JSON :"+JSON.stringify(json_request) )
+    
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_objects", json_request);
+    console.log("/private_get_objects  Response:"+JSON.stringify(jsonResponse.data))
+
+    this.partnerOfferObjects=[]
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.source_object1));
+    
+    this.yourOfferObjects = []
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object1 ));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object2 ));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object3 ));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object4 ));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object5 ));
+
+
+    this.yourOfferObjects=this.yourOfferObjects.filter(elements => { return elements != null;   });
+ 
+    console.log("partnerOfferObjects :"+JSON.stringify(this.partnerOfferObjects) )
+    console.log("yourOfferObjects :"+JSON.stringify(this.yourOfferObjects) )
+    },
+
+
+    async loadMyInventory()
+    {
+    console.log(" LoadMyInventory ")
+    
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_my_objects", this.session_data);
+    console.log("/private_get_my_objects  Response:"+JSON.stringify(jsonResponse.data))
+    this.DBmyInventoryObjects = jsonResponse.data 
+    },
+
+    async loadPartnerInventory()
+    {
+    console.log(" LoadPartnerInventory ")
+   
+    let json_request =  { 
+        session_data : this.session_data, 
+        partner_id: this.offer.user_id_creator 
+          }
+   
+    console.log("loadPartnerInventory JSON Request:"+JSON.stringify(json_request));
+    
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_partner_objects", json_request);
+    console.log("/private_get_partner_objects  Response:"+JSON.stringify(jsonResponse.data))
+    this.DBPartnerInventoryObjects = jsonResponse.data 
+    
+    },
+
 
     addRemoveFromYourOfferObjects_temp(obj)
     {
@@ -678,6 +710,7 @@ methods: {
     },
 
 watch : {
+
       }
 }
 </script>
