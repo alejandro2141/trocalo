@@ -70,10 +70,10 @@ methods: {
                 case '1':
                     return ('Enviada')
                     break;
-                case '2':
+                case '100':
                     return ('Aceptada')
                     break;
-                case '3':
+                case '200':
                     return ('Rechazada')
                     break;
                 case '4':
