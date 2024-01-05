@@ -1,10 +1,12 @@
-
 <script setup>
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import InventoryObject from './InventoryObject.vue'
 import InventoryList from './InventoryList.vue'
 import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
 import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
+
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
 </script>
 
 
@@ -582,15 +584,9 @@ export default {
         yourOfferObjects_temp    : [] ,
         partnerOfferObjects_temp : [] ,
 
-        yourOfferObjects  : [ {id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                          ],
+        yourOfferObjects  : [],
 
-        partnerOfferObjects : [ 
-                    {id:1 ,name:"Partner Inv ps1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:2 ,name:"Partner Inv 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-                            {id:3 ,name:"Partner Inv 3", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
-
-                                     ],
+        partnerOfferObjects : [],
 
         DBmyInventoryObjects :[{id:1 , name:"My inv PS 1", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
                             {id:2 , name:"My inv PS 2", description : "Consola en buen estado con juegos" , alt1:"Bicicleta"  , alt2:"X BOX"  , alt3:"Maquina de cortar pasto" , otherProducts: true }, 
@@ -613,14 +609,43 @@ export default {
       
       }
   },
-  props: ['session_data'],
+  props: ['session_data', 'offer' ],
   emits: ['closeModal'],
 
 created() {
   console.log("APP CREATED")
+  this.loadObjects()
     },
 
 methods: {
+
+    async loadObjects()
+    {
+      let objaux= [ this.offer.dest_object1,this.offer.source_object1,this.offer.source_object2,this.offer.source_object3,this.offer.source_object4,this.offer.source_object5 ]  
+
+      objaux = objaux.filter(function (el) { return el != null; });
+
+      let json_request =  { 
+        session_data : this.session_data, 
+        objects_ids: objaux 
+          }
+
+      console.log("JSON :"+JSON.stringify(json_request) )
+    
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_objects", json_request);
+    console.log("/private_get_objects  Response:"+JSON.stringify(jsonResponse.data))
+
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.source_object1));
+    
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object1 ));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object2 ));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object3 ));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object4 ));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object5 ));
+ 
+    console.log("partnerOfferObjects :"+JSON.stringify(this.partnerOfferObjects) )
+    console.log("yourOfferObjects :"+JSON.stringify(this.yourOfferObjects) )
+    },
     
 
     addRemoveFromYourOfferObjects_temp(obj)
