@@ -79,7 +79,7 @@ import axios from 'axios'
         <i class="bi bi-circle text-danger"></i> Se eliminaran tambien Propuestas de Intercambios que tengan este objeto. 
      
         <div class="d-flex justify-content-center mt-4">
-        <button @click="showConfirmDeleteDone=true; showConfirmDelete=false" type="button" class="btn btn-danger">Eliminar  <i class="bi bi-arrow-right-short"></i> <i class="bi bi-trash"></i></button>
+        <button @click="deleteObject(objectDetails) ; showConfirmDeleteDone=true; showConfirmDelete=false" type="button" class="btn btn-danger">Eliminar  <i class="bi bi-arrow-right-short"></i> <i class="bi bi-trash"></i></button>
         </div>
 
         <div style="height:800px">
@@ -100,7 +100,7 @@ import axios from 'axios'
         <br>
       
         <div class="d-flex justify-content-center mt-4">
-        <button @click="closeInventoyList" type="button" class="btn btn-secondary"> Regresar </button>
+        <button @click="closeInventoyList()" type="button" class="btn btn-secondary"> Regresar </button>
         </div>
 
         <div style="height:800px">
@@ -173,6 +173,22 @@ created() {
 
 methods: {
 
+
+    async deleteObject(object)
+    {
+
+      let json_request = 
+      {
+        session_data : this.session_data,
+        object_id : object.id
+      }
+
+      console.log("Delete Object")
+      let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_delete_object", json_request);
+      console.log("/private_delete_object:"+JSON.stringify(jsonResponse.data))
+
+    },
+
     async getMyObjects(searchParams)
     {
     let params= {};
@@ -188,6 +204,7 @@ methods: {
 
     closeInventoyList()
     {
+      this.getMyObjects()
       this.$emit('closeInventoyList')
       this.showConfirmDeleteDone=false 
       this.showConfirmDelete = false 
@@ -197,6 +214,7 @@ methods: {
 
     closeNewObjectForm()
     {
+      this.getMyObjects()
       this.showNewObjectForm=false
     },
     
