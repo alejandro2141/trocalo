@@ -60,7 +60,7 @@ import axios from 'axios'
     <br>
     <div>
         <p style="font-size:20px">
-          Cambiaria Por: 
+          De preferencia lo cambiaria por: 
         </p>
         <div>
           <input v-model="input_exchange_option1" type="text" placeholder="Robot asesino Gigante"   id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark text-white border-white" required minlength="4" maxlength="30"  />
@@ -74,16 +74,18 @@ import axios from 'axios'
     </div>
     
     <br>
+  <!-- 
     <div>
         <p style="font-size:20px">
          Cambiaria por otros Objetos? <br> <button @click="input_exchange_other=false"  type="button" :class="[!input_exchange_other ? 'btn btn-success' : 'btn btn-dark']"  >NO</button>  <button  @click="input_exchange_other=true" type="button" :class="[input_exchange_other ? 'btn btn-success' : 'btn btn-dark']" >SI</button>
         </p>
     </div>
+  -->
 
     <br>
-    <div style="font-size:20px" class=" text-success w-100 bg-dark p-3 text-center" >
-       <text> Guardar en mi inventario </text> <br>
-       <i @click=" upload_product() ; step1=false;showRequestConfirmation=true" class="bi bi-cloud-arrow-up"></i> 
+    <div style="font-size:25px" class=" text-success w-100 bg-dark p-3 text-center" >
+       <text> Guardar </text> 
+       <i style="font-size:35px" @click=" upload_product() ; step1=false;showRequestConfirmation=true" class="bi bi-cloud-arrow-up"></i> 
     </div>
     
 
