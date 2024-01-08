@@ -21,8 +21,9 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div style="font-size:20px">
           &nbsp;&nbsp;&nbsp;&nbsp;  {{object.title}}
         </div>
-        <div  style="font-size:16px">
-            <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i>   {{object.owner_name}}
+        <div  style="font-size:16px" class="w-100 text-end">
+            <!--  <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i> --> 
+              {{object.owner_name}}
         </div>
         <div class="bg-secondary" style="width:350px; height:300px">
             <img class=""  style="width:350px; height:300px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1"  /> 
@@ -52,21 +53,25 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             <i class="bi bi-shuffle text-secondary"></i>
         </div>
         -->
-
-        <div class="m-2">
-            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i>  {{object.alternative1}}<br>
-            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> {{object.alternative2}}<br>
-            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> {{object.alternative3}}<br>
-            <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> Cambiaría por Otros Objetos
-                <text v-if="object.otherObj" style="font-size:25px" class="text-success">
-                        SI
-                </text>
-                <text v-else class="text-danger" style="font-size:25px" >
-                        NO
-                </text>
-
-            <br>
+        <div v-if="object.alternative1!=null">
+            De preferencia cambiaria por:
+            <div class="m-2">
+                <i v-if="object.alternative1!=null" style="font-size:20px" class="bi bi-shuffle text-secondary"></i>  {{object.alternative1}}<br>
+                <i v-if="object.alternative2!=null" style="font-size:20px" class="bi bi-shuffle text-secondary"></i> {{object.alternative2}}<br>
+                <i v-if="object.alternative3!=null" style="font-size:20px" class="bi bi-shuffle text-secondary"></i> {{object.alternative3}}<br>
+                <!--
+                <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> Cambiaría por Otros Objetos
+                    <text v-if="object.otherObj" style="font-size:25px" class="text-success">
+                            SI
+                    </text>
+                    <text v-else class="text-danger" style="font-size:25px" >
+                            NO
+                    </text>
+                -->
+                <br>
+            </div>
         </div>
+
         <br>
         <!-- 
         <div class="mt-1" style="font-size:20px">
