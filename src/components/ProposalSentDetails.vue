@@ -31,7 +31,7 @@ import axios from 'axios'
           </div>   
 
           <div  style="font-size:16px "  class="d-flex justify-content-center">
-              Te interesan los siguientes objetos de {{offer.object_owner_name}}:  
+              Te interesan los siguientes objetos de {{offer.dest_owner_name}}:  
           </div>
          
         <!-- LIST PARTNER OFFER OBJECT  -->
@@ -178,7 +178,7 @@ methods: {
     
     async loadObjects()
     {
-      let objaux= [ this.offer.dest_object1,this.offer.source_object1,this.offer.source_object2,this.offer.source_object3,this.offer.source_object4,this.offer.source_object5 ]  
+      let objaux= [ this.offer.dest_object1, this.offer.dest_object2, this.offer.dest_object3, this.offer.dest_object4, this.offer.dest_object5, this.offer.source_object1,this.offer.source_object2,this.offer.source_object3,this.offer.source_object4,this.offer.source_object5 ]  
 
       objaux = objaux.filter(function (el) { return el != null; });
 
@@ -196,6 +196,10 @@ methods: {
     //const result = jsonResponse.data.find(({id }) => id === this.offer.dest_object1);
 
     this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object1));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object2));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object3));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object4));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object5));
     
     this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object1 ));
     this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object2 ));
