@@ -136,6 +136,7 @@ methods: {
 
     closeModal()
     {
+      this.getProposalsSent()
       this.showExchangeProposalSent=false
       this.showExchangeProposalSentAccepted=false
       this.showExchangeProposalSentEnded=false
