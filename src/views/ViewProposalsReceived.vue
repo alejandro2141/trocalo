@@ -149,6 +149,7 @@ methods: {
       this.showExchangeProposalReceived = false  
       this.showExchangeProposalReceivedAccepted = false 
       this.showExchangeProposalReceivedEnded = false 
+      this.getProposalsReceived()
     }
 
 
