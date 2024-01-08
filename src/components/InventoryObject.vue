@@ -62,7 +62,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                
                 <div  class="d-flex align-items-center m-0">
                     {{object.title}}<br>
-                    {{object.description}}
+                 <!-- {{object.description}} -->
                 </div>
         </div>
 
