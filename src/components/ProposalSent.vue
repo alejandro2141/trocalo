@@ -5,23 +5,25 @@
   
     <div class="border border-1 rounded" :class="{'text-success border-success': accepted }"   >
         <div class="d-flex justify-content-between">
-            <div>      
-            {{offer.object_owner_name}}   <br>
-            {{offer.title}}
+            <div class="w-75 m-2">      
+                Enviada a:{{offer.dest_owner_name}} <br>
+                Por el objeto: <br> 
+                {{offer.title}}  
             </div>
             
-            <div v-if="offer.status<3 " style="font-size:16px" :class="{'text-success': accepted }"  >
-                ${{offer.amount}}
+           
+
+            <div style="font-size:19px" class=" w-25 m-2 d-flex justify-content-end" >
+                <div style="font-size:19px" class="m-2" >
+                   <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}} 
+                </div>
+                <div class="m-2">
+                    <!--  <i class="bi bi-clock"></i>
+                    <i class="bi bi-clock-fill"></i> -->
+                    <i class="bi bi-clock-history"></i> {{ evaluateRemainingDays(offer.timestamp) }}d
+                </div>
             </div>
 
-
-            <div  style="font-size:12px" :class="{'text-success': accepted }"  >
-                {{evaluateOfferStatus(offer.status)}}
-            </div>
-
-            <div>
-                <i style="font-size:30px" :class="{'text-success': accepted }" class="bi bi-cloud-upload p-2"></i>
-            </div>
         </div>
     </div>
 
@@ -62,6 +64,16 @@ created() {
     },
 
 methods: {
+
+    evaluateRemainingDays(timestamp)
+    {
+        let creationDate = new Date(timestamp)
+        let cdate = new Date()
+
+        let days_passed = ( cdate.getTime() - creationDate.getTime() ) / (1000 * 60 * 60 * 24)  ;
+        let days_remaining =   this.offer.proposal_days - days_passed
+        return Math.floor(days_remaining)
+    },
 
     evaluateOfferStatus(val)
     {
