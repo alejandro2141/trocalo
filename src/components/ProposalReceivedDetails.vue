@@ -28,12 +28,12 @@ import axios from 'axios'
        <!-- TITLE -->
           <div style="font-size:20px" class="mb-4 ">
               <text>Tiempo Propuesta </text> &nbsp;&nbsp;&nbsp;
-              <text class="text-success" style="font-size:40px" > 25 dias </text>
+              <text class="text-success" style="font-size:40px" >  {{ evaluateRemainingDays(offer.timestamp)}} dias </text>
               
           </div>       
           
           <div  style="font-size:16px "  class="text-start">
-            [Nombre quien envia propuesta] le interesa tu objeto/s:  
+            {{offer.source_owner_name}} le interesa tu objeto/s:  
           </div>
           <!-- LIST MY OFFER OBJECT  -->
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
@@ -191,7 +191,7 @@ import axios from 'axios'
           <br>
 
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-              [proposal origin owner] le interesa tu objeto:
+            {{offer.source_owner_name}}  le interesa tu objeto:
           </div>
 
           <!-- LIST MY OBJECT-->
@@ -361,12 +361,12 @@ import axios from 'axios'
             </div>
          
           <div style="font-size:20px" class="mb-4 ">
-              <text>Tiempo Propuesta </text> &nbsp;&nbsp;&nbsp;
-              <text class="text-success" style="font-size:40px" > 25 dias </text>
+              <text>Tiempo Restante </text> &nbsp;&nbsp;&nbsp;
+              <text class="text-success" style="font-size:40px" >  {{ evaluateRemainingDays(offer.timestamp)}} dias </text>
           </div>  
 
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-              Objeto queinteresan a kakito_123
+              {{offer.source_owner_name}} podria interesarle de mis objetos: 
           </div>
           <!-- LIST MY OBJECT/S  OF proposal-->
        
@@ -384,7 +384,7 @@ import axios from 'axios'
        
           
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-                Te ofrece los siguientes objetos:
+               y me intresan los siguientes objetos de   {{offer.source_owner_name}}:
           </div>
            
          
@@ -450,7 +450,7 @@ import axios from 'axios'
           <br>
           
           <div style="font-size:20px">
-            Puede seguir esta propuesta en <text @click="$router.push({ name: 'ProposalsSent' })" class="text-success">Enviadas</text>
+            Puede seguir esta propuesta en <text @click="$router.push({ name: 'ViewProposalsSent' })" class="text-success">Enviadas</text>
           </div>
 
           <!-- END FOOTER -->
@@ -458,7 +458,7 @@ import axios from 'axios'
           <!-- FOOTER -->
           <div class="fixed-bottom  text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
-                 <a @click="$router.push({ name: 'searchView' })" > <i style="font-size:40px" class="bi bi-house"></i> </a>
+                 <a @click="$router.push({ name: 'ViewSearch' })" > <i style="font-size:40px" class="bi bi-house"></i> </a>
               </div>
           </div>
           <!-- END FOOTER -->
@@ -467,10 +467,6 @@ import axios from 'axios'
 <!-- ******************************* -->
 <!--         SHOW EDIT PROPOSAL  SUMMARY    -->
 <!-- ******************************* -->
-
-
-   
-
 
 <!-- Show Object Details-->
 <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
@@ -569,6 +565,16 @@ created() {
     },
 
 methods: {
+  
+    evaluateRemainingDays(timestamp)
+    {
+        let creationDate = new Date(timestamp)
+        let cdate = new Date()
+
+        let days_passed = ( cdate.getTime() - creationDate.getTime() ) / (1000 * 60 * 60 * 24)  ;
+        let days_remaining =   this.offer.proposal_days - days_passed
+        return Math.floor(days_remaining)
+    },
 
     async sendProposalUpdated()
     {
@@ -617,7 +623,7 @@ methods: {
     async loadObjects()
     {
       
-      let objaux= [ this.offer.dest_object1,this.offer.source_object1,this.offer.source_object2,this.offer.source_object3,this.offer.source_object4,this.offer.source_object5 ]  
+      let objaux= [ this.offer.dest_object1,this.offer.dest_object2,this.offer.dest_object3,this.offer.dest_object4,this.offer.dest_object5,this.offer.source_object1,this.offer.source_object2,this.offer.source_object3,this.offer.source_object4,this.offer.source_object5 ]  
 
       objaux = objaux.filter(function (el) { return el != null; });
 
@@ -633,6 +639,10 @@ methods: {
 
     this.partnerOfferObjects=[]
     this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.source_object1));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.source_object2));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.source_object3));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.source_object4));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.source_object5));
     
     this.yourOfferObjects = []
     this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object1 ));
@@ -641,7 +651,7 @@ methods: {
     this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object4 ));
     this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.dest_object5 ));
 
-
+    this.partnerOfferObjects=this.partnerOfferObjects.filter(elements => { return elements != null;   });
     this.yourOfferObjects=this.yourOfferObjects.filter(elements => { return elements != null;   });
  
     console.log("partnerOfferObjects :"+JSON.stringify(this.partnerOfferObjects) )
@@ -664,7 +674,7 @@ methods: {
    
     let json_request =  { 
         session_data : this.session_data, 
-        partner_id: this.offer.user_id_creator 
+        partner_id: this.offer.user_id_source 
           }
    
     console.log("loadPartnerInventory JSON Request:"+JSON.stringify(json_request));
