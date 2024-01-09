@@ -31,7 +31,7 @@ import axios from 'axios'
     <br>
 
 <!-- OF SENT ACCEPTED -->
-    <p class=" text-center" style="font-size:16px">Aceptadas </p>
+    <p class=" text-center" style="font-size:20px">Aceptadas </p>
     <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado de transporte y despacho para completar el intercambio de objetos </p>
     <div v-for="of in ofAccepted"  > 
         <ProposalReceived  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
@@ -41,15 +41,19 @@ import axios from 'axios'
     <br>
 
 <!-- OF SENT ENDED -->
-    <p class="text-secondary text-center" style="font-size:16px">Finalizadas </p>
+    <p class="text-center" style="font-size:20px">Finalizadas y Canceladas </p>
+    <p class="text-secondary" style="font-size:12px" >Propuestas que han expirado o fueron canceladas.</p>
     <div class="text-secondary">
       <div v-for="of in ofEnded"  > 
         <ProposalReceived  class="m-1" @click="ofSelected=of ;showExchangeProposalReceivedEnded=true"  :offer='of'  />
       </div>
     </div>
+    
 <!-- OF SENT ENDED -->
 
-
+  <div style="height:150px">
+  
+  </div>
 
 <!-- OF DETAILED  -->  
     <div  v-if="showExchangeProposalReceived"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
