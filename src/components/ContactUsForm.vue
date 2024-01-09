@@ -1,10 +1,11 @@
 <script setup>
+
 import { ref } from 'vue'
+
+import { BKND_CONFIG } from '../../config.js'
+import axios from 'axios'
+
 </script>
-
-
-
-
 
 
 <template  >
@@ -93,10 +94,10 @@ import { ref } from 'vue'
                         </text>{{comment.message}}<br>  
                     </div>
                     <div v-else>
-                        <i v-if="comment.animo == 1" class="bi bi-emoji-angry h2 text-danger" ></i>
-                        <i v-if="comment.animo == 2 || comment.animo == 0 " class="bi bi-emoji-neutral h2 text-secondary"></i>
-                        <i v-if="comment.animo == 3" class="bi bi-emoji-heart-eyes h2 text-success"></i>
-                       <text>{{ new Date(comment.date_time).toLocaleDateString() }}  {{comment.message}}</text> <br>
+                        <i v-if="comment.feeling == 1" class="bi bi-emoji-angry h2 text-danger" ></i>
+                        <i v-if="comment.feeling == 2 || comment.animo == 0 " class="bi bi-emoji-neutral h2 text-secondary"></i>
+                        <i v-if="comment.feeling == 3" class="bi bi-emoji-heart-eyes h2 text-success"></i>
+                       <text>{{ new Date(comment.timestamp).toLocaleDateString() }}  {{comment.comment}}</text> <br>
                     </div>
 
                
@@ -126,36 +127,53 @@ export default {
        show_confirm : false , 
        show_comments : false ,
 
-       comments: [ {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date: new Date("2022-03-25")  },
-                   {id:1, reply:true , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },
-                   {id:1, reply:false , message :"esto no funciona esta malo", animo:1, date_time: new Date("2022-03-25")  },    
-    
-    ]
+       comments: []
     
 }
   },
 
- props: [],
+ props: ['session_data'],
  //emits: ['closeRegisterForm'] , 
 
   methods: {
     
     async sendComments()
     {
-        console.log("Sending Comments: "+this.message);
-        let aux= {id:123, reply:false , message: this.text_message, animo: this.animo , date_time: new Date("2022-03-25")  }
-        this.comments.push(aux)
+        console.log("Send Comments: "+this.message);
+        
+        if (this.animo == null)
+        {this.animo = 1}
+       
+
+        let json_request =  { 
+        session_data : this.session_data, 
+        text_message : this.text_message,
+        feeling      : this.animo,
+        timestamp    : new Date().toISOString()
+          }
+
+        console.log("/private_send_comment Request: "+JSON.stringify(json_request))
+        let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_send_comment", json_request);
+        this.getComments() 
+       // console.log("/private_send_comment Response:"+JSON.stringify(response_json.data))
     },
+
+    async getComments()
+    {
+        let json_request =  { 
+        session_data : this.session_data, 
+         }
+
+        console.log("/private_get_comments: "+JSON.stringify(json_request))
+        let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_comments", json_request);
+        console.log("/private_get_comments: RESPONSE: "+ JSON.stringify(response_json.data) )
+        this.comments = response_json.data ; 
+    },
+
     async showComments()
     {
+        this.getComments()
+        
         console.log("show Comments ");
         this.show_comments=!this.show_comments
     },
