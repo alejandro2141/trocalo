@@ -124,7 +124,7 @@ import { BKND_CONFIG } from '../../config.js'
 
         <Transition> 
           <div class="" style="border-radius:15px; " >
-            <ContactUsForm  v-if="true" />
+            <ContactUsForm :session_data='session_data'  v-if="true" />
           </div>
           </Transition>    
         <div style="height:200px"></div>
