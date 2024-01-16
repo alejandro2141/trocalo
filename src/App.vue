@@ -16,15 +16,16 @@ import { RouterLink, RouterView } from 'vue-router'
           <div>
           </div>
           
-          <div>
-          </div>
+         
 
           <RouterLink style="" class='text-decoration-none'  @click="setUnderline(7)"  to="/ViewSearch"> 
             <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
           </RouterLink>
 
           <RouterLink  class="" :class="{'text-decoration-underline' :underline_login}" @click="setUnderline(3)"  to="/ViewLogin"> 
-              <i style="font-size:40px" class="bi bi-person-circle"></i>
+             <div class="bg-secondary" style="border-radius: 0px 0px 0px 100px;" > 
+                <i style="font-size:30px" class="bi bi-person-circle text-dark p-2"></i>
+             </div>
           </RouterLink>
       </div>
 
