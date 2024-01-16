@@ -138,7 +138,7 @@ methods: {
     console.log("Filter By Text in Search Result:"+ftext)
         if(ftext!=null)
         {
-        this.objects_filtered= this.objects_filtered.filter(element =>  element.name.toLowerCase().includes(ftext) );
+        this.objects_filtered= this.objects_filtered.filter(element =>  element.title.toLowerCase().includes(ftext) );
         }
         else 
         {
@@ -152,7 +152,7 @@ methods: {
       // this.categories.includes(val)
       if (categories !=null && categories.length>0)
       {  
-        this.objects_filtered=this.objects.filter(element =>  categories.includes(element.category1) ); 
+        this.objects_filtered=this.objects.filter(element =>  ( categories.includes(element.category1) || categories.includes(element.category2) || categories.includes(element.category3) )    ); 
       }
       else 
       {
