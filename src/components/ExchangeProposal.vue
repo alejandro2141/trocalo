@@ -98,17 +98,16 @@ import axios from 'axios'
               <div class="align-self-center" style="font-size:16px " >Propuesta válida por: </div>
           
               <div class="w-25">
-                  <select class="form-control bg-dark border-white text-white" id="sel1">
-                    <option selected="30">30 dias</option>
-                    <option>5 dias</option>
-                    <option>10 dias</option>
-                    <option>15 dias</option>
-                    <option>20 dias</option>
-                    <option>30 dias</option>
-                    <option>40 dias</option>
-                    <option>60 dias</option>
-                    <option>100 dias</option>
-                     </select>
+                  <select v-model="proposal_duration" class="form-control bg-dark border-white text-white" id="sel1">
+                    <option value="30">30 dias</option>
+                    <option value="25">25 dias</option>
+                    <option value="20">20 dias</option>
+                    <option value="15">15 dias</option>
+                    <option value="10">10 dias</option>
+                    <option value="7">7 dias</option>
+                    <option value="5">5 dias</option>
+                    <option value="3">3 dias</option>
+                   </select>
               </div>
               <div></div>
           </div>
@@ -297,7 +296,7 @@ import axios from 'axios'
           <br>
           
           <div style="font-size:16px" class="d-flex justify-content-between">
-              <div>Propuesta válida por: 25 dias </div>
+              <div>Propuesta válida por: {{proposal_duration}} dias </div>
           </div>
           <br>
 
@@ -517,6 +516,7 @@ export default {
         showMyObjectDetailed: false,
         showMyInventory: false, 
         showSenderConfirmation : false ,
+        proposal_duration : 30 ,
 
         showStep1 : true , 
         showStep2 : false , 
@@ -571,6 +571,7 @@ methods: {
       this.showStep3 = false
     
     let params= { 
+            proposal_duration : this.proposal_duration,
             session_data      : this.session_data   ,
             object_wanted     : this.objectProposalList  , 
             objects_offered   : this.objectsOfferList ,
