@@ -58,6 +58,54 @@ import axios from 'axios'
     </div>
     
     <br>
+
+
+    Selecciona algunas categorias de tu objeto:
+    <div class="d-flex justify-content-between w-75">
+        
+        <div class="w-25">
+                  <select  v-model="input_exchange_category1" class="form-control bg-dark border-white text-white" id="sel1">
+                    <option value="0" >Categoria 1</option>
+                    <option value="1" >Juegos</option>
+                    <option value="2" >Computación</option>
+                    <option value="3" >Libros</option>
+                    <option value="4" >Deportes</option>
+                    <option value="5" >Decoracion</option>
+                    <option value="6" >Herramientas</option>
+                    <option value="7" >Hogar</option>
+                    <option value="8" >Electronica</option>
+                   </select>
+        </div>
+        <div class="w-25">
+                  <select  v-model="input_exchange_category2" class="form-control bg-dark border-white text-white" id="sel1">
+                    <option value="0" >Categoria 2</option>
+                    <option value="1" >Juegos</option>
+                    <option value="2" >Computación</option>
+                    <option value="3" >Libros</option>
+                    <option value="4" >Deportes</option>
+                    <option value="5" >Decoracion</option>
+                    <option value="6" >Herramientas</option>
+                    <option value="7" >Hogar</option>
+                    <option value="8" >Electronica</option>
+                   </select>
+        </div>
+        <div class="w-25">
+                  <select  v-model="input_exchange_category3" class="form-control bg-dark border-white text-white" id="sel1">
+                    <option value="0" >Categoria 3</option>
+                    <option value="1" >Juegos</option>
+                    <option value="2" >Computación</option>
+                    <option value="3" >Libros</option>
+                    <option value="4" >Deportes</option>
+                    <option value="5" >Decoracion</option>
+                    <option value="6" >Herramientas</option>
+                    <option value="7" >Hogar</option>
+                    <option value="8" >Electronica</option>
+                   </select>
+        </div>
+        
+    </div>
+    
+    <br>
     <div>
         <p style="font-size:20px">
           De preferencia lo cambiaria por: 
@@ -163,6 +211,9 @@ export default {
 
         input_name : null, 
         input_description : null ,
+        input_exchange_category1 : 0 ,
+        input_exchange_category2 : 0 ,
+        input_exchange_category3 : 0 ,
 
         previewImage_1:null,
         previewImage_2:null,
@@ -273,6 +324,9 @@ async upload(reader, img_num)
           const data_product = {
                           name : this.input_name , 
                           description : this.input_description , 
+                          category1 : this.input_exchange_category1 , 
+                          category2 : this.input_exchange_category2 , 
+                          category3 : this.input_exchange_category3 , 
 
                           exchange_option1 : this.input_exchange_option1  ,
                           exchange_option2 : this.input_exchange_option2 ,
