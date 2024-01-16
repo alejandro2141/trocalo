@@ -26,7 +26,7 @@ import axios from 'axios'
        <!-- TITLE -->
           <div style="font-size:20px" class="mb-4 ">
               <text>Tiempo Propuesta Restante para que Kakito_123 pague  </text> &nbsp;&nbsp;&nbsp;
-              <text class="text-success" style="font-size:40px" > 25 dias </text>
+              <text class="text-success" style="font-size:40px" > {{ evaluateRemainingDays(offer.timestamp) }} </text>
               
           </div>       
           
@@ -138,6 +138,17 @@ created() {
     },
 
 methods: {
+
+  evaluateRemainingDays(timestamp)
+    {
+        let creationDate = new Date(timestamp)
+        let cdate = new Date()
+
+        let days_passed = ( cdate.getTime() - creationDate.getTime() ) / (1000 * 60 * 60 * 24)  ;
+        let days_remaining =   this.offer.proposal_days - days_passed
+        return Math.floor(days_remaining)
+    },
+
 
   async loadObjects()
     {
