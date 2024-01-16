@@ -304,37 +304,46 @@ export default {
                               user : this.form_email,
                               pass : this.form_pass
                               }
-          console.log("Sending to Login")
-          let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_login_user",login_data );
-          //console.log("Response Login : "+JSON.stringify(response_json ))
 
-          let session_data_result = {} 
-          if (response_json !=null && response_json.data !=null  )
+          if (this.form_email != null && this.form_pass != null )
           {
-            session_data_result.user = response_json.data.token
-            session_data_result.user =  response_json.data.names
-            session_data_result.name =  response_json.data.names
-            session_data_result.rut =  response_json.data.id_number
-            session_data_result.phone1 = response_json.data.phone
-            session_data_result.address_street =  response_json.data.address_street_name
-            session_data_result.address_number =  response_json.data.address_street_number
-            session_data_result.address_apartment =  response_json.data.address_street_apartment
-            session_data_result.address_zone1 =  response_json.data.address_location_zone
-            session_data_result.address_zone2 =  "No Set"
-            session_data_result.address_city  =  "No Set"
-            session_data_result.address_country =   "Chile"
-            session_data_result.token  =   response_json.data.token
-            session_data_result.id  =   response_json.data.id
-            
-            this.$emit('sessionCreated',session_data_result);
-            console.log("session data created:"+JSON.stringify( session_data_result) )
-          }
-          else 
-          {
+                console.log("Sending to Login")
+                let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_login_user",login_data );
+                //console.log("Response Login : "+JSON.stringify(response_json ))
+
+                let session_data_result = {} 
+                if (response_json !=null && response_json.data !=null  )
+                {
+                  session_data_result.user = response_json.data.token
+                  session_data_result.user =  response_json.data.names
+                  session_data_result.name =  response_json.data.names
+                  session_data_result.rut =  response_json.data.id_number
+                  session_data_result.phone1 = response_json.data.phone
+                  session_data_result.address_street =  response_json.data.address_street_name
+                  session_data_result.address_number =  response_json.data.address_street_number
+                  session_data_result.address_apartment =  response_json.data.address_street_apartment
+                  session_data_result.address_zone1 =  response_json.data.address_location_zone
+                  session_data_result.address_zone2 =  "No Set"
+                  session_data_result.address_city  =  "No Set"
+                  session_data_result.address_country =   "Chile"
+                  session_data_result.token  =   response_json.data.token
+                  session_data_result.id  =   response_json.data.id
+                  
+                  this.$emit('sessionCreated',session_data_result);
+                  console.log("session data created:"+JSON.stringify( session_data_result) )
+                }
+                else 
+                {
+                  session_data_result = null 
+                }
+                console.log("Login User Session Data : "+JSON.stringify(session_data_result))
+           }
+           else 
+           {
             session_data_result = null 
-          }
-          console.log("Login User Session Data : "+JSON.stringify(session_data_result))
-         
+            console.log("Login User Data NULL")
+           }
+
 
            
 
