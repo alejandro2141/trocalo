@@ -14,8 +14,6 @@
                     {{offer.title}}  
                 </div>
             
-           
-
                 <div style="font-size:19px" class=" w-25 m-2 d-flex justify-content-end" >
                      <div style="font-size:19px" class="m-2" >
                          <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}} 
