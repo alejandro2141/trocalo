@@ -59,7 +59,7 @@ import axios from 'axios'
 <!-- OF SENT ENDED -->
 
     <div  v-if="showExchangeProposalSent"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-        <ProposalSentDetails :session_data="this.session_data" :offer="offerSent" v-on:closeExchangeProposalSent="closeModal" />
+          <ProposalSentDetails         :session_data="this.session_data" :offer="offerSent"         v-on:closeExchangeProposalSent="closeModal" />
     </div>
 
     <div  v-if="showExchangeProposalSentAccepted"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
