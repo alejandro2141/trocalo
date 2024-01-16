@@ -51,10 +51,10 @@ import axios from 'axios'
 								<i @click="animo =1;" class="text-danger bi bi-emoji-angry display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==1 }"  style="border-radius: 30px; " > </i><br>
                             </text>
 							<text>
-							<i @click="animo =2;" class="text-secondary bi bi-emoji-neutral display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==2 }"  style="border-radius: 30px; " ></i><br>
+							    <i @click="animo =2;" class="text-secondary bi bi-emoji-neutral display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==2 }"  style="border-radius: 30px; " ></i><br>
                             </text>
 							<text>
-							<i @click="animo =3;"  class="text-success bi bi-emoji-heart-eyes display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==3 }"  style="border-radius: 30px; "></i><br>
+							    <i @click="animo =3;"  class="text-success bi bi-emoji-heart-eyes display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==3 }"  style="border-radius: 30px; "></i><br>
                             </text>
 							<!--
 							<i @click="animo =4;text_message=text_message.concat(' Tiene errores de software.  Arreglalo infame programador !!. ') " class="text-white bi bi-bug h4 p-2"></i><br>
@@ -64,8 +64,8 @@ import axios from 'axios'
 
         <br>
         <div class="d-flex justify-content-evenly  ">
-            <button @click="showComments()"  type="button" class="btn btn-secondary"> <text> <i class="bi bi-signal"></i> </text></button>
-            <button @click="sendComments();show_confirm=true"  type="button" class="btn btn-secondary"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
+            <div @click="showComments()"  type="" class=""> <text class="text-secondary"> Ver <br>comentarios </text></div>
+            <button @click="sendComments();showComments()"  type="button" class="btn btn-secondary"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
         </div>
         <br>
     </div>
@@ -73,10 +73,9 @@ import axios from 'axios'
 
     <div v-if="show_confirm == true"  class="text-center">
         <text style="font-size:1.3em" > 
-            El equipo de HoraPO agradece tus comentarios  <br><i class="display-5 bi bi-emoji-kiss"></i>
+            Gracias por tus comenarios  <br><i class="display-5 bi bi-emoji-kiss"></i>
         </text>
        <br>
-
         <a  @click="show_confirm=false; text_message='Mensaje enviado...' " class="btn btn-primary" > Regresar  </a>
     </div>
 
