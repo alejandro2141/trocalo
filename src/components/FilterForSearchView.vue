@@ -26,9 +26,9 @@
       -->
       <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="" class="bi bi-controller "></i> </text>
         
-        <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(4) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(4)" > <i style="" class="bi-pc-display-horizontal"></i> </text>
-        <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(5) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(5)" > <i style="" class="bi bi-book"></i> </text>
-        <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(2) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="" class="bi bi-bicycle "></i> </text>
+        <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(2) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="" class="bi-pc-display-horizontal"></i> </text>
+        <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(3) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(3)" > <i style="" class="bi bi-book"></i> </text>
+        <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(4) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(4)" > <i style="" class="bi bi-bicycle "></i> </text>
         
         <!-- 
         <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(6) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(6)" > <i style="font-size:40px" class="bi bi-car-front"></i> </text>
