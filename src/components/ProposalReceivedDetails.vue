@@ -291,7 +291,7 @@ import axios from 'axios'
                   <!-- FOOTER -->
                   <div  class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
                       <div   class="d-flex justify-content-center">
-                          <div  @click="partnerOfferObjects=partnerOfferObjects.concat(partnerOfferObjects_temp);partnerOfferObjects_temp.length=0;showPartnerInventory=false;" class="border border-2 border-success w-25 text-center">
+                          <div  @click="showPartnerInventory=false; addToPartnerOfferObjects(partnerOfferObjects_temp);partnerOfferObjects_temp.length=0;" class="border border-2 border-success w-25 text-center">
                             <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
                           </div>   
                       </div>
@@ -318,7 +318,7 @@ import axios from 'axios'
               <div  style="font-size:16px "  class="m-2">
                   Mejora tu Propuesta agregando otros objetos de tu Inventario 
                   <br>
-              <!--
+                |<!--
                   <div class="d-flex justify-content-center"> 
                       <div  @click="showMyInventory=false;objectsOfferList=objectsOfferList.concat(objectsOfferList_temp); objectsOfferList_temp.length=0" class="border border-2 border-success w-25 text-center">
                           <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
@@ -340,7 +340,7 @@ import axios from 'axios'
                 <!-- FOOTER -->
                 <div  class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
                       <div   class="d-flex justify-content-center">
-                          <div  @click="showMyInventory=false; yourOfferObjects=yourOfferObjects.concat(yourOfferObjects_temp); yourOfferObjects_temp.length=0" class="border border-2 border-success w-25 text-center">
+                          <div  @click="showMyInventory=false; addToMyOfferObjects(yourOfferObjects_temp) ; yourOfferObjects_temp.length=0" class="border border-2 border-success w-25 text-center">
                             <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
                           </div>   
                       </div>
@@ -486,19 +486,9 @@ import axios from 'axios'
 
 
 
-
-
-
-
-
-
           <!-- SPACE FILLER -->
           <p style="height:300px">
           </p>
-
-
-
-
 
 
 
@@ -565,7 +555,26 @@ created() {
     },
 
 methods: {
-  
+
+    addToMyOfferObjects(newObjects)
+    {
+      this.yourOfferObjects = this.yourOfferObjects.concat(newObjects)
+      this.yourOfferObjects = this.deleteDuplicated(this.yourOfferObjects);
+    },
+
+    addToPartnerOfferObjects(newObjects)
+    {
+      
+      this.partnerOfferObjects = this.partnerOfferObjects.concat(newObjects)
+      this.partnerOfferObjects = this.deleteDuplicated(this.partnerOfferObjects);
+    },
+
+    deleteDuplicated(objList)
+    {
+      let aux = objList.filter((obj, index) => { return index === objList.findIndex(o => obj.id === o.id); });
+      return aux;
+    },
+
     evaluateRemainingDays(timestamp)
     {
         let creationDate = new Date(timestamp)
@@ -689,11 +698,21 @@ methods: {
     addRemoveFromYourOfferObjects_temp(obj)
     {
       this.yourOfferObjects_temp.push(obj) 
+      
+      this.yourOfferObjects_temp = this.yourOfferObjects_temp.filter((obj, index) => {
+              return index === this.yourOfferObjects_temp.findIndex(o => obj.id === o.id);
+      });
+      console.log("yourOfferObjects_temp:"+this.yourOfferObjects_temp );
     },
 
     addRemoveFromPartnerOfferObjects_temp(obj)
     {
       this.partnerOfferObjects_temp.push(obj) 
+      
+      this.partnerOfferObjects_temp = this.partnerOfferObjects_temp.filter((obj, index) => {
+              return index === this.partnerOfferObjects_temp.findIndex(o => obj.id === o.id);
+      });
+
     },
 
     removeFromYourOfferObjects(obj)
@@ -720,6 +739,7 @@ methods: {
     },
 
 watch : {
+
 
       }
 }
