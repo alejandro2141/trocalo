@@ -173,7 +173,6 @@ created() {
 
 methods: {
 
-
     async deleteObject(object)
     {
 
@@ -197,10 +196,12 @@ methods: {
     console.log("/private_get_my_objects Response:"+JSON.stringify(jsonResponse.data))
     
     this.inventoryObjects = jsonResponse.data
-    this.inventory_objects_filtered=this.inventoryObjects
 
- 
+    this.inventoryObjects.sort((a, b) => b.id - a.id );
+
+    this.inventory_objects_filtered=this.inventoryObjects
     },
+    
 
     closeInventoyList()
     {
@@ -247,7 +248,7 @@ watch : {
           console.log("text search "+newVal)
           if(newVal!=null && newVal.length>2)
           {
-          this.inventory_objects_filtered= this.inventoryObjects.filter(element =>  element.name.toLowerCase().includes(newVal) );
+          this.inventory_objects_filtered= this.inventoryObjects.filter(element =>  element.title.toLowerCase().includes(newVal) );
           }
           else 
           {
