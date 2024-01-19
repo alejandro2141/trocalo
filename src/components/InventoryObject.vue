@@ -57,7 +57,12 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div v-if="object!=null" @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted" >
                 <div class="bg-white"  style="width:100px; height:100px">
                    <!--  <img class=""  style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />  -->
-                   <img class="" style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />
+                    <div>
+                        <img class="" style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />
+                    </div>
+                    <div class="relative" style="top: 0px; left: 0px;" >
+                        <i v-if="object.blocked_due_proposal_accepted" style="font-size:40px" class="bi bi-unlock text-secondary"></i>
+                    </div>
                 </div>
                
                 <div  class="d-flex align-items-center m-0">
@@ -103,6 +108,22 @@ export default {
 
 
   methods: {
+
+    isLocked()
+    {
+        if (object.blocked_due_proposal_accept)
+        {
+            return 
+        }
+        else 
+        {
+
+        }
+    },
+
+
+
+
       },
 
   watch : {
