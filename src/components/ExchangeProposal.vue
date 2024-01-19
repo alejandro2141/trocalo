@@ -60,7 +60,7 @@ import axios from 'axios'
           <br>
 
             <!-- FOOTER -->
-            <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+            <div v-if="objectsOfferList.length>0" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center"> 
                     <div  @click="showStep2=true; showStep1 = false ; showPartnerInventory=false ; showMyInventory=false ; objectProposalList.push(objectProposal) " class="border border-2 border-success w-25 text-center">
                         <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
@@ -524,10 +524,10 @@ export default {
         showStep4 : false , 
 
         objectsOfferList : [] , 
-      //  objectsOfferList_temp : [],
+        objectsOfferList_temp : [],
 
         objectProposalList : [] ,
-      // objectProposalList_temp : [] ,
+        objectProposalList_temp : [] ,
        
         DBmyInventoryObjects :[],
         /*
@@ -613,7 +613,17 @@ methods: {
 
     addRemoveObjectsOfferList_temp(obj)
     {
-      this.objectsOfferList_temp.push(obj) 
+      //1st check if already exist
+       if ( this.objectsOfferList_temp.findIndex(o => obj.id === o.id) > 0  )
+      {//remove the object
+        this.objectsOfferList_temp= this.objectsOfferList_temp.filter(element => element.id !== obj.id );
+      }
+      else 
+      {
+        this.objectsOfferList_temp.push(obj)
+      }
+      this.objectsOfferList_temp = this.removeDuplicatedObjects(this.objectsOfferList_temp)
+       
     },
     
     removeFromObjectsOfferList(obj)
@@ -628,9 +638,30 @@ methods: {
 
     addRemoveOfferList(obj)
     {
-      this.objectsOfferList.push(obj) 
+      //1st check if already exist
+      if ( this.objectsOfferList.findIndex(o => obj.id === o.id) > 0  )
+      {//remove the object
+        this.removeFromObjectsOfferList(obj)
+      }
+      else 
+      {
+        this.objectsOfferList.push(obj) 
+      }
+
+      this.objectsOfferList = this.removeDuplicatedObjects( this.objectsOfferList)
+
+      console.log("Object List : "+this.objectsOfferList);
+
     },
 
+    removeDuplicatedObjects(obj_list)
+    {
+      obj_list = obj_list.filter((obj, index) => {
+              return index === obj_list.findIndex(o => obj.id === o.id);
+      });
+
+      return obj_list ; 
+    },
 
     closeModalObjectDetails()
     {
