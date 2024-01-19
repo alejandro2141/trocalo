@@ -6,6 +6,9 @@
    
 
    <div class="border border-1 rounded" :class="{'text-success border-success': accepted }"   >
+    <div v-if="isNewProposal()" class="bg-success text-start opacity-25" style="width:20px;height:20px; border-radius: 0px 0px 100px 0px;" > 
+        </div>
+
         <div class="d-flex justify-content-between">
             <div class="d-flex justify-content-between">
                 <div class="w-75 m-2">      
@@ -67,6 +70,22 @@ created() {
     },
 
 methods: {
+
+    isNewProposal()
+    {
+        let creationDate = new Date(this.offer.timestamp)
+        let cdate = new Date()
+
+        if ( (cdate.getTime() - creationDate.getTime()) < (1000 * 60 * 60 * 24))
+        {
+            return true 
+        }
+        else 
+        {
+            return false 
+        }
+    },
+
     evaluateRemainingDays(timestamp)
     {
         let creationDate = new Date(timestamp)
