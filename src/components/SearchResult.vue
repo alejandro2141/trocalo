@@ -34,7 +34,6 @@ import axios from 'axios'
           </div>
         </div>
 
-          
         <div style="height:300px">
         </div> 
     
@@ -51,10 +50,15 @@ import axios from 'axios'
                   <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
           </div>
           
-          <div class="m-4 pb-4 d-flex justify-content-center" v-if="showModalDetails">
-                  <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
-                  <button v-else  type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
-          </div>    
+          <div v-if="session_data!=null && session_data.id != objectDetails.owner_id && showModalDetails"  class="m-4 pb-4 d-flex justify-content-center" >
+             <button v-if="session_data!=null && session_data.user!=null && !showMyInventory " @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
+                  
+             <button v-else  type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
+          </div>
+          <div v-else class="text-secondary">
+            Este objeto te pertenece
+          </div> 
+
         </div>
       </div>
           
@@ -74,6 +78,7 @@ import axios from 'axios'
           </div>
         -->
          
+      <!-- FLOW CONTINUES IN Exchange Proposal -->
           <div class="">
             <ExchangeProposal  :session_data="session_data" v-on:emitShowObjectDetails="showExchangeProposal=false ;  showModalDetails=true" :objectProposal=objectDetails />
           </div>
@@ -130,6 +135,7 @@ methods: {
     let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects",searchParams);
     console.log("/public_search_objects Response:"+JSON.stringify(response_json.data))
     this.objects = response_json.data ; 
+    this.objects.sort((a, b) => b.id - a.id );
     this.objects_filtered=this.objects ; 
     },
   
