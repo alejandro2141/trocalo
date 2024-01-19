@@ -130,8 +130,13 @@ methods: {
 
     //filter 
     this.ofSent = proposals.filter(item => item.status ==  1).sort((a, b) => (a.id > b.id) ? 1 : -1);
+    this.ofSent.sort((a, b) =>  b.id - a.id);
+
     this.ofAccepted = proposals.filter(item => item.status ==  100).sort((a, b) => (a.id > b.id) ? 1 : -1);
+    this.ofAccepted.sort((a, b) =>  b.id - a.id);
+
     this.ofEnded = proposals.filter(item => item.status ==  200).sort((a, b) => (a.id > b.id) ? 1 : -1);
+    this.ofEnded.sort((a, b) =>  b.id - a.id);  
     },
 
     closeModal()
