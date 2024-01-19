@@ -23,7 +23,7 @@ import { RouterLink, RouterView } from 'vue-router'
           </RouterLink>
 
           <RouterLink  class="" :class="{'text-decoration-underline' :underline_login}" @click="setUnderline(3)"  to="/ViewLogin"> 
-             <div class="bg-secondary" style="border-radius: 0px 0px 0px 100px;" > 
+             <div class="bg-secondary text-end" style="width:60px;height:50px;border-radius: 0px 0px 0px 100px;" > 
                 <i style="font-size:30px" class="bi bi-person-circle text-dark p-2"></i>
              </div>
           </RouterLink>
@@ -42,7 +42,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
            <!-- <a href="/">Buscar</a>  :class="[isActive ? activeClass : '', errorClass]"  --> 
-            <RouterLink   class="text-secondary mt-3" :class="{'text-decoration-underline' :underline_account}" @click="setUnderline(2)" to="/Viewlogin">{{session_data.user.split(" ")[0] }}</RouterLink> 
+            <RouterLink   class="text-secondary " :class="{'text-decoration-underline' :underline_account}" @click="setUnderline(2)" to="/Viewlogin">
+              <div class="bg-secondary  text-end" style="width:60px;height:50px; border-radius: 0px 0px 0px 100px;" > 
+                <text class="text-dark m-1 " style="font-size:17px" >{{session_data.user.split(" ")[0] }}</text>
+              </div>
+             </RouterLink> 
       </div> 
       
       <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
