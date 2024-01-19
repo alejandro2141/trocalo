@@ -43,11 +43,15 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                     <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref5" /> 
                 </div>
         </div>
-
+        
         <div >
             {{object.description}}
         </div>
         
+        <div v-if="object.blocked_due_proposal_accepted">
+            <i style="font-size:40px" class="bi bi-unlock text-secondary"></i> 
+            Objeto asociado a intercambio aceptado. 
+        </div>
         <!--
         <div class="mt-1" style="font-size:40px">
             <i class="bi bi-shuffle text-secondary"></i>
