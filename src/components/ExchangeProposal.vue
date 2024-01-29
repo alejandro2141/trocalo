@@ -125,7 +125,7 @@ import axios from 'axios'
 
             <div v-for="obj in objectProposalList"  class="d-flex justify-content-start" > 
               <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
-              <div class="text-danger" @click="removeFromObjectProposalList(obj)"> <i class="bi bi-x-lg "></i> </div>
+            <!--  <div class="text-danger" @click="removeFromObjectProposalList(obj)"> <i class="bi bi-x-lg "></i> </div> -->
             </div>
           <!--
             <div style="width:100px" class="d-flex justify-content-center" >
@@ -163,10 +163,11 @@ import axios from 'axios'
         -->
 
       </div>  
+
       </div>
 
           <!-- FOOTER -->
-          <div v-if="!(showMyInventory || showPartnerInventory)" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+          <div v-if="!(showMyInventory || showPartnerInventory) && objectsOfferList.length>0 " class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
               <div   class="d-flex justify-content-center">
                 <div @click="showStep3=true; showStep2 = false">
                   <i class="bi bi-caret-right"></i> 
@@ -174,6 +175,12 @@ import axios from 'axios'
                 </div>
               </div>
           </div>
+          <div v-else>
+            <div   class="d-flex justify-content-center">
+            Selecciona al menos un objeto de tu inventario
+            </div>
+          </div>
+
 
           <!-- END FOOTER -->
       </div>
