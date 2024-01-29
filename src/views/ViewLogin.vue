@@ -39,8 +39,10 @@ import { BKND_CONFIG } from '../../config.js'
         </Transition>    
 
         <!-- CHANGE MY DATA -->
-        <div  style="font-size:20px" class="d-flex justify-content-center mt-1 text-white">
-         <text @click="showInsertEmail_Data=!showInsertEmail_Data" class="border p-2 " style="border-radius:15px"  > &nbsp;&nbsp;&nbsp;&nbsp; Modificar Mis Datos &nbsp;&nbsp;&nbsp;&nbsp; <br> <i class="bi bi-person-lines-fill"></i></text>
+        <div  style="font-size:20px" class="d-flex justify-content-left mt-1 text-white">
+          <text @click="showInsertEmail_Data=!showInsertEmail_Data" class="" style="border-radius:15px"  > 
+              <i class="bi bi-person-lines-fill"></i>&nbsp;&nbsp;&nbsp;&nbsp; Modificar Mis Datos &nbsp;&nbsp;&nbsp;&nbsp; 
+          </text>
         </div>
 
         <!--  INSER EMAIL CHANGE DATA -->
@@ -74,8 +76,11 @@ import { BKND_CONFIG } from '../../config.js'
          <!-- CHANGE MY DATA -->  
 
          <!-- CLOSE SESION -->
-        <div  style="font-size:20px" class="d-flex justify-content-center mt-1 text-success">
-         <text class="border p-2 " style="border-radius:15px" @click="$emit('sessionCreated',null ); " > &nbsp;&nbsp;&nbsp;&nbsp; Cerrar Sesion &nbsp;&nbsp;&nbsp;&nbsp; <br> Exit<i class="bi bi-door-open"></i> <i class="bi bi-person-walking"></i> </text>
+        <div  style="font-size:20px" class="d-flex justify-content-start mt-1 text-success">
+          <text class="" style="" @click="$emit('sessionCreated',null ); " > 
+            <i class="bi bi-door-open"></i> 
+              &nbsp;&nbsp;&nbsp;&nbsp; Cerrar Sesion &nbsp; Exit
+          </text>
         </div>
         <br>
          <!-- CLOSE SESION -->  
@@ -83,9 +88,11 @@ import { BKND_CONFIG } from '../../config.js'
 
 
         <!-- CAMBIAR PASSWORD -->
-        <div  style="font-size:20px" class="d-flex justify-content-center mt-1 text-warning   ">
-         <text @click="showInsertEmail_password=!showInsertEmail_password" class="border p-2 " style="border-radius:15px"  > Cambiar Password <br> 
-          <i class="bi bi-key"></i> </text>
+        <div  style="font-size:20px" class="d-flex justify-content-start mt-1 text-warning   ">
+          <text @click="showInsertEmail_password=!showInsertEmail_password" class="" style="border-radius:15px"  > 
+            <i class="bi bi-key"></i>
+            &nbsp;&nbsp;&nbsp;&nbsp; Cambiar Password 
+          </text>
         </div>
 
         <!--  INSER EMAIL CHANGE PASSWORD -->
