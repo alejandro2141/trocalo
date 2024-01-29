@@ -57,7 +57,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             <i class="bi bi-shuffle text-secondary"></i>
         </div>
         -->
-        <div  v-if="object.alternative1 != 'null' || object.alternative2 != 'null' || object.alternative3 != 'null'  ">
+        <div  v-if="object.alternative1 != 'null' && object.alternative2 != 'null' && object.alternative3 != 'null'  ">
             <br>
             <text class="text-secondary " style="font-size:20px">De preferencia cambiaria por:</text>
             <div class="m-2">
