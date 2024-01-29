@@ -8,6 +8,8 @@ import ExchangeProposalSentEnded  from   '../components/ExchangeProposalSentEnde
 import { BKND_CONFIG } from '../../config.js'
 import axios from 'axios'
 
+
+
 </script>
 
 
@@ -75,10 +77,14 @@ import axios from 'axios'
 
 
 </div>
+
+
+
 <div v-else>
         Ir a Login
-    </div>
-   
+</div>
+
+
 
 </div>
 
