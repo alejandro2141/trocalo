@@ -2,16 +2,21 @@
 import { BKND_CONFIG } from '../config.js'
 import { RouterLink, RouterView } from 'vue-router'
 
+import { useRoute } from 'vue-router'
+const location = useRoute();
+
 </script>
 
 <template>
   <div class=" m-1 p-0 w-100" >
+   
   <div class="d-flex justify-content-center" >
    
     <div  style="width: 350px;">
 
       <div  v-if="session_data==null"  class="d-flex justify-content-between">
           
+
           
           <div>
           </div>
@@ -55,9 +60,12 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink   style="font-size : 45px ; border-radius: 10px;" class="p-0 text-secondary" :class="{'bg-success text-white' :underline_received}" @click="setUnderline(5)" to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
         <RouterLink   style="font-size : 45px ; border-radius: 10px;" class="p-0 text-secondary" :class="{'bg-success text-white' :underline_sent}" @click="setUnderline(6)"  to="/ViewProposalsSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
       --> 
+      <!-- 
         <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;" class="p-2" :class="{'border-bottom'  :underline_inventory}" @click="setUnderline(4)" to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
-        <RouterLink   style="color:#91D5FE ; font-size : 45px ; border-radius: 0px;" class="p-0" :class="{'border-bottom' :underline_received}" @click="setUnderline(5)" to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
-        <RouterLink   style="font-size : 45px ; border-radius: 0px;" class="p-0" :class="{ 'border-bottom' :underline_sent}" @click="setUnderline(6)"  to="/ViewProposalsSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
+      -->
+        <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;" class="p-2" :class="{'border-bottom'  : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
+        <RouterLink   style="color:#91D5FE ; font-size : 45px ; border-radius: 0px;" class="p-0" :class="{'border-bottom'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
+        <RouterLink   style="font-size : 45px ; border-radius: 0px;" class="p-0" :class="{ 'border-bottom' :( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
 
       </div>
       
@@ -130,7 +138,7 @@ export default {
 
 
   methods: {
-
+/*
     setUnderline(val)
     {
 
@@ -166,6 +174,7 @@ export default {
 
 
     },
+
     setUnderlineOff()
     {
         this.underline_search=false 
@@ -175,6 +184,7 @@ export default {
         this.underline_received = false 
         this.underline_sent = false 
     },
+    */
 
     sessionCreated(session_data)
         {
@@ -193,6 +203,9 @@ export default {
       },
 
   watch : {
+
+
+    
         }
 }
 </script>
