@@ -50,14 +50,26 @@ import axios from 'axios'
                   <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
           </div>
           
-          <div v-if="session_data!=null && session_data.id != objectDetails.owner_id && showModalDetails"  class="m-4 pb-4 d-flex justify-content-center" >
-             <button v-if="session_data!=null && session_data.user!=null && !showMyInventory " @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
-                  
-             <button v-else  type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
+          
+          
+          <div v-if="session_data!=null"  class="m-4 pb-4 d-flex justify-content-center" >
+              <!-- && session_data.id != objectDetails.owner_id && showModalDetails -->
+              <div v-if="session_data.id != objectDetails.owner_id" >
+                  <button @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
+              </div>
+              <div v-else >
+                  Este objeto te pertenece
+              </div>
+
           </div>
-          <div v-else class="text-secondary">
-            Este objeto te pertenece
+
+          <div v-else class="text-secondary d-flex justify-content-center">
+            <button   type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
           </div> 
+
+
+
+
 
         </div>
       </div>
