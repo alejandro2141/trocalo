@@ -26,21 +26,25 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
               {{object.owner_name}}
         </div>
         <div class="bg-secondary" style="width:350px; height:300px">
-            <img class=""  style="width:350px; height:300px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1"  /> 
+            <img class=""  style="width:350px; height:300px" :src="main_image"  /> 
         </div>
         
         <div class="d-flex justify-content-start ">
-                <div class="bg-secondary m-1 " style="width:80px; height:80px">
-                    <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref2"  /> 
+                <div @click="viewImage(image1)" class="bg-secondary m-1 " style="width:60px; height:60px">
+                    <img class=""  style="width:60px; height:60px" :src="image1"  /> 
                 </div>
-                <div class="bg-secondary m-1" style="width:80px; height:80px">
-                    <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref3" /> 
+
+                <div @click="viewImage(image2)" class="bg-secondary m-1 " style="width:60px; height:60px">
+                    <img class=""  style="width:60px; height:60px" :src="image2"  /> 
                 </div>
-                <div class="bg-secondary m-1" style="width:80px; height:80px">
-                    <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref4" /> 
+                <div @click="viewImage(image3)" class="bg-secondary m-1" style="width:60px; height:60px">
+                    <img class=""  style="width:60px; height:60px" :src="image3" /> 
                 </div>
-                <div class="bg-secondary m-1" style="width:80px; height:80px">
-                    <img class=""  style="width:80px; height:80px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref5" /> 
+                <div @click="viewImage(image4)" class="bg-secondary m-1" style="width:60px; height:60px">
+                    <img class=""  style="width:60px; height:60px" :src="image4" /> 
+                </div>
+                <div @click="viewImage(image5)" class="bg-secondary m-1" style="width:60px; height:60px">
+                    <img class=""  style="width:60px; height:60px" :src="image5" /> 
                 </div>
         </div>
         
@@ -114,7 +118,15 @@ export default {
     
     data : function() {
         return {
-            showModal:false 
+            showModal:false  ,
+            main_image: PATH_PRODUCT_IMG+'/'+this.object.img_ref1 ,
+            image1: PATH_PRODUCT_IMG+'/'+this.object.img_ref1 ,
+            image2: PATH_PRODUCT_IMG+'/'+this.object.img_ref2 ,
+            image3: PATH_PRODUCT_IMG+'/'+this.object.img_ref3 ,
+            image4: PATH_PRODUCT_IMG+'/'+this.object.img_ref4 ,
+            image5: PATH_PRODUCT_IMG+'/'+this.object.img_ref5 ,
+
+
         }
     },
 
@@ -126,6 +138,14 @@ export default {
 			},
 
   methods: {
+
+        viewImage(image)
+        {
+            this.main_image = image
+            console.log("image to view: "+image)
+            
+        }
+
       },
 
   watch : {
