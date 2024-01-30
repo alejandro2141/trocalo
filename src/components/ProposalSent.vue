@@ -5,7 +5,14 @@
   
     <div class="border border-1 rounded" :class="{'text-success border-success': accepted }"   >
 
-        <div v-if="isNewProposal()" class="bg-success text-start opacity-25" style="width:20px;height:20px; border-radius: 0px 0px 100px 0px;" > 
+        <div class="d-flex justify-content-between">
+            <div v-if="isNewProposal()" class="bg-success text-start opacity-50 text-white" style="width:70px;height:20px; border-radius: 0px 0px 10px 0px;" > 
+                &nbsp;&nbsp; Nuevo
+            </div>
+            
+            <div v-if="offer.negotiation_loop>0" class="bg-warning text-start opacity-50 text-dark" style="width:120px;height:20px; border-radius: 0px 0px 0px 10px;" > 
+                &nbsp;&nbsp;contra oferta ({{offer.negotiation_loop}})
+            </div>
         </div>
 
         <div class="d-flex justify-content-between">
@@ -19,7 +26,17 @@
 
             <div style="font-size:19px" class=" w-25 m-2 d-flex justify-content-end" >
                 <div style="font-size:19px" class="m-2" >
-                   <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}} 
+                        
+                    <div v-if="offer.user_id_creator !=  offer.user_id_destination ">
+                        <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}}
+                    </div>
+                    <!-- 
+                    <div v-else style="font-size:12px">
+                        No Pagas Envio 
+                    </div>
+                    -->
+
+
                 </div>
                 <div class="m-2">
                     <!--  <i class="bi bi-clock"></i>
