@@ -21,10 +21,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div style="font-size:20px">
           &nbsp;&nbsp;&nbsp;&nbsp;  {{object.title}}
         </div>
-        <div  style="font-size:16px" class="w-100 text-end">
-            <!--  <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i> --> 
-              {{object.owner_name}}
-        </div>
+        
         <div class="bg-secondary" style="width:350px; height:300px">
             <img class=""  style="width:350px; height:300px" :src="main_image"  /> 
         </div>
@@ -52,6 +49,12 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             {{object.description}}
         </div>
         
+
+        <div  style="font-size:16px" class="w-100 text-start">
+            <!--  <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i> --> 
+              {{object.owner_name}}
+        </div>
+
         <div v-if="object.blocked_due_proposal_accepted">
             <i style="font-size:40px" class="bi bi-unlock text-secondary"></i> 
             Objeto asociado a intercambio aceptado. 
