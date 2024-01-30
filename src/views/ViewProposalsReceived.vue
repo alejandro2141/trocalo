@@ -20,36 +20,40 @@ import axios from 'axios'
   <div style="height:20px">
   </div>
 
-<!-- OF SENT -->
-    <p class="text-white text-center" style="font-size:20px">Recibidas </p>
-    <p class="text-secondary" style="font-size:12px" >A la espera  que apruebes o rechaces las propuestas </p>
-    <div v-for="of in ofReceived"  > 
-        <ProposalReceived class="m-1" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of'  />
-    </div>
-<!-- OF SENT -->
+  <div v-if='  !(showExchangeProposalReceived || showExchangeProposalReceivedAccepted || showExchangeProposalReceivedEnded) '>
 
-    <br>
+      <!-- OF SENT -->
+          <p class="text-white text-center" style="font-size:20px">Recibidas </p>
+          <p class="text-secondary" style="font-size:12px" >A la espera  que apruebes o rechaces las propuestas </p>
+          <div v-for="of in ofReceived"  > 
+              <ProposalReceived class="m-1" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of'  />
+          </div>
+      <!-- OF SENT -->
 
-<!-- OF SENT ACCEPTED -->
-    <p class=" text-center" style="font-size:20px">Aceptadas </p>
-    <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado de transporte y despacho para completar el intercambio de objetos </p>
-    <div v-for="of in ofAccepted"  > 
-        <ProposalReceived  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
-    </div>
-<!-- OF SENT ACCEPTED -->
-  
-    <br>
+          <br>
 
-<!-- OF SENT ENDED -->
-    <p class="text-center" style="font-size:20px">Finalizadas y Canceladas </p>
-    <p class="text-secondary" style="font-size:12px" >Propuestas que han expirado o fueron canceladas.</p>
-    <div class="text-secondary">
-      <div v-for="of in ofEnded"  > 
-        <ProposalReceived  class="m-1" @click="ofSelected=of ;showExchangeProposalReceivedEnded=true"  :offer='of'  />
-      </div>
-    </div>
-    
-<!-- OF SENT ENDED -->
+      <!-- OF SENT ACCEPTED -->
+          <p class=" text-center" style="font-size:20px">Aceptadas </p>
+          <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado de transporte y despacho para completar el intercambio de objetos </p>
+          <div v-for="of in ofAccepted"  > 
+              <ProposalReceived  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
+          </div>
+      <!-- OF SENT ACCEPTED -->
+        
+          <br>
+
+      <!-- OF SENT ENDED -->
+          <p class="text-center" style="font-size:20px">Finalizadas y Canceladas </p>
+          <p class="text-secondary" style="font-size:12px" >Propuestas que han expirado o fueron canceladas.</p>
+          <div class="text-secondary">
+            <div v-for="of in ofEnded"  > 
+              <ProposalReceived  :ended=true  class="m-1" @click="ofSelected=of ;showExchangeProposalReceivedEnded=true"  :offer='of'  />
+            </div>
+          </div>
+          
+      <!-- OF SENT ENDED -->
+
+  </div>  
 
   <div style="height:150px">
   
