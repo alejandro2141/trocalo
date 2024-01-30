@@ -30,34 +30,36 @@ import axios from 'axios'
 
     <br>
     -->
+  <div v-if='!(showExchangeProposalSent || showExchangeProposalSentAccepted || showExchangeProposalSentEnded)' >
+      <!-- OF SENT -->
+          <p class="text-white text-center" style="font-size:20px">Enviadas </p>
+          <p class="text-secondary" style="font-size:12px" >A la espera de que el otro usuario acepte el intercambio </p>
+          <div v-for="of in ofSent"  > 
+              <ProposalSent  class="m-1" @click="showExchangeProposalSent=true ; offerSent=of"  :offer='of'  />
+          </div>
+      <!-- OF SENT -->
 
-<!-- OF SENT -->
-    <p class="text-white text-center" style="font-size:20px">Enviadas </p>
-    <p class="text-secondary" style="font-size:12px" >A la espera de que el otro usuario acepte el intercambio </p>
-    <div v-for="of in ofSent"  > 
-        <ProposalSent  class="m-1" @click="showExchangeProposalSent=true ; offerSent=of"  :offer='of'  />
-    </div>
-<!-- OF SENT -->
+          <br>
 
-    <br>
+      <!-- OF SENT ACCEPTED -->
+          <p class=" text-center" style="font-size:16px">Aceptadas </p>
+          <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado de transporte y despacho para completar el intercambio de objetos </p>
+          <div v-for="of in ofAccepted"  > 
+              <ProposalSent class="m-1" :accepted='true' @click="showExchangeProposalSentAccepted=true ; offerSentAccepted=of"  :offer='of'  />
+          </div>
+      <!-- OF SENT ACCEPTED -->
+        
+          <br>
 
-<!-- OF SENT ACCEPTED -->
-    <p class=" text-center" style="font-size:16px">Aceptadas </p>
-    <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado de transporte y despacho para completar el intercambio de objetos </p>
-    <div v-for="of in ofAccepted"  > 
-        <ProposalSent class="m-1" :accepted='true' @click="showExchangeProposalSentAccepted=true ; offerSentAccepted=of"  :offer='of'  />
-    </div>
-<!-- OF SENT ACCEPTED -->
-  
-    <br>
+      <!-- OF SENT ENDED -->
+          <p class="text-secondary text-center" style="font-size:16px">Finalizadas </p>
+          <div class="text-secondary">
+            <div v-for="of in ofEnded"  > 
+              <ProposalSent  class="m-1" @click="showExchangeProposalSentEnded=true;  offerSentEnded=of"  :offer='of'  />
+            </div>
+          </div>
 
-<!-- OF SENT ENDED -->
-    <p class="text-secondary text-center" style="font-size:16px">Finalizadas </p>
-    <div class="text-secondary">
-      <div v-for="of in ofEnded"  > 
-        <ProposalSent  class="m-1" @click="showExchangeProposalSentEnded=true;  offerSentEnded=of"  :offer='of'  />
-      </div>
-    </div>
+  </div>
 <!-- OF SENT ENDED -->
 
     <div  v-if="showExchangeProposalSent"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
