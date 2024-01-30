@@ -24,13 +24,23 @@ import axios from 'axios'
 
     <div class="d-flex justify-content-end"> <i  @click="$emit('closeModal')" class="display-1 bi bi-x-lg"></i>  </div>
 
-        <p style="font-size:20px" >Propuesta de Intercambio Recibida</p>
+        <div v-if="offer.negotiation_loop<1" >
+            <p style="font-size:20px" >Propuesta de Intercambio Recibida</p>
+        </div>
+
+        <div v-else   class="bg-warning text-start opacity-75 text-dark w-100" style="height:50px; border-radius: 10px 10px 10px 10px;" > 
+          <text style="font-size:20px " >  &nbsp;&nbsp;contra oferta Recibida </text>
+        </div>
+
        <!-- TITLE -->
           <div style="font-size:20px" class="mb-4 ">
               <text>Tiempo Propuesta </text> &nbsp;&nbsp;&nbsp;
               <text class="text-success" style="font-size:40px" >  {{ evaluateRemainingDays(offer.timestamp)}} dias </text>
               
-          </div>       
+          </div>  
+          
+        
+
           
           <div  style="font-size:16px "  class="text-start">
             {{offer.source_owner_name}} le interesa tu objeto/s:  
