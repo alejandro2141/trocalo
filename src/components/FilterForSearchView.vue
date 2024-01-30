@@ -20,14 +20,17 @@
         
         <text> </text>
     -->
-    <div class="d-flex justify-content-between"  style="font-size:25px" >
+    <div  style="font-size:25px" >
+      <div class="d-flex justify-content-between"> 
       <!-- 
       <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(3) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(3)" > <i style="font-size:40px" class="bi bi-lamp"></i> </text>
       -->
         <text  class="p-0" :class="[ categories.includes(1) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="" class="bi bi-controller "></i> </text>
-        <text  class="p-2" :class="[ categories.includes(2) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="" class="bi-pc-display-horizontal"></i> </text>
         <text  class="p-2" :class="[ categories.includes(3) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(3)" > <i style="" class="bi bi-book"></i> </text>
+        <text  class="p-2" :class="[ categories.includes(2) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="" class="bi bi-house"></i> </text>
+        <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(4)" > <i style="" class="bi bi-universal-access"></i> </text>
         <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(4)" > <i style="" class="bi bi-bicycle "></i> </text>
+        
         
         <!-- 
         <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(6) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(6)" > <i style="font-size:40px" class="bi bi-car-front"></i> </text>
@@ -40,10 +43,47 @@
       <!-- 
         <text><i class="bi bi-list p-2 text-white"></i></text>
       -->
-
-        <text style="border-radius: 30px;"  ><i class="bi bi-arrow-return-left p-2 text-white"></i></text>
+      
+        <text @click="showAllOptions=!showAllOptions" style="border-radius: 30px;"  ><i class="bi bi-arrow-return-left p-2 text-white"></i></text>
+            </div>
     </div>
-        <!--
+
+
+    
+    <div  v-if="showAllOptions" >
+      <div  class="d-flex justify-content-between"  style="font-size:25px" >
+        <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(4)" > <i style="" class="bi bi-wrench"></i> </text>
+        <text  class="p-2" :class="[ categories.includes(3) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(3)" > <i style="" class="bi bi-rocket"></i> </text>
+        <text  class="p-0" :class="[ categories.includes(1) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="" class="bi bi-car-front"></i> </text>
+        <text  class="p-2" :class="[ categories.includes(2) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="" class="bi bi-sunglasses"></i> </text>
+        <text  class="p-2" :class="[ categories.includes(3) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(3)" > <i style="" class="bi bi-camera"></i> </text>
+
+      </div>
+      <div  class="d-flex justify-content-between"  style="font-size:25px" >
+          <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(4)" > <i style="" class="bi bi-card-image"></i> </text>
+          <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(4)" > <i style="" class="bi bi-cpu"></i> </text>
+          <text  class="p-0" :class="[ categories.includes(1) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="" class="bi bi-plug"></i> </text>
+          <text  class="p-2" :class="[ categories.includes(2) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="" class="bi bi-printer"></i> </text>
+          <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="addCategoryToSearch(4)" > <i style="" class="bi bi-phone-vibrate"></i> </text>
+      
+      </div>
+
+<div>
+    <select name="lenguajes" id="lang">
+        <option value="1">Hogar</option>
+        <option value="1">Hogar</option>
+        <option value="1">Hogar</option>
+        <option value="1">Hogar</option>
+        <option value="1">Hogar</option>
+        <option value="1">Hogar</option>
+        <option value="1">Hogar</option>
+        
+     </select>
+</div>
+
+    </div>
+   
+    <!--
         <text><i class="bi bi-house"></i></text>
         <text>| </text>
         
@@ -82,6 +122,7 @@ export default {
       return {
         textFilter : null ,
         categories : [] , 
+        showAllOptions : false ,
       }
   },
 
