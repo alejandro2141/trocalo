@@ -4,7 +4,7 @@ import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
 import InventoryList from '../components/InventoryList.vue' 
 
 
-import { BKND_CONFIG } from '../../config.js'
+import { CATEGORIES,  BKND_CONFIG } from '../../config.js'
 import axios from 'axios'
 </script>
 
@@ -60,9 +60,18 @@ import axios from 'axios'
     <br>
 
 
-    Selecciona algunas categorias de tu objeto:
     <div class="d-flex justify-content-between w-75">
-        
+
+        <select v-model="input_exchange_category1" class=" w-50 form-select bg-dark text-white" aria-label="Default select example">
+            <option v-for="category in CATEGORIES" :value=category.id >
+              {{category.name}} 
+            </option>
+        </select>
+
+
+
+
+        <!-- 
         <div class="w-25">
                   <select  v-model="input_exchange_category1" class="form-control bg-dark border-white text-white" id="sel1">
                     <option value="0" >Categoria 1</option>
@@ -76,32 +85,8 @@ import axios from 'axios'
                     <option value="8" >Electronica</option>
                    </select>
         </div>
-        <div class="w-25">
-                  <select  v-model="input_exchange_category2" class="form-control bg-dark border-white text-white" id="sel1">
-                    <option value="0" >Categoria 2</option>
-                    <option value="1" >Juegos</option>
-                    <option value="2" >Computación</option>
-                    <option value="3" >Libros</option>
-                    <option value="4" >Deportes</option>
-                    <option value="5" >Decoracion</option>
-                    <option value="6" >Herramientas</option>
-                    <option value="7" >Hogar</option>
-                    <option value="8" >Electronica</option>
-                   </select>
-        </div>
-        <div class="w-25">
-                  <select  v-model="input_exchange_category3" class="form-control bg-dark border-white text-white" id="sel1">
-                    <option value="0" >Categoria 3</option>
-                    <option value="1" >Juegos</option>
-                    <option value="2" >Computación</option>
-                    <option value="3" >Libros</option>
-                    <option value="4" >Deportes</option>
-                    <option value="5" >Decoracion</option>
-                    <option value="6" >Herramientas</option>
-                    <option value="7" >Hogar</option>
-                    <option value="8" >Electronica</option>
-                   </select>
-        </div>
+        -->
+       
         
     </div>
     
