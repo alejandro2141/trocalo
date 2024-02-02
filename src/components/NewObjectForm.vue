@@ -222,7 +222,6 @@ created() {
     },
 
 methods: {
-
  //  IMAGE 1 
  /*   
  show_uploadPicture_1()
@@ -230,6 +229,33 @@ methods: {
         this.$refs.show_uploadPicture_1_input.click()
     },
     */
+    capitalizeNames(newVal) {
+    if (newVal!=null && newVal.length>0)
+    {
+        name= newVal.charAt(0).toUpperCase() + newVal.slice(1).toLowerCase() ;
+
+        /*
+        for (let i = 0; i < newVal.length; i++) {
+                
+                if ( newVal[i-1] === " "  )
+                {
+                console.log("Text Before SPace:-"+newVal.slice(0,i)+"-");
+                console.log("Text Afetr Space:-"+newVal.slice(i)+"-");
+                name= newVal.slice(0,i) + newVal.charAt(i).toUpperCase() + newVal.slice(i+1).toLowerCase() 
+
+               // name=  newVal.slice(0,i) +  newVal.charAt(i+1).toUpperCase()+ newVal.slice(i+2).toLowerCase()
+                }
+            }
+            */
+        return name 
+    }
+    else 
+    {
+        return null 
+    }
+
+}, 
+
     uploadImage_1(e)
     {
       const image = e.target.files[0];
@@ -305,7 +331,6 @@ async upload(reader, img_num)
 //  IMAGE upload
     async upload_product()
     {
-        
           const data_product = {
                           name : this.input_name , 
                           description : this.input_description , 
@@ -324,12 +349,9 @@ async upload(reader, img_num)
                           image3 : this.previewImage_3,
                           image4 : this.previewImage_4,
                           image5 : this.previewImage_5,   
-
                               }
           console.log("Sending to /user_create_product" + JSON.stringify(data_product) )
-          
           let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/user_create_product",data_product );
-
     },
 
 
@@ -339,6 +361,11 @@ async upload(reader, img_num)
     },
 
 watch : {
+      input_name(newVal,oldVal)
+      {
+       this.input_name=this.capitalizeNames(newVal)
+      }
+
       }
 }
 </script>
