@@ -1,8 +1,17 @@
 
 <template>
 
-  <SearchResult :session_data="session_data" />
+<div>
+  
+  <div>
+   <SearchResult :session_data="session_data" />
+  </div>
+  
+  <div>
+     nueva cateogria
+  </div>
 
+</div>
 </template>
 
 <style>
