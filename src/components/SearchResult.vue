@@ -34,8 +34,7 @@ import axios from 'axios'
           </div>
         </div>
 
-        <div style="height:300px">
-        </div> 
+        
     
     </div>
 
