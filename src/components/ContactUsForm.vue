@@ -25,49 +25,54 @@ import axios from 'axios'
            
             <textarea v-model="message" style="border-radius: 15px;" id="w3review" placeholder="Ingrese su Mensaje" name="w3review" rows="4" cols="50" class="p-3"></textarea>
         -->
-    <div class="text-center" v-if="show_confirm == !true">
-    <!--
-        <text class="text-secondary">Tu Email</text>
-        <br>
-        
-        <div class="d-flex justify-content-center">
-        <input type="email" maxlength="40" style="border-radius: 10px;" autocomplete="off" class="form-control w-75 m-1 " id="inputEmail4" placeholder="" v-model="email">
-        </div>
-    -->
-        <text class="text-secondary" style="font-size:20px">¿ Como te sientes ? <i class="bi bi-envelope"></i> </text>
-        <div class="d-flex justify-content-center">
-						
-                        <div>
-                            <textarea maxlength="100" style="border-radius: 10px; "  class="form-control-lg h-100 w-90 m-1 " id="story" v-model="text_message" name="story"  placeholder="Muy bien...">
-							</textarea>
-						</div>
-						
-		</div>
-<br>
-     <!--    Como te sientes? <br>-->
-        <div class="m-0 d-flex justify-content-evenly">
-							
-							<text>
-								<i @click="animo =1;" class="text-danger bi bi-emoji-angry display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==1 }"  style="border-radius: 30px; " > </i><br>
-                            </text>
-							<text>
-							    <i @click="animo =2;" class="text-secondary bi bi-emoji-neutral display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==2 }"  style="border-radius: 30px; " ></i><br>
-                            </text>
-							<text>
-							    <i @click="animo =3;"  class="text-success bi bi-emoji-heart-eyes display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==3 }"  style="border-radius: 30px; "></i><br>
-                            </text>
-							<!--
-							<i @click="animo =4;text_message=text_message.concat(' Tiene errores de software.  Arreglalo infame programador !!. ') " class="text-white bi bi-bug h4 p-2"></i><br>
-							<i @click="animo =5;text_message=text_message.concat(' Esta bueno. Me gusta.  Puede mejorar !. ') " class="text-white bi bi-balloon-heart h4 p-2"></i><br>
-							-->
-		</div>
+    <div class="text-center" v-if="comment_sent == false">
+            <!--
+            <text class="text-secondary">Tu Email</text>
+            <br>
+            
+            <div class="d-flex justify-content-center">
+            <input type="email" maxlength="40" style="border-radius: 10px;" autocomplete="off" class="form-control w-75 m-1 " id="inputEmail4" placeholder="" v-model="email">
+            </div>
+            -->
+            <text class="text-secondary" style="font-size:20px">¿ Como te sientes ? <i class="bi bi-envelope"></i> </text>
+            <div class="d-flex justify-content-center">
+                            
+                            <div>
+                                <textarea :disabled="comment_sent" maxlength="100" style="border-radius: 10px; "  class="form-control-lg h-100 w-90 m-1 " id="story" v-model="text_message" name="story"  placeholder="Muy bien...">
+                                </textarea>
+                            </div>      
+            </div>
 
         <br>
-        <div class="d-flex justify-content-evenly  ">
-            <div @click="showComments()"  type="" class=""> <text class="text-secondary"> Ver <br>comentarios </text></div>
-            <button @click="sendComments();showComments()"  type="button" class="btn btn-secondary"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
-        </div>
-        <br>
+        <!--    Como te sientes? <br>-->
+            <div class="m-0 d-flex justify-content-evenly">
+                                
+                                <text>
+                                    <i @click="animo =1;" class="text-danger bi bi-emoji-angry display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==1 }"  style="border-radius: 30px; " > </i><br>
+                                </text>
+                                <text>
+                                    <i @click="animo =2;" class="text-secondary bi bi-emoji-neutral display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==2 }"  style="border-radius: 30px; " ></i><br>
+                                </text>
+                                <text>
+                                    <i @click="animo =3;"  class="text-success bi bi-emoji-heart-eyes display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==3 }"  style="border-radius: 30px; "></i><br>
+                                </text>
+                                <!--
+                                <i @click="animo =4;text_message=text_message.concat(' Tiene errores de software.  Arreglalo infame programador !!. ') " class="text-white bi bi-bug h4 p-2"></i><br>
+                                <i @click="animo =5;text_message=text_message.concat(' Esta bueno. Me gusta.  Puede mejorar !. ') " class="text-white bi bi-balloon-heart h4 p-2"></i><br>
+                                -->
+            </div>
+
+            <br>
+            <div class="d-flex justify-content-evenly  ">
+                <div @click="showComments()"  type="" class=""> <text class="text-secondary"> Ver <br>comentarios </text></div>
+                <button @click="sendComments();showComments()"  type="button" class="btn btn-secondary"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
+            </div>
+            <br>
+    </div>
+    <div v-else style="height:200px">
+        <text style="font-size:30px">Gracias por tus comentarios</text><br>
+        <i style="font-size:50px" class="bi bi-emoji-kiss"></i>
+
     </div>
 
 
@@ -126,7 +131,8 @@ export default {
        show_confirm : false , 
        show_comments : false ,
 
-       comments: []
+       comments: [] ,
+       comment_sent: false,
     
 }
   },
@@ -153,6 +159,7 @@ export default {
 
         console.log("/private_send_comment Request: "+JSON.stringify(json_request))
         let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_send_comment", json_request);
+        this.comment_sent = true ;
         this.getComments() 
        // console.log("/private_send_comment Response:"+JSON.stringify(response_json.data))
     },
