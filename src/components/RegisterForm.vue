@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
-import { BKND_CONFIG } from '../../config.js'
+import {  REGION_ZONES, BKND_CONFIG } from '../../config.js'
 </script>
 
 <template  >
@@ -73,26 +73,79 @@ import { BKND_CONFIG } from '../../config.js'
                     <div>
                         <div class=" m-1 ">
                             <label for="inputEmail4">Ingrese contraseña </label>
-                            <input :type="type_password1"  autocomplete="off" class="form-control" :class="{'border-danger' : (passwd != passwd2 && passwd2!=null)   }"  id="inputPassword4"  v-model="passwd">
+                            <input :type="type_password1"  autocomplete="off" class="form-control" :class="{'border-danger' : (passwd != passwd2 && passwd2!=null)   }"  placeholder="***" id="inputPassword4"  v-model="passwd">
                                        </div>
                     </div>
 
                     <div class=" m-1 ">
-                        <label v-if="passwd == passwd2 && passwd2!=null && passwd != null" for="inputPassword4">Repita contraseña</label> 
-                        <label v-else class="text-white">Repita contraseña</label> 
-                         <input :type="type_password1"  autocomplete="off" class="form-control" :class="{'border-danger' : (passwd != passwd2 && passwd2!=null)   }" id="inputPassword2"  v-model="passwd2">
+                         <label >Repita contraseña</label> 
+                         <input :type="type_password1"  autocomplete="off" class="form-control" :class="{'border-danger' : (passwd != passwd2 && passwd2!=null)   }" placeholder="***" id="inputPassword2"  v-model="passwd2">
                     </div>
                     <div class="mt-4 ml-2">
                         <i @click="showMePassword1()" style="font-size:30px" class="bi" :class="{ 'bi-eye-slash': !showPassword1 , 'bi-eye': showPassword1   }" > </i>
                     </div>
+                    
+                </div>
+                <div  class="">
+                        
+                            <text :class="{'text-danger' : (passwd==null  || (passwd!=null && passwd.length<5))  }" >
+                                <i v-if="! (passwd==null  || (passwd!=null && passwd.length<5)) " style="font-size:20px" class="bi bi-check-lg text-success"></i>
+                                Contraseña más de 6 caracteres    
+                            </text><br>
+                            <text :class="{'text-danger' : (passwd==null || !(passwd == passwd2 && passwd2!=null && passwd != null ))  }">
+                               <i v-if="(passwd == passwd2 && passwd2!=null && passwd != null )" style="font-size:20px" class="bi bi-check-lg text-success"></i>
+                                Contraseña deben ser iguales
+                            </text>
+                        
+
+                      
                 </div>
 
-
                 </div>
-                <br><br>
+                
+
+                <br>
                 <p style="font-size:20px">Dirección</p>
+
+                <div class="form-group">
+                    <label for="inputSpecialty">Region</label>
+                    <br>
+                <!-- 
+                    <input type="text"  autocomplete="off"  class="form-control" id="specialty" placeholder="Ej: Kinesiologia, psicologia, terapia.." v-model="specialty">
+                -->
+                    <select class="form-select form-select"  name="languages" id="lang" v-model="address_location_region" placeholder="Seleccione" >
+                       
+                        <option  value="0">-- Seleccione ---</option>        
+                        <option v-for="region in REGION_ZONES.regions" :value="region.number" >{{region.name}}</option>        
+                      
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputSpecialty">Comuna</label>
+                    <br>
+                <!-- 
+                    <input type="text"  autocomplete="off"  class="form-control" id="specialty" placeholder="Ej: Kinesiologia, psicologia, terapia.." v-model="specialty">
+                -->
+                    <select class="form-select form-select"  name="languages" id="lang" v-model="address_location_zone" placeholder="XXX" >
+                        
+                        <option  value="0">- Seleccione Comuna -</option>        
+                        <option v-for="comuna in comunas_list_filtered" :value="comuna.identifier" >{{comuna.name}}</option>        
+                      
+
+                    </select>
+                </div>
+                <br>
+
+
+
+
                 <div class="form-group">
 
+                    <label for="inputSpecialty">Su Dirección </label>
+                    <br>
                     <div class=" m-1 ">
                          <input type="text" autocomplete="off" placeholder="Calle"  class="form-control" id="address_street_name" v-model="address_street_name">
                     </div>
@@ -106,21 +159,9 @@ import { BKND_CONFIG } from '../../config.js'
                             <input type="text"  autocomplete="off" class="form-control " id="address_street_apartment" placeholder="Dpto" v-model="address_street_apartment">
                         </div>
                     </div>
-                    
-
-
-                <div class="form-group">
-                    <label for="inputSpecialty">Comuna</label>
                     <br>
-                <!-- 
-                    <input type="text"  autocomplete="off"  class="form-control" id="specialty" placeholder="Ej: Kinesiologia, psicologia, terapia.." v-model="specialty">
-                -->
-                    <select class="form-select form-select"  name="languages" id="lang" v-model="address_location_zone" placeholder="XXX" >
-                        <option value="100">Independencia</option>
-                        <option value="200">Santiago</option>
-                        <option value="300">Recoleta</option>
-                    </select>
-                </div>
+
+                
 
 
                    
@@ -188,21 +229,26 @@ export default {
        last_name2 : "" ,
        email  : "" ,
        phone  : "" ,
-       id_number  : 0 ,
+       id_number  : "" ,
        passwd  : null ,
        passwd2  : null ,
 
 
-       address_street_name  : "" ,
-       address_street_number  : 0 ,
-       address_street_apartment  : 0 ,
-       address_location_zone  : 0 ,
-       address_reference : "" ,
+       address_street_name          : "" ,
+       address_street_number        : null ,
+       address_street_apartment     : null  ,
+       address_location_zone        : 0 ,
+       address_location_region      : 0 ,
+       address_reference            : "" ,
        
        showKnowMore1 : false ,
        showPassword1 : false ,
        showPassword2 : false ,
-       type_password1 : "password" 
+       type_password1 : "password" ,
+
+       comunas_list_filtered : null 
+
+
     }
   },
 
@@ -251,6 +297,7 @@ export default {
                     address_street_name:	this.address_street_name,
                     address_street_number : this.address_street_number,
                     address_street_apartment : this.address_street_apartment,
+                    address_location_region : this.address_location_region,
                     address_location_zone : this.address_location_zone,
                     address_reference : this.address_reference
 
@@ -298,6 +345,57 @@ export default {
   },
 
   watch : {
+
+        names(newVal,oldVal)
+        {
+            console.log("new value-"+newVal+"-")
+            console.log("last char-"+newVal[newVal.length-1]+"-")
+            
+
+            if ( newVal[newVal.length-1] === " ")
+            {
+                console.log("Ingreso Espacio "+newVal[newVal.length-1]+"-")
+                const nameSplitted = newVal.split(" ");
+                
+            }
+
+            //  if (newVal[newVal.length-1] ==" " && newVal[newVal.length-2] !=" " )
+            /*
+            if (newVal != oldVal  )
+            {
+            console.log("Name change to "+newVal)
+            const nameSplitted = newVal.split(" ");
+            let finalName=""
+            console.log("Name change to "+nameSplitted)
+            //let nameFinal=""
+            for (let i = 0; i < nameSplitted.length; i++) {
+            
+                //nameSplitted[i]=nameSplitted[i].charAt(0).toUpperCase() +nameSplitted[i].slice(1).toLowerCase() 
+                finalName= finalName +" "+nameSplitted[i].charAt(0).toUpperCase() +nameSplitted[i].slice(1).toLowerCase() 
+            }
+            console.log("Final Name "+finalName)
+            //console.log("finalName :"+finalName)
+
+           //this.names = newVal.charAt(0).toUpperCase() + newVal.slice(1).toLowerCase();;
+            this.names = finalName 
+            }
+            */            
+        },
+
+        address_location_region(newVal, oldVal)
+        {
+            console.log("REGION CHANGE TO : "+newVal )
+
+            let aux = REGION_ZONES.regions.filter((obj, index) => { return obj.number ===  newVal  } )  
+
+
+
+            this.comunas_list_filtered = aux[0].communes
+
+            console.log("REgion comunas:"+JSON.stringify(this.comunas_list_filtered) )
+
+        },
+
          // NO SE ACTUALIZAAAA
         passwd2(oldval,newval)
         { 
