@@ -113,7 +113,7 @@ export default {
 
         objects_filtered : [] ,
 
-        search_categories : [1,5] ,
+        search_categories : [7] ,
 
 
       }
