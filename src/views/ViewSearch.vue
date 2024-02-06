@@ -8,7 +8,9 @@
   </div>
   
   <div>
-     nueva cateogria
+    --- 
+    <SearchCategoriesGames />
+    ---
   </div>
 
 </div>
@@ -22,12 +24,13 @@
 <script>
 
 import SearchResult from '../components/SearchResult.vue'
+import SearchCategoriesGames from '../components/SearchCategoriesGames.vue'
 
 
 export default {
 
   components: {
-      SearchResult
+      SearchResult,SearchCategoriesGames 
   },
   
   data : function() {
