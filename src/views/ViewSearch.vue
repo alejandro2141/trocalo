@@ -8,9 +8,15 @@
   </div>
   
   <div>
-    --- 
+    --- Jugetes ---
     <SearchCategoriesGames />
-    ---
+  </div>
+  <div>
+    --- Mas Populares  --- 
+  </div>
+
+  <div>
+    --- Cambia Tu Ropa  --- 
   </div>
 
 </div>
