@@ -4,19 +4,21 @@
 <div>
   
   <div>
+    <!-- 
    <SearchResult :session_data="session_data" />
+    -->
+    <SearchCategoriesLast :session_data="session_data"/>
   </div>
   
   <div>
-    --- Jugetes ---
-    <SearchCategoriesGames />
+     <SearchCategoriesGames />
   </div>
   <div>
-    --- Mas Populares  --- 
+    <SearchCategoriesBooks/> 
   </div>
 
   <div>
-    --- Cambia Tu Ropa  --- 
+   <SearchCategoriesClothes />
   </div>
 
 </div>
@@ -30,13 +32,15 @@
 <script>
 
 import SearchResult from '../components/SearchResult.vue'
+import SearchCategoriesLast from '../components/SearchCategoriesLast.vue'
 import SearchCategoriesGames from '../components/SearchCategoriesGames.vue'
-
+import SearchCategoriesBooks from '../components/SearchCategoriesBooks.vue'
+import SearchCategoriesClothes from '../components/SearchCategoriesClothes.vue'
 
 export default {
 
   components: {
-      SearchResult,SearchCategoriesGames 
+      SearchResult,SearchCategoriesGames,SearchCategoriesBooks , SearchCategoriesClothes, SearchCategoriesLast
   },
   
   data : function() {
