@@ -11,8 +11,12 @@ import { CATEGORIES } from '../../config.js'
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="font-size:40px" class="bi bi-controller "></i> </text>
         -->
-        <input type="text" placeholder="( Busca y cambia objetos )" v-model="textFilter" style="text-align:center; color:white font-size:23px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-white border-0 p-0" required minlength="4" maxlength="30" size="14" />
-       <!-- 
+        <input type="text" placeholder="( Busca y cambia objetos )" v-model="textFilter" style="text-align:center; color:white font-size:23px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-white border-2 p-0 border-warning" required minlength="4" maxlength="30" size="11" />
+        <div @click="search(textFilter)" class=""> 
+          <i class=" text-success bi bi-arrow-return-left p-3"></i>
+        </div>
+       
+        <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(2) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="font-size:40px" class="bi bi-bicycle "></i> </text>
         -->
            
@@ -128,21 +132,25 @@ created() {
 
 methods: {
 
+    search(text)
+    {  
+      this.$emit('filterByText',text)
+    },
+
     addCategoryToSearch(val)
     {
       if (this.categories.includes(val,0))
       {
         //this.categories= this.categories.filter(element =>  element != val );
         this.categories = []
-        console.log("category already found")
+        //console.log("category already found")
       }
       else 
       {
        this.categories = []
       this.categories.push(val)
       } 
-
-      console.log("this.categories[]: "+this.categories)
+      // console.log("this.categories[]: "+this.categories)
       this.$emit('filterByCategory',this.categories)
     },
   
@@ -162,17 +170,17 @@ watch : {
 
   category(newVal,oldVal)
   {
-    console.log("New Category Val : "+newVal)
+   // console.log("New Category Val : "+newVal)
     this.categories = []
     if (newVal != 0)
     {
     this.addCategoryToSearch(newVal);
     }
-    this.$emit('filterByCategory',this.categories)
+    //this.$emit('filterByCategory',this.categories)
 
   },
  
-    
+    /*
   textFilter(newVal, oldVal)
     {
       console.log("textFIlter change to "+newVal)
@@ -186,6 +194,7 @@ watch : {
       }
 
     }
+    */
 
       }
 }
