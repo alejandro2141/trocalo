@@ -1,0 +1,93 @@
+<script setup>
+import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
+
+import { PATH_PRODUCT_IMG } from '../../config.js'
+
+
+</script>
+
+<template>
+
+    <div  class="mt-0 modal-centered bg-dark" style="width:350px ; font-size:16px">
+        
+        <div class="d-flex justify-content-end m-1"> 
+            <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
+        </div>
+
+        <InventoryObjectDetailed  :object=object   :session_data="session_data" />
+    
+        <br>
+
+
+        <div v-if="session_data!=null"  class="m-4 pb-4 d-flex justify-content-center" >
+              <!-- && session_data.id != objectDetails.owner_id && showModalDetails -->
+              <div v-if="session_data.id != objectDetails.owner_id" >
+                  <button @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
+              </div>
+              <div v-else >
+                  Este objeto te pertenece
+              </div>
+        </div>
+
+        <div v-else class="text-secondary d-flex justify-content-center">
+            <button   type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
+        </div> 
+
+
+    </div>
+
+</template>
+
+<style scoped>
+
+.modal-centered{ 
+    
+    position: absolute;
+    top: 0% ; 
+    /*
+    top: 80%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    */
+    }
+
+</style>
+
+<script>
+//const showForm = ref(false)
+import InventoryList from './InventoryList.vue'
+
+export default {
+
+    components: {
+        InventoryList
+    },
+    
+    data : function() {
+        return {
+           }
+    },
+
+    props: ['session_data','object' ],
+    emits: ['closeModal'],
+
+  created() {
+		console.log("created lala inventory Object detailed")
+			},
+
+  methods: {
+    closeModal()
+    {
+        this.$emit('closeModal')
+    }
+
+
+
+      },
+
+  watch : {
+        }
+}
+</script>
