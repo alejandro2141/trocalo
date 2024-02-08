@@ -15,27 +15,21 @@ import axios from 'axios'
 
   <div  style="width:400px" class="m-0"   >
 
-    <div style="height:10px">
-    </div>
+    <text v-if="objects_filtered !=null && objects_filtered.length > 0">
+ Resultado de tu busqueda<br>
+    </text>
 
-
-    <div class="m-0 " v-if=" !showModalDetails && !showExchangeProposal ">
-        <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory" />
-    </div>
-<br>
-    
     <!-- 1- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
     <div v-if="showExchangeProposal==false && showModalDetails==false" >
         
         <div v-if="objects_filtered !=null" class="d-flex flex-wrap"> 
+         
           <div v-for="obj in objects_filtered"  > 
          
             <InventoryObject @click="objectDetails=obj ;showModalDetails=true;" :object=obj  class="m-1"/>
           </div>
         </div>
 
-        
-    
     </div>
 
     <!-- 2- Show Object Details-->
@@ -83,11 +77,7 @@ import axios from 'axios'
       <div class="d-flex justify-content-center">
         
         <div class="w-100">
-        <!-- DONT NEEDED
-          <div class="d-flex justify-content-end m-2 bg-danger"  > 
-            <i @click="showExchangeProposal=false ;  showModalDetails=true" class="bi bi-x-lg display-1" ></i>
-          </div>
-        -->
+     
          
       <!-- FLOW CONTINUES IN Exchange Proposal -->
           <div class="">
@@ -119,28 +109,21 @@ export default {
         showMyInventory:false ,
         showExchangeProposal : false  ,
         objectDetails : null, 
-
-        //trae desde BKND
-                           
-        objects : [ ],
-
-        objects_filtered : [] ,
-
-        search_params : null ,
-
+      //trae desde BKND
+      //  objects : [ ],
+      //  objects_filtered : [] ,
+      //  search_params : null ,
       }
   },
-  props: ['session_data'],
+
+  props: ['session_data',  'objects_filtered' ],
   emits: ['sessionCreated'],
 
 created() {
-    console.log("APP CREATED")
-    this.getObjects(this.search_params)
-    console.log("APP CREATED : Objects :"+JSON.stringify(this.objects))
-    },
+       },
 
 methods: {
-
+/*
     async getObjects(searchParams)
     {
     let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects",searchParams);
@@ -176,6 +159,7 @@ methods: {
         this.objects_filtered=this.objects
       }
     },
+    */
 
     closeObjectAndMyInventoryModal()
     {
