@@ -25,26 +25,26 @@ import axios from 'axios'
       </div>
 
       <div>
-          <SearchResult   :objects_filtered=" objects_filtered" :session_data="session_data" /> 
+          <SearchResult   :objects_filtered="objects_filtered" :session_data="session_data" /> 
       </div>
       
       <div>
           <hr>
-          <SearchCategoriesLast :session_data="session_data"/>
+          <SearchCategoriesLast v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data"/>
       </div>
       
       <div>
           <hr>
-          <SearchCategoriesGames v-on:showPublicObjectDetails="showPublicObjectDetails"  />
+          <SearchCategoriesGames v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
       <div>
           <hr>
-          <SearchCategoriesBooks/> 
+          <SearchCategoriesBooks v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" /> 
       </div>
 
       <div >
           <hr>
-          <SearchCategoriesClothes />
+          <SearchCategoriesClothes v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
 
   </div>
