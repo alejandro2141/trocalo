@@ -13,7 +13,7 @@ import axios from 'axios'
 
 <template>
 
-  <div  style="width:400px;background-color:#00062B" class="m-0"   >
+  <div  style="width:400px;" class="m-0"   >
 
       <text style="font-size: 25px;"> Jugetes de Coleccion </text>
       <br>
@@ -44,19 +44,17 @@ export default {
        
       }
   },
-  props: [],
+  props: ['session_data'],
   emits: ['showPublicObjectDetails'],
 
 created() {
-    console.log("Search Categories Games")
-    
     let jsonRequest = {
         search_categories : [7]
       }
 
     this.getObjectsCategory(jsonRequest)
     //this.filterByCategory()
-    console.log("APP CREATED : Search Categories Games Objects :"+JSON.stringify(this.objects))
+    console.log("APP CREATED : Search Categories  :"+JSON.stringify(this.objects))
     },
 
 methods: {
