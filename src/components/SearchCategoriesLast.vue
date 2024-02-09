@@ -12,9 +12,9 @@ import axios from 'axios'
 </script>
 
 <template>
-  <div  style="width:400px;background-color:#00062B" class="m-0"   >
+ <div  style="width:400px;" class="m-0"   >
 
-    <text style="font-size: 25px;"> Jugetes de Coleccion </text>
+    <text style="font-size: 25px;"> Ultimas novedades </text>
     <br>
 
     <!-- 1 LIST OBJECT CATEGORIES -->
@@ -24,7 +24,7 @@ import axios from 'axios'
           </div>
     </div>
 
-  </div>
+</div>
 </template>
 
 <style scoped>
@@ -53,7 +53,7 @@ export default {
       }
   },
   props: ['session_data'],
-  emits: ['sessionCreated'],
+  emits: ['showPublicObjectDetails'],
 
 created() {
     console.log("APP CREATED")
@@ -63,20 +63,22 @@ created() {
 
 methods: {
 
-  showObjectDetailsPublic(obj)
+    async getObjects(searchParams)
+    {
+    let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects_last",searchParams);
+    console.log("/public_search_objects_last Response:"+JSON.stringify(response_json.data))
+    this.objects = response_json.data ; 
+    this.objects.sort((a, b) => b.id - a.id );
+    this.objects_filtered=this.objects ; 
+    },
+  
+    showObjectDetailsPublic(obj)
     {
       console.log("InventoryObjectDetailedPUblicOffer emit to showPublicObjectDetails ")
       this.$emit('showPublicObjectDetails',obj)
     },
 
-    async getObjects(searchParams)
-    {
-    let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects_by_category",searchParams);
-    console.log("/public_search_objects_by_category Response:"+JSON.stringify(response_json.data))
-    this.objects = response_json.data ; 
-    this.objects.sort((a, b) => b.id - a.id );
-    this.objects_filtered=this.objects ; 
-    },
+
 
 
     },
