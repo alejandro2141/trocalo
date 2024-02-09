@@ -32,65 +32,6 @@ import axios from 'axios'
 
     </div>
 
-    <!-- 2- Show Object Details-->
-    <div v-if="showModalDetails"   class="w-100 position-absolute top-0 start-0 bg-dark " >
-      <div class="d-flex justify-content-center">
-        <div>
-          <div class="w-100" >
-                  <div class="d-flex justify-content-end m-1"> 
-                  <i @click="showModalDetails=false" class="bi bi-x-lg display-1" ></i>
-                  </div>
-                  <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
-          </div>
-          
-          
-          
-          <div v-if="session_data!=null"  class="m-4 pb-4 d-flex justify-content-center" >
-              <!-- && session_data.id != objectDetails.owner_id && showModalDetails -->
-              <div v-if="session_data.id != objectDetails.owner_id" >
-                  <button @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
-              </div>
-              <div v-else >
-                  Este objeto te pertenece
-              </div>
-
-          </div>
-
-          <div v-else class="text-secondary d-flex justify-content-center">
-            <button   type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
-          </div> 
-
-
-
-
-
-        </div>
-      </div>
-          
-        <div style="height:200px">
-        </div>  
-    </div>
-
-     <!-- 3 Show Exchange Proposal -->
-    <div v-if="showExchangeProposal"   class="w-100 position-absolute top-0 start-0 bg-dark " >
-      
-      <div class="d-flex justify-content-center">
-        
-        <div class="w-100">
-     
-         
-      <!-- FLOW CONTINUES IN Exchange Proposal -->
-          <div class="">
-            <ExchangeProposal  :session_data="session_data" v-on:emitShowObjectDetails="showExchangeProposal=false ;  showModalDetails=true" :objectProposal=objectDetails />
-          </div>
-          
-
-        </div>
-      </div>
-
-    </div>
-
-
 </div>
   
 </template>
