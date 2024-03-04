@@ -13,11 +13,26 @@ import axios from 'axios'
 
 <template>
 
-  <div  style="width:400px" class="m-0"   >
+<div  style="width:400px" class="m-0"   >
 
+  <!-- 
     <text v-if="objects_filtered !=null && objects_filtered.length > 0">
- Resultado de tu busqueda<br>
+     Resultado de tu busqueda<br>
+    </text><text v-if="objects_filtered !=null && objects_filtered.length == 0">
+      No encontramos Objetos para tu busqueda<br>
     </text>
+  -->
+  
+    <text v-if="objects_filtered !=null && objects_filtered.length > -1">
+      Encuentro {{objects_filtered.length}}
+      objectos que se ajustan a tu búsqueda<br>
+    </text>
+
+  <!--
+    <text v-if="objects_filtered !=null && objects_filtered.length == 0">
+     No encontramos resultados para tu busqueda<br>
+    </text>
+  -->
 
     <!-- 1- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
     <div v-if="showExchangeProposal==false && showModalDetails==false" >
@@ -29,7 +44,6 @@ import axios from 'axios'
             <InventoryObject @click="showObjectDetailsPublic(obj)" :object=obj  class="m-1"/>
           </div>
         </div>
-
     </div>
 
 </div>
