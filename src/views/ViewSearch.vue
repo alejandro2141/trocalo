@@ -9,6 +9,8 @@ import SearchCategoriesClothes from '../components/SearchCategoriesClothes.vue'
 import InventoryObjectDetailedPublicOffer from '../components/InventoryObjectDetailedPublicOffer.vue'
 
 import NewExchangeProposal_SelectObjectInventory from '../components/NewExchangeProposal_SelectObjectInventory.vue'
+import NewExchangeProposal_summary from '../components/NewExchangeProposal_summary.vue'
+
 
 
 import { BKND_CONFIG } from '../../config.js'
@@ -21,7 +23,7 @@ import axios from 'axios'
 
 <div>
 
-  <div v-if="!(showObjectDetails || step1_ExchangeProposal) ">
+  <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary ) ">
 
       <div>
           <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data" />
@@ -55,10 +57,14 @@ import axios from 'axios'
   <div v-if="showObjectDetails" >
     <InventoryObjectDetailedPublicOffer  v-on:nextStep="exchangeObject"  v-on:closeModal="showObjectDetails=false" :object=objectToShowDetails  :session_data="session_data" />
   </div>
- 
+ <!-- Step 1 -->
+  <div v-if="exchangeProposal_showInventory" >
+    <NewExchangeProposal_SelectObjectInventory  v-on:nextStep="showProposalSummary"  v-on:closeModal="exchangeProposal_showInventory=false" :object=objectToShowDetails  :session_data="session_data" />
+  </div>
 
-  <div v-if="step1_ExchangeProposal" >
-    <NewExchangeProposal_SelectObjectInventory  v-on:nextStep="showProposalSummary"  v-on:closeModal="step1_ExchangeProposal=false" :object=objectToShowDetails  :session_data="session_data" />
+<!-- Step 2 -->
+  <div v-if="exchangeProposal_showSummary" >
+    <NewExchangeProposal_summary  v-on:nextStep="showProposalSummary"  v-on:closeModal="exchangeProposal_showSummary=false" :objectYouWant=objectToShowDetails  :objectsYouOfferList=objectsSelectedFromMyInventory    :session_data="session_data" />
   </div>
 
 
@@ -84,7 +90,13 @@ export default {
         objects_filtered : [] ,
         showObjectDetails : false ,
         objectToShowDetails : null , 
-        step1_ExchangeProposal : false ,
+
+        exchangeProposal_showInventory : false ,
+        exchangeProposal_showSummary : false ,
+      
+        objectsSelectedFromMyInventory : [] ,
+      
+      
       }
   },
 
@@ -95,7 +107,6 @@ created() {
      },
 
 methods: {
-
     /*
     async SearchObjects(searchParams)
     {
@@ -106,15 +117,14 @@ methods: {
     this.objects_filtered=this.objects ; 
     },
     */
-
-
 //comes from object details public offer
     exchangeObject(obj)
     { 
       this.showObjectDetails=false 
-      this.step1_ExchangeProposal=true
+      this.exchangeProposal_showInventory=true
       console.log("exchange Object in VIewSearch")
     },
+
 
     showPublicObjectDetails(obj)
     {
@@ -149,10 +159,14 @@ methods: {
 
     },
 
+
     showProposalSummary(myobjects)
     {
+      console.log('ShowProposalSUmmary '+myobjects)
+      this.objectsSelectedFromMyInventory = myobjects
 
-      console.log('ShowProposalSUmmary')
+      this.exchangeProposal_showInventory = false 
+      this.exchangeProposal_showSummary = true 
     },
 
 
