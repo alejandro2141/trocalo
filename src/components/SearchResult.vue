@@ -26,7 +26,7 @@ import axios from 'axios'
          
           <div v-for="obj in objects_filtered"  > 
          
-            <InventoryObject @click="objectDetails=obj ;showModalDetails=true;" :object=obj  class="m-1"/>
+            <InventoryObject @click="showObjectDetailsPublic(obj)" :object=obj  class="m-1"/>
           </div>
         </div>
 
@@ -58,12 +58,18 @@ export default {
   },
 
   props: ['session_data',  'objects_filtered' ],
-  emits: ['sessionCreated'],
+  emits: ['showObjectDetailsPublic'],
 
 created() {
        },
 
 methods: {
+
+    showObjectDetailsPublic(obj)
+    {
+      this.$emit('showPublicObjectDetails',obj)
+    },
+
 /*
     async getObjects(searchParams)
     {
@@ -101,7 +107,7 @@ methods: {
       }
     },
     */
-
+/*
     closeObjectAndMyInventoryModal()
     {
       console.log("Close inventory List")
@@ -117,6 +123,7 @@ methods: {
       this.showModalDetails = false 
       this.showObjectAndMyInventoryModal = true
     }
+    */
 
     },
 
