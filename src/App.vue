@@ -23,11 +23,11 @@ const location = useRoute();
           
          
 
-          <RouterLink style="" class='text-decoration-none'  @click="setUnderline(7)"  to="/ViewSearch"> 
+          <RouterLink style="" class='text-decoration-none'    to="/ViewSearch"> 
             <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
           </RouterLink>
 
-          <RouterLink  class="" :class="{'text-decoration-underline' :underline_login}" @click="setUnderline(3)"  to="/ViewLogin"> 
+          <RouterLink  class="" :class="{'text-decoration-underline' :underline_login}"   to="/ViewLogin"> 
              <div class="bg-secondary text-end" style="width:60px;height:50px;border-radius: 0px 0px 0px 100px;" > 
                 <i style="font-size:30px" class="bi bi-person-circle text-dark p-2"></i>
              </div>
@@ -41,13 +41,13 @@ const location = useRoute();
           <div>
           </div>
           
-          <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"  @click="setUnderline(1)"   to="/ViewSearch">  
+          <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
             <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
           </RouterLink>    
 
 
            <!-- <a href="/">Buscar</a>  :class="[isActive ? activeClass : '', errorClass]"  --> 
-            <RouterLink   class="text-secondary " :class="{'text-decoration-underline' :underline_account}" @click="setUnderline(2)" to="/Viewlogin">
+            <RouterLink   class="text-secondary " :class="{'text-decoration-underline' :underline_account}"  to="/Viewlogin">
               <div class="bg-secondary  text-end" style="width:60px;height:50px; border-radius: 0px 0px 0px 100px;" > 
                 <text class="text-dark m-1 " style="font-size:17px" >{{session_data.user.split(" ")[0] }}</text>
               </div>
