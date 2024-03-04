@@ -35,7 +35,7 @@ import axios from 'axios'
 
               <div class="d-flex flex-wrap ">
                 <div v-for="obj in DBmyInventoryObjects"  > 
-                  <InventoryObject @click="addRemoveOfferList(obj)" :object=obj  :showProductDetails="false" class="m-1" /> 
+                  <InventoryObject @click="addRemoveObjectsOfferList_temp(obj)" :object=obj  :showProductDetails="false" class="m-1" /> 
                 </div>
               </div>
 
@@ -53,11 +53,14 @@ import axios from 'axios'
           <br>
 
             <!-- FOOTER -->
-            <div v-if="objectsOfferList.length>0" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
-              <div class="d-flex justify-content-center"> 
-                    <div  @click="nextStep()" class="border border-2 border-success w-25 text-center">
-                        <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
+            <div v-if="objectsOfferList_temp != null && objectsOfferList_temp.length>0" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+              <div class="d-flex justify-content-center border border-2 border-success  "> 
+                <div class="d-flex justify-content-start">
+                    <div  @click="goToNextStep()" class="">
+                        <i class="bi bi-check2 display-4 text-success p-1 m-1"> </i> 
                     </div>
+                    <text style="font-size:20px" >Siguente</text>
+                </div>
               </div>
             <!-- 
               <div class="d-flex justify-content-center">
@@ -101,7 +104,7 @@ export default {
         }
   },
   props: ['session_data','objectProposal'],
-  emits: ['closeModal','nextStep'],
+  emits: ['nextStep'],
 
 created() {
     console.log("APP CREATED")
@@ -111,16 +114,16 @@ created() {
     },
 
 methods: {
-
+/*
     closeModal()
     {
         this.$emit('closeModal')
     },
-
+*/
 
     goToNextStep()
     {
-       this.$emit('nextStep')
+       this.$emit('nextStep',this.objectsOfferList_temp)
     },
 
     async getMyObjects()
@@ -160,6 +163,7 @@ methods: {
 
       return obj_list ; 
     },
+    
 
 
 
