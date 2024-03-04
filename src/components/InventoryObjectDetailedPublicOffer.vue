@@ -14,19 +14,22 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
         </div>
 
-        <InventoryObjectDetailed  :object=object   :session_data="session_data" />
+            <InventoryObjectDetailed  :object=object   :session_data="session_data" />
     
-        <br>
+            <br>
 
 
-        <div v-if="session_data!=null"  class="m-4 pb-4 d-flex justify-content-center" >
+        <div v-if="session_data!=null && object!= null"  class="m-4 pb-4 d-flex justify-content-center" >
               <!-- && session_data.id != objectDetails.owner_id && showModalDetails -->
-              <div v-if="session_data.id != objectDetails.owner_id" >
-                  <button @click="showExchangeProposal=true ; showModalDetails=false  "   type="button" class="btn btn-primary">Me interesa este Objeto</button>
-              </div>
-              <div v-else >
+            <div v-if="session_data.id!=null && session_data.id != object.owner_id" >
+                <button @click="nextStep(object)"   type="button" class="btn btn-primary">
+                    Me interesa este Objeto
+                </button>
+            </div>
+            <div v-else >
                   Este objeto te pertenece
-              </div>
+            </div>
+
         </div>
 
         <div v-else class="text-secondary d-flex justify-content-center">
@@ -71,7 +74,7 @@ export default {
     },
 
     props: ['session_data','object' ],
-    emits: ['closeModal'],
+    emits: ['closeModal','nextStep'],
 
   created() {
 		console.log("created lala inventory Object detailed")
@@ -81,8 +84,13 @@ export default {
     closeModal()
     {
         this.$emit('closeModal')
-    }
+    },
 
+    nextStep(obj)
+    {
+        console.log("go to exchange!! ")
+        this.$emit('nextStep',obj)
+    }
 
 
       },
