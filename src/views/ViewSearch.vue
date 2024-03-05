@@ -64,7 +64,7 @@ import axios from 'axios'
 
 <!-- Step 2 -->
   <div v-if="exchangeProposal_showSummary" >
-    <NewExchangeProposal_summary  v-on:nextStep="showProposalSummary"  v-on:closeModal="exchangeProposal_showSummary=false" :objectYouWant=objectToShowDetails  :objectsYouOfferList=objectsSelectedFromMyInventory    :session_data="session_data" />
+    <NewExchangeProposal_summary  v-on:nextStep="showProposalSummary"  v-on:closeModal="exchangeProposal_showSummary=false" :objectYouWant=objectToShowDetails  :objectsYouOfferList=objectsSelectedFromMyInventory   v-on:showMyInventory="exchangeProposal_showSummary=false ; exchangeProposal_showInventory=true" :session_data="session_data" />
   </div>
 
 
