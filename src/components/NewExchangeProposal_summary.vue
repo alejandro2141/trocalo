@@ -17,10 +17,12 @@ import axios from 'axios'
        <!-- TITLE -->
       <div  class="w-100 d-flex justify-content-center"  > 
       <div style="width:350px"> 
-
+       
         <div class="d-flex justify-content-end m-0 "  > 
                 <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
         </div>
+
+        <text style="font-size:20px">Resumen propuesta de Intercambio</text><br>
 
         <br>
           <div class="d-flex justify-content-between">
@@ -64,13 +66,13 @@ import axios from 'axios'
           
            <!-- LIST MY OBJECT  -->
           <div  class="d-flex align-content-stretch flex-wrap">
-            <div v-for="obj in objectsYouOfferList"  class="d-flex justify-content-start"  > 
+            <div v-for="obj in objectsOfferList_temp"  class="d-flex justify-content-start"  > 
               <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/>
               <div class="text-danger" @click="removeFromObjectsOfferList(obj)"> <i class="bi bi-x-lg "></i> </div>
             </div>
 
           <div style="width:100px" class="d-flex justify-content-center" >
-            <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="showMyInventory=!showMyInventory;showPartnerInventory=false "  ></i>
+            <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="$emit('showMyInventory')"  ></i>
           </div>
 
           </div>
@@ -81,8 +83,8 @@ import axios from 'axios'
       </div>
 
           <!-- FOOTER -->
-        <!--
-          <div v-if="!(showMyInventory || showPartnerInventory) && objectsOfferList.length>0 " class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+       
+          <div v-if=" objectsOfferList_temp.length >0 " class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
               <div   class="d-flex justify-content-center">
                 <div @click="showStep3=true; showStep2 = false">
                   <i class="bi bi-caret-right"></i> 
@@ -92,10 +94,10 @@ import axios from 'axios'
           </div>
           <div v-else>
             <div   class="d-flex justify-content-center">
-            Selecciona al menos un objeto de tu inventario
+            Debes seleccionar almenos un objeto de tu inventario para intercambiar
             </div>
           </div>
-        -->
+      
           <!-- END FOOTER -->
 
    
@@ -118,22 +120,32 @@ export default {
   data : function() {
       return {
 
-        objectsOfferList : [] , 
+        proposal_duration : 30 , 
         objectsOfferList_temp : [],
-//        objectProposalList : [] ,
-//        objectProposalList_temp : [] ,
-        DBmyInventoryObjects :[],
-
         }
   },
   props: ['session_data','objectYouWant','objectsYouOfferList'],
-  emits: ['nextStep','closeModal'],
+  emits: ['nextStep','closeModal','showMyInventory'],
 
 created() {
     console.log("APP CREATED")
+
+    this.objectsOfferList_temp= this.objectsYouOfferList  
     },
 
 methods: {
+
+    removeFromObjectsOfferList(obj)
+    {
+        this.objectsOfferList_temp = this.objectsOfferList_temp.filter(element => element.id !== obj.id );
+    },
+
+    /*
+    showMyInventory()
+    {
+       this.$emit('showMyInventory')
+    },
+    */
 
     closeModal()
     {
