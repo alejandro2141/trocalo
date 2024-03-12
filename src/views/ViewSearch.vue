@@ -11,6 +11,8 @@ import InventoryObjectDetailedPublicOffer from '../components/InventoryObjectDet
 import NewExchangeProposal_SelectObjectInventory from '../components/NewExchangeProposal_SelectObjectInventory.vue'
 import NewExchangeProposal_summary from '../components/NewExchangeProposal_summary.vue'
 
+import NewExchangeProposal_checkBeforeSend from '../components/NewExchangeProposal_checkBeforeSend.vue'
+import NewExchangeProposal_sentConfirmation from '../components/NewExchangeProposal_sentConfirmation.vue'
 
 
 import { BKND_CONFIG } from '../../config.js'
@@ -23,7 +25,7 @@ import axios from 'axios'
 
 <div>
 
-  <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary ) ">
+  <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
 
       <div>
           <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data" />
@@ -64,8 +66,20 @@ import axios from 'axios'
 
 <!-- Step 2 -->
   <div v-if="exchangeProposal_showSummary" >
-    <NewExchangeProposal_summary  v-on:nextStep="showProposalSummary"  v-on:closeModal="exchangeProposal_showSummary=false" :objectYouWant=objectToShowDetails  :objectsYouOfferList=objectsSelectedFromMyInventory   v-on:showMyInventory="exchangeProposal_showSummary=false ; exchangeProposal_showInventory=true" :session_data="session_data" />
+    <NewExchangeProposal_summary  v-on:nextStep="showProposalCheckBeforeSend"  v-on:closeModal="exchangeProposal_showSummary=false" :objectYouWant=objectToShowDetails  :objectsYouOfferList=objectsSelectedFromMyInventory   v-on:showMyInventory="exchangeProposal_showSummary=false ; exchangeProposal_showInventory=true" :session_data="session_data" />
   </div>
+
+  <!-- Step 3 Check Before send -->
+  <div v-if="exchangeProposal_checkBeforeSend" >
+    <NewExchangeProposal_checkBeforeSend  v-on:nextStep="showConfirmationProposalSent" v-on:closeModal="exchangeProposal_checkBeforeSend=false" :proposal_summary=proposal_summary   :session_data="session_data" />
+  </div>
+
+
+  <!-- Step 4 Sent Confirmation -->
+  <div v-if="exchangeProposal_sentConfirmation" >
+    <NewExchangeProposal_sentConfirmation  v-on:nextStep=""  v-on:closeModal="exchangeProposal_sentConfirmation=false" :proposal_summary=proposal_summary   :session_data="session_data" />
+  </div>
+
 
 
 
@@ -91,13 +105,16 @@ export default {
         showObjectDetails : false ,
         objectToShowDetails : null , 
 
-        exchangeProposal_showInventory : false ,
-        exchangeProposal_showSummary : false ,
+        exchangeProposal_showInventory    : false ,
+        exchangeProposal_showSummary      : false ,
+        exchangeProposal_checkBeforeSend  : false ,
+        exchangeProposal_sentConfirmation : false ,
       
         objectsSelectedFromMyInventory : [] ,
-      
-      
+
+        proposal_summary : null ,
       }
+
   },
 
   props: ['session_data'],
@@ -159,7 +176,6 @@ methods: {
 
     },
 
-
     showProposalSummary(myobjects)
     {
       console.log('ShowProposalSUmmary '+myobjects)
@@ -169,7 +185,20 @@ methods: {
       this.exchangeProposal_showSummary = true 
     },
 
+    showProposalCheckBeforeSend(proposal)
+    {
+      this.proposal_summary = proposal 
+      this.exchangeProposal_showSummary = false 
+      this.exchangeProposal_checkBeforeSend = true 
 
+      console.log('Show Check Before Send '+JSON.stringify(this.proposal_summary))
+    },
+
+    showConfirmationProposalSent(proposal)
+    {
+      this.exchangeProposal_checkBeforeSend = false ,
+      this.exchangeProposal_sentConfirmation = true 
+    }
 
 
     },
