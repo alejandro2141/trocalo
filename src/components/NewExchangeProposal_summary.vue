@@ -86,8 +86,8 @@ import axios from 'axios'
        
           <div v-if=" objectsOfferList_temp.length >0 " class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
               <div   class="d-flex justify-content-center">
-                <div @click="showStep3=true; showStep2 = false">
-                  <i class="bi bi-caret-right"></i> 
+                <div @click="goToNextStep()">
+                  Siguiente <i class="bi bi-caret-right"></i> 
                 
                 </div>
               </div>
@@ -155,7 +155,14 @@ methods: {
 
     goToNextStep()
     {
-       this.$emit('nextStep',objectsOfferList_temp)
+        let exchange_proposal = {
+            proposal_duration : this.proposal_duration,
+            objectYouWant : this.objectYouWant  , 
+            objectsYouOfferList : this.objectsOfferList_temp           
+        }
+
+       this.$emit('nextStep',exchange_proposal)
+       
     },
 
 
