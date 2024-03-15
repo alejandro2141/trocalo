@@ -22,10 +22,16 @@ const location = useRoute();
           </div>
           
          
-
+        <!--
           <RouterLink style="" class='text-decoration-none'    to="/ViewSearch"> 
             <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
           </RouterLink>
+        -->
+        <div style="" class='text-decoration-none'    > 
+          <A HREF="/" >  <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
+          </A>
+          </div>
+
 
           <RouterLink  class="" :class="{'text-decoration-underline' :underline_login}"   to="/ViewLogin"> 
              <div class="bg-secondary text-end" style="width:60px;height:50px;border-radius: 0px 0px 0px 100px;" > 
