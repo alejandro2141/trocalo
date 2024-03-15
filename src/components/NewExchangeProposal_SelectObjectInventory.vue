@@ -29,7 +29,12 @@ import axios from 'axios'
               </div>
 
               <div  style="font-size:16px "  class="m-2 w-100">
-                Selecciona de tu Inventario para intercambiar 
+               
+                <text class="text-center" style="font-size:35px ;color:rgb(184, 139, 92)">
+                  <i class="bi bi-backpack2"></i>
+                </text>
+                 Selecciona objetos de tu Inventario para intercambiar 
+
               </div>
               <br>
 
@@ -114,12 +119,11 @@ created() {
     },
 
 methods: {
-/*
+
     closeModal()
     {
         this.$emit('closeModal')
     },
-*/
 
     goToNextStep()
     {
@@ -142,16 +146,25 @@ methods: {
 
     addRemoveObjectsOfferList_temp(obj)
     {
-      //1st check if already exist
-       if ( this.objectsOfferList_temp.findIndex(o => obj.id === o.id) > 0  )
-      {//remove the object
-        this.objectsOfferList_temp= this.objectsOfferList_temp.filter(element => element.id !== obj.id );
+
+      if(!obj.blocked_due_proposal_accepted)
+      {
+        //1st check if already exist
+        if ( this.objectsOfferList_temp.findIndex(o => obj.id === o.id) > 0  )
+        {//remove the object
+          this.objectsOfferList_temp= this.objectsOfferList_temp.filter(element => element.id !== obj.id );
+        }
+        else 
+        {
+          this.objectsOfferList_temp.push(obj)
+        }
+        this.objectsOfferList_temp = this.removeDuplicatedObjects(this.objectsOfferList_temp)
+      
       }
       else 
       {
-        this.objectsOfferList_temp.push(obj)
+        alert("No se puede seleccionar, pertenece a un intercambio que fue Aceptado")
       }
-      this.objectsOfferList_temp = this.removeDuplicatedObjects(this.objectsOfferList_temp)
        
     },
 
