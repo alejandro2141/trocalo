@@ -179,7 +179,10 @@ import { BKND_CONFIG } from '../../config.js'
                    <input class="form-control form-control-lg" v-model="form_pass" id="form_pass" name="form_pass"  type="password" placeholder="Contraseña" aria-label=".form-control-lg example"  style=" border-radius: 15px;" >
                     <br/> 
 
-                    <i  type="submit" v-on:click="sendLogin()" class="btn  btn-lg btn-block text-white bg-secondary " style="width: 100%; border-radius: 15px;"  >{{ login_message }} <i class="m-2 p-2 bi bi-arrow-right-square"></i> </i>
+                    <i  type="submit" v-on:click="sendLogin()" class="btn  btn-lg btn-block text-white bg-secondary " style="width: 100%; border-radius: 15px;"  >
+                      {{ login_message }} 
+                      <i class="m-2 p-2 bi bi-arrow-right-square"></i> 
+                    </i>
                 </form>   
             </div>
 
@@ -285,7 +288,7 @@ export default {
         form_email:null ,
         form_pass:null ,
 
-        login_message:null ,
+        login_message:"" ,
         requestReceived:null ,
 
         }
@@ -338,16 +341,19 @@ export default {
                   
                   this.$emit('sessionCreated',session_data_result);
                   console.log("session data created:"+JSON.stringify( session_data_result) )
+                  
                 }
                 else 
                 {
                   session_data_result = null 
+                  this.login_message = "Login Fallido"
                 }
                 console.log("Login User Session Data : "+JSON.stringify(session_data_result))
            }
            else 
            {
             session_data_result = null 
+          
             console.log("Login User Data NULL")
            }
 
