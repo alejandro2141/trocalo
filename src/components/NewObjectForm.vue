@@ -12,11 +12,14 @@ import axios from 'axios'
  
  <div>
 
-  <div v-if="step1">
+  <div v-if="true">
 
     <div>
       <input type="text" placeholder="Titulo"  v-model="input_name" id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark    text-white border-white" required minlength="4" maxlength="40"  />
+    <br>
+    <text class="text-warning" v-if="!validate_input_name" > Debe ingresar el nombre de tu producto.  </text>
     </div>
+
 
     <div class="d-flex flex-wrap w-100">
 
@@ -24,6 +27,10 @@ import axios from 'axios'
           <i v-if="!show_uploadPicture_1_preview" style="font-size:100px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_1' class="uploading-image" style="width:200px; height:200px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_1_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_1' style="display: none">
+          <br>
+
+          <text class="text-warning" v-if="!validate_input_img1" > Debe ingresar una Imagen principal de tu producto.  </text>
+
       </div>
 
       <div @click="$refs.show_uploadPicture_2_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
@@ -55,6 +62,8 @@ import axios from 'axios'
 
     <div>
       <textarea  v-model="input_description" maxlength="100"  placeholder="Descripcion del objeto" class="form-control-lg mt-1 bg-dark text-white border-white" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <br>
+      <text class="text-warning" v-if="!validate_input_description" > Debe ingresar una descripcion de tu producto.  </text>
     </div>
     
     <br>
@@ -67,28 +76,10 @@ import axios from 'axios'
               {{category.name}} 
             </option>
         </select>
-
-
-
-
-        <!-- 
-        <div class="w-25">
-                  <select  v-model="input_exchange_category1" class="form-control bg-dark border-white text-white" id="sel1">
-                    <option value="0" >Categoria 1</option>
-                    <option value="1" >Juegos</option>
-                    <option value="2" >Computación</option>
-                    <option value="3" >Libros</option>
-                    <option value="4" >Deportes</option>
-                    <option value="5" >Decoracion</option>
-                    <option value="6" >Herramientas</option>
-                    <option value="7" >Hogar</option>
-                    <option value="8" >Electronica</option>
-                   </select>
-        </div>
-        -->
-       
-        
     </div>
+    <br>
+    <text class="text-warning" v-if="!validate_input_category1" > Debe ingresar una categoria</text>
+
     
     <br>
     <div>
@@ -118,7 +109,7 @@ import axios from 'axios'
     <br>
     <div style="font-size:25px" class=" text-success w-100 bg-dark p-3 text-center" >
        <text> Guardar </text> 
-       <i style="font-size:35px" @click=" upload_product() ; step1=false;showRequestConfirmation=true" class="bi bi-cloud-arrow-up"></i> 
+       <i style="font-size:35px" @click="upload_product()" class="bi bi-cloud-arrow-up"></i> 
     </div>
     
 
@@ -210,6 +201,22 @@ export default {
         show_uploadPicture_3_preview : false , 
         show_uploadPicture_4_preview : false , 
         show_uploadPicture_5_preview : false , 
+
+        // INPUT VALIDATION 
+        validate_input_name : true ,
+        validate_input_description : true ,
+        validate_input_img1 : true ,
+        validate_input_img2 : true ,
+        validate_input_img3 : true ,
+        validate_input_img4 : true ,
+        validate_input_img5 : true ,
+        validate_input_category1 : true , 
+        validate_exchange_option1 : false ,
+        validate_exchange_option2 : false ,
+        validate_exchange_option3 : false ,
+        validate_exchange_option4 : false ,
+        validate_exchange_option5 : false ,
+        //***************** */
 
 
       }
@@ -350,9 +357,90 @@ async upload(reader, img_num)
                           image4 : this.previewImage_4,
                           image5 : this.previewImage_5,   
                               }
+        /*
+        validate_input_name : false ,
+        validate_input_description : false ,
+        validate_input_img1 : false ,
+        validate_input_img2 : false ,
+        validate_input_img3 : false ,
+        validate_input_img4 : false ,
+        validate_input_img5 : false ,
+        validate_category1 : false , 
+        validate_exchange_option1 : false ,
+        validate_exchange_option2 : false ,
+        validate_exchange_option3 : false ,
+        validate_exchange_option4 : false ,
+        validate_exchange_option5 : false ,
+        */
+
+
+      //input validations
+              //validate Product Name
+              if ( data_product != null &&  data_product.name != null &&  data_product.name.length > 4 )
+              {
+               this.validate_input_name = true 
+              } 
+              else 
+              {
+                this.validate_input_name = false 
+              }
+              //validate Product Description
+              if ( data_product != null &&  data_product.description != null &&  data_product.description.length > 4 )
+              {
+                this.validate_input_description = true 
+              } 
+              else 
+              {
+                this.validate_input_description = false 
+              }
+              //validate Product Category1
+              if ( data_product != null &&  data_product.category1 != null   &&  data_product.category1 != 0   )
+              {
+                this.validate_input_category1 = true 
+              } 
+              else 
+              {
+                this.validate_input_category1 = false 
+              }
+              //validate Product validate_input_img1
+              if ( data_product != null &&  data_product.image1 != null )
+              {
+                this.validate_input_img1 = true 
+              } 
+              else 
+              {
+                this.validate_input_img1 = false 
+              }
+              //validate Product validate_input_img2
+              if ( data_product != null &&  data_product.image2 != null )
+              {
+                this.validate_input_img2 = true 
+              } 
+              else 
+              {
+                this.validate_input_img2 = false 
+              }
+              //validate Product validate_input_img3
+              if ( data_product != null &&  data_product.image3 != null )
+              {
+                this.validate_input_img3 = true 
+              } 
+              else 
+              {
+                this.validate_input_img3 = false 
+              }
+
+          if ( this.validate_input_name  &&  this.validate_input_description && this.validate_input_category1  && this.validate_input_img1 )
+          {
           console.log("Sending to /user_create_product" + JSON.stringify(data_product) )
           let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/user_create_product",data_product );
-    },
+          //step1=false;
+          this.showRequestConfirmation=true
+          }
+
+
+    
+        },
 
 
 
