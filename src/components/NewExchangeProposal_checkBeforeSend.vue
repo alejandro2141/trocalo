@@ -69,6 +69,9 @@ import axios from 'axios'
             </div>
             
           </div>
+
+          <div style="height:200px">
+          </div>
        
       </div>  
 
@@ -121,7 +124,6 @@ methods: {
         this.$emit('closeModal')
     },
 
-
     async goToNextStep()
     {
       let params= { 
@@ -136,8 +138,7 @@ methods: {
       let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/save_proposal", params )
       console.log("/save_proposal Response:"+JSON.stringify(jsonResponse.data))
     
-
-       this.$emit('nextStep',this.proposal_summary)
+      this.$emit('nextStep',this.proposal_summary)
     },
 
 
