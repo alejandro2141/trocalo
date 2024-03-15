@@ -102,7 +102,8 @@ methods: {
 
     goToNextStep()
     {
-       this.$emit('nextStep',this.proposal_summary)
+      // this.$emit('nextStep',this.proposal_summary)
+       this.$emit('closeModal')
     },
 
 
