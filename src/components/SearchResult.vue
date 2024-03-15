@@ -22,12 +22,26 @@ import axios from 'axios'
       No encontramos Objetos para tu busqueda<br>
     </text>
   -->
-  
-    <text v-if="objects_filtered !=null && objects_filtered.length > -1">
-      Encuentro {{objects_filtered.length}}
-      objectos que se ajustan a tu búsqueda<br>
-    </text>
 
+  <div v-if="search_event">
+    <div class="text-warning" v-if="objects_filtered !=null && objects_filtered.length > 0">
+        Encuentro {{objects_filtered.length}}
+        objectos que se ajustan a tu búsqueda<br>
+    </div>
+    <div v-else class="mt-2">
+      <br>
+      Sin resultados para tu busqueda
+      <i class="bi bi-wind h4 text-center"></i>
+    </div>
+    
+
+
+  </div>
+
+  <div v-else>
+    Objetos que podrian interesarte
+  </div>
+    
   <!--
     <text v-if="objects_filtered !=null && objects_filtered.length == 0">
      No encontramos resultados para tu busqueda<br>
@@ -40,9 +54,9 @@ import axios from 'axios'
         <div v-if="objects_filtered !=null" class="d-flex flex-wrap"> 
          
           <div v-for="obj in objects_filtered"  > 
-         
             <InventoryObject @click="showObjectDetailsPublic(obj)" :object=obj  class="m-1"/>
           </div>
+        
         </div>
     </div>
 
@@ -71,7 +85,7 @@ export default {
       }
   },
 
-  props: ['session_data',  'objects_filtered' ],
+  props: ['session_data',  'objects_filtered' , 'search_event' ],
   emits: ['showObjectDetailsPublic'],
 
 created() {
