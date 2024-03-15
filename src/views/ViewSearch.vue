@@ -32,7 +32,7 @@ import axios from 'axios'
       </div>
 
       <div>
-          <SearchResult  v-on:exchangeObject="exchangeObject" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
+          <SearchResult    v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
       </div>
       
       <div>
@@ -61,12 +61,12 @@ import axios from 'axios'
   </div>
  <!-- Step 1 -->
   <div v-if="exchangeProposal_showInventory" >
-    <NewExchangeProposal_SelectObjectInventory  v-on:nextStep="showProposalSummary"  v-on:closeModal="exchangeProposal_showInventory=false" :object=objectToShowDetails  :session_data="session_data" />
+    <NewExchangeProposal_SelectObjectInventory  v-on:nextStep="showProposalSummary"  v-on:closeModal="exchangeProposal_showInventory=false;showObjectDetails=true" :object=objectToShowDetails  :session_data="session_data" />
   </div>
 
 <!-- Step 2 -->
   <div v-if="exchangeProposal_showSummary" >
-    <NewExchangeProposal_summary  v-on:nextStep="showProposalCheckBeforeSend"  v-on:closeModal="exchangeProposal_showSummary=false" :objectYouWant=objectToShowDetails  :objectsYouOfferList=objectsSelectedFromMyInventory   v-on:showMyInventory="exchangeProposal_showSummary=false ; exchangeProposal_showInventory=true" :session_data="session_data" />
+    <NewExchangeProposal_summary  v-on:nextStep="showProposalCheckBeforeSend"  v-on:closeModal="exchangeProposal_showSummary=false;showObjectDetails=true" :objectYouWant=objectToShowDetails  :objectsYouOfferList=objectsSelectedFromMyInventory   v-on:showMyInventory="exchangeProposal_showSummary=false ; exchangeProposal_showInventory=true" :session_data="session_data" />
   </div>
 
   <!-- Step 3 Check Before send -->
@@ -79,10 +79,6 @@ import axios from 'axios'
   <div v-if="exchangeProposal_sentConfirmation" >
     <NewExchangeProposal_sentConfirmation  v-on:nextStep=""  v-on:closeModal="exchangeProposal_sentConfirmation=false" :proposal_summary=proposal_summary   :session_data="session_data" />
   </div>
-
-
-
-
 
 </div>
 </template>
@@ -113,6 +109,8 @@ export default {
         objectsSelectedFromMyInventory : [] ,
 
         proposal_summary : null ,
+
+        search_event : false ,
       }
 
   },
@@ -121,6 +119,7 @@ export default {
   emits: ['sessionCreated'],
 
 created() {
+   this.search_event = false
      },
 
 methods: {
@@ -157,9 +156,19 @@ methods: {
       
       let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects_by_text",this.searchParams);
       console.log("/public_search_objects_by_text Response:"+JSON.stringify(response_json.data))
+      if (response_json.data  != null )
+      {
       this.objects = response_json.data ; 
       this.objects.sort((a, b) => b.id - a.id );
-      this.objects_filtered=this.objects ; 
+      this.objects_filtered=this.objects ;
+      }
+      else 
+      {
+        this.objects_filtered=null ;   
+      }
+
+      this.search_event = true 
+      
     },
 
     async filterByCategory(category)
