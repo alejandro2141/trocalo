@@ -70,15 +70,18 @@ import axios from 'axios'
               <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/>
               <div class="text-danger" @click="removeFromObjectsOfferList(obj)"> <i class="bi bi-x-lg "></i> </div>
             </div>
-
+        <!-- 
           <div style="width:100px" class="d-flex justify-content-center" >
             <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="$emit('showMyInventory')"  ></i>
           </div>
-
+        -->
           </div>
        
 
-      </div>  
+          <div style="height:200px">
+          </div>
+
+        </div>  
 
       </div>
 
