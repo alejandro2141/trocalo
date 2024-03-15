@@ -13,15 +13,17 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div class="d-flex justify-content-end m-1"> 
             <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
         </div>
-
             <InventoryObjectDetailed  :object=object   :session_data="session_data" />
-    
-            <br>
-
-
+        
+            <p v-if="session_data!=null && object!= null"  style="font-size:16px" class="w-100 text-start">
+                    Valor Retiro y Despacho  <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp
+            </p>
+        
         <div v-if="session_data!=null && object!= null"  class="m-4 pb-4 d-flex justify-content-center" >
               <!-- && session_data.id != objectDetails.owner_id && showModalDetails -->
             <div v-if="session_data.id!=null && session_data.id != object.owner_id" >
+
+               
                 <button @click="nextStep(object)"   type="button" class="btn btn-primary">
                     Me interesa este Objeto
                 </button>
