@@ -19,7 +19,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         </div>
     -->
         <div style="font-size:20px">
-          &nbsp;&nbsp;&nbsp;&nbsp;  {{object.title}}
+         {{object.title}} 
         </div>
         
         <div class="bg-secondary" style="width:350px; height:300px">
@@ -49,11 +49,11 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             {{object.description}}
         </div>
         
-
+    <!--
         <div  style="font-size:16px" class="w-100 text-start">
-            <!--  <i style="font-size:30px" class="bi bi-person-standing text-secondary"></i> --> 
-              {{object.owner_name}}
+           Pertenece a: {{object.owner_name}}
         </div>
+    -->
 
         <div v-if="object.blocked_due_proposal_accepted">
             <i style="font-size:40px" class="bi bi-unlock text-secondary"></i> 
@@ -64,13 +64,13 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             <i class="bi bi-shuffle text-secondary"></i>
         </div>
         -->
-        <div  v-if="object.alternative1 != 'null' && object.alternative2 != 'null' && object.alternative3 != 'null'  ">
+        <div  v-if="object.alternative1 != 'null' || object.alternative2 != 'null' || object.alternative3 != 'null'  ">
             <br>
-            <text class="text-secondary " style="font-size:20px">De preferencia cambiaria por:</text>
+            <text class="text-white" style="font-size:16px"> <b>{{object.owner_name}}</b> cambiaria por:</text>
             <div class="m-2">
-                <i v-if="object.alternative2 != 'null'" style="font-size:20px" class="bi bi-shuffle text-secondary"> &nbsp;&nbsp; {{object.alternative1}} </i> <br>
-                <i v-if="object.alternative2 != 'null'" style="font-size:20px" class="bi bi-shuffle text-secondary"> &nbsp;&nbsp; {{object.alternative2}} </i> <br>
-                <i v-if="object.alternative2 != 'null'" style="font-size:20px" class="bi bi-shuffle text-secondary"> &nbsp;&nbsp; {{object.alternative3}} </i> <br>
+                <i v-if="object.alternative1 != 'null'" style="font-size:16px" class="bi bi-shuffle text-white"> &nbsp;&nbsp; {{object.alternative1}} </i> <br>
+                <i v-if="object.alternative2 != 'null'" style="font-size:16px" class="bi bi-shuffle text-white"> &nbsp;&nbsp; {{object.alternative2}} </i> <br>
+                <i v-if="object.alternative3 != 'null'" style="font-size:16px" class="bi bi-shuffle text-white"> &nbsp;&nbsp; {{object.alternative3}} </i> <br>
                 <!--
                 <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> Cambiaría por Otros Objetos
                     <text v-if="object.otherObj" style="font-size:25px" class="text-success">
@@ -80,9 +80,11 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                             NO
                     </text>
                 -->
-                <br>
-            </div>
+             </div>
         </div>
+
+        
+
 
         <br>
         <!-- 
