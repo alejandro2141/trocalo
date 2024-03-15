@@ -11,9 +11,9 @@ import { CATEGORIES } from '../../config.js'
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="font-size:40px" class="bi bi-controller "></i> </text>
         -->
-        <input type="text" placeholder="( Busca y cambia objetos )" v-model="textFilter" style="text-align:center; color:white font-size:23px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-white border-2 p-0 border-warning" required minlength="4" maxlength="30" size="11" />
+        <input  v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-warning border-2 p-0 border-warning" required minlength="4" maxlength="30" size="11" />
         <div @click="search(textFilter)" class=""> 
-          <i class=" text-success bi bi-arrow-return-left p-3"></i>
+          <i class="text-warning bi bi-search-heart p-3"></i>
         </div>
        
         <!-- 
@@ -21,10 +21,11 @@ import { CATEGORIES } from '../../config.js'
         -->
            
       </div>
+      
     <!--     
-        
         <text> </text>
     -->
+
     <div  style="font-size:25px" >
       <div class="d-flex justify-content-between"> 
       <!-- 
@@ -36,8 +37,8 @@ import { CATEGORIES } from '../../config.js'
         <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=4" > <i style="" class="bi bi-universal-access"></i> </text>
         <text  class="p-0" :class="[ categories.includes(5) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=5" > <i style="" class="bi bi-bicycle "></i> </text>
         
-        <text v-if="!showAllOptions" @click="showAllOptions=!showAllOptions" style="border-radius: 30px;"  ><i style="font-size:30px" class="text-warning bi bi-three-dots p-2 "></i></text>
-        <text v-else @click="showAllOptions=!showAllOptions; " style="border-radius: 30px;"  ><i style="font-size:40px" class="text-warning bi bi-x-lg p-2 "></i></text>
+        <text v-if="!showAllOptions" @click="showAllOptions=!showAllOptions" style="border-radius: 30px;"  ><i style="font-size:30px" class="text-secondary bi bi-three-dots p-2 "></i></text>
+        <text v-else @click="showAllOptions=!showAllOptions; " style="border-radius: 30px;"  ><i style="font-size:40px" class="text-secondary bi bi-x-lg p-2 "></i></text>
         
             </div>
     </div>
@@ -100,12 +101,14 @@ import { CATEGORIES } from '../../config.js'
 <style scoped>
 
 ::placeholder {
-  color: white;
+  /*color: white;*/
   opacity: 1; /* Firefox */
+  color: #D0B400 ;
 }
 
 ::-ms-input-placeholder { /* Edge 12-18 */
-  color: white;
+ /* color: white; */
+ color: #D0B400 ;
 }
 
 </style>
@@ -131,6 +134,11 @@ created() {
     },
 
 methods: {
+
+    onEnter()
+    {
+      this.$emit('filterByText',this.textFilter)
+    },
 
     search(text)
     {  
