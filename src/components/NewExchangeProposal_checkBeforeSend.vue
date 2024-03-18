@@ -22,7 +22,7 @@ import axios from 'axios'
                 <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
         </div>
 
-        <text style="font-size:20px">Revise su propuesta antes de enviar </text><br>
+        <text style="font-size:20px">Revise la propuesta antes de enviar </text><br>
 
         <br>
           <div class="d-flex justify-content-between">
@@ -30,16 +30,19 @@ import axios from 'axios'
                     <text v-if="proposal_summary!=null">
                         {{proposal_summary.proposal_duration}}
                     </text>
+                    Dias.
                 </div>
           </div>
           <br>
-
+          
           <div>
                 <div style="font-size:16px">
-                    El costo recogida y entrega a tu cargo <br>
-                    $17.000 
+                  Deberás pagar retiro y despacho<br>
+                  <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp <br>
+                  
                 </div>      
           </div>
+          <br>
 
           <div   style="font-size:16px "  class="d-flex justify-content-start">
             <div>
