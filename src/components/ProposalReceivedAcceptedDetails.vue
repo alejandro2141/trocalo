@@ -24,23 +24,44 @@ import axios from 'axios'
 
         <p style="font-size:20px" >Propuesta de Intercambio Aceptada</p>
        <!-- TITLE -->
-          <div style="font-size:20px" class="mb-4 ">
-              <text>Tiempo Propuesta Restante para que Kakito_123 pague  </text> &nbsp;&nbsp;&nbsp;
-              <text class="text-success" style="font-size:40px" > {{ evaluateRemainingDays(offer.timestamp) }} </text>
-              
+          <div style="font-size:16px" class="mb-4 ">
+              <text v-if="partnerOfferObjects !=null && partnerOfferObjects[0] !=null ">Tiempo restante {{partnerOfferObjects[0].owner_name}} concrete el pago de Despacho y Retiro de los objetos</text> &nbsp;&nbsp;&nbsp;
+            <br>
+<p class="text-center">
+              <text class="text-success" style="font-size:50px" > {{ evaluateRemainingDays(offer.date_acceptance) }} </text>dias
+</p>         
+            
+            <text style="font-size:16px" >
+                En caso No se concrete el pago en la fecha limite, la propuesta de intercambio se anulará. 
+            </text>
           </div>       
           
-          <div  style="font-size:16px "  class="text-start">
-              Kakito_123 le interesa tu objeto/s:  
-          </div>
           <!-- LIST MY OFFER OBJECT  -->
+
+          <text style="font-size:16px" >
+                Tu direccion registrada para el retiro de tu objeto  
+                <br>{{session_data.address_street}} 
+                {{session_data.address_number}}
+                {{session_data.address_apartment}} 
+                {{session_data.address_zone1}}  
+                {{session_data.address_zone2}}
+                {{session_data.address_city}}
+                <br>{{session_data.address_country}}
+              
+          </text>
+           <br>
+          <br>
+
+          <div  style="font-size:16px "  class="text-start">
+            Tu objeto : 
+          </div>
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
               <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>
           <!-- END LIST MY OFFER OBJECT  --> 
          
           <div  style="font-size:16px "  class="text-start">
-            Te propone cambiarlo por los siguientes: 
+            Lo cambias por: 
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
@@ -145,7 +166,7 @@ methods: {
         let cdate = new Date()
 
         let days_passed = ( cdate.getTime() - creationDate.getTime() ) / (1000 * 60 * 60 * 24)  ;
-        let days_remaining =   this.offer.proposal_days - days_passed
+        let days_remaining =   3 - days_passed
         return Math.floor(days_remaining)
     },
 
