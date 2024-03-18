@@ -3,7 +3,7 @@
  
  <div>
   
-    <div class="border border-1 rounded" :class="{'text-success border-success': accepted }"   >
+    <div class="border border-1 rounded" :class="{'text-warning border-warning': accepted }"   >
 
         <div class="d-flex justify-content-between">
             <div v-if="isNewProposal()" class="bg-success text-start opacity-50 text-white" style="width:70px;height:20px; border-radius: 0px 0px 10px 0px;" > 
@@ -22,27 +22,30 @@
                 {{offer.title}}  
             </div>
             
-           
-
             <div style="font-size:19px" class=" w-25 m-2 d-flex justify-content-end" >
                 <div style="font-size:19px" class="m-2" >
                         
                     <div v-if="offer.user_id_creator !=  offer.user_id_destination ">
-                        <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}}
+                        <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}} 
                     </div>
                     <!-- 
                     <div v-else style="font-size:12px">
                         No Pagas Envio 
                     </div>
                     -->
+                </div>
+                
+                <div v-if="!accepted" class="m-2">
+                    <!--  <i class="bi bi-clock"></i> -->
+                    <i class="bi bi-clock-fill"></i> 
+                     {{ evaluateRemainingDays(offer.timestamp) }}dias
+                </div>
+                <div v-else >
+                    <i class="bi bi-clock-fill"></i> 
+                     {{ evaluateRemainingDaysToPay(offer.date_acceptance) }}dias
+                </div>
 
 
-                </div>
-                <div class="m-2">
-                    <!--  <i class="bi bi-clock"></i>
-                    <i class="bi bi-clock-fill"></i> -->
-                    <i class="bi bi-clock-history"></i> {{ evaluateRemainingDays(offer.timestamp) }}d
-                </div>
             </div>
 
         </div>
@@ -108,6 +111,16 @@ methods: {
 
         let days_passed = ( cdate.getTime() - creationDate.getTime() ) / (1000 * 60 * 60 * 24)  ;
         let days_remaining =   this.offer.proposal_days - days_passed
+        return Math.floor(days_remaining)
+    },
+
+    evaluateRemainingDaysToPay(timestamp)
+    {
+        let creationDate = new Date(timestamp)
+        let cdate = new Date()
+
+        let days_passed = ( cdate.getTime() - creationDate.getTime() ) / (1000 * 60 * 60 * 24)  ;
+        let days_remaining =   3 - days_passed
         return Math.floor(days_remaining)
     },
 
