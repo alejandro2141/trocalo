@@ -24,18 +24,23 @@ import axios from 'axios'
           <div  style="width:350px"  >
             <div>
       
-              <div class="d-flex justify-content-end m-0 "  > 
+              <div class="d-flex justify-content-between m-0 "  > 
+                
+                <div>
+                  <i style="font-size:45px ;color:rgb(184, 139, 92)" class="bi bi-backpack2"></i>
+                </div>
+
+                <div></div>
+
+                <div>
                 <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
+                </div>
+
               </div>
 
               <div  style="font-size:16px "  class="m-2 w-100">
-               
-                <text class="text-center" style="font-size:35px ;color:rgb(184, 139, 92)">
-                  <i class="bi bi-backpack2"></i>
-                </text>
                  Selecciona objetos de tu Inventario para intercambiar 
-
-              </div>
+             </div>
               <br>
 
               <div class="d-flex flex-wrap ">
@@ -46,6 +51,8 @@ import axios from 'axios'
 
 
             </div>
+
+
           </div>
         
         </div>
@@ -58,23 +65,36 @@ import axios from 'axios'
           <br>
 
             <!-- FOOTER -->
-            <div v-if="objectsOfferList_temp != null && objectsOfferList_temp.length>0" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
-              <div class="d-flex justify-content-center border border-2 border-success  "> 
+        
+            <div v-if="objectsOfferList_temp != null && objectsOfferList_temp.length>0" class="fixed-bottom  d-flex justify-content-center  text-success  bg-dark p-3 ">  
+              <div style="width:350px" class="d-flex justify-content-center border border-2 border-success  "> 
                 <div class="d-flex justify-content-start">
+                    
+                    
+                  <div   class="d-flex justify-content-center">
+                    <div @click="goToNextStep()">
+                      
+                      <text style="font-size:36px">Siguiente </text>
+                      <text>
+                          <i style="font-size:36px" class="bi bi-caret-right"></i> 
+                      </text>
+                    
+                    </div>
+                  </div>
+                  <!-- 
                     <div  @click="goToNextStep()" class="">
                         <i class="bi bi-check2 display-4 text-success p-1 m-1"> </i> 
                     </div>
                     <text style="font-size:20px" >Siguente</text>
+                  -->
+
                 </div>
               </div>
-            <!-- 
-              <div class="d-flex justify-content-center">
-                  <i @click="showStep2=true; showStep1 = false ; showPartnerInventory=false ; showMyInventory=false ; objectProposalList.push(objectProposal) " class="bi bi-caret-right"></i> 
-              </div>
-              -->
-          
-          
+              <br>
             </div>
+
+         
+          
           <!-- END FOOTER -->
       </div>
   <!-- END SHOW STEP 1-->
