@@ -34,7 +34,7 @@ import axios from 'axios'
 
       <!-- OF SENT ACCEPTED -->
           <p class=" text-center" style="font-size:20px">Aceptadas </p>
-          <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado de transporte y despacho para completar el intercambio de objetos </p>
+          <p class="text-secondary" style="font-size:12px" >A la espera que quien te envio la propuesta debe pagar los costos de retiro y despacho  </p>
           <div v-for="of in ofAccepted"  > 
               <ProposalReceived  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
           </div>
