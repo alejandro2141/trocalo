@@ -26,7 +26,7 @@ import axios from 'axios'
 
         <br>
           <div class="d-flex justify-content-between">
-              <div class="align-self-center" style="font-size:16px " >Propuesta válida por: </div>
+              <div class="align-self-center" style="font-size:16px " >Propuesta  válida por : </div>
           
               <div class="w-25">
                   <select v-model="proposal_duration" class="form-control bg-dark border-white text-white" id="sel1">
