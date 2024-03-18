@@ -31,12 +31,24 @@ import axios from 'axios'
             <text  v-if="proposal_summary!=null && proposal_summary.objectYouWant!=null" class="fw-bold">  
                 {{proposal_summary.objectYouWant.owner_name}}
             </text>
-              podrá  Aceptar, Rechazar o Editar tu propuesta.</p> 
-            <br>
+              podrá  Aceptar, Rechazar o enviarte una Contra Ofertar.
+            
+            </p> 
+            
                         
-            Si él acepta tu deberas pagar el cargo por Recogida y Entrega<br>
-            <div class="text-center"> <text style="font-size:30px">  $ 17.000 </text>
-            </div>
+            Cuando {{proposal_summary.objectYouWant.owner_name}} acepte,  tienes 3 dias para realizar el pago por retiro y despacho del objeto<br>
+            <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp <br>
+            <br>
+            Tan pronto el pago este realizado, el retiro del producto se realizara en tu dirección registrada: 
+            <br>{{session_data.address_street}} 
+             {{session_data.address_number}}
+             {{session_data.address_apartment}} 
+             {{session_data.address_zone1}}  
+             {{session_data.address_zone2}}
+             {{session_data.address_city}}
+            <br>{{session_data.address_country}}
+            <br>{{session_data.token}} 
+            
           </div>
           
           <br>
