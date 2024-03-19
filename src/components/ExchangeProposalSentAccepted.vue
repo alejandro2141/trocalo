@@ -1,9 +1,12 @@
 <script setup>
-import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
+//import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import InventoryObject from './InventoryObject.vue'
-import InventoryList from './InventoryList.vue'
-import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
-import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
+//import InventoryList from './InventoryList.vue'
+//import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
+//import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
+
+import PaymentProcessStart from './PaymentProcessStart.vue'
+
 
 import { BKND_CONFIG } from '../../config.js'
 import axios from 'axios'
@@ -13,26 +16,40 @@ import axios from 'axios'
 
 <template>
 <div    style="width: 350px;" >
-  <!-- ******************************* -->
-  <!--             SHOW STEP 1         -->
-  <!-- ******************************* -->
     
-  <div v-if="showPaymentStep0" >
+  <div v-if="showSendAccepted">
 
+    <div class="d-flex justify-content-between">
+      <i style="font-size:36px"  class="bi bi-cash-coin text-warning"></i> 
+      
+      <i  @click="$emit('close')" class="display-1 bi bi-x-lg"></i>  
+    
+    </div>
 
-    <div class="d-flex justify-content-end"> <i  @click="$emit('close')" class="display-1 bi bi-x-lg"></i>  </div>
-
-        <p style="font-size:20px" >Propuestas de Intercambio Aceptada</p>
+        <p class="text-center" style="font-size:20px" >Aceptada por {{offer.dest_owner_name}} </p>
         
 
-          <div style="font-size:20px" class="mb-4 text-center">
-              <text>Tiempo Propuesta Restante Para pagar el costo de retiro y despacho<br>
-               </text> 
-              <text class="text-success" style="font-size:40px" > {{ evaluateRemainingDays(offer.timestamp) }} dias </text>
+          <div style="font-size:16px" class="mb-4 text-center">
+            
+            <p class="text-center">
+                Te quedan  
+                    <text style="font-size:26px"> {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} </text> 
+                dias <br>para  realizar el pago de Recoleccion y despacho.
+                
+                <br>
+                <text style="font-size:26px"> $ {{ amountFormatter(offer.amount) }} </text>
+                
+                <br>
+                <br>
+
+                <text>Concretado el pago, el intercambio se realiza por nuestro equipo de transporte</text>
+            </p>
+
           </div>   
-        
-          <div  style="font-size:16px "  class="d-flex justify-content-center">
-              Objetos de Kakito_123:  
+
+          
+          <div  style="font-size:16px "  class="d-flex justify-content-start">
+             Cambias 
           </div>
          
         <!-- LIST PARTNER OFFER OBJECT  -->
@@ -41,8 +58,8 @@ import axios from 'axios'
           </div>
         <!-- END LIST PARTNER OFFER OBJECT  -->
           
-          <div  style="font-size:16px "  class="m-2">
-            Tus Objetos que debes tener a mano: 
+          <div  style="font-size:16px "  class="">
+           Por tu objetos. 
           </div>
         
         <!-- LIST MY OFFER OBJECT  -->
@@ -66,8 +83,7 @@ import axios from 'axios'
 
             <div class="d-flex justify-content-center">
 
-
-              <div @click="showPaymentStep0=false, showPaymentStep1=true;  showStep1=false "  class="">
+              <div @click="startPaymentProcess(offer)"  class="">
                 <button type="button" class="btn btn-danger">Pagar Despacho y Retiro</button>
               </div>
 
@@ -77,39 +93,12 @@ import axios from 'axios'
           <!-- END FOOTER -->
     </div>
 
-   
-
-    <!-- ******************************* -->
-    <!--       CANCEL PROPOSAL FLOW      -->
-    <!-- ******************************* -->
-    <div v-if="showPaymentStep1" class="" style="height: 400px;">
-        
-        <div style="height: 100px;"></div>
-        <br>
-        
-        <p style="font-size:20px"> Para proceder con el pago: </p><br>
-        
-        <div class="d-flex justify-content-around">     
-            <button @click="showPaymentStep2=true;showPaymentStep1=false ;" type="button" class="btn btn-success">Siguiente </button>
-        </div>
+<!-- START PAYMENT PROCESS -->
+    <div v-else>
+      <PaymentProcessStart :offer="offer" v-on:close="closePaymentProcessStart"/>
+ 
     </div>
 
-    <!-- ******************************************* -->
-    <!--       CANCEL CONFRIM PROPOSAL FLOW          -->
-    <!-- ******************************************* -->
-    <div v-if="showPaymentStep2" class="" style="height: 400px;">
-        
-        <div style="height: 100px;"></div>
-        <br>
-        
-            <p style="font-size:20px" class="text-center">  Debetransferfir a la siguiente cuenta, enviando un correo a . 
-            </p>
-        <br>
-        <p style="font-size:20px" @click="$emit('close')" class="text-center text-success"> 
-          <i class="bi bi-arrow-left-square"></i> Regresar 
-        </p>
-
-    </div>
 
     
      <!-- SPACE FILLER -->
@@ -132,10 +121,8 @@ export default {
   
   data : function() {
       return {
-        showPaymentStep0 : true ,
-        showPaymentStep1 : false,
-        showPaymentStep2 : false,
-        showPaymentStep3 : false,
+
+        showSendAccepted : true , 
 
         yourOfferObjects  : [],
         partnerOfferObjects : [],
@@ -150,6 +137,39 @@ created() {
     },
 
 methods: {
+
+  closePaymentProcessStart()
+  {
+    this.showSendAccepted = true 
+  },
+
+  startPaymentProcess(of)
+  {
+    console.log("Start Payment Process")
+    this.showSendAccepted = false 
+    /*
+    showPaymentStep0=false 
+    showPaymentStep1=true
+    showStep1=false 
+    */
+  },
+
+    amountFormatter(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    //return "aaaaa"
+    },
+
+
+  evaluateRemainingDaysToPay(timestamp)
+    {
+        let creationDate = new Date(timestamp)
+        let cdate = new Date()
+
+        let days_passed = ( cdate.getTime() - creationDate.getTime() ) / (1000 * 60 * 60 * 24)  ;
+        let days_remaining =   3 - days_passed
+        return Math.floor(days_remaining)
+    },
+
 
   evaluateRemainingDays(timestamp)
     {
