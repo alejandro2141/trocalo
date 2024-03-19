@@ -20,16 +20,25 @@ import axios from 'axios'
     
   <div v-if="showStep1" >
 
-    <div class="d-flex justify-content-end"> <i  @click="$emit('closeModal')" class="display-1 bi bi-x-lg"></i>  </div>
+    <div class="d-flex justify-content-between"> 
+      <i style="font-size:36px"  class="bi bi-cash-coin text-warning"></i> 
+    
+      <i  @click="$emit('closeModal')" class="display-1 bi bi-x-lg"></i>  
+    
+    </div>
 
-        <p style="font-size:20px" >Propuesta de Intercambio Aceptada</p>
+        <p style="font-size:20px" > Aceptaste este Intercambio</p>
        <!-- TITLE -->
           <div style="font-size:16px" class="mb-4 ">
-              <text v-if="partnerOfferObjects !=null && partnerOfferObjects[0] !=null ">Tiempo restante {{partnerOfferObjects[0].owner_name}} concrete el pago de Despacho y Retiro de los objetos</text> &nbsp;&nbsp;&nbsp;
-            <br>
-<p class="text-center">
+              
+              <text v-if="partnerOfferObjects !=null && partnerOfferObjects[0] !=null ">
+                Tiempo restante {{partnerOfferObjects[0].owner_name}} concrete el pago de Despacho y Retiro de los objetos
+              </text> &nbsp;&nbsp;&nbsp;
+              <br>
+
+              <p class="text-center">
               <text class="text-success" style="font-size:50px" > {{ evaluateRemainingDays(offer.date_acceptance) }} </text>dias
-</p>         
+              </p>         
             
             <text style="font-size:16px" >
                 En caso No se concrete el pago en la fecha limite, la propuesta de intercambio se anulará. 
