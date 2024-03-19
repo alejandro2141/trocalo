@@ -1,5 +1,9 @@
 <script setup>
 import ProposalReceived from     '../components/ProposalReceived.vue'  
+import ProposalReceivedAccepted from     '../components/ProposalReceivedAccepted.vue'  
+
+
+
 import ProposalReceivedDetails from   '../components/ProposalReceivedDetails.vue'
 import ProposalReceivedAcceptedDetails from   '../components/ProposalReceivedAcceptedDetails.vue'
 import ProposalReceivedEndedDetails from   '../components/ProposalReceivedEndedDetails.vue'
@@ -36,10 +40,24 @@ import axios from 'axios'
           <p class=" text-center" style="font-size:20px">Aceptadas </p>
           <p class="text-secondary" style="font-size:12px" >A la espera que quien te envio la propuesta debe pagar los costos de retiro y despacho  </p>
           <div v-for="of in ofAccepted"  > 
-              <ProposalReceived  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
+              <ProposalReceivedAccepted  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
           </div>
       <!-- OF SENT ACCEPTED -->
         
+
+      <br>
+
+      <!-- OF ON TRANSFER THE WAY -->
+          <p class=" text-center" style="font-size:20px"> <i class="bi bi-truck"></i> En Despacho </p>
+          <p class="text-secondary" style="font-size:12px" >Los objetos estan en ruta para su recoleccion y despacho  </p>
+        <!--
+          <div v-for="of in ofAccepted"  > 
+              <ProposalReceivedAccepted  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
+          </div>
+        -->
+      <!-- OF SENT ACCEPTED -->
+
+
           <br>
 
       <!-- OF SENT ENDED -->
