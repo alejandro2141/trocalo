@@ -48,6 +48,7 @@ import axios from 'axios'
           <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado para completar el intercambio </p>
           <div v-for="of in ofAccepted"  > 
               <ProposalSentAccepted class="m-1" :accepted='true' @click="showExchangeProposalSentAccepted=true ; offerSentAccepted=of"  :offer='of'  />
+          <br>
           </div>
       <!-- OF SENT ACCEPTED -->
         
