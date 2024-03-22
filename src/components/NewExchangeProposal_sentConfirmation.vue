@@ -31,15 +31,18 @@ import axios from 'axios'
             <text  v-if="proposal_summary!=null && proposal_summary.objectYouWant!=null" class="fw-bold">  
                 {{proposal_summary.objectYouWant.owner_name}}
             </text>
-              podrá  Aceptar, Rechazar o enviarte una Contra Ofertar.
+              podrá  Aceptar o Rechazar tu Propuesta.
             
             </p> 
             
                         
-            Cuando {{proposal_summary.objectYouWant.owner_name}} acepte,  tienes 3 dias para realizar el pago por retiro y despacho del objeto<br>
+            Cuando {{proposal_summary.objectYouWant.owner_name}} acepte,  tendrás 3 dias para pagar el  Retiro y Despacho de los objetos<br>
             <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp <br>
             <br>
             Tan pronto el pago este realizado, el retiro del producto se realizara en tu dirección registrada: 
+
+            <i style="font-size:40px" class="bi bi-geo-alt text-warning"></i>
+
             <br>{{session_data.address_street}} 
              {{session_data.address_number}}
              {{session_data.address_apartment}} 
@@ -64,18 +67,38 @@ import axios from 'axios'
 
     </div>
 
-          <!-- FOOTER -->
-       
-          <div v-if="true" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
-              <div   class="d-flex justify-content-center">
-                <div @click="goToNextStep()">
-                  Siguiente <i class="bi bi-caret-right"></i> 
-                
+      
+
+
+                      <!-- FOOTER -->
+        
+            <div v-if="true" class="fixed-bottom  d-flex justify-content-center  text-success  bg-dark p-3 ">  
+              <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center border border-2 border-success  "> 
+                <div class="d-flex justify-content-start">
+                  <div   class="d-flex justify-content-center">
+                    <div >
+                      
+                      <text style="font-size:36px">Siguiente </text>
+                      <text>
+                          <i style="font-size:36px" class="bi bi-caret-right"></i> 
+                      </text>
+                    
+                    </div>
+                  </div>
+                  <!-- 
+                    <div  @click="goToNextStep()" class="">
+                        <i class="bi bi-check2 display-4 text-success p-1 m-1"> </i> 
+                    </div>
+                    <text style="font-size:20px" >Siguente</text>
+                  -->
                 </div>
               </div>
-          </div>
-      
+              <br>
+            </div>
           <!-- END FOOTER -->
+
+
+
 
 </div>
 
