@@ -7,11 +7,11 @@
 
         <div class="d-flex justify-content-between">
             <div class="m-1" >
-                 Has rechazado la propuesta de: <b> {{offer.source_owner_name}}</b><br>
+                 Has rechazado intercambiar con: <b> {{offer.source_owner_name}}</b><br>
                  {{offer.title}} 
             </div>
             <div>
-               
+                <i style="font-size:25px" class="text-secondary bi bi-emoji-tear m-2"></i>
             </div>
         </div>
 
