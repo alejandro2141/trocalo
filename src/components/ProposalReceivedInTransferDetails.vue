@@ -21,15 +21,21 @@ import axios from 'axios'
   <div v-if="showStep1" >
 
     <div class="d-flex justify-content-between"> 
-      <i style="font-size:36px"  class="bi bi-truck text-success"></i> 
+      <div></div>
     
       <i  @click="$emit('closeModal')" class="display-1 bi bi-x-lg"></i>  
-    
     </div>
 
-        <p style="font-size:20px" > En transfer </p>
+        <p style="font-size:20px" class="text-center" > Intercambio en Camino </p>
 
-        <p style="font-size:20px" > Tiempo de envio 2 dias </p>
+        <p style="font-size:20px" class="text-center" > Tiempo de envio </p>
+        <p class="text-center">
+            <i style="font-size:36px"  class="bi bi-truck text-success"></i> 
+            <br>
+            <text class="text-success" style="font-size:26px">2 dias</text>
+        </p>
+        
+       
 
         <p style="font-size:16px" > Ya vamos por los Objetos de tu intercambio </p>
         
@@ -60,7 +66,7 @@ import axios from 'axios'
           <!-- END LIST MY OFFER OBJECT  --> 
          
           <div  style="font-size:16px "  class="text-start">
-            Y te llevaremos los objetos : 
+            Y te llevaremos los objetos de <b>{{offer.source_owner_name}} </b>: 
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
