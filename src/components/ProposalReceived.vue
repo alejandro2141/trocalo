@@ -18,38 +18,26 @@
 
     </div>
 
-        <div class="d-flex justify-content-between">
+        <div >
             <div class="d-flex justify-content-between">
-                <div class=" m-2">      
-                    {{offer.source_owner_name}} 
-                    se se interesa por : 
+                
+                <div class=" m-2 ">      
+                    <b>{{offer.source_owner_name}}</b> 
+                    se se interesa por :<br>
                     {{offer.title}}  
                 </div>
-            
-                <div v-if="offer.status!=200"  style="font-size:19px" class=" w-25 m-2 d-flex justify-content-end" >
-                    <div style="font-size:19px" class="m-2" >
-
-                    <!--
-                        <div v-if="offer.user_id_creator ==  offer.user_id_destination ">
-                            <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}}
+                
+                
+                <div v-if="offer.status!=200"  style="font-size:19px" class="d-flex justify-content-end m-2"  >
+                    <div>
+                        <div  class="text-center">
+                                <i style="font-size:30px" class="bi bi-clock-history"></i>
                         </div>
-                    -->
-                        <!-- 
-                        <div v-else style="font-size:12px">
-                            No Pagas Envio 
+
+                        <div  class="">
+                                {{ evaluateRemainingDays(offer.timestamp) }} dias
                         </div>
-                        -->
-                    
                     </div>
-                    
-                    <div v-if="!accepted" class="m-2">
-                            <i class="bi bi-clock-history"></i> {{ evaluateRemainingDays(offer.timestamp) }}d
-                    </div>
-                    <div v-else>
-                        <i class="bi bi-truck"></i><i class="bi bi-cash-coin"></i>
-                    </div>
-
-
                 </div>
 
             </div>
