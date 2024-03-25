@@ -15,7 +15,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         </div>
             <InventoryObjectDetailed  :object=object   :session_data="session_data" />
         
-            <p v-if="session_data!=null && object!= null"  style="font-size:16px" class="w-100 text-start">
+            <p v-if="session_data!=null && object!= null"  style="font-size:16px" class="w-100 text-start mt-2">
                     Valor Retiro y Despacho  <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp
             </p>
         
