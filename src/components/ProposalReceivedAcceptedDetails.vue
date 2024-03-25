@@ -21,31 +21,33 @@ import axios from 'axios'
   <div v-if="showStep1" >
 
     <div class="d-flex justify-content-between"> 
-      <i style="font-size:36px"  class="bi bi-cash-coin text-warning"></i> 
+      <div></div>
     
       <i  @click="$emit('closeModal')" class="display-1 bi bi-x-lg"></i>  
     
     </div>
 
-        <p style="font-size:20px" > Aceptaste este Intercambio</p>
+        <p style="font-size:20px" class="text-center"  > Aceptaste este Intercambio</p>
        <!-- TITLE -->
           <div style="font-size:16px" class="mb-4 ">
               
-              <text v-if="partnerOfferObjects !=null && partnerOfferObjects[0] !=null ">
-                Tiempo restante {{partnerOfferObjects[0].owner_name}} concrete el pago de Despacho y Retiro de los objetos
-              </text> &nbsp;&nbsp;&nbsp;
-              <br>
-
-              <p class="text-center">
-              <text class="text-success" style="font-size:50px" > {{ evaluateRemainingDays(offer.date_acceptance) }} </text>dias
+              <p class="text-center" v-if="partnerOfferObjects !=null && partnerOfferObjects[0] !=null ">
+                Tiempo restante <b> {{partnerOfferObjects[0].owner_name}}</b> concrete el pago de Despacho y Retiro de los objetos
+              </p> 
+              
+              <p class="text-center text-warning">
+                <i style="font-size:40px"  class="bi bi-cash text-warning"></i> <br>
+                <text class="" style="font-size:40px" > {{ evaluateRemainingDays(offer.date_acceptance) }} </text> dias
               </p>         
             
             <text style="font-size:16px" >
-                En caso No se concrete el pago en la fecha limite, la propuesta de intercambio se anulará. 
+               En caso que no se concrete el pago, el intercambio será anulado
             </text>
           </div>       
           
           <!-- LIST MY OFFER OBJECT  -->
+
+          <i style="font-size:30px" class="bi bi-geo-alt text-warning"></i>
 
           <text style="font-size:16px" >
                 Tu direccion registrada para el retiro de tu objeto  
