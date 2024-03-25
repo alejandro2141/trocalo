@@ -34,7 +34,7 @@ import axios from 'axios'
   <div style="height:20px">
   </div>
 
-  <div v-if='  !(showExchangeProposalReceived || showExchangeProposalReceivedAccepted || showExchangeProposalReceivedEnded || showExchangeProposalReceivedInTransfer || showExchangeProposalReceivedCancelled ) '>
+  <div v-if='  !(showExchangeProposalReceived || showExchangeProposalReceivedAccepted || showExchangeProposalReceivedEnded || showExchangeProposalReceivedInTransfer || showExchangeProposalReceivedCancelled  || showExchangeProposalReceivedClosedSuccessfully ) '>
 
       <!-- OF SENT -->
           <p class="text-white text-center" style="font-size:20px">Recibidas </p>
