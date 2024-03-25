@@ -21,25 +21,29 @@ import axios from 'axios'
   <div v-if="showStep1" >
 
     <div class="d-flex justify-content-between"> 
-      <i style="font-size:36px"  class="bi bi-truck text-success"></i> 
-    
+     <div>
+     </div>
       <i  @click="$emit('closeModal')" class="display-1 bi bi-x-lg"></i>  
     
     </div>
 
-        <p style="font-size:20px" > TErminado con exito</p>
+    
+        <p style="font-size:20px" class="text-center" > Intercambio Finalizado</p>
+        <p class="text-center">
+            <i style="font-size:60px"  class="bi bi-check-lg  text-success"></i> 
+        </p>
 
-        <p style="font-size:20px" > Tiempo de envio 2 dias </p>
+        <p style="font-size:20px" class="text-center" > Tiempo de envio 2 dias </p>
 
-        <p style="font-size:16px" > Ya vamos por los Objetos de tu intercambio </p>
+        <p style="font-size:16px" >  
+            <i style="font-size:26px"  class="bi bi-geo-alt"></i> 
+            Ya vamos a tu dirección registrada:
+        </p>
         
        <!-- TITLE -->
           <!-- LIST MY OFFER OBJECT  -->
           <text style="font-size:16px" >
-            <i style="font-size:26px"  class="bi bi-geo-alt"></i>
-
-                Tu direccion registrada para el retiro de tu objeto  
-                <br>{{session_data.address_street}} 
+                {{session_data.address_street}} 
                 {{session_data.address_number}}
                 {{session_data.address_apartment}} 
                 {{session_data.address_zone1}}  
