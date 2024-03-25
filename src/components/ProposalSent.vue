@@ -16,38 +16,33 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <div class="w-75 m-2">      
-                Enviada a:{{offer.dest_owner_name}} <br>
-                Por el objeto: <br> 
-                {{offer.title}}  
+            <div class="w-75 m-0">      
+                Enviada a <b> {{offer.dest_owner_name}}</b> <br>
             </div>
             
-            <div style="font-size:19px" class=" w-25 m-2 d-flex justify-content-end" >
-                <div style="font-size:19px" class="m-2" >
+            <div style="font-size:19px" class=" w-25 m-0 d-flex justify-content-end" >
+                <div style="font-size:19px" class="m-1 text-center" >
                         
                     <div v-if="offer.user_id_creator !=  offer.user_id_destination ">
                         <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}} 
                     </div>
-                    <!-- 
-                    <div v-else style="font-size:12px">
-                        No Pagas Envio 
-                    </div>
-                    -->
+
                 </div>
                 
-                <div v-if="!accepted" class="m-2">
+                <div class="m-1 text-center">
                     <!--  <i class="bi bi-clock"></i> -->
                     <i class="bi bi-clock-fill"></i> 
                      {{ evaluateRemainingDays(offer.timestamp) }}dias
                 </div>
-                <div v-else >
-                    <i class="bi bi-clock-fill"></i> 
-                     {{ evaluateRemainingDaysToPay(offer.date_acceptance) }}dias
-                </div>
-
+                
 
             </div>
 
+        </div>
+
+        <div>
+            Por objeto: <br> 
+                {{offer.title}}  
         </div>
     </div>
 
