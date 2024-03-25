@@ -86,7 +86,6 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         
 
 
-        <br>
         <!-- 
         <div class="mt-1" style="font-size:20px">
            Cambiaria por otros objetos:  
