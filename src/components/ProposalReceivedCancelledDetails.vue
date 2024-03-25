@@ -20,39 +20,28 @@ import axios from 'axios'
     
   <div v-if="showStep1" >
 
-    <div class="d-flex justify-content-between"> 
-      <i style="font-size:36px"  class="bi bi-truck text-success"></i> 
-    
+    <div class="d-flex justify-content-between">
+      <div> 
+      <!--  <i style="font-size:36px"  class="bi bi-truck text-success"></i>  -->
+      </div>
+
       <i  @click="$emit('closeModal')" class="display-1 bi bi-x-lg"></i>  
     
     </div>
 
-        <p style="font-size:20px" > Intercambio Fue Rechazado  por</p>
+        <p style="font-size:26px" class="text-center" > Intercambio Rechazado</p>
+     
+        <p class="text-center">
+          <i style="font-size:60px" class="bi text-secondary bi-emoji-tear"></i><br>
+          <b> {{offer.creator_name}} </b> estará muy triste.<br>
+           ¡Sigue intercambiando!
+        </p>
 
-        <p style="font-size:20px" > Tiempo de envio 2 dias </p>
+        <br>
 
-        <p style="font-size:16px" > Ya vamos por los Objetos de tu intercambio </p>
-        
-       <!-- TITLE -->
-          <!-- LIST MY OFFER OBJECT  -->
-          <text style="font-size:16px" >
-            <i style="font-size:26px"  class="bi bi-geo-alt"></i>
-
-                Tu direccion registrada para el retiro de tu objeto  
-                <br>{{session_data.address_street}} 
-                {{session_data.address_number}}
-                {{session_data.address_apartment}} 
-                {{session_data.address_zone1}}  
-                {{session_data.address_zone2}}
-                {{session_data.address_city}}
-                <br>{{session_data.address_country}}
-              
-          </text>
-           <br>
-          <br>
-
+    
           <div  style="font-size:16px "  class="text-start">
-            Ten a mano tu objeto: 
+            Tu objeto: 
           </div>
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
               <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
@@ -60,7 +49,7 @@ import axios from 'axios'
           <!-- END LIST MY OFFER OBJECT  --> 
          
           <div  style="font-size:16px "  class="text-start">
-            Y te llevaremos los objetos : 
+           Te proponía cambiarlo por :  
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
