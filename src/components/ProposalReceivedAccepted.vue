@@ -14,25 +14,45 @@
                 &nbsp;&nbsp;contra oferta ({{offer.negotiation_loop}})
             </div>
 
-            <div>
-                <i style="font-size:36px"  class="bi bi-cash-coin m-3"></i>
-            </div>
+           
         </div>
 
+       
+
+
         <div class="d-flex justify-content-between">
-            <div class="w-100 m-2">      
-               Aceptaste la propuesta de <b> {{offer.source_owner_name}} </b>   
-               <br>
-               <br>
-                {{offer.title}}  
-            </div>
+           
+                    <div class="m-2">      
+                        Aceptaste la propuesta de <b> {{offer.source_owner_name}} </b>   
+                        <br>
+                        <br>
+                        {{offer.title}}  
+                    </div>
+                
+
+                    <div class="w-25 d-flex justify-content-end m-2">
+                        <div class="m-0">
+                            <div class="text-center m-0">
+                                <i style="font-size:36px"  class="bi bi-cash m-0"></i>
+                            </div>
+                            <div style="font-size:20px" class="text-center m-0">
+                                {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} dias
+                            </div>
+                        </div>
+                    </div>
+           
         </div>
+
+
+
+
+
 
 
         <div style="font-size:16px" class=" m-2 " >
             <p class="text-start">
                 Quedan 
-                <text style="font-size:26px"><b> {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} </b> </text>dias 
+                <text style="font-size:26px"><b> {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} </b> </text> dias 
                 para que <b> {{offer.source_owner_name}} </b> concrete el pago para la por Recoleccion y despacho.
                 <br>
             </p>
