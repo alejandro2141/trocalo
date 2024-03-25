@@ -10,8 +10,10 @@
                  Intercambio en Camino
             </div>
 
-            <div>
+            <div class="text-center" >
                 <i style="font-size:36px"  class="text-success bi bi-truck m-3"></i>
+                <br>
+                <text style="font-size:20px" class="text-success">2 dias</text>
             </div>
         </div>
 
@@ -23,7 +25,7 @@
                 Ten a mano el objeto :<br>
                 {{offer.title}}  
                 <br>
-                Y  te llevaremos los objetos <br>
+                Y  te llevaremos los objetos de <b> {{offer.source_owner_name}}</b><br>
                 
                 <br>
             </div>
