@@ -82,14 +82,31 @@ import axios from 'axios'
 
           <!-- FOOTER -->
        
-          <div v-if="true" class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
-              <div   class="d-flex justify-content-center">
-                <div @click="goToNextStep()">
-                  Siguiente <i class="bi bi-caret-right"></i> 
-                
+            <!-- FOOTER -->
+            <div v-if="true" class="fixed-bottom  d-flex justify-content-center  text-success  bg-dark p-3 ">  
+              <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center border border-2 border-success  "> 
+                <div class="d-flex justify-content-start">
+                  <div   class="d-flex justify-content-center">
+                    <div >
+                      
+                      <text style="font-size:36px">Siguiente </text>
+                      <text>
+                          <i style="font-size:36px" class="bi bi-caret-right"></i> 
+                      </text>
+                    
+                    </div>
+                  </div>
+                  <!-- 
+                    <div  @click="goToNextStep()" class="">
+                        <i class="bi bi-check2 display-4 text-success p-1 m-1"> </i> 
+                    </div>
+                    <text style="font-size:20px" >Siguente</text>
+                  -->
                 </div>
               </div>
-          </div>
+              <br>
+            </div>
+          <!-- END FOOTER -->
       
           <!-- END FOOTER -->
 
