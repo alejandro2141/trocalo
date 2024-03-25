@@ -38,13 +38,18 @@ import axios from 'axios'
                     <option value="7">7 dias</option>
                     <option value="5">5 dias</option>
                     <option value="3">3 dias</option>
-                   </select>
+                  </select>
               </div>
               <div>
               </div>
           </div>
           <br>
 
+
+          <p>
+          Costo Retiro y Despacho : <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp 
+          </p>
+          
           <div  style="font-size:16px "  class="d-flex justify-content-start">
             <div>
               Te interesa el objeto de :
