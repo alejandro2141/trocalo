@@ -30,18 +30,14 @@ import axios from 'axios'
         <p style="font-size:20px" class="text-center"  > Aceptaste este Intercambio</p>
        <!-- TITLE -->
           <div style="font-size:16px" class="mb-4 ">
-              
-              <p class="text-center" v-if="partnerOfferObjects !=null && partnerOfferObjects[0] !=null ">
-                Tiempo restante <b> {{partnerOfferObjects[0].owner_name}}</b> concrete el pago de Despacho y Retiro de los objetos
-              </p> 
-              
-              <p class="text-center text-warning">
-                <i style="font-size:40px"  class="bi bi-cash text-warning"></i> <br>
-                <text class="" style="font-size:40px" > {{ evaluateRemainingDays(offer.date_acceptance) }} </text> dias
+                         
+              <p style="font-size:20px" class="text-center text-warning">
+                Tiempo restante <i style="font-size:30px"  class="bi bi-cash text-warning"></i> <br>
+                <text class="" style="font-size:30px" > {{ evaluateRemainingDays(offer.date_acceptance) }} </text> dias
               </p>         
             
             <text style="font-size:16px" >
-               En caso que no se concrete el pago, el intercambio será anulado
+               En caso que <b>  {{offer.source_owner_name}}</b> no concrete el pago, el intercambio será anulado
             </text>
           </div>       
           
@@ -49,15 +45,15 @@ import axios from 'axios'
 
           <i style="font-size:30px" class="bi bi-geo-alt text-warning"></i>
 
-          <text style="font-size:16px" >
-                Tu direccion registrada para el retiro de tu objeto  
-                <br>{{session_data.address_street}} 
-                {{session_data.address_number}}
-                {{session_data.address_apartment}} 
-                {{session_data.address_zone1}}  
-                {{session_data.address_zone2}}
-                {{session_data.address_city}}
-                <br>{{session_data.address_country}}
+          <text style="font-size:16px" class="m-2">
+                Tu direccion para el retiro de tu objeto: <br>
+                Dirección: {{session_data.address_street}} <br>
+                Numero: {{session_data.address_number}}<br>
+                Departamento:{{session_data.address_apartment}} <br>
+                Region:{{session_data.address_zone1}}  <br>
+                Comuna: {{session_data.address_zone2}}<br>
+                Ciudad{{session_data.address_city}}<br>
+                Pais {{session_data.address_country}}<br>
               
           </text>
            <br>
