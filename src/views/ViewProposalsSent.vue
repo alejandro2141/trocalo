@@ -1,10 +1,11 @@
 <script setup>
 import ProposalSent from     '../components/ProposalSent.vue'
 import ProposalSentAccepted from     '../components/ProposalSentAccepted.vue'
+import ProposalSentAcceptedDetails from     '../components/ProposalSentAcceptedDetails.vue'
+
 
 /*import InventoryList  from     '../components/InventoryList.vue'*/
 import ProposalSentDetails from   '../components/ProposalSentDetails.vue'
-import ExchangeProposalSentAccepted from   '../components/ExchangeProposalSentAccepted.vue'
 import ExchangeProposalSentEnded  from   '../components/ExchangeProposalSentEnded.vue'
 
 import { BKND_CONFIG } from '../../config.js'
@@ -82,7 +83,7 @@ import axios from 'axios'
     </div>
 
     <div  v-if="showExchangeProposalSentAccepted"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-         <ExchangeProposalSentAccepted :session_data="this.session_data" :offer="offerSentAccepted" v-on:close="closeModal" />
+         <ProposalSentAcceptedDetails :session_data="this.session_data" :offer="offerSentAccepted" v-on:closeModal="closeModal" />
     </div>
 
     <div  v-if="showExchangeProposalSentEnded"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
