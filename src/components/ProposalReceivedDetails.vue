@@ -36,8 +36,7 @@ import axios from 'axios'
           <div style="font-size:20px" class="m-3 d-flex justify-content-center" >
           
             <div class="text-center">
-             Tiempo Restante<br>
-              <i style="font-size:30px" class="bi bi-clock-history"> </i><br>
+             Tiempo Restante <i style="font-size:30px" class="bi bi-clock-history"> </i><br>
               <text class="" style="font-size:30px" >  {{ evaluateRemainingDays(offer.timestamp)}} dias </text>
             </div>
           
