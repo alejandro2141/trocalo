@@ -24,14 +24,20 @@ import axios from 'axios'
 
         <p style="font-size:20px" >Propuestas de Intercambio Enviada</p>
 
-          <div style="font-size:20px" class="mb-4 text-center">
-              <text>Tiempo Propuesta Restante<br>
-               </text> 
-              <text class="text-success" style="font-size:40px" > {{ evaluateRemainingDays(offer.timestamp) }} dias </text>
-          </div>   
+        <div style="font-size:20px" class="m-3 d-flex justify-content-center" >
+          
+          <div class="text-center">
+           Tiempo Espera Restante <i style="font-size:30px" class="bi bi-clock-history"> </i><br>
+            <text class="" style="font-size:30px" >  {{ evaluateRemainingDays(offer.timestamp)}} dias </text>
+          </div>
+        
+        </div>  
+          
 
-          <div  style="font-size:16px "  class="d-flex justify-content-center">
-              Te interesan los siguientes objetos de {{offer.dest_owner_name}}:  
+
+
+          <div  style="font-size:16px "  class="d-flex justify-content-start">
+              Te interesa el objeto de  <b> {{offer.dest_owner_name}}</b>:  
           </div>
          
         <!-- LIST PARTNER OFFER OBJECT  -->
@@ -41,7 +47,7 @@ import axios from 'axios'
         <!-- END LIST PARTNER OFFER OBJECT  -->
           
           <div  style="font-size:16px "  class="m-2">
-            Y propones cambiarlos por los siguientes objetos: 
+            Propones cambiarlo por: 
           </div>
         
         <!-- LIST MY OFFER OBJECT  -->
