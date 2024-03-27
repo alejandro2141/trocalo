@@ -28,11 +28,12 @@ import axios from 'axios'
 
         <p style="font-size:20px" class="text-center" > Intercambio en Camino </p>
 
-        <p style="font-size:20px" class="text-center" > Tiempo de envio </p>
+       
         <p class="text-center">
+          <text style="font-size:20px" class="text-center text-success" > Tiempo de envio </text>
             <i style="font-size:36px"  class="bi bi-truck text-success"></i> 
             <br>
-            <text class="text-success" style="font-size:26px">2 dias</text>
+            <text class="text-success" style="font-size:30px">2 dias</text>
         </p>
         
        
@@ -41,19 +42,22 @@ import axios from 'axios'
         
        <!-- TITLE -->
           <!-- LIST MY OFFER OBJECT  -->
-          <text style="font-size:16px" >
-            <i style="font-size:26px"  class="bi bi-geo-alt"></i>
 
-                Tu direccion registrada para el retiro de tu objeto  
-                <br>{{session_data.address_street}} 
-                {{session_data.address_number}}
-                {{session_data.address_apartment}} 
-                {{session_data.address_zone1}}  
-                {{session_data.address_zone2}}
-                {{session_data.address_city}}
-                <br>{{session_data.address_country}}
-              
-          </text>
+              <i style="font-size:30px" class="bi bi-geo-alt text-warning"></i>
+
+              <text style="font-size:16px" class="m-2">
+                    Tu direccion para el retiro de tu objeto: <br>
+                    Dirección: {{session_data.address_street}} <br>
+                    Numero: {{session_data.address_number}}<br>
+                    Departamento:{{session_data.address_apartment}} <br>
+                    Region:{{session_data.address_zone1}}  <br>
+                    Comuna: {{session_data.address_zone2}}<br>
+                    Ciudad{{session_data.address_city}}<br>
+                    Pais {{session_data.address_country}}<br>
+                  
+              </text>
+
+
            <br>
           <br>
 
