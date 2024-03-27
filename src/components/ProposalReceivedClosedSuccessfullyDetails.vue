@@ -33,30 +33,15 @@ import axios from 'axios'
             <i style="font-size:60px"  class="bi bi-check-lg  text-success"></i> 
         </p>
 
-        <p style="font-size:20px" class="text-center" > Tiempo de envio 2 dias </p>
-
-        <p style="font-size:16px" >  
-            <i style="font-size:26px"  class="bi bi-geo-alt"></i> 
-            Ya vamos a tu dirección registrada:
-        </p>
+       <br>
         
-       <!-- TITLE -->
-          <!-- LIST MY OFFER OBJECT  -->
-          <text style="font-size:16px" >
-                {{session_data.address_street}} 
-                {{session_data.address_number}}
-                {{session_data.address_apartment}} 
-                {{session_data.address_zone1}}  
-                {{session_data.address_zone2}}
-                {{session_data.address_city}}
-                <br>{{session_data.address_country}}
-              
-          </text>
-           <br>
-          <br>
+        <p class="text-center">
+          Resumen de tu intercambio con  <b> {{offer.source_owner_name}} </b>  
+        </p>
+
 
           <div  style="font-size:16px "  class="text-start">
-            Ten a mano tu objeto: 
+            tu objeto: 
           </div>
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
               <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
@@ -64,7 +49,7 @@ import axios from 'axios'
           <!-- END LIST MY OFFER OBJECT  --> 
          
           <div  style="font-size:16px "  class="text-start">
-            Y te llevaremos los objetos : 
+            Lo has cambiado por : 
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
