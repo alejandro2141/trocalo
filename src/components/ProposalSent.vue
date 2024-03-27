@@ -34,14 +34,12 @@
                     <i class="bi bi-clock-fill"></i> 
                      {{ evaluateRemainingDays(offer.timestamp) }}dias
                 </div>
-                
 
             </div>
 
         </div>
 
         <div>
-            Por objeto: <br> 
                 {{offer.title}}  
         </div>
     </div>
