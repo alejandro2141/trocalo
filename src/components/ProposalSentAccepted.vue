@@ -15,7 +15,7 @@
             </div>
 
             <div>
-                <i style="font-size:36px"  class="bi bi-cash-coin m-3"></i>
+                
             </div>
         </div>
 
@@ -23,6 +23,10 @@
             <div class="w-100 m-2">      
                 Aceptada por <b>{{offer.dest_owner_name}} </b> <br>
                 {{offer.title}}  
+            </div>
+
+            <div>
+                <i style="font-size:36px"  class="bi bi-cash-coin m-3"></i>
             </div>
         </div>
 
