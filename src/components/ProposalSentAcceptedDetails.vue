@@ -17,7 +17,7 @@ import axios from 'axios'
     <div class="d-flex justify-content-between"> 
     <div></div>
 
-    <i  @click="$emit('closeModal')" class="display-1 bi bi-x-lg"></i>  
+    <i  @click="$emit('close')" class="display-1 bi bi-x-lg"></i>  
 
     </div>
 
@@ -32,7 +32,7 @@ import axios from 'axios'
             
             <p class="text-center">
                 <text class="text-center text-warning" style="font-size:26px" >
-                 Debes Pagar $10.000 clp
+                 Debes Pagar ${{offer.amount}} clp
                 </text>
             </p>
 
@@ -62,15 +62,17 @@ import axios from 'axios'
         <br>
 
         <div  style="font-size:16px "  class="text-start">
-            Tu objeto : 
+            Objeto de  <b> {{offer.dest_owner_name}} </b>
         </div>
+
         <div v-for="obj in yourOfferObjects"  class="mb-4" > 
             <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
         </div>
+
         <!-- END LIST MY OFFER OBJECT  --> 
         
         <div  style="font-size:16px "  class="text-start">
-            Lo cambias por: 
+            Lo cambias por tus objetos: 
         </div>
         <!-- LIST PARTNER OFFER OBJECT  -->
         <div v-for="obj in partnerOfferObjects"  > 
@@ -132,7 +134,7 @@ export default {
         }
   },
   props: ['session_data','offer'],
-  emits: ['closeModal'],
+  emits: ['close'],
 
 created() {
   console.log("APP CREATED")
@@ -220,17 +222,17 @@ methods: {
 
     //const result = jsonResponse.data.find(({id }) => id === this.offer.dest_object1);
 
-    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object1));
-    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object2));
-    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object3));
-    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object4));
-    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object5));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object1));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object2));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object3));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object4));
+    this.yourOfferObjects.push( jsonResponse.data.find(({id}) => id === this.offer.dest_object5));
     
-    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object1 ));
-    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object2 ));
-    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object3 ));
-    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object4 ));
-    this.yourOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object5 ));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object1 ));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object2 ));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object3 ));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object4 ));
+    this.partnerOfferObjects.push( jsonResponse.data.find(({id}) =>  id === this.offer.source_object5 ));
 
     /*
 
