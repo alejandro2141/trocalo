@@ -28,8 +28,8 @@ const location = useRoute();
           </RouterLink>
         -->
         <div style="" class='text-decoration-none'    > 
-          <A HREF="/" >  <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
-          </A>
+          <a HREF="/" >  <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
+          </a>
           </div>
 
 
@@ -69,7 +69,7 @@ const location = useRoute();
       <!-- 
         <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;" class="p-2" :class="{'border-bottom'  :underline_inventory}" @click="setUnderline(4)" to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
       -->
-        <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;" class="p-2" :class="{'border-bottom'  : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
+        <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;"    class="p-2" :class="{'border-bottom'  : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
         <RouterLink   style="color:#91D5FE ; font-size : 45px ; border-radius: 0px;" class="p-0" :class="{'border-bottom'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
         <RouterLink   style="font-size : 45px ; border-radius: 0px;" class="p-0" :class="{ 'border-bottom' :( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
 
