@@ -20,7 +20,7 @@ import axios from 'axios'
   <div v-if="showStep1" >
 
 
-    <div class="d-flex justify-content-end"> <i  @click="$emit('closeExchangeProposalSent')" class="display-1 bi bi-x-lg"></i>  </div>
+    <div class="d-flex justify-content-end"> <i  @click="$emit('close')" class="display-1 bi bi-x-lg"></i>  </div>
 
         <p style="font-size:20px" >Propuestas de Intercambio Enviada</p>
 
@@ -33,11 +33,19 @@ import axios from 'axios'
         
         </div>  
           
+        <div style="font-size:20px" class="m-3 d-flex justify-content-center" >
+          
+          <div class="text-center">
+           Costo Retiro y Despacho <br>
+           <text class="text-warning" style="font-size:30px" > ${{offer.amount}} </text>
+          </div>
+        
+        </div>  
 
 
 
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-              Te interesa el objeto de  <b> {{offer.dest_owner_name}}</b>:  
+              Te interesa el objeto de <b>{{offer.dest_owner_name}}</b> :  
           </div>
          
         <!-- LIST PARTNER OFFER OBJECT  -->
@@ -154,7 +162,7 @@ export default {
         }
   },
   props: ['session_data','offer'],
-  emits: ['closeExchangeProposalSent'],
+  emits: ['close'],
 
 created() {
   console.log("APP CREATED")
