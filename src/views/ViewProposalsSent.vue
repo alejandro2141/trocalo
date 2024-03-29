@@ -191,7 +191,7 @@ methods: {
     console.log("Get Proposals update list")
     let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_proposals_sent",this.session_data);
     console.log("/private_get_proposals_sent Response:"+JSON.stringify(response_json.data))
-    let proposals = response_json.data
+    let proposals = response_json.data.proposals
 
     //filter 
     this.ofSent = proposals.filter(item => item.status ==  1).sort((a, b) => (a.id > b.id) ? 1 : -1);
