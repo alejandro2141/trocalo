@@ -69,9 +69,9 @@ const location = useRoute();
       <!-- 
         <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;" class="p-2" :class="{'border-bottom'  :underline_inventory}" @click="setUnderline(4)" to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
       -->
-        <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;"    class="p-2" :class="{'border-bottom'  : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
-        <RouterLink   style="color:#91D5FE ; font-size : 45px ; border-radius: 0px;" class="p-0" :class="{'border-bottom'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
-        <RouterLink   style="font-size : 45px ; border-radius: 0px;" class="p-0" :class="{ 'border-bottom' :( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
+        <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
+        <RouterLink   style="color:#91D5FE ; font-size : 45px ;" class="p-0" :class="{'selected'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
+        <RouterLink   style="font-size : 45px ; " class="p-0" :class="{ 'selected' : ( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
 
       </div>
       
@@ -104,6 +104,19 @@ color:white
 .nonActiveClass{
 font-size:40px ;
 color:white
+}
+
+.selected{
+/*background-color  : #172F14*/
+/*background-color  : #1F321D */
+/* background-color  : #122810 */ 
+/*background-color  : #063000 */
+
+/*background-color  : #6c757d*/
+
+background-color  : #111 ;
+border-radius: 17px; 
+
 }
 
 
