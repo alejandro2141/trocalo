@@ -41,7 +41,7 @@ import axios from 'axios'
 
 
           <div  style="font-size:16px "  class="text-start">
-            tu objeto: 
+            Objeto que recibiste: 
           </div>
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
               <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
@@ -49,7 +49,7 @@ import axios from 'axios'
           <!-- END LIST MY OFFER OBJECT  --> 
          
           <div  style="font-size:16px "  class="text-start">
-            Lo has cambiado por : 
+            Tus objetos intercambiados : 
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
