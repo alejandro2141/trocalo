@@ -41,7 +41,7 @@ import axios from 'axios'
 
     
           <div  style="font-size:16px "  class="text-start">
-            Tu objeto: 
+           Objeto de tu intres: 
           </div>
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
               <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
@@ -49,7 +49,7 @@ import axios from 'axios'
           <!-- END LIST MY OFFER OBJECT  --> 
          
           <div  style="font-size:16px "  class="text-start">
-           Te proponía cambiarlo por :  
+           Proponias cambiarlo por :  
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
