@@ -12,7 +12,7 @@ import axios from 'axios'
  
  <div>
 
-  <div v-if="true">
+  <div v-if="showForm">
 
     <div>
       <input type="text" placeholder="Titulo"  v-model="input_name" id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark    text-white border-white" required minlength="4" maxlength="40"  />
@@ -107,9 +107,10 @@ import axios from 'axios'
   -->
 
     <br>
-    <div style="font-size:25px" class=" text-success w-100 bg-dark p-3 text-center" >
+
+    <div @click="upload_product()" style="font-size:25px" class="text-success w-100 bg-dark p-3 text-center" >
        <text> Guardar </text> 
-       <i style="font-size:35px" @click="upload_product()" class="bi bi-cloud-arrow-up"></i> 
+       <i style="font-size:35px"  class="bi bi-cloud-arrow-up"></i> 
     </div>
     
 
@@ -217,7 +218,7 @@ export default {
         validate_exchange_option4 : false ,
         validate_exchange_option5 : false ,
         //***************** */
-
+        showForm : true,
 
       }
   },
@@ -435,7 +436,9 @@ async upload(reader, img_num)
           console.log("Sending to /user_create_product" + JSON.stringify(data_product) )
           let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/user_create_product",data_product );
           //step1=false;
+          this.showForm = false 
           this.showRequestConfirmation=true
+
           }
 
 
