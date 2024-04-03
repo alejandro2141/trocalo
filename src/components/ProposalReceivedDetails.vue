@@ -50,7 +50,7 @@ import axios from 'axios'
           </div>
           <!-- LIST MY OFFER OBJECT  -->
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
+              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; showStep1=false; objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>
           <!-- END LIST MY OFFER OBJECT  --> 
          
@@ -59,7 +59,7 @@ import axios from 'axios'
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
+              <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true; showStep1=false ;  objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
           <!-- END LIST PARTNER OFFER OBJECT  -->
 
@@ -80,15 +80,15 @@ import axios from 'axios'
             <div  style="font-size:25px" class="d-flex justify-content-between">
 
               <div @click="showAcceptProposal=true; showStep1=false "  class="">
-                <button type="button" class="btn btn-success p-3">Acepto</button>
+                <button type="button" class="btn btn-success p-4">Aceptar </button>
               </div>
-
+            <!-- 
               <div style="" @click="showEditProposal=true;  showStep1=false "  class="border border-1 border-secondary">
                   <button type="button" class="btn btn-secondary">Editar  <i class="bi bi-pencil"></i> <br> Propuesta</button>  
               </div>
-
+            -->
               <div @click="showRejectProposal=true;  showStep1=false "  class="">
-                <button type="button" class="btn btn-danger p-3">Rechazo</button>
+                <button type="button" class="btn btn-danger p-4">Rechazar</button>
               </div>
 
             </div>
@@ -477,23 +477,27 @@ import axios from 'axios'
           <!-- END FOOTER -->
 
     </div>
+
+
+
+
 <!-- ******************************* -->
-<!--         SHOW EDIT PROPOSAL  SUMMARY    -->
+<!--         SHOW OBJECT DETAILS     -->
 <!-- ******************************* -->
 
-<!-- Show Object Details-->
 <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
                 <div class="" >
                         <div class="d-flex justify-content-end"> 
-                        <i @click="showModalDetails=false" class="bi bi-x-lg display-1" ></i>
+                        <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
                         </div>
-                        <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModalObjectDetails" :session_data="session_data" />
+                        <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModal()" :session_data="session_data" />
                 </div>
-                
-                <div class="m-4 pb-4" v-if="showModalDetails">
+              <!--
+                <div class="m-4 pb-4" v-if="showModalDetails && session_data.id!=null && session_data.id != object.owner_id">
                         <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showExchangeProposal=true ; showModalDetails=false  " type="button" class="btn btn-primary">Hacer oferta por este producto</button>
                         <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
-                </div>        
+                </div>   
+              -->     
 </div>
 
 
@@ -742,12 +746,14 @@ methods: {
     {
       console.log("goTOMainSearch")
     },
-    /*
+    
     closeModal()
     {
-      this.showModalDetails= false
+      //this.showModalDetails= false
+      this.showModalDetails=false;
+      this.showStep1=true
     },
-    */
+    
 
     },
 
