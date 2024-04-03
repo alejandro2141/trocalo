@@ -47,7 +47,8 @@ import axios from 'axios'
           <p class="text-white text-center" style="font-size:20px">Enviadas </p>
           <p class="text-secondary" style="font-size:12px" >A la espera de que el otro usuario acepte el intercambio </p>
           <div v-for="of in ofSent"  > 
-              <ProposalSent  class="m-1" @click="showProposalSentDetails =true ; offerSent=of"  :offer='of'  />
+              <ProposalSent  class="m-0" @click="showProposalSentDetails =true ; offerSent=of"  :offer='of'   :object1="getObjectProposal(of)" />
+              <br>
           </div>
       <!-- OF SENT -->
 
@@ -57,8 +58,8 @@ import axios from 'axios'
           <p class=" text-center" style="font-size:16px">Aceptadas </p>
           <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado para completar el intercambio </p>
           <div v-for="of in ofAccepted"  > 
-              <ProposalSentAccepted class="m-1" :accepted='true' @click="showProposalSentAcceptedDetails = true; offerSentAccepted=of"  :offer='of'  />
-          <br>
+              <ProposalSentAccepted class="m-1" :accepted='true' @click="showProposalSentAcceptedDetails = true; offerSentAccepted=of"  :offer='of' :object1="getObjectProposal(of)" />
+              <br>
           </div>
       <!-- OF SENT ACCEPTED -->
         
@@ -69,7 +70,8 @@ import axios from 'axios'
           <p class="text-secondary" style="font-size:12px" >Los objetos estan en ruta para su recoleccion y despacho  </p>
         
           <div v-for="of in ofInTransfer"  > 
-              <ProposalSentInTransfer  class="m-1" :accepted='true' @click="ofSelected=of ;showProposalSentInTransferDetails=true"  :offer='of'  />
+              <ProposalSentInTransfer  class="m-2" :accepted='true' @click="ofSelected=of ;showProposalSentInTransferDetails=true"  :offer='of' :object1="getObjectProposal(of)" />
+              <br>
           </div>
       <!-- OF IN TRANSFER -->
 
@@ -82,12 +84,12 @@ import axios from 'axios'
           <div class="text-secondary">
             
             <div v-for="of in ofCancelled"  > 
-              <ProposalSentCancelled  :ended=true  class="m-1" @click="ofSelected=of ;showProposalSentCancelledDetails=true"  :offer='of'  />
+              <ProposalSentCancelled  :ended=true  class="m-2" @click="ofSelected=of ;showProposalSentCancelledDetails=true"  :offer='of' :object1="getObjectProposal(of)" />
               <br>
             </div>
 
             <div v-for="of in ofClosedSuccessfully"  > 
-              <ProposalSentClosedSuccessfully :ended=true  class="m-1" @click="ofSelected=of ;showProposalSentClosedSuccessfullyDetails=true"  :offer='of'  />
+              <ProposalSentClosedSuccessfully :ended=true  class="m-2" @click="ofSelected=of ;showProposalSentClosedSuccessfullyDetails=true"  :offer='of'  :object1="getObjectProposal(of)" />
               <br>
             </div>
 
@@ -172,6 +174,8 @@ export default {
         ofInTransfer : null ,
         ofCancelled : null ,
         ofClosedSuccessfully : null ,
+
+        objectImages : [],
         
         
 
@@ -186,6 +190,12 @@ created() {
 
 methods: {
 
+    getObjectProposal(offer)
+    {
+      //SEARCH IMAGE 
+      return this.objectImages.find(elem => elem.id ==  offer.dest_object1  )
+    },
+
     async getProposalsSent()
     {
     console.log("Get Proposals update list")
@@ -193,6 +203,8 @@ methods: {
     console.log("/private_get_proposals_sent Response:"+JSON.stringify(response_json.data))
     let proposals = response_json.data.proposals
 
+    this.objectImages=response_json.data.objects
+    
     //filter 
     this.ofSent = proposals.filter(item => item.status ==  1).sort((a, b) => (a.id > b.id) ? 1 : -1);
     this.ofSent.sort((a, b) =>  b.id - a.id);
