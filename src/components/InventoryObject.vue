@@ -11,7 +11,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
 
                 <div class="bg-white"  style="width:100px; height:100px">
-                   <img  style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" /> 
+                   <img  class="" style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" /> 
                 </div>
 
                 <div>
@@ -104,6 +104,8 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
   font-size: 20px; 
   text-align: center;
 }
+
+
 
 
 </style>
