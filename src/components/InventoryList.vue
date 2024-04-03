@@ -15,40 +15,44 @@ import axios from 'axios'
 <div class=""  >
 
    
-    <!-- Main Options -->
-    <div class="d-flex justify-content-between">
-      <div>
-      </div>
+  <div v-if="showInventory">
 
-      <div class="d-flex align-items-center mt-3 "  >
-        <input  v-model="ftext" style="text-align:center; width:190px;  font-size:23px ;border-radius:15px" class="form-control-sm form-control-sm bg-dark border-0 text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="( Mi Inventario )"> 
-      </div>
-     
-      <div>
-      </div>
-    
-    </div>
-    <!-- End Main Options -->
-    <br>
-
-    <!-- LIST ALL INVENTORY OBJECTS-->
-    <div>
-        <div class="d-flex flex-wrap"> 
-          <InventoryObjectEmpty  @click="showNewObjectForm=true" class="m-1"  />
-          <div v-for="obj in inventory_objects_filtered"  > 
-            <InventoryObject @click="objectDetails=obj ;showModalDetails=true;"  :object=obj class="m-1"   />
-          </div>
-
+      <!-- Main Options -->
+      <div class="d-flex justify-content-between">
+        <div>
         </div>
-        <div style="height:300px"></div>
-    </div>
+
+        <div class="d-flex align-items-center mt-3 "  >
+          <input  v-model="ftext" style="text-align:center; width:190px;  font-size:23px ;border-radius:15px" class="form-control-sm form-control-sm bg-dark border-0 text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="Mi Inventario"> 
+        </div>
+      
+        <div>
+        </div>
+      
+      </div>
+      <!-- End Main Options -->
+      <br>
+
+      <!-- LIST ALL INVENTORY OBJECTS-->
+      <div>
+          <div class="d-flex flex-wrap"> 
+            <InventoryObjectEmpty  @click="showNewObjectForm=true; showInventory=false" class="m-1"  />
+            <div v-for="obj in inventory_objects_filtered"  > 
+              <InventoryObject @click="objectDetails=obj ;showModalDetails=true; showInventory=false"  :object=obj class="m-1"   />
+            </div>
+
+          </div>
+          <div style="height:300px"></div>
+      </div>
+
+  </div>
     <!-- END LIST ALL INVENTORY OBJECTS-->
 
     <!-- SHOW DETAILED OBJECT DATA -->
     <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
           <div class="" >
                   <div class="d-flex justify-content-end"> 
-                  <i @click="showModalDetails=false" class="bi bi-x-lg display-1" ></i>
+                  <i @click="showModalDetails=false;; showInventory=true " class="bi bi-x-lg display-1" ></i>
                   </div>
                   <InventoryObjectDetailed  :object="objectDetails"  :session_data="session_data" />
                   <br>
@@ -114,7 +118,7 @@ import axios from 'axios'
     <!-- NEW OBJECT FORM -->
     <div v-if="showNewObjectForm"  class="position-absolute top-0 start-10 bg-dark" >
         <div style="transition: width 2s;" class="d-flex justify-content-end">
-            <i  @click="showNewObjectForm=false" style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
+            <i  @click="showNewObjectForm=false; showInventory=true " style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
         </div>
         <NewObjectForm :session_data="session_data" v-on:closeNewObjectForm="closeNewObjectForm" />
     </div>
@@ -158,6 +162,8 @@ export default {
         showConfirmDeleteDone : false ,
         inventoryObjects : [],   
         inventory_objects_filtered : null ,
+
+        showInventory : true ,
                     
       }
   },
@@ -215,6 +221,7 @@ methods: {
 
     closeNewObjectForm()
     {
+      this.showInventory=true 
       this.getMyObjects()
       this.showNewObjectForm=false
     },
