@@ -10,7 +10,10 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 <!-- 
 <div  class="position-absolute top-50 start-50 translate-middle bg-dark">
 -->
-<div  class=" mt-0" style="width:350px ; font-size:16px">
+
+<div>
+
+    <div  v-if="showObjectDetail" class=" mt-0" style="width:350px ; font-size:16px">
 
     <div class="" style="width: 100%">
     <!--
@@ -23,7 +26,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         </div>
         
         <div class="bg-secondary" style="width:350px; height:300px">
-            <img class=""  style="width:350px; height:300px" :src="main_image"  /> 
+            <img @click="zoomImage()"  style="width:350px; height:300px" :src="main_image"  /> 
         </div>
         
         <div class="d-flex justify-content-start ">
@@ -98,15 +101,52 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
         </div>
     -->
-
-    </div> 
+  </div> 
 
   </div>
 
+
+  <div v-if="showZoomImage" class="bg-dark zoom"  >
+        <div class="d-flex justify-content-center"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 bi bi-x-lg"></i>  </div>
+        <img   :src="main_image"  /> 
+  </div>
+
+
+</div>
 </template>
 
 <style scoped>
 
+.zoom {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 99;
+}
+
+
+/*
+.zoom {      
+-webkit-transition: all 0.35s ease-in-out;    
+-moz-transition: all 0.35s ease-in-out;    
+transition: all 0.35s ease-in-out;     
+cursor: -webkit-zoom-in;      
+cursor: -moz-zoom-in;      
+cursor: zoom-in;  
+} 
+
+.zoom:hover,  
+.zoom:active,   
+.zoom:focus {
+-ms-transform: scale(2.5);    
+-moz-transform: scale(2.5);  
+-webkit-transform: scale(2.5);  
+-o-transform: scale(2.5);  
+transform: scale(2.5);    
+position:relative;      
+z-index:100;  
+}
+*/
 </style>
 
 
@@ -130,6 +170,9 @@ export default {
             image4: PATH_PRODUCT_IMG+'/'+this.object.img_ref4 ,
             image5: PATH_PRODUCT_IMG+'/'+this.object.img_ref5 ,
 
+            showObjectDetail : true ,
+            showZoomImage : false , 
+
 
         }
     },
@@ -143,11 +186,16 @@ export default {
 
   methods: {
 
+        zoomImage()
+        {
+            this.showObjectDetail=false 
+            this.showZoomImage = true 
+        },
+
         viewImage(image)
         {
             this.main_image = image
-            console.log("image to view: "+image)
-            
+            console.log("image to view: "+image)    
         }
 
       },
