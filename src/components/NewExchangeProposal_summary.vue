@@ -173,8 +173,17 @@ methods: {
 
     removeFromObjectsOfferList(obj)
     {
+      //only remove if there are more than 1 object
+      if(this.objectsOfferList_temp.length>1)
+      {
         this.objectsOfferList_temp = this.objectsOfferList_temp.filter(element => element.id !== obj.id );
-    },
+      }
+      else 
+      {
+        alert("No se pueden eliminar mas objetos de este intercambio!!");
+      }
+
+     },
 
     /*
     showMyInventory()
