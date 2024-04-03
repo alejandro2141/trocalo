@@ -1,3 +1,6 @@
+<script setup>
+    import { PATH_PRODUCT_IMG } from '../../config.js'
+</script>
 
 <template>
  
@@ -16,7 +19,7 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <div class="w-75 m-0">      
+            <div class="w-75 m-2">      
                 Enviada a <b> {{offer.dest_owner_name}}</b> <br>
             </div>
             
@@ -39,9 +42,19 @@
 
         </div>
 
-        <div>
-                {{offer.title}}  
+
+    <div class="d-flex align-items-start m-2">
+        
+        <div class="bg-white"  style="width:50px; height:50px">
+            <img  style="width:50px; height:50px" :src="PATH_PRODUCT_IMG+'/'+object1.img_ref1" /> 
         </div>
+        <div class="m-2">
+            {{offer.title}}  
+        </div>
+
+    </div>
+
+
     </div>
 
 
@@ -74,7 +87,7 @@ export default {
 
       }
   },
-  props: ['session_data','accepted','offer'],
+  props: ['session_data','accepted','offer','object1'],
   emits: [],
 
 created() {
