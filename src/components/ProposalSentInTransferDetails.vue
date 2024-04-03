@@ -60,22 +60,29 @@ import axios from 'axios'
            <br>
           <br>
 
-          <div  style="font-size:16px "  class="text-start">
+         <div  style="font-size:16px "  class="text-start">
+            Y te llevaremos el objetos de <b> {{offer.dest_owner_name}} </b>: 
+          </div>
+           <!-- LIST PARTNER OFFER OBJECT  -->
+           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
+              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
+          </div>  
+          <!-- END LIST MY OFFER OBJECT  --> 
+         <br>
+
+         <div  style="font-size:16px "  class="text-start">
             Ten a mano tu objeto: 
           </div>
           <div v-for="obj in partnerOfferObjects"  > 
               <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
 
-          <!-- END LIST MY OFFER OBJECT  --> 
-         <br>
-          <div  style="font-size:16px "  class="text-start">
-            Y te llevaremos los objetos de <b> {{offer.dest_owner_name}} </b>: 
-          </div>
-           <!-- LIST PARTNER OFFER OBJECT  -->
-           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
-          </div>          
+
+
+
+
+
+                  
           <!-- END LIST PARTNER OFFER OBJECT  -->
 
       
