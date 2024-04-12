@@ -108,11 +108,15 @@ import axios from 'axios'
 
     <br>
 
-    <div @click="upload_product()" style="font-size:25px" class="text-success w-100 bg-dark p-3 text-center" >
-       <text> Guardar </text> 
-       <i style="font-size:35px"  class="bi bi-cloud-arrow-up"></i> 
-    </div>
-    
+
+      <div class="d-flex justify-content-center">
+        <div class="border border-1 border-success w-50">
+          <div @click="upload_product()" style="font-size:25px" class="text-success  bg-dark p text-center" >
+              <text> Guardar </text> 
+              <i style="font-size:35px"  class="bi bi-cloud-arrow-up"></i> 
+            </div>
+        </div>
+      </div>
 
   </div>
 
