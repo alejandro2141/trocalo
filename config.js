@@ -20,24 +20,37 @@ let BKND_CONFIG = {
 
 
  let CATEGORIES = [
-  { name: "- Otras Categorias -"        , id: 0 , icon:"bi bi-bicycle" } ,
-  { name: "Juegos"            , id: 1 , icon:"bi bi-bicycle" } ,
-  { name: "Libros"            , id: 2 , icon:"bi bi-bicycle" } ,
-  { name: "Hogar"             , id: 3 , icon:"bi bi-bicycle" } ,
-  { name: "Vestuario"         , id: 4 , icon:"bi bi-bicycle" } ,
-  { name: "Deportes"          , id: 5 , icon:"bi bi-bicycle" } ,
-  { name: "Herramientas"      , id: 6 , icon:"bi bi-bicycle" } ,
-  { name: "Jugetes"           , id: 7 , icon:"bi bi-bicycle" } ,
-  { name: "Vehiculos"         , id: 8 , icon:"bi bi-bicycle" } ,
+  { name: "- Otras Categorias -"        , id: 0 , icon:"" } ,
   { name: "Accesorios"        , id: 9 , icon:"bi bi-bicycle" } ,
-  { name: "Fotografia"        , id: 10 , icon:"bi bi-bicycle" } ,
   { name: "Arte"              , id: 11 , icon:"bi bi-bicycle" } ,
   { name: "Computacion"       , id: 12 , icon:"bi bi-bicycle" } ,
+  { name: "Deportes"          , id: 5 , icon:"bi bi-bicycle" } ,
   { name: "Electrodomesticos" , id: 13 , icon:"bi bi-bicycle" } ,
-  { name:  "Telefonia"        , id: 14 , icon:"bi bi-bicycle" },
   { name: "ElectroHogar"      , id: 15 , icon:"bi bi-bicycle" } ,
-  { name: "Mobilidad"         , id: 16 , icon:"bi bi-bicycle" } , 
+  { name: "Fotografia"        , id: 10 , icon:"bi bi-bicycle" } ,
+  { name: "Herramientas"      , id: 6 , icon:"bi bi-bicycle" } ,
+  { name: "Hogar"             , id: 3 , icon:"bi bi-bicycle" } ,
   { name: "Jardin"            , id: 17 , icon:"bi bi-bicycle" } , 
+  { name: "Juegos"            , id: 1 , icon:"bi bi-bicycle" } ,
+  { name: "Jugetes"           , id: 7 , icon:"bi bi-bicycle" } , 
+  { name: "Libros"            , id: 2 , icon:"bi bi-bicycle" } ,
+  { name: "Mobilidad"         , id: 16 , icon:"bi bi-bicycle" } , 
+  { name: "Telefonia"         , id: 14 , icon:"bi bi-bicycle" },
+  { name: "Vehiculos"         , id: 8 , icon:"bi bi-bicycle" } , 
+  { name: "Vestuario"         , id: 4 , icon:"bi bi-bicycle" } ,
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+ 
 ] ;
 
 
