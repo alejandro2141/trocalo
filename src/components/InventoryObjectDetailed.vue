@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 
 import { PATH_PRODUCT_IMG } from '../../config.js'
 
@@ -150,7 +150,7 @@ z-index:100;
 </style>
 
 
-<script>
+<script  >
 //const showForm = ref(false)
 import InventoryList from './InventoryList.vue'
 
