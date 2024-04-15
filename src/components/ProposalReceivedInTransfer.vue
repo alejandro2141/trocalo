@@ -43,7 +43,7 @@
 </style>
 
 
-<script>
+<script  >
 
 import InventoryObject from '../components/InventoryObject.vue'
 import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
