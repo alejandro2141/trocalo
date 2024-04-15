@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 import { CATEGORIES } from '../../config.js'
 </script>
 
@@ -115,7 +115,7 @@ import { CATEGORIES } from '../../config.js'
 
 
 
-<script>
+<script  >
 export default {
 
   data : function() {
