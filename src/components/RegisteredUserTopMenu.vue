@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 </script>
 
 <template>
@@ -18,7 +18,7 @@
 </style>
 
 
-<script>
+<script  >
 
 export default {
   
