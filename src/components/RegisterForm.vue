@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 import { ref } from 'vue'
 import axios from 'axios'
 import {  REGION_ZONES, BKND_CONFIG } from '../../config.js'
@@ -247,7 +247,7 @@ import {  REGION_ZONES, BKND_CONFIG } from '../../config.js'
 
 </style>
 
-<script>
+<script  >
 //const showForm = ref(false)
 
 
