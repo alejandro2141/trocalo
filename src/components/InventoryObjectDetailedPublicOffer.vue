@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 
 import { PATH_PRODUCT_IMG } from '../../config.js'
@@ -60,7 +60,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
 </style>
 
-<script>
+<script  >
 //const showForm = ref(false)
 import InventoryList from './InventoryList.vue'
 
