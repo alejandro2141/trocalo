@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 
 import InventoryObject from './InventoryObject.vue'
 import PaymentProcessStart from './PaymentProcessStart.vue'
@@ -115,7 +115,7 @@ import axios from 'axios'
 </style>
 
 
-<script>
+<script  >
 
 export default {
   
