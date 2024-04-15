@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 import InventoryObject from './InventoryObject.vue'
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import FilterForSearchView from '../components/FilterForSearchView.vue'
@@ -35,7 +35,7 @@ import axios from 'axios'
 </style>
 
 
-<script>
+<script  >
 export default {
 
   data : function() {
