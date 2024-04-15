@@ -1,4 +1,4 @@
-<script setup>
+<script setup >
 import { BKND_CONFIG } from '../config.js'
 import { RouterLink, RouterView } from 'vue-router'
 
