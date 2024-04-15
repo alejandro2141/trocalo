@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 
 import { BKND_CONFIG } from '../../config.js'
 import axios from 'axios'
@@ -57,7 +57,7 @@ import axios from 'axios'
 </style>
 
 
-<script>
+<script  >
 
 export default {
   
