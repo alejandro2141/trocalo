@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 import { PATH_PRODUCT_IMG } from '../../config.js'
 
 </script>
@@ -111,7 +111,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 </style>
 
 
-<script>
+<script  >
 //const showForm = ref(false)
 
 
