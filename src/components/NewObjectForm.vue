@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 import InventoryObject from '../components/InventoryObject.vue'
 import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
 import InventoryList from '../components/InventoryList.vue' 
@@ -170,7 +170,7 @@ textareainput::placeholder {
 </style>
 
 
-<script>
+<script  >
 
 
 
