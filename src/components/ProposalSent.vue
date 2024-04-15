@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
     import { PATH_PRODUCT_IMG } from '../../config.js'
 </script>
 
@@ -67,7 +67,7 @@
 </style>
 
 
-<script>
+<script  >
 
 import InventoryObject from '../components/InventoryObject.vue'
 import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
