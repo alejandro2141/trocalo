@@ -1,4 +1,4 @@
-<script setup>
+<script setup  >
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 import InventoryObject from './InventoryObject.vue'
 import InventoryList from './InventoryList.vue'
@@ -147,7 +147,7 @@ import axios from 'axios'
 </style>
 
 
-<script>
+<script  >
 
 
 export default {
