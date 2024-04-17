@@ -13,7 +13,7 @@ import axios from 'axios'
 
 <template>
 
-<div  style="width:400px" class="m-0"   >
+<div  style="width:350px" class="m-0"   >
 
   <!-- 
     <text v-if="objects_filtered !=null && objects_filtered.length > 0">
@@ -23,19 +23,22 @@ import axios from 'axios'
     </text>
   -->
 
-  <div v-if="search_event">
+  <div v-if="search_event" class="text-warning text-center">
     <div class="text-warning" v-if="objects_filtered !=null && objects_filtered.length > 0">
-        Encuentro {{objects_filtered.length}}
-        objectos que se ajustan a tu búsqueda<br>
+        Econtramos {{objects_filtered.length}}
+        objectos para tu búsqueda<br>
     </div>
-    <div v-else class="mt-2">
+    <div v-else class="mt-2 ">
+      
+      <text style="font-size:20px">
+        Sin resultados para tu busqueda
+      </text>
       <br>
-      Sin resultados para tu busqueda
       <i class="bi bi-wind h4 text-center"></i>
     </div>
     
 
-
+  <br>
   </div>
 
   <div v-else>
