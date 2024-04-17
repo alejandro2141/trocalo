@@ -7,14 +7,12 @@ import { CATEGORIES } from '../../config.js'
 
     <div class="text-white">
 
-      <div class="d-flex justify-content-around">
+      <div class="d-flex justify-content-around mt-4 mb-4">
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="font-size:40px" class="bi bi-controller "></i> </text>
         -->
-        <input  v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-warning border-2 p-0 border-warning" required minlength="4" maxlength="30" size="11" />
-        <div @click="search(textFilter)" class=""> 
-          <i class="text-warning bi bi-search-heart p-3"></i>
-        </div>
+        <input  v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-warning border-2 p-1 border-warning" required minlength="4" maxlength="30" size="15" />
+        <i  style="margin-left: -70px;font-size:36px ;" @click="search(textFilter)" class="text-left text-warning bi bi-search-heart p-0 mt-1"></i>
        
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(2) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="font-size:40px" class="bi bi-bicycle "></i> </text>
@@ -25,6 +23,8 @@ import { CATEGORIES } from '../../config.js'
     <!--     
         <text> </text>
     -->
+
+  <div class="">
 
     <div  style="font-size:25px" >
       <div class="d-flex justify-content-between"> 
@@ -37,8 +37,8 @@ import { CATEGORIES } from '../../config.js'
         <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=4" > <i style="" class="bi bi-universal-access"></i> </text>
         <text  class="p-0" :class="[ categories.includes(5) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=5" > <i style="" class="bi bi-bicycle "></i> </text>
         
-        <text v-if="!showAllOptions" @click="showAllOptions=!showAllOptions" style="border-radius: 30px;"  ><i style="font-size:30px" class="text-secondary bi bi-three-dots p-2 "></i></text>
-        <text v-else @click="showAllOptions=!showAllOptions; " style="border-radius: 30px;"  ><i style="font-size:40px" class="text-secondary bi bi-x-lg p-2 "></i></text>
+        <text v-if="!showAllOptions" @click="showAllOptions=!showAllOptions" style="border-radius: 30px;"  ><i style="font-size:30px" class="text-secondary bi bi-play-fill p-2 "></i></text>
+        <text v-else @click="showAllOptions=!showAllOptions; " style="border-radius: 30px;"  ><i style="font-size:40px" class="text-white bg-secondary bi bi-x-lg p-2 "></i></text>
         
             </div>
     </div>
@@ -74,13 +74,13 @@ import { CATEGORIES } from '../../config.js'
       </div>
 
   <div>
-   
-        
-        
+    
   </div>
 
     </div>
    
+  </div>
+
     <!--
         <text><i class="bi bi-house"></i></text>
         <text>| </text>
@@ -95,6 +95,9 @@ import { CATEGORIES } from '../../config.js'
 
     </div>
     
+    <br>
+   
+
   </div>
 </template>
 
