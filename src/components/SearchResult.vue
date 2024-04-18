@@ -33,8 +33,9 @@ import axios from 'axios'
       <text style="font-size:20px">
         Sin resultados para tu busqueda
       </text>
+      
       <br>
-      <i class="bi bi-wind h4 text-center"></i>
+      <i style="font-size:60px" class="bi bi-wind text-center"></i>
     </div>
     
 
