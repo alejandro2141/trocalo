@@ -28,7 +28,7 @@ const location = useRoute();
           </RouterLink>
         -->
         <div style="" class='text-decoration-none'    > 
-          <a HREF="/" >  <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;">REUSAR.CL</text>
+          <a HREF="/" >  <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;">fREUSAR.CL</text>
           </a>
           </div>
 
