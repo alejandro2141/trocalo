@@ -33,7 +33,7 @@ import axios from 'axios'
       <text style="font-size:20px">
         Sin resultados para tu busqueda
       </text>
-      
+
       <br>
       <i style="font-size:60px" class="bi bi-wind text-center"></i>
     </div>
@@ -43,7 +43,7 @@ import axios from 'axios'
   </div>
 
   <div v-else>
-    Objetos que podrian interesarte
+   <!--  Objetos que podrian interesarte -->
   </div>
     
   <!--
