@@ -18,9 +18,11 @@ const location = useRoute();
           
 
           
-          <div>
-          </div>
-          
+        <RouterLink  style="position:absolute ; top:0px ; right:0px " class="" :class="{'text-decoration-underline' :underline_login}"   to="/ViewLogin"> 
+             <div class="bg-secondary text-end" style="width:60px;height:50px;border-radius: 0px 0px 0px 100px;" > 
+                <i style="font-size:30px" class="bi bi-person-circle text-dark p-2"></i>
+             </div>
+        </RouterLink> 
          
         <!--
           <RouterLink style="" class='text-decoration-none'    to="/ViewSearch"> 
@@ -32,12 +34,8 @@ const location = useRoute();
           </a>
           </div>
 
+         
 
-          <RouterLink  class="" :class="{'text-decoration-underline' :underline_login}"   to="/ViewLogin"> 
-             <div class="bg-secondary text-end" style="width:60px;height:50px;border-radius: 0px 0px 0px 100px;" > 
-                <i style="font-size:30px" class="bi bi-person-circle text-dark p-2"></i>
-             </div>
-          </RouterLink>
       </div>
 
       <div v-if="session_data!=null && session_data.user!=null" class=" d-flex justify-content-between text-white" style="font-size : 20px ">
