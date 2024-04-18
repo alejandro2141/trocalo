@@ -106,8 +106,8 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
   </div>
 
 
-  <div v-if="showZoomImage" class="bg-dark zoom"  >
-        <div class="d-flex justify-content-center"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 bi bi-x-lg"></i>  </div>
+  <div v-if="showZoomImage" class="bg-dark zoom" style="width:350px;height:350px"  >
+        <div style="opacity: 0.5;position:absolute; right:0; top:0" class="bg-secondary"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 bi bi-x-lg"></i>  </div>
         <img   :src="main_image"  /> 
   </div>
 
@@ -190,6 +190,7 @@ export default {
         {
             this.showObjectDetail=false 
             this.showZoomImage = true 
+            
         },
 
         viewImage(image)
