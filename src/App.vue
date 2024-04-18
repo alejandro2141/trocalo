@@ -28,7 +28,7 @@ const location = useRoute();
           </RouterLink>
         -->
         <div style="" class='text-decoration-none'    > 
-          <a HREF="/" >  <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;">fREUSAR.CL</text>
+          <a HREF="/" >  <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;"> REUSAR.CL</text>
           </a>
           </div>
 
@@ -48,7 +48,7 @@ const location = useRoute();
           </div>
           
           <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
-            <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
+            <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;"> REUSAR.CL</text>
           </RouterLink>    
 
 
