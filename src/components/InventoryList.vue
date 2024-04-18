@@ -70,11 +70,14 @@ import axios from 'axios'
 
      <!-- ARE YOU SURE YOU WANT TO REMOVE THIS OBJECT -->
       <div v-if="showConfirmDelete"  class="position-absolute top-0 start-10 bg-dark" >
+        
         <div style="" class="d-flex justify-content-end">
             <i  @click="showConfirmDelete=false" style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
         </div>
-      <div style="height:100px">
-      </div>
+        
+        <div style="height:100px">
+        </div>
+
           <div class="text-center">
             <text style="font-size:20px">¿Eliminará de tu Inventario ?</text> <br>
           </div>
@@ -83,7 +86,7 @@ import axios from 'axios'
         <i class="bi bi-circle text-danger"></i> Se eliminaran tambien Propuestas de Intercambios que tengan este objeto. 
      
         <div class="d-flex justify-content-center mt-4">
-        <button @click="deleteObject(objectDetails) ; showConfirmDeleteDone=true; showConfirmDelete=false" type="button" class="btn btn-danger">Eliminar  <i class="bi bi-arrow-right-short"></i> <i class="bi bi-trash"></i></button>
+        <button @click="deleteObject(objectDetails) ; showConfirmDeleteDone=true; showConfirmDelete=false; showModalDetails=false" type="button" class="btn btn-danger">Eliminar  <i class="bi bi-arrow-right-short"></i> <i class="bi bi-trash"></i></button>
         </div>
 
         <div style="height:800px">
@@ -92,23 +95,30 @@ import axios from 'axios'
       </div>
 
     <!-- DELETE CONFIRMATION -->
-    <div v-if="showConfirmDeleteDone"  class="position-absolute top-0 start-10 bg-dark w-100" >
+    <div v-if="showConfirmDeleteDone"  class="position-absolute top-0  w-100 bg-dark" >
        
-        <div style="height:100px">
-        </div>
+      <div class="d-flex justify-content-center">
+        <div>
 
-        <div class="text-center">
-          <text style="font-size:20px"> objeto Eliminado </text> <br>
-        </div>
-        
-        <br>
-      
-        <div class="d-flex justify-content-center mt-4">
-        <button @click="closeInventoyList()" type="button" class="btn btn-secondary"> Regresar </button>
-        </div>
+          <div style="height:100px">
+          </div>
+    
+            <div class="text-center">
+              <text style="font-size:20px"> objeto Eliminado </text> <br>
+            </div>
+            
+            <br>
+          
+            <div class="d-flex justify-content-center mt-4">
+            <button @click="closeInventoyList()" type="button" class="btn btn-secondary"> Regresar </button>
+            </div>
 
-        <div style="height:800px">
+            <div style="height:800px">
+            </div>
+
+       </div>
       </div>
+
     </div>
     <!-- DELETE CONFIRMATION -->
     
@@ -212,10 +222,11 @@ methods: {
     closeInventoyList()
     {
       this.getMyObjects()
-      this.$emit('closeInventoyList')
+      //this.$emit('closeInventoyList')
       this.showConfirmDeleteDone=false 
       this.showConfirmDelete = false 
       this.showModalDetails = false 
+      this.showInventory = true 
     },
 
 
