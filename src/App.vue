@@ -3,6 +3,9 @@ import { BKND_CONFIG } from '../config.js'
 import { RouterLink, RouterView } from 'vue-router'
 
 import { useRoute } from 'vue-router'
+
+import SpinnerLoading from './components/SpinnerLoading.vue'
+
 const location = useRoute();
 
 </script>
@@ -29,33 +32,30 @@ const location = useRoute();
             <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
           </RouterLink>
         -->
-        <div style="" class='text-decoration-none'    > 
+        <div  class='text-decoration-none'    > 
           <a HREF="/" >  <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;"> REUSAR.CL</text>
           </a>
-          </div>
+        </div>
 
          
 
       </div>
 
       <div v-if="session_data!=null && session_data.user!=null" class=" d-flex justify-content-between text-white" style="font-size : 20px ">
-          <div>
-          </div>
-          
-          <div>
-          </div>
+            
+          <RouterLink  style="position:absolute ; top:0px ; right:0px "  class="text-secondary " :class="{'text-decoration-underline' :underline_account}"  to="/Viewlogin">
+              <div class="bg-secondary  text-end" style="width:60px;height:50px; border-radius: 0px 0px 0px 100px;" > 
+                <text class="text-dark m-1 " style="font-size:17px" >{{session_data.user.split(" ")[0] }}</text>
+              </div>
+          </RouterLink> 
           
           <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
-            <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;"> REUSAR.CL</text>
+            <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;"> REUSAR.CL</text>
           </RouterLink>    
 
 
            <!-- <a href="/">Buscar</a>  :class="[isActive ? activeClass : '', errorClass]"  --> 
-            <RouterLink   class="text-secondary " :class="{'text-decoration-underline' :underline_account}"  to="/Viewlogin">
-              <div class="bg-secondary  text-end" style="width:60px;height:50px; border-radius: 0px 0px 0px 100px;" > 
-                <text class="text-dark m-1 " style="font-size:17px" >{{session_data.user.split(" ")[0] }}</text>
-              </div>
-             </RouterLink> 
+            
       </div> 
       
       <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
@@ -80,6 +80,10 @@ const location = useRoute();
 
 
   </div>
+
+
+  <SpinnerLoading :timeActive="1000" />
+
   </div>
 </template>
 
@@ -141,6 +145,7 @@ export default {
           underline_inventory: false ,
           underline_received : false ,
           underline_sent : false ,
+
 
         }
     },
