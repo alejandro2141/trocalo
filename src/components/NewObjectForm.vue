@@ -14,7 +14,9 @@ import axios from 'axios'
 
   <div v-if="showForm">
 
-    <div>
+ 
+  
+  <div>
       <input type="text" placeholder="Titulo"  v-model="input_name" id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark    text-white border-white" required minlength="4" maxlength="40"  />
     <br>
     <text class="text-warning" v-if="!validate_input_name" > Debe ingresar el nombre de tu producto.  </text>
@@ -26,7 +28,7 @@ import axios from 'axios'
       <div @click="$refs.show_uploadPicture_1_input.click()" style="width:200px; height:200px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_1_preview" style="font-size:100px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_1' class="uploading-image" style="width:200px; height:200px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_1_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_1' style="display: none">
+          <input ref="show_uploadPicture_1_input" type="file" accept="image/*;capture=camera" @change='uploadImage_1' style="display: none">
           <br>
 
           <text class="text-warning" v-if="!validate_input_img1" > Debe ingresar una Imagen principal de tu producto.  </text>
@@ -231,6 +233,9 @@ export default {
 
 created() {
   console.log("NewObjectForm Session_data : "+JSON.stringify(this.session_data))
+
+
+
     },
 
 methods: {
