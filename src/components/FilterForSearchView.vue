@@ -25,7 +25,7 @@ import { CATEGORIES } from '../../config.js'
         <text> </text>
     -->
 
-  <div class="">
+  <div class=" text-warning">
 
     <div  style="font-size:25px" >
       <div class="d-flex justify-content-between"> 
