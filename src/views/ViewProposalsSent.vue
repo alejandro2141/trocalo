@@ -44,7 +44,7 @@ import axios from 'axios'
     -->
   <div v-if='!(showProposalSentDetails || showProposalSentAcceptedDetails || showProposalSentInTransferDetails || showProposalSentCancelledDetails || showProposalSentClosedSuccessfullyDetails)' >
       <!-- OF SENT -->
-          <p class="text-white text-center" style="font-size:20px">Enviadas </p>
+          <p class="text-center" style="font-size:26px ; color:#17C000 ;">Enviadas </p>
           <p class="text-secondary" style="font-size:12px" >A la espera de que el otro usuario acepte el intercambio </p>
           <div v-for="of in ofSent"  > 
               <ProposalSent  class="m-0" @click="showProposalSentDetails =true ; offerSent=of"  :offer='of'   :object1="getObjectProposal(of)" />
