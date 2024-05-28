@@ -34,19 +34,69 @@ export default {
       }
   },
 
-  props: ['timeActive' ],
+  props: ['timeActive' , 'onOff' ],
   emits: [],
 
 created() {
-    console.log("Spinner timeActive:"+this.timeActive)
+    console.log("Spinner Loading:"+this.timeActive + "  onOff:"+this.onOff)
+   // this.spinner1sec()
        },
 
 methods: {
+
+    spinner1sec() {
+      this.spinner_on = true ;
+      console.log("Spinner Temporal");
+      setTimeout( ()=> this.spinner_on = false , 1000 )
+        }
    
     },
 
 watch : {
 
+    onOff( newValue, oldValue ) {
+       
+        if (newValue == true)
+        {
+            console.log("Spinner On");
+            this.spinner_on = true ;
+        }
+        else 
+        {
+            console.log("Spinner Off");
+            setTimeout( ()=> this.spinner_on = false , 500 )
+            //this.spinner_on = false ;
+        }
+
+    },
+
+    /*
+    onOff( newValue, oldValue ) {
+        console.log("Spinner activated :"+this.timeActive + "  onOff:"+this.onOff )
+    
+        if (newValue == true)
+        {
+            console.log("Spinner On");
+            this.spinner_on = true ;
+        }
+        else if (newValue == false)
+        {
+            console.log("Spinner Off");
+            setTimeout( ()=> this.spinner_on = false , 0 )
+            //this.spinner_on = false ;
+        }
+        else{
+            console.log("Spinner Temporal");
+            setTimeout( ()=> this.spinner_on = false , 4000 )
+        }
+
+    },
+
+*/
+
+
+
+/*
     timeActive( newValue, oldValue ) {
 
         console.log("Spinner value:"+newValue);
@@ -66,10 +116,23 @@ watch : {
             console.log("Spinner Temporal");
             setTimeout( ()=> this.spinner_on = false , newValue )
         }
-    },
+        
+    console.log("Spinner value:"+newValue);
 
+        if (newValue != null)
+        {
+            console.log("Spinner On");
+            this.spinner_on = true ;
+           
+            setTimeout( ()=> this.spinner_on = false , newValue )
+            console.log("Spinner Off");
+            //this.spinner_on = false ;
+        }
+*/
 
-      }
+ },
+
 }
+
 </script>
 
