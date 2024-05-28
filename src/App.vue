@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 import { useRoute } from 'vue-router'
 
-import SpinnerLoading from './components/SpinnerLoading.vue'
+
 
 const location = useRoute();
 
@@ -32,9 +32,16 @@ const location = useRoute();
             <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
           </RouterLink>
         -->
-        <div  class='text-decoration-none'    > 
-          <a HREF="/" >  <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;"> REUSAR.CL</text>
-          </a>
+
+        <div class="d-flex justify-content-center w-100">
+            <div  class='text-decoration-none text-center'    > 
+              <a HREF="/" >  
+                    <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> 
+                    <text style="color:#EEEEEE ; font-size : 45px ;"> 
+                      REUSAR.CL
+                    </text>
+              </a>
+            </div>
         </div>
 
          
@@ -49,11 +56,12 @@ const location = useRoute();
               </div>
           </RouterLink> 
           
-          <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
-            <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;"> REUSAR.CL</text>
-          </RouterLink>    
-
-
+          <div class="d-flex justify-content-center w-100">
+            <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
+              <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;"> REUSAR.CL</text>
+            </RouterLink>   
+          </div> 
+          
            <!-- <a href="/">Buscar</a>  :class="[isActive ? activeClass : '', errorClass]"  --> 
             
       </div> 
@@ -67,22 +75,37 @@ const location = useRoute();
       <!-- 
         <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;" class="p-2" :class="{'border-bottom'  :underline_inventory}" @click="setUnderline(4)" to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
       -->
-        <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
-        <RouterLink   style="color:#91D5FE ; font-size : 45px ;" class="p-0" :class="{'selected'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
-        <RouterLink   style="font-size : 45px ; " class="p-0" :class="{ 'selected' : ( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
+        <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">
+          <div class="d-flex align-items-center flex-column" >
+            <i class="bi bi-backpack3"></i> 
+            <text style="font-size:16px ; " class="m-4" >Inventario</text> 
+          </div>
+        </RouterLink>         
+        
+        <RouterLink   style="color:#91D5FE ; font-size : 45px ;" class="p-0" :class="{'selected'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">
+          <div class="d-flex align-items-center flex-column" >
+            <i class=" bi bi-cloud-download"></i>
+            <text style="font-size:16px" class="m-4">Recibidas</text>
+          </div>
+        </RouterLink>    
+        
+        <RouterLink   style="color:#17C000 ; font-size : 45px ; " class="p-0" :class="{ 'selected' : ( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">
+          <div class="d-flex align-items-center flex-column" >
+            <i class=" bi bi-cloud-upload"></i>
+            <text style="font-size:16px" class="m-4">Enviadas</text>
+          </div>
+        </RouterLink>    
 
       </div>
       
       <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
 
     </div>
-    
-
 
   </div>
 
 
-  <SpinnerLoading :timeActive="1000" />
+
 
   </div>
 </template>
@@ -226,9 +249,13 @@ export default {
 
   watch : {
 
-
+      $route (to, from)
+      {
+        console.log("router changes : "+to)
+      } 
     
-        }
+       
+}
 }
 </script>
 
