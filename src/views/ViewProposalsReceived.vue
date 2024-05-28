@@ -37,7 +37,7 @@ import axios from 'axios'
   <div v-if='  !(showExchangeProposalReceived || showExchangeProposalReceivedAccepted || showExchangeProposalReceivedEnded || showExchangeProposalReceivedInTransfer || showExchangeProposalReceivedCancelled  || showExchangeProposalReceivedClosedSuccessfully ) '>
 
       <!-- OF SENT -->
-          <p class="text-white text-center" style="font-size:20px">Recibidas </p>
+          <p class=" text-center" style="font-size:26px; color:#91D5FE ; ">Recibidas </p>
           <p class="text-secondary" style="font-size:12px" >A la espera  que apruebes o rechaces las propuestas </p>
           <div v-for="of in ofReceived"  > 
               <ProposalReceived class="m-1" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of'  />
