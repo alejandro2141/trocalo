@@ -14,6 +14,7 @@ import NewExchangeProposal_summary from '../components/NewExchangeProposal_summa
 import NewExchangeProposal_checkBeforeSend from '../components/NewExchangeProposal_checkBeforeSend.vue'
 import NewExchangeProposal_sentConfirmation from '../components/NewExchangeProposal_sentConfirmation.vue'
 
+import SpinnerLoading from '../components/SpinnerLoading.vue'
 
 import { BKND_CONFIG } from '../../config.js'
 import axios from 'axios'
@@ -80,6 +81,9 @@ import axios from 'axios'
     <NewExchangeProposal_sentConfirmation  v-on:nextStep=""  v-on:closeModal="exchangeProposal_sentConfirmation=false" :proposal_summary=proposal_summary   :session_data="session_data" />
   </div>
 
+
+  <SpinnerLoading  :onOff=spinnerOn />
+  
 </div>
 </template>
 
@@ -95,6 +99,7 @@ export default {
   
   data : function() {
       return {
+        spinnerOn:false ,
         searchParams : {} ,
         objects : [] ,
         objects_filtered : [] ,
@@ -150,6 +155,7 @@ methods: {
 
     async filterByText(text)
     {
+      this.spinnerOn=true
       console.log ("Flter by text viewSearch"+text)
 
       this.searchParams.search_text=text;
@@ -168,13 +174,19 @@ methods: {
       }
 
       this.search_event = true 
+
+      this.spinnerOn=false
       
     },
 
     async filterByCategory(category)
     {
-      console.log ("Flter by category viewSearch"+category)
-
+     
+      if (category != null && category !="")
+      {
+      this.spinnerOn=true
+      
+      console.log ("Flter by category viewSearch {"+category+"}")
       this.searchParams.search_categories = category ;     
 
       let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects_by_category",this.searchParams);
@@ -182,16 +194,20 @@ methods: {
       this.objects = response_json.data ; 
       this.objects.sort((a, b) => b.id - a.id );
       this.objects_filtered=this.objects ; 
-
+      
+      this.spinnerOn=false
+      }
+     
     },
 
     showProposalSummary(myobjects)
-    {
+    { this.spinnerOn=true
       console.log('ShowProposalSUmmary '+myobjects)
       this.objectsSelectedFromMyInventory = myobjects
 
       this.exchangeProposal_showInventory = false 
       this.exchangeProposal_showSummary = true 
+      this.spinnerOn=false
     },
 
     showProposalCheckBeforeSend(proposal)
