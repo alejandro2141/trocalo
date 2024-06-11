@@ -35,19 +35,21 @@ import axios from 'axios'
   </div>
 
   <div v-if='  !(showExchangeProposalReceived || showExchangeProposalReceivedAccepted || showExchangeProposalReceivedEnded || showExchangeProposalReceivedInTransfer || showExchangeProposalReceivedCancelled  || showExchangeProposalReceivedClosedSuccessfully ) '>
+    <p class=" text-center" style="font-size:26px; color:#91D5FE ; ">Recibidas </p>
+
 
       <!-- OF SENT -->
-          <p class=" text-center" style="font-size:26px; color:#91D5FE ; ">Recibidas </p>
+          <p class=" text-start" style="font-size:20px; ">En evaluacion </p>
           <p class="text-secondary" style="font-size:12px" >A la espera  que apruebes o rechaces las propuestas </p>
-          <div v-for="of in ofReceived"  > 
-              <ProposalReceived class="m-1" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of'  />
-          </div>
+            <div v-for="of in ofReceived"  > 
+              <ProposalReceived class="m-1" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of' :my_objects='getObjects([of.source_object1])' :partner_objects='getObjects([of.dest_object1,of.dest_object2,of.dest_object3,of.dest_object4,of.dest_object5])'    />
+            </div>
       <!-- OF SENT -->
 
           <br>
 
       <!-- OF SENT ACCEPTED -->
-          <p class=" text-center" style="font-size:20px">Aceptadas </p>
+          <p class=" text-start" style="font-size:20px">Aceptadas </p>
           <p class="text-secondary" style="font-size:12px" >A la espera que quien te envio la propuesta debe pagar los costos de retiro y despacho  </p>
           <div v-for="of in ofAccepted"  > 
               <ProposalReceivedAccepted  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
@@ -60,7 +62,7 @@ import axios from 'axios'
       <br>
 
       <!-- OF IN TRANSFER -->
-          <p class=" text-center" style="font-size:20px"> <i class="bi bi-truck"></i> En Despacho </p>
+          <p class=" text-start" style="font-size:20px"> En Despacho <i class="bi bi-truck"></i> </p>
           <p class="text-secondary" style="font-size:12px" >Los objetos estan en ruta para su recoleccion y despacho  </p>
         
           <div v-for="of in ofInTransfer"  > 
@@ -75,7 +77,7 @@ import axios from 'axios'
           <br>
 
       <!-- OF CANCELLED   -->
-          <p class="text-center" style="font-size:20px">Finalizadas y Canceladas </p>
+          <p class="text-start" style="font-size:20px">Finalizadas y Canceladas </p>
           <p class="text-secondary" style="font-size:12px" >Propuestas que han expirado o fueron canceladas.</p>
           <div class="text-secondary">
             
@@ -181,19 +183,25 @@ export default {
 
         ofSelected : null ,
 
+        objectsProposal: [] ,
+
       }
   },
   props: ['session_data'],
   emits: [],
 
 created() {
-      this.getProposalsReceived()
+    console.log("--- CREATED ViewProposalReceived ")
+    this.getProposalsReceived()
+    console.log("--- CREATED ViewProposalReceived AFTER getPRoposalsReceived ")
     },
 
 methods: {
 
     async getProposalsReceived()
     {
+      console.log("--- getPRoposalsReceived")
+
       let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_proposals_received", this.session_data);
       console.log("/private_get_proposals_received Response:"+JSON.stringify(response_json.data))
       //this.inventoryObjects = jsonResponse.data
@@ -208,9 +216,46 @@ methods: {
       this.ofCancelled = proposals.filter(item => item.status ==  300).sort((a, b) => (a.id > b.id) ? 1 : -1);
       this.ofClosedSuccessfully = proposals.filter(item => item.status ==  400).sort((a, b) => (a.id > b.id) ? 1 : -1);
 
+      // TODO  obtener solo los ids para luego cargar las imagenes  en cuadros pequeños 
+      // AQUI MEQUEDE
+        let objectsIds= proposals.map((prop) => [prop.source_object1, prop.source_object2, prop.source_object3, prop.source_object4, prop.source_object5, prop.dest_object1,prop.dest_object2,prop.dest_object3,prop.dest_object4,prop.dest_object5] );
+       
+        objectsIds = await Array.prototype.concat(...objectsIds);
+        objectsIds =  await objectsIds.filter(item => item != null );
+      
+        console.log("--- OBJECTS IDS :  "+JSON.stringify(objectsIds))   
 
+        this.objectsProposal = await this.loadObjects(objectsIds)
+
+        console.log("--- OBJECTS PROPOSALS :  "+JSON.stringify(this.objectsProposal))
     },
-    
+
+    async loadObjects( objIds)
+    { 
+      objIds = objIds.filter(function (el) { return el != null; });
+
+      let json_request =  { 
+        session_data : this.session_data, 
+        objects_ids: objIds 
+          }
+      // console.log("JSON :"+JSON.stringify(json_request) )
+      let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_objects", json_request);
+      //  console.log("/private_get_objects  Response:"+JSON.stringify(jsonResponse.data))
+      return (jsonResponse.data)
+    },
+
+     getObjects(ids)
+    {
+      //let object = await this.objectsProposal.filter( obj => obj.id  ===  id )
+    //  let objectFound =  this.objectsProposal.find((element) => element.id == id );
+
+    let objectsFound =  this.objectsProposal.filter((element) =>  ids.includes(element.id) ) 
+
+     // console.log("--------- OBJECTS  BUSCAR id:"+id+"  En el array de objetos:"+JSON.stringify(this.objectsProposal)  )
+      console.log ("-------- getObjects OBJECTS FOUND :"+JSON.stringify(objectsFound)+ " " )
+      return objectsFound 
+    },
+        
     closeModal()
     {
       this.showExchangeProposalReceived = false  
