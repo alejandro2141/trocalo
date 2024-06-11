@@ -1,11 +1,16 @@
+<script setup  >
+import { PATH_PRODUCT_IMG } from '../../config.js'
+
+</script>
 
 <template>
  
  <div>
-  
    
 
    <div class="border border-1 rounded" :class="{'text-warning border-warning': accepted }"   >
+ 
+   
 
     <div v-if="offer.status!=200"  class="d-flex justify-content-between">
         <div v-if="isNewProposal()" class="bg-success text-start opacity-50 text-white" style="width:70px;height:20px; border-radius: 0px 0px 10px 0px;" > 
@@ -23,8 +28,8 @@
                 
                 <div class=" m-2 ">      
                     <b>{{offer.source_owner_name}}</b> 
-                    se se interesa por :<br>
-                    {{offer.title}}  
+                    te propone intercambiar:<br>
+                  <!--  {{offer.title}} -->  
                 </div>
                 
                 
@@ -40,6 +45,29 @@
                     </div>
                 </div>
 
+
+            </div>
+            <div class="d-flex justify-content-start">
+                
+               
+                Tu Objeto<br>
+                <div>
+                    <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:60px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
+                
+                </div>
+
+                <div> 
+                    <i style="font-size:36px" class="bi bi-arrow-left-right"></i>  
+                </div>
+                
+                <div v-if="partner_objects != null && partner_objects.length >0 " >
+                    telocambiapor<br>
+                    <div v-for="p_object in partner_objects">
+                       
+                        <img v-if="p_object!=null" class=""  style="width:60px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
+                
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -75,10 +103,13 @@ export default {
 
       }
   },
-  props: ['session_data','accepted' ,'offer' ],
+  props: ['session_data','accepted' ,'offer','my_objects', 'partner_objects' ],
   emits: [],
 
 created() {
+
+    console.log(" CREATED Proposal Received "+this.my_objects)
+
     },
 
 methods: {
