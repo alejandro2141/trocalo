@@ -39,10 +39,10 @@ import axios from 'axios'
 
 
       <!-- OF SENT -->
-          <p class=" text-start" style="font-size:20px; ">En evaluacion </p>
-          <p class="text-secondary" style="font-size:12px" >A la espera  que apruebes o rechaces las propuestas </p>
+          <p class=" text-start" style="font-size:20px; ">Porpuestas de Intercambio </p>
+          <p class="text-secondary" style="font-size:12px" >Otros usuarios te envian las siguientes propuestas que puedes aceptar o rechazar, estas expiran en tiempo indicado </p>
             <div v-for="of in ofReceived"  > 
-              <ProposalReceived class="m-1" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of' :my_objects='getObjects([of.source_object1])' :partner_objects='getObjects([of.dest_object1,of.dest_object2,of.dest_object3,of.dest_object4,of.dest_object5])'    />
+              <ProposalReceived class="m-2" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
             </div>
       <!-- OF SENT -->
 
@@ -52,7 +52,7 @@ import axios from 'axios'
           <p class=" text-start" style="font-size:20px">Aceptadas </p>
           <p class="text-secondary" style="font-size:12px" >A la espera que quien te envio la propuesta debe pagar los costos de retiro y despacho  </p>
           <div v-for="of in ofAccepted"  > 
-              <ProposalReceivedAccepted  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of'  />
+              <ProposalReceivedAccepted  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
           <br>
           
           </div>
@@ -66,7 +66,7 @@ import axios from 'axios'
           <p class="text-secondary" style="font-size:12px" >Los objetos estan en ruta para su recoleccion y despacho  </p>
         
           <div v-for="of in ofInTransfer"  > 
-              <ProposalReceivedInTransfer  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedInTransfer=true"  :offer='of'  />
+              <ProposalReceivedInTransfer  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedInTransfer=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
               <br>
               
           </div>
