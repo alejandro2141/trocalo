@@ -1,3 +1,6 @@
+<script setup  >
+import { PATH_PRODUCT_IMG } from '../../config.js'
+</script>
 
 <template>
  
@@ -5,6 +8,7 @@
   
     <div class="border border-1 rounded text-white border-success" >
 
+        <!--HEADER -->
         <div class="d-flex justify-content-between">
             <div class="m-2 p-2" >
                  Intercambio en Camino
@@ -16,18 +20,25 @@
                 <text style="font-size:20px" class="text-success">2 dias</text>
             </div>
         </div>
+        <!-- BODY -->
 
-        <div class="d-flex justify-content-between">
-            <div class="w-100 m-2">      
-               Ya vamos por los Objetos de tu intercambio
-                <br>
-                <br>
-                Ten a mano el objeto :<br>
+        <div class="">
+            <div class="w-100 m-2">
+            
+                Ten a mano tu objeto :<br>
+                    
+                <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
                 {{offer.title}}  
                 <br>
                 Y  te llevaremos los objetos de <b> {{offer.source_owner_name}}</b><br>
+                <div class="d-flex justify-content-start">
+                    <div v-for="p_object in partner_objects">
+                       <img v-if="p_object!=null" class="m-1"  style="height:90px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
+                    </div>
+                </div>
+
+                 <br>
                 
-                <br>
             </div>
         </div>
 
@@ -63,7 +74,7 @@ export default {
 
       }
   },
-  props: ['session_data','accepted','offer'],
+  props: ['session_data','accepted','offer','my_objects', 'partner_objects'],
   emits: [],
 
 created() {
