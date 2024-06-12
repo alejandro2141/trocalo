@@ -7,68 +7,57 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
  
  <div>
    
-
-   <div class="border border-1 rounded" :class="{'text-warning border-warning': accepted }"   >
- 
-   
-
+   <div class="border border-1 rounded"   >
+    
+<!-- HEADER -->
     <div v-if="offer.status!=200"  class="d-flex justify-content-between">
-        <div v-if="isNewProposal()" class="bg-success text-start opacity-50 text-white" style="width:70px;height:20px; border-radius: 0px 0px 10px 0px;" > 
-            &nbsp;&nbsp; Nuevo
+    
+        <div v-if="isNewProposal()" class="text-warning text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:40px"> 
+            <i  class="bi bi-star-fill"> </i>
         </div>
-        
-        <div v-if="offer.negotiation_loop>0" class="bg-warning text-start opacity-50 text-dark" style="width:120px;height:20px; border-radius: 0px 0px 0px 10px;" > 
-            &nbsp; &nbsp;contra oferta({{offer.negotiation_loop}})
+
+        <div class="text-warning">
+        {{ evaluateRemainingDays(offer.timestamp) }} dias  <i style="font-size:20px" class="bi bi-clock-history"></i>
         </div>
 
     </div>
+<!-- BODY -->  
+    <div class=" m-2 "> 
+        Recibiste una propuesta de <b>@{{offer.source_owner_name}}</b> 
+    </div>
 
-        <div >
-            <div class="d-flex justify-content-between">
+    <div >
+            
+            <div class="d-flex justify-content-around">
                 
-                <div class=" m-2 ">      
-                    <b>{{offer.source_owner_name}}</b> 
-                    te propone intercambiar:<br>
-                  <!--  {{offer.title}} -->  
-                </div>
-                
-                
-                <div v-if="offer.status!=200"  style="font-size:19px" class="d-flex justify-content-end m-2"  >
-                    <div>
-                        <div  class="text-center">
-                                <i style="font-size:30px" class="bi bi-clock-history"></i>
-                        </div>
-
-                        <div  class="">
-                                {{ evaluateRemainingDays(offer.timestamp) }} dias
-                        </div>
+                <!--COLUMN 1-->
+                <div class="d-flex  flex-column"> 
+                    <text class="text-secondary" >Tu Objeto</text>
+                    <div class="d-flex align-items-center h-100" >
+                    <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
                     </div>
                 </div>
 
-
-            </div>
-            <div class="d-flex justify-content-start">
-                
-               
-                Tu Objeto<br>
-                <div>
-                    <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:60px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
-                
-                </div>
-
-                <div> 
+                <!--COLUMN 2-->
+                <div class="d-flex align-items-center"> 
                     <i style="font-size:36px" class="bi bi-arrow-left-right"></i>  
                 </div>
-                
-                <div v-if="partner_objects != null && partner_objects.length >0 " >
-                    telocambiapor<br>
+
+                <!--COLUMN 3-->
+                <div class="d-flex align-items-start flex-column"> 
+                    <text class="text-secondary">Por sus objetos</text>
+                    
                     <div v-for="p_object in partner_objects">
                        
-                        <img v-if="p_object!=null" class=""  style="width:60px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
-                
+                       <img v-if="p_object!=null" class="m-1"  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
+               
                     </div>
+
                 </div>
+
             </div>
+
+            <br>
         </div>
     </div>
 
