@@ -9,20 +9,63 @@
   
     <div class="border border-1 rounded text-warning border-warning" >
 
+    <!-- HEADER -->
         <div class="d-flex justify-content-between">
-            <div v-if="isNewProposal()" class="bg-success text-start opacity-50 text-white" style="width:70px;height:20px; border-radius: 0px 0px 10px 0px;" > 
-                &nbsp;&nbsp; Nuevo
+        
+            <div v-if="isNewProposal()" class="text-warning text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:40px"> 
+                <i  class="bi bi-star-fill"> </i>
             </div>
-            
-            <div v-if="offer.negotiation_loop>0" class="bg-warning text-start opacity-50 text-dark" style="width:120px;height:20px; border-radius: 0px 0px 0px 10px;" > 
-                &nbsp;&nbsp;contra oferta ({{offer.negotiation_loop}})
+            <div v-else>
             </div>
 
             <div>
-                
+                {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} dias <i style="font-size:20px"  class="bi bi-cash m-0"></i>
             </div>
+        
         </div>
 
+    <!-- BODY -->
+    <div class="d-flex justify-content-between">
+           <div class="m-2">      
+               Aceptada por <b> @{{offer.source_owner_name}} </b>   
+               <br>
+               <br>
+               {{offer.title}}  
+           </div>
+    </div>
+
+    <div>
+            <div class="d-flex justify-content-around">
+                
+                <!--COLUMN 1-->
+                <div class="d-flex  flex-column"> 
+                    <text class="text-secondary" >Su Objecto</text>
+                    <div class="d-flex align-items-center h-100" >
+                    <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
+                    </div>
+                </div>
+
+                <!--COLUMN 2-->
+                <div class="d-flex align-items-center"> 
+                    <i style="font-size:36px" class="bi bi-arrow-left-right"></i>  
+                </div>
+
+                <!--COLUMN 3-->
+                <div class="d-flex align-items-start flex-column"> 
+                    <text class="text-secondary">Tus Objetos</text>
+                    
+                    <div v-for="p_object in partner_objects">
+                       
+                       <img v-if="p_object!=null" class="m-1"  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
+               
+                    </div>
+
+                </div>
+
+            </div>
+    </div>
+
+    <!--
         <div class="d-flex justify-content-between">
             <div class="w-100 m-2">      
                 Aceptada por <b>{{offer.dest_owner_name}} </b> <br>
@@ -54,19 +97,9 @@
         
             </p>
 
-
-        <!--
-            <div class="m-2">
-                <i style="font-size:19px" class="bi bi-truck"></i> ${{offer.amount}} 
-            </div>
-            <div class="m-2" >
-                <i class="bi bi-cash-coin"></i>
-                {{ evaluateRemainingDaysToPay(offer.date_acceptance) }}dias
-            </div>
-        -->
-
-
         </div>
+
+    -->
 
     </div>
 
@@ -100,7 +133,7 @@ export default {
 
       }
   },
-  props: ['session_data','accepted','offer','object1'],
+  props: ['session_data','accepted','offer','object1', 'my_objects', 'partner_objects'  ],
   emits: [],
 
 created() {
