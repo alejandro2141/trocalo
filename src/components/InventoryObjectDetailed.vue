@@ -24,9 +24,14 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div style="font-size:20px">
          {{object.title}} 
         </div>
-        
+       
+        <!--
         <div class="bg-secondary" style="width:350px; height:300px">
             <img @click="zoomImage()"  style="width:350px; height:300px" :src="main_image"  /> 
+        </div>
+        -->
+        <div class="bg-dark text-center" style="width:350px; height:300px">
+            <img @click="zoomImage()"  style=" height:300px" :src="main_image"  /> 
         </div>
         
         <div class="d-flex justify-content-start ">
