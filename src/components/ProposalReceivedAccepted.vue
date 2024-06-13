@@ -23,6 +23,8 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             <div v-if="isNewProposal()" class="text-warning text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:40px"> 
                 <i  class="bi bi-star-fill"> </i>
             </div>
+            <div v-else>
+            </div>
 
             <div>
                 {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} dias <i style="font-size:20px"  class="bi bi-cash m-0"></i>
@@ -46,20 +48,6 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                         <br>
                         {{offer.title}}  
                     </div>
-                
-                <!--
-                    <div class="w-25 d-flex justify-content-end m-2">
-                        <div class="m-0">
-                            <div class="text-center m-0">
-                                <i style="font-size:36px"  class="bi bi-cash m-0"></i>
-                            </div>
-                            <div style="font-size:20px" class="text-center m-0">
-                                {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} dias
-                            </div>
-                        </div>
-                    </div>
-                -->
-           
         </div>
 
         <div>
