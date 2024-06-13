@@ -10,10 +10,12 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
    <div class="border border-1 rounded"   >
     
 <!-- HEADER -->
-    <div v-if="offer.status!=200"  class="d-flex justify-content-between">
+    <div  class="d-flex justify-content-between">
     
         <div v-if="isNewProposal()" class="text-warning text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:40px"> 
             <i  class="bi bi-star-fill"> </i>
+        </div>
+        <div v-else>
         </div>
 
         <div class="text-warning">
