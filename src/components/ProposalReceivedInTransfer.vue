@@ -20,8 +20,8 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                 <text style="font-size:20px" class="text-success">2 dias</text>
             </div>
         </div>
-        <!-- BODY -->
 
+        <!-- BODY -->
         <div class="">
             <div class="w-100 m-2">
             
@@ -30,7 +30,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                 <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
                 {{offer.title}}  
                 <br>
-                Y  te llevaremos los objetos de <b> {{offer.source_owner_name}}</b><br>
+                Y  te llevaremos los objetos de <b> @{{offer.source_owner_name}}</b><br>
                 <div class="d-flex justify-content-start">
                     <div v-for="p_object in partner_objects">
                        <img v-if="p_object!=null" class="m-1"  style="height:90px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
