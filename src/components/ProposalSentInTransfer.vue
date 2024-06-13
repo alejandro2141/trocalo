@@ -9,7 +9,8 @@
   
     <div class="border border-1 rounded text-white border-success" >
 
-        <div class="d-flex justify-content-between">
+         <!--HEADER -->
+         <div class="d-flex justify-content-between">
             <div class="m-2 p-2" >
                  Intercambio en Camino
             </div>
@@ -20,7 +21,33 @@
                 <text style="font-size:20px" class="text-success">2 dias</text>
             </div>
         </div>
+        <!-- BODY -->
 
+        <!-- BODY -->
+        <div class="">
+            <div class="w-100 m-2">
+
+                Ten a mano tus objetos :<br>
+                 <div class="d-flex justify-content-start">
+                    <div v-for="p_object in partner_objects">
+                       <img v-if="p_object!=null" class="m-1"  style="height:90px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
+                    </div>
+                </div>   
+                
+                
+                
+                <br>
+                Y  te llevaremo el objeto de <b>@{{offer.dest_owner_name}}</b><br>
+               <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
+                {{offer.title}}  
+
+                 <br>
+                
+            </div>
+        </div>
+
+
+<!--
         <div class="d-flex justify-content-start">
                 Ya vamos por el objeto de <b> {{offer.dest_owner_name}}</b>
         </div>
@@ -40,6 +67,7 @@
         <div class="d-flex justify-content-start">
             Y ya vamos en camino por tus objetos 
         </div>
+    -->
 
     </div>
 
@@ -73,7 +101,7 @@ export default {
 
       }
   },
-  props: ['session_data','accepted','offer','object1'],
+  props: ['session_data','accepted','offer','object1' ,'my_objects', 'partner_objects'],
   emits: [],
 
 created() {
