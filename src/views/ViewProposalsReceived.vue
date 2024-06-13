@@ -77,7 +77,7 @@ import axios from 'axios'
           <br>
 
       <!-- OF CANCELLED   -->
-          <p class="text-start" style="font-size:20px">Finalizadas y Canceladas </p>
+          <p class="text-start" style="font-size:20px">Recibidas Finalizadas</p>
           <p class="text-secondary" style="font-size:12px" >Propuestas que han expirado o fueron canceladas.</p>
           <div class="text-secondary">
             
@@ -216,8 +216,7 @@ methods: {
       this.ofCancelled = proposals.filter(item => item.status ==  300).sort((a, b) => (a.id > b.id) ? 1 : -1);
       this.ofClosedSuccessfully = proposals.filter(item => item.status ==  400).sort((a, b) => (a.id > b.id) ? 1 : -1);
 
-      // TODO  obtener solo los ids para luego cargar las imagenes  en cuadros pequeños 
-      // AQUI MEQUEDE
+      // Objects Ids to obtain objects images  
         let objectsIds= proposals.map((prop) => [prop.source_object1, prop.source_object2, prop.source_object3, prop.source_object4, prop.source_object5, prop.dest_object1,prop.dest_object2,prop.dest_object3,prop.dest_object4,prop.dest_object5] );
        
         objectsIds = await Array.prototype.concat(...objectsIds);
@@ -228,6 +227,7 @@ methods: {
         this.objectsProposal = await this.loadObjects(objectsIds)
 
         console.log("--- OBJECTS PROPOSALS :  "+JSON.stringify(this.objectsProposal))
+
     },
 
     async loadObjects( objIds)
