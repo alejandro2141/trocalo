@@ -55,7 +55,7 @@ import axios from 'axios'
           <br>
 
       <!-- OF SENT ACCEPTED -->
-          <p class=" text-center" style="font-size:16px">Aceptadas </p>
+          <p class=" text-start" style="font-size:20px">Aceptadas </p>
           <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado para completar el intercambio </p>
           <div v-for="of in ofAccepted"  > 
               <ProposalSentAccepted class="m-1" :accepted='true' @click="showProposalSentAcceptedDetails = true; offerSentAccepted=of"  :offer='of'  :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
@@ -66,7 +66,7 @@ import axios from 'axios'
           <br>
 
       <!-- OF ON TRANSFER THE WAY -->
-          <p class=" text-center" style="font-size:20px"> <i class="bi bi-truck"></i> En Despacho </p>
+          <p class=" text-start" style="font-size:20px"> <i class="bi bi-truck"></i> En Despacho </p>
           <p class="text-secondary" style="font-size:12px" >Los objetos estan en ruta para su recoleccion y despacho  </p>
         
           <div v-for="of in ofInTransfer"  > 
@@ -79,7 +79,7 @@ import axios from 'axios'
 
 
       <!-- OF CANCELLED   -->
-          <p class="text-center" style="font-size:20px">Finalizadas y Canceladas </p>
+          <p class="text-start" style="font-size:20px">Finalizadas y Canceladas </p>
           <p class="text-secondary" style="font-size:12px" >Propuestas que han expirado o fueron canceladas.</p>
           <div class="text-secondary">
             
