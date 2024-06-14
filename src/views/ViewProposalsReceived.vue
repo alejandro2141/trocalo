@@ -14,6 +14,8 @@ import ProposalReceivedCancelledDetails from   '../components/ProposalReceivedCa
 import ProposalReceivedClosedSuccessfully from   '../components/ProposalReceivedClosedSuccessfully.vue'
 import ProposalReceivedClosedSuccessfullyDetails from   '../components/ProposalReceivedClosedSuccessfullyDetails.vue'
 
+import ProposalReceivedExpired from   '../components/ProposalReceivedExpired.vue'
+import ProposalReceivedExpiredDetails from   '../components/ProposalReceivedExpiredDetails.vue'
 
 
 import ProposalReceivedEndedDetails from   '../components/ProposalReceivedEndedDetails.vue'
@@ -34,7 +36,7 @@ import axios from 'axios'
   <div style="height:20px">
   </div>
 
-  <div v-if='  !(showExchangeProposalReceived || showExchangeProposalReceivedAccepted || showExchangeProposalReceivedEnded || showExchangeProposalReceivedInTransfer || showExchangeProposalReceivedCancelled  || showExchangeProposalReceivedClosedSuccessfully ) '>
+  <div v-if='  !(showExchangeProposalReceivedExpired || showExchangeProposalReceived || showExchangeProposalReceivedAccepted || showExchangeProposalReceivedEnded || showExchangeProposalReceivedInTransfer || showExchangeProposalReceivedCancelled  || showExchangeProposalReceivedClosedSuccessfully ) '>
     <p class=" text-center" style="font-size:26px; color:#91D5FE ; ">Recibidas </p>
 
 
@@ -42,7 +44,12 @@ import axios from 'axios'
           <p class=" text-start" style="font-size:20px; ">Porpuestas de Intercambio </p>
           <p class="text-secondary" style="font-size:12px" >Otros usuarios te envian las siguientes propuestas que puedes aceptar o rechazar, estas expiran en tiempo indicado </p>
             <div v-for="of in ofReceived"  > 
-              <ProposalReceived class="m-2" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
+
+              <ProposalReceived v-if="getObjBlocked([of.dest_object1,of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5]) == null"  class="m-2" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
+              <ProposalReceived v-else class="m-2"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
+
+
+
             </div>
       <!-- OF SENT -->
 
@@ -91,6 +98,12 @@ import axios from 'axios'
               <br>
             </div>
 
+            <div v-for="of in ofExpired"  > 
+              <ProposalReceivedExpired :ended=true  class="m-1" @click="ofSelected=of ;showExchangeProposalReceivedExpired=true"  :offer='of'  />
+              <br>
+            </div>
+
+
           </div>
           
       <!-- OF SENT ENDED -->
@@ -122,6 +135,9 @@ import axios from 'axios'
         <ProposalReceivedClosedSuccessfullyDetails :offer='ofSelected' :session_data="session_data"   v-on:closeModal="closeModal()" />
     </div>
 
+    <div  v-if="showExchangeProposalReceivedExpired"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
+        <ProposalReceivedExpiredDetails :offer='ofSelected' :session_data="session_data"   v-on:closeModal="closeModal()" />
+    </div>
 
 
   <!--
@@ -168,21 +184,21 @@ export default {
         showExchangeProposalReceivedInTransfer : false ,
         showExchangeProposalReceivedCancelled : false ,
         showExchangeProposalReceivedClosedSuccessfully : false ,
+        showExchangeProposalReceivedExpired : false ,
        
 
         showExchangeProposalReceivedEnded : false ,
 
 
         ofReceived : [],
-        
         ofAccepted : [],
-
         ofInTransfer : [],
         ofCancelled : [],
         ofClosedSuccessfully : [],
+        ofExpired : [],
+
 
         ofSelected : null ,
-
         objectsProposal: [] ,
 
       }
@@ -215,6 +231,8 @@ methods: {
       this.ofInTransfer = proposals.filter(item => item.status ==  200).sort((a, b) => (a.id > b.id) ? 1 : -1);
       this.ofCancelled = proposals.filter(item => item.status ==  300).sort((a, b) => (a.id > b.id) ? 1 : -1);
       this.ofClosedSuccessfully = proposals.filter(item => item.status ==  400).sort((a, b) => (a.id > b.id) ? 1 : -1);
+      this.ofExpired = proposals.filter(item => item.status ==  500).sort((a, b) => (a.id > b.id) ? 1 : -1);
+
 
       // Objects Ids to obtain objects images  
         let objectsIds= proposals.map((prop) => [prop.source_object1, prop.source_object2, prop.source_object3, prop.source_object4, prop.source_object5, prop.dest_object1,prop.dest_object2,prop.dest_object3,prop.dest_object4,prop.dest_object5] );
@@ -255,6 +273,23 @@ methods: {
       console.log ("-------- getObjects OBJECTS FOUND :"+JSON.stringify(objectsFound)+ " " )
       return objectsFound 
     },
+
+    getObjBlocked(ids)
+    {
+      let all_objects =  this.objectsProposal.filter((element) =>  ids.includes(element.id) ) 
+      const found = all_objects.find((element) => element.blocked_due_proposal_accepted);
+      if ( found === undefined) 
+        {
+            return null 
+        }
+       else 
+       {
+            return found
+       };
+
+    },
+
+   
         
     closeModal()
     {
@@ -264,6 +299,7 @@ methods: {
       this.showExchangeProposalReceivedInTransfer = false 
       this.showExchangeProposalReceivedCancelled = false 
       this.showExchangeProposalReceivedClosedSuccessfully = false 
+      this.showExchangeProposalReceivedExpired = false 
       this.getProposalsReceived()
     }
 
