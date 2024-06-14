@@ -5,9 +5,27 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
 <template>
  
- <div>
+ <div class="border border-1 rounded ">
+    <div v-if="hasBlockedObjects!=null" class="text-info">
+        <div @click="showFreezingMessage=!showFreezingMessage" class="d-flex justify-content-between">  
+            <text> Propuesta Congelada.<br> Alguien se te ha adelantado!!</text>
+            
+            <i class="bi bi-snow "  style="font-size:36px"></i>   
+        </div>
+
+        <text v-if="showFreezingMessage">
+          
+            "{{hasBlockedObjects.title}}" de <b>@{{hasBlockedObjects.owner_name}}</b> <br>
+            es parte de otro intercambio recientemente aceptado.<br>  
+            En caso que los usuarios no concreten, esta ropuesta podria re activarse.<br>
+            No pierdas las esperanzas!!!
+        </text>
+    </div>
+
+   <div  :class="{'opacity-25': hasBlockedObjects!=null }"   >
+    
    
-   <div class="border border-1 rounded"   >
+    
     
 <!-- HEADER -->
     <div  class="d-flex justify-content-between">
@@ -91,7 +109,8 @@ export default {
   
   data : function() {
       return {
-
+        hasBlockedObjects: null  ,
+        showFreezingMessage : false ,
       }
   },
   props: ['session_data','accepted' ,'offer','my_objects', 'partner_objects' ],
@@ -100,10 +119,27 @@ export default {
 created() {
 
     console.log(" CREATED Proposal Received "+this.my_objects)
+    this.hasBlockedObjects = this.getObjBlocked() 
 
     },
 
 methods: {
+
+    getObjBlocked()
+    {
+      //let all_objects =  this.objectsProposal.filter((element) =>  ids.includes(element.id) ) 
+      let all_objects = this.my_objects.concat(this.partner_objects)
+      const found = all_objects.find((element) => element.blocked_due_proposal_accepted);
+      if ( found === undefined) 
+        {
+            return null 
+        }
+       else 
+       {
+            return found
+       };
+
+    },
 
     isNewProposal()
     {
