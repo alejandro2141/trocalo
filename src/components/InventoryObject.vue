@@ -11,7 +11,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
 
                 <div class="bg-white"  style="width:100px; height:100px">
-                   <img  class="" style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" /> 
+                   <img  class="" style="max-height: 100px; max-width: 100px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" /> 
                 </div>
 
                 <div>
@@ -55,9 +55,9 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
     <!-- INVENTORY OBJECT  -->
     <div v-else class="" >
         <div v-if="object!=null" @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted" >
-                <div class="bg-white image-container"  style="width:100px; height:100px">
+                <div class="bg-dark image-container"  style="width:100px; height:100px">
                     <div class="image-container img">
-                        <img class="" style="width:100px; height:100px" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />
+                        <img class="" style="max-height: 100px; max-width: 100px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1" />
                     </div>
                     <div v-if="object.blocked_due_proposal_accepted" class="overlay-text"  >
                         <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
