@@ -30,26 +30,26 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             <img @click="zoomImage()"  style="width:350px; height:300px" :src="main_image"  /> 
         </div>
         -->
-        <div class="bg-dark text-center" style="width:350px; height:300px">
-            <img @click="zoomImage()"  style=" height:300px" :src="main_image"  /> 
+        <div class="bg-dark text-center" style="max-height: 350px; max-width: 350px;">
+            <img @click="zoomImage()"  style="max-height: 350px;max-width:350px;border-radius: 7px;" :src="main_image"  /> 
         </div>
         
         <div class="d-flex justify-content-start ">
-                <div @click="viewImage(image1)" class="bg-secondary m-1 " style="width:60px; height:60px">
-                    <img class=""  style="width:60px; height:60px" :src="image1"  /> 
+                <div @click="viewImage(image1)" class="bg-dark m-1 " style="width:60px; height:60px">
+                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image1"  /> 
                 </div>
 
-                <div @click="viewImage(image2)" class="bg-secondary m-1 " style="width:60px; height:60px">
-                    <img class=""  style="width:60px; height:60px" :src="image2"  /> 
+                <div @click="viewImage(image2)" class="bg-dark m-1 " style="width:60px; height:60px">
+                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image2"  /> 
                 </div>
-                <div @click="viewImage(image3)" class="bg-secondary m-1" style="width:60px; height:60px">
-                    <img class=""  style="width:60px; height:60px" :src="image3" /> 
+                <div @click="viewImage(image3)" class="bg-dark m-1" style="width:60px; height:60px">
+                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image3" /> 
                 </div>
-                <div @click="viewImage(image4)" class="bg-secondary m-1" style="width:60px; height:60px">
-                    <img class=""  style="width:60px; height:60px" :src="image4" /> 
+                <div @click="viewImage(image4)" class="bg-dark m-1" style="width:60px; height:60px">
+                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image4" /> 
                 </div>
-                <div @click="viewImage(image5)" class="bg-secondary m-1" style="width:60px; height:60px">
-                    <img class=""  style="width:60px; height:60px" :src="image5" /> 
+                <div v-if="image5!=null" @click="viewImage(image5)" class="bg-dark m-1" style="width:60px; height:60px">
+                    <img class=""  style="max-width:60px;max-height:90px;border-radius: 3px;" :src="image5" /> 
                 </div>
         </div>
         
@@ -111,7 +111,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
   </div>
 
 
-  <div v-if="showZoomImage" class="bg-dark zoom" style="width:350px;height:350px"  >
+  <div v-if="showZoomImage" class="bg-dark zoom" style="max-width:350px;"  >
         <div style="opacity: 0.5;position:absolute; right:0; top:0" class="bg-secondary"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 bi bi-x-lg"></i>  </div>
         <img   :src="main_image"  /> 
   </div>
