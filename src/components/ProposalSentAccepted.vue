@@ -27,7 +27,7 @@
     <!-- BODY -->
     <div class="d-flex justify-content-between">
            <div class="m-2">      
-               Aceptada por <b> @{{offer.source_owner_name}} </b>   
+               Aceptada por <b> @{{offer.dest_owner_name}} </b>   
                <br>
                <br>
                {{offer.title}}  
