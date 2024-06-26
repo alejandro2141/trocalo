@@ -7,8 +7,11 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 </script>
 
 <template>
+    
 
-    <div  class="mt-0 modal-centered bg-dark" style="width:350px ; font-size:16px">
+<div class="modal-centered bg-dark" >
+
+    <div  class="mt-0  " style="width:350px ; font-size:16px">
         
         <div class="d-flex justify-content-end m-1"> 
             <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
@@ -38,8 +41,10 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             <button   type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
         </div> 
 
-
     </div>
+
+</div>
+    
 
 </template>
 
