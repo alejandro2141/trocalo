@@ -28,36 +28,35 @@ import axios from 'axios'
       <div @click="$refs.show_uploadPicture_1_input.click()" style="width:200px; height:200px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_1_preview" style="font-size:100px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_1' class="uploading-image" style="width:200px; height:200px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_1_input" type="file" accept="image/*;capture=camera" @change='uploadImage_1' style="display: none">
+          <input ref="show_uploadPicture_1_input" type="file" accept="image/*;capture=camera" capture="camera" @change='uploadImage_1' style="display: none">
           <br>
           <text class="text-warning" v-if="!validate_input_img1" > Debe ingresar una Imagen principal de tu producto.  </text>
 
       </div>
 
-      <input type="file" accept="image/*" capture="camera" id="camera" />
-      
+
       <div @click="$refs.show_uploadPicture_2_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_2_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_2' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_2_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_2' style="display: none">
+          <input ref="show_uploadPicture_2_input" type="file" accept="image/jpeg;capture=camera" capture="camera" @change='uploadImage_2' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_3_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_3_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_3' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_3_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_3' style="display: none">
+          <input ref="show_uploadPicture_3_input" type="file" accept="image/jpeg;capture=camera" capture="camera" @change='uploadImage_3' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_4_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_4_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_4' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_4_input" type="file" accept="image/jpeg;capture=camera" @change='uploadImage_4' style="display: none">
+          <input ref="show_uploadPicture_4_input" type="file" accept="image/jpeg;capture=camera" capture="camera" @change='uploadImage_4' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_5_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_5_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_5' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
-          <input ref="show_uploadPicture_5_input" type="file" accept="image/jpeg;capture=camera"  @change='uploadImage_5' style="display: none">
+          <input ref="show_uploadPicture_5_input" type="file" accept="image/jpeg;capture=camera" capture="camera" @change='uploadImage_5' style="display: none">
       </div>
 
       
