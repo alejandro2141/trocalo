@@ -167,6 +167,12 @@ import axios from 'axios'
 </template>
 
 <style>
+
+body {
+    overscroll-behavior: none 
+}
+
+
 input::placeholder {
   color: #888;
   font-size: 0.9em;
