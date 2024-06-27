@@ -7,13 +7,13 @@
 
         <div class="d-flex justify-content-between">
             <div class="m-1" >
-                 Intercambio Aceptado Pero Expiró con <b> {{offer.source_owner_name}}</b> <br>
+                 Intercambio Aceptado ya Expiró  <b> @{{offer.source_owner_name}}</b> <br>
                  {{offer.title}}  
             </div>
 
             <div>
                 <i class="text-secondary bi bi-snow "  style="font-size:16px"></i>  
-                <i style="font-size:16px" class=" text-secondary bi bi-calendar-x m-1"></i>
+                <i style="font-size:16px" class=" text-secondary bi bi-cash m-1"></i>
             </div>
 
         </div>
