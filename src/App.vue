@@ -111,6 +111,9 @@ const location = useRoute();
 </template>
 
 <style scoped>
+body {
+    overscroll-behavior: none 
+}
 
 
 a{
