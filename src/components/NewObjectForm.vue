@@ -13,7 +13,7 @@ import axios from 'axios'
  <div>
   <SpinnerLoading  :onOff=spinnerOn />
   
-  <div v-if="showForm">
+  <div v-if="showForm && !spinnerOn">
 
  
   
@@ -28,15 +28,21 @@ import axios from 'axios'
 
       <div @click="$refs.show_uploadPicture_1_input.click()" style="width:200px; height:200px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_1_preview" style="font-size:100px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_1' class="uploading-image" style="width:200px; height:200px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_1' class="uploading-image" style="max-width:200px; max-height:200px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_1_input" type="file" accept="image/*" capture="camera" @change='uploadImage_1' style="display: none">
           <br>
           <text class="text-warning" v-if="!validate_input_img1" > Debe ingresar una Imagen principal de tu producto.  </text>
 
       </div>
+
+
+      image thumb
+      <img v-if="previewImage_1_thumb !=null"  :src='previewImage_1_thumb'  />   
+      <text v-else > preview thum is null </text>
+
 <!--
 <br>
-<br>
+<br>max-height: 100px; max-width: 100px;
       <input type="file" accept="image/*" capture="camera" id="camera" />
 <br>
 <br>
@@ -47,25 +53,25 @@ import axios from 'axios'
 
       <div @click="$refs.show_uploadPicture_2_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_2_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_2' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_2' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_2_input" type="file" accept="image/*" capture="camera" @change='uploadImage_2' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_3_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_3_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_3' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_3' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_3_input" type="file" accept="image/*" capture="camera" @change='uploadImage_3' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_4_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_4_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_4' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_4' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_4_input" type="file" accept="image/*" capture="camera" @change='uploadImage_4' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_5_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_5_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_5' class="uploading-image" style="width:100px; height:100px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_5' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_5_input" type="file" accept="image/*" capture="camera" @change='uploadImage_5' style="display: none">
       </div>
 
@@ -233,6 +239,7 @@ export default {
         input_exchange_category3 : 0 ,
 
         previewImage_1:null,
+        previewImage_1_thumb:null,
         previewImage_2:null,
         previewImage_3:null,
         previewImage_4:null,
@@ -307,6 +314,7 @@ methods: {
 
 }, 
 
+/*
     uploadImage_1(e)
     {
       const image = e.target.files[0];
@@ -315,13 +323,35 @@ methods: {
       reader.onload = e =>{ 
         this.previewImage_1 = e.target.result;
       //  this.upload(e.target.result, 1 )
-
-      };
-
-      
-    
+      };    
       this.show_uploadPicture_1_preview=true
     },
+    */
+
+    uploadImage_1(e)
+    {
+      const image = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e =>{ 
+        this.previewImage_1 = e.target.result;
+        
+        //make thumb
+        var img = document.createElement("img");
+        img.src = e.target.result;
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, 50, 50);
+        canvas.toDataURL()
+        this.previewImage_1_thumb = canvas
+        //end make thumb
+
+        //  this.upload(e.target.result, 1 )
+      };    
+      this.show_uploadPicture_1_preview=true
+    },
+
+
 
  //  IMAGE 2 
     uploadImage_2(e)
