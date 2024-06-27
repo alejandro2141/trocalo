@@ -38,12 +38,19 @@ import axios from 'axios'
 
               </div>
 
-              <div  style="font-size:16px "  class="m-2 w-100">
+              <div  style="font-size:16px "  class="m-2 w-100 ">
                  Selecciona objetos de tu Inventario para intercambiar 
              </div>
               <br>
 
-              <div class="d-flex flex-wrap ">
+
+              <div  v-if="DBmyInventoryObjects!=null &&  DBmyInventoryObjects.length == 0 " class=" text-warning" >
+                <p class="text-center"> <i class="bi bi-exclamation-triangle h1"></i>  </p>
+                  
+                  Debes subir al menos un objeto a tu inventario para un intercambio. 
+              </div>
+              
+              <div  class="d-flex flex-wrap ">
                 <div v-for="obj in DBmyInventoryObjects"  > 
                   <InventoryObject @click="addRemoveObjectsOfferList_temp(obj)" :object=obj  :showProductDetails="false" class="m-1" /> 
                 </div>
