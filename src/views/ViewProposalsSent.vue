@@ -13,6 +13,14 @@ import ProposalSentCancelledDetails from '../components/ProposalSentCancelledDet
 import ProposalSentClosedSuccessfully from '../components/ProposalSentClosedSuccessfully.vue'
 import ProposalSentClosedSuccessfullyDetails from '../components/ProposalSentClosedSuccessfullyDetails.vue'
 
+
+import ProposalSentExpired from   '../components/ProposalSentExpired.vue'
+import ProposalSentExpiredDetails from   '../components/ProposalSentExpiredDetails.vue'
+
+import ProposalSentAcceptedExpired from   '../components/ProposalSentAcceptedExpired.vue'
+import ProposalSentAcceptedExpiredDetails from   '../components/ProposalSentAcceptedExpiredDetails.vue'
+
+
 /*import InventoryList  from     '../components/InventoryList.vue'*/
 
 import ExchangeProposalSentEnded  from   '../components/ExchangeProposalSentEnded.vue'
@@ -93,6 +101,16 @@ import axios from 'axios'
               <br>
             </div>
 
+            <div v-for="of in ofExpired"  > 
+              <ProposalSentExpired :ended=true  class="m-1" @click="ofSelected=of ;showExchangeProposalSentExpired=true"  :offer='of'  />
+              <br>
+            </div>
+
+            <div v-for="of in ofAcceptedExpired"  > 
+              <ProposalSentAcceptedExpired :ended=true  class="m-1" @click="ofSelected=of ;showExchangeProposalSentAcceptedExpired=true"  :offer='of'  />
+              <br>
+            </div>
+
           </div>
 
 
@@ -120,6 +138,14 @@ import axios from 'axios'
     
     <div  v-if="showProposalSentClosedSuccessfullyDetails"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
         <ProposalSentClosedSuccessfullyDetails :offer='ofSelected' :session_data="session_data"   v-on:close="closeModal" />
+    </div>
+
+    <div  v-if="showExchangeProposalSentExpired"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
+        <ProposalSentExpiredDetails :offer='ofSelected' :session_data="session_data"   v-on:closeModal="closeModal()" />
+    </div>
+
+    <div  v-if="showExchangeProposalSentAcceptedExpired"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
+        <ProposalSentAcceptedExpiredDetails :offer='ofSelected' :session_data="session_data"   v-on:closeModal="closeModal()" />
     </div>
 
 
@@ -167,6 +193,8 @@ export default {
         showProposalSentInTransferDetails : false ,
         showProposalSentCancelledDetails : false ,
         showProposalSentClosedSuccessfullyDetails  : false ,
+        showExchangeProposalSentExpired : false ,
+        showExchangeProposalSentAcceptedExpired : false ,
         
 
         ofSent:null,
@@ -174,6 +202,9 @@ export default {
         ofInTransfer : null ,
         ofCancelled : null ,
         ofClosedSuccessfully : null ,
+        ofExpired : [],
+        ofAcceptedExpired : [],
+
 
         objectImages : [],
 
@@ -220,6 +251,10 @@ methods: {
     
     this.ofClosedSuccessfully = proposals.filter(item => item.status ==  400).sort((a, b) => (a.id > b.id) ? 1 : -1);
     this.ofClosedSuccessfully.sort((a, b) =>  b.id - a.id);  
+
+    this.ofExpired = proposals.filter( item =>  item.status ==  500 ).sort((a, b) => (a.id > b.id) ? 1 : -1);
+    this.ofAcceptedExpired = proposals.filter( item =>  item.status ==  101 ).sort((a, b) => (a.id > b.id) ? 1 : -1);
+
     
       // Objects Ids to obtain objects images  
       let objectsIds= proposals.map((prop) => [prop.source_object1, prop.source_object2, prop.source_object3, prop.source_object4, prop.source_object5, prop.dest_object1,prop.dest_object2,prop.dest_object3,prop.dest_object4,prop.dest_object5] );
@@ -276,13 +311,17 @@ methods: {
 
     closeModal()
     {
-      this.getProposalsSent()
      
       this.showProposalSentDetails = false 
       this.showProposalSentAcceptedDetails = false 
       this.showProposalSentInTransferDetails = false 
       this.showProposalSentCancelledDetails = false 
       this.showProposalSentClosedSuccessfullyDetails = false 
+      this.showExchangeProposalSentExpired = false ,
+      this.showExchangeProposalSentAcceptedExpired = false ,
+
+      this.getProposalsSent()
+     
 
     },
 
