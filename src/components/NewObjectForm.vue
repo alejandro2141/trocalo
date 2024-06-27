@@ -2,7 +2,7 @@
 import InventoryObject from '../components/InventoryObject.vue'
 import InventoryObjectDetailed from '../components/InventoryObjectDetailed.vue'
 import InventoryList from '../components/InventoryList.vue' 
-
+import SpinnerLoading from '../components/SpinnerLoading.vue'
 
 import { CATEGORIES,  BKND_CONFIG } from '../../config.js'
 import axios from 'axios'
@@ -11,7 +11,8 @@ import axios from 'axios'
 <template>
  
  <div>
-
+  <SpinnerLoading  :onOff=spinnerOn />
+  
   <div v-if="showForm">
 
  
@@ -116,18 +117,35 @@ import axios from 'axios'
         </p>
     </div>
   -->
-
-    <br>
-
-
+  <!--
       <div class="d-flex justify-content-center">
-        <div class="border border-1 border-success w-50">
+        <div class="border border-1 border-success w-50 ">
           <div @click="upload_product()" style="font-size:25px" class="text-success  bg-dark p text-center" >
               <text> Guardar </text> 
               <i style="font-size:35px"  class="bi bi-cloud-arrow-up"></i> 
             </div>
         </div>
       </div>
+    -->
+
+    <div class="d-flex justify-content-center">
+      <button @click="upload_product()" style="font-size:25px" type="button" class="btn btn-success">
+          <text> Guardar </text> 
+          <i style="font-size:35px"  class="bi bi-cloud-arrow-up"></i> 
+      </button>
+    </div>
+
+    <!-- 
+      <div class="d-flex justify-content-center">
+        <div class="border border-1 border-success w-50 ">
+          <div @click="upload_product()" style="font-size:25px" class="text-success  bg-dark p text-center" >
+              <text> Guardar </text> 
+              <i style="font-size:35px"  class="bi bi-cloud-arrow-up"></i> 
+            </div>
+        </div>
+      </div>
+    -->
+
 
   </div>
 
@@ -200,6 +218,7 @@ export default {
   */
   data : function() {
       return {
+        spinnerOn:false ,
         step1 : true ,
         showRequestConfirmation: false,
         input_exchange_option1 : null ,
@@ -458,8 +477,10 @@ async upload(reader, img_num)
           if ( this.validate_input_name  &&  this.validate_input_description && this.validate_input_category1  && this.validate_input_img1 )
           {
           console.log("Sending to /user_create_product" + JSON.stringify(data_product) )
+          this.spinnerOn=true
           let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/user_create_product",data_product );
           //step1=false;
+          this.spinnerOn=false
           this.showForm = false 
           this.showRequestConfirmation=true
 
