@@ -12,6 +12,35 @@ import axios from 'axios'
  
  <div>
   <SpinnerLoading  :onOff=spinnerOn />
+
+<!--
+  <div class="">
+ <p>PREVIEW IMAGES</p>
+      Image Original 
+      <br>
+      <img :src='previewImage_1' style="width:200px" />
+      <br>
+      image thumb<br>
+     
+      <br>
+      <img :src='previewImage_1_thumb'  />   
+      <br>
+   
+      <div v-if="previewImage_1_thumb !=null" >
+            DATAURL
+            <br>
+            {{previewImage_1_thumb.toDataURL()}}
+            <br>
+            toBlob
+            <br>
+            {{previewImage_1_thumb.toBlob( (blob) => { /* … */ }, "image/jpeg", 0.95,  )}}
+            <br>
+      </div>
+    
+
+  </div>
+-->
+
   
   <div v-if="showForm && !spinnerOn">
 
@@ -28,7 +57,7 @@ import axios from 'axios'
 
       <div @click="$refs.show_uploadPicture_1_input.click()" style="width:200px; height:200px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_1_preview" style="font-size:100px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_1' class="uploading-image" style="max-width:200px; max-height:200px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_1_thumb' class="uploading-image" style="max-width:200px; max-height:200px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_1_input" type="file" accept="image/*" capture="camera" @change='uploadImage_1' style="display: none">
           <br>
           <text class="text-warning" v-if="!validate_input_img1" > Debe ingresar una Imagen principal de tu producto.  </text>
@@ -36,9 +65,11 @@ import axios from 'axios'
       </div>
 
 
-      image thumb
-      <img v-if="previewImage_1_thumb !=null"  :src='previewImage_1_thumb'  />   
-      <text v-else > preview thum is null </text>
+
+
+
+
+
 
 <!--
 <br>
@@ -53,25 +84,25 @@ import axios from 'axios'
 
       <div @click="$refs.show_uploadPicture_2_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_2_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_2' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_2_thumb' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_2_input" type="file" accept="image/*" capture="camera" @change='uploadImage_2' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_3_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_3_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_3' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_3_thumb' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_3_input" type="file" accept="image/*" capture="camera" @change='uploadImage_3' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_4_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_4_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_4' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_4_thumb' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_4_input" type="file" accept="image/*" capture="camera" @change='uploadImage_4' style="display: none">
       </div>
 
       <div @click="$refs.show_uploadPicture_5_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
           <i v-if="!show_uploadPicture_5_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
-          <img v-else   :src='previewImage_5' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
+          <img v-else   :src='previewImage_5_thumb' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_5_input" type="file" accept="image/*" capture="camera" @change='uploadImage_5' style="display: none">
       </div>
 
@@ -241,9 +272,13 @@ export default {
         previewImage_1:null,
         previewImage_1_thumb:null,
         previewImage_2:null,
+        previewImage_2_thumb:null,
         previewImage_3:null,
+        previewImage_3_thumb:null,
         previewImage_4:null,
+        previewImage_4_thumb:null,
         previewImage_5:null,
+        previewImage_5_thumb:null,
         show_uploadPicture_1_preview : false , 
         show_uploadPicture_2_preview : false , 
         show_uploadPicture_3_preview : false , 
@@ -312,7 +347,7 @@ methods: {
         return null 
     }
 
-}, 
+    }, 
 
 /*
     uploadImage_1(e)
@@ -327,28 +362,50 @@ methods: {
       this.show_uploadPicture_1_preview=true
     },
     */
-
-    uploadImage_1(e)
+/*
+    async create_thumbnail(imageURLdata,img_type) 
     {
-      const image = e.target.files[0];
+        var img = document.createElement("img"); 
+        img.src = imageURLdata;
+        var canvas = document.createElement("canvas");
+                  canvas.width = 50;
+                  canvas.height = 50;
+                  var ctx = canvas.getContext("2d");
+                  ctx.drawImage(img, 0, 0, 50, 50);
+                  return (canvas.toDataURL(img_type))
+      
+    },
+*/
+    async uploadImage_1(e)
+    {
+      const image  = e.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(image);
-      reader.onload = e =>{ 
-        this.previewImage_1 = e.target.result;
-        
-        //make thumb
-        var img = document.createElement("img");
-        img.src = e.target.result;
-        var canvas = document.createElement("canvas");
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, 50, 50);
-        canvas.toDataURL()
-        this.previewImage_1_thumb = canvas
-        //end make thumb
-
-        //  this.upload(e.target.result, 1 )
-      };    
+      reader.onload =  async readedResult =>{ 
+        this.previewImage_1 = readedResult.target.result;
+        };    
       this.show_uploadPicture_1_preview=true
+      
+      //reader for thumbnail
+      let image2 = e.target.files[0];
+      let reader2 = new FileReader();
+      reader2.readAsDataURL(image2);
+      reader2.onload = resultReader =>{ 
+                  let img = document.createElement("img"); 
+                  img.src = resultReader.target.result;
+                  let canvas = document.createElement("canvas");
+        
+                  let factor = (img.height / img.width)
+                  // Set the canvas to new dimensions using factor
+                  canvas.width = 300;
+                  canvas.height = factor * 300;
+         
+                  let ctx = canvas.getContext("2d");
+                  ctx.drawImage(img, 0, 0, canvas.width ,  canvas.height);
+                  this.previewImage_1_thumb =  canvas.toDataURL(image2.type)
+        }; 
+        //end reader for thumbnail 
+     
     },
 
 
@@ -359,8 +416,30 @@ methods: {
       const image = e.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(image);
-      reader.onload = e =>{ this.previewImage_2 = e.target.result;};
-    this.show_uploadPicture_2_preview=true
+      reader.onload = readedResult =>{ this.previewImage_2 = readedResult.target.result;};
+      //this.show_uploadPicture_2_preview=true
+
+      //reader for thumbnail
+      let image_thumb = e.target.files[0];
+      let reader_thumb = new FileReader();
+      reader_thumb.readAsDataURL(image_thumb);
+      reader_thumb.onload = resultReader =>{ 
+                  let img_thumb = document.createElement("img"); 
+                  img_thumb.src = resultReader.target.result;
+                  let canvas_thumb = document.createElement("canvas");
+        
+                  let factor = (img_thumb.height / img_thumb.width)
+                  // Set the canvas to new dimensions using factor
+                  canvas_thumb.width = 200;
+                  canvas_thumb.height = factor * 200;
+         
+                  let ctx = canvas_thumb.getContext("2d");
+                  ctx.drawImage(img_thumb, 0, 0, canvas_thumb.width ,  canvas_thumb.height);
+                  this.previewImage_2_thumb =  canvas_thumb.toDataURL(image_thumb.type)
+
+        this.show_uploadPicture_2_preview=true
+        }; 
+        //end reader for thumbnail 
     },
 
 //  IMAGE 3
@@ -370,7 +449,27 @@ methods: {
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = e =>{ this.previewImage_3 = e.target.result;};
-    this.show_uploadPicture_3_preview=true
+      this.show_uploadPicture_3_preview=true
+
+      //reader for thumbnail
+      const image2 = e.target.files[0];
+      const reader2 = new FileReader();
+      reader2.readAsDataURL(image2);
+      reader2.onload = e =>{ 
+        let img = document.createElement("img"); 
+        img.src = e.target.result;
+        let canvas = document.createElement("canvas");
+        
+                  let factor = (img.height / img.width)
+                  // Set the canvas to new dimensions using factor
+                  canvas.width = 200;
+                  canvas.height = factor * 200;
+         
+                  let ctx = canvas.getContext("2d");
+                  ctx.drawImage(img, 0, 0, canvas.width ,  canvas.height);
+                  this.previewImage_3_thumb =  canvas.toDataURL(image2.type)
+        }; 
+        //end reader for thumbnail 
     },
 
  //  IMAGE 4 
@@ -380,7 +479,28 @@ methods: {
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = e =>{ this.previewImage_4 = e.target.result;};
-    this.show_uploadPicture_4_preview=true
+      this.show_uploadPicture_4_preview=true
+
+           //reader for thumbnail
+      const image2 = e.target.files[0];
+      const reader2 = new FileReader();
+      reader2.readAsDataURL(image2);
+      reader2.onload = e =>{ 
+        let img = document.createElement("img"); 
+        img.src = e.target.result;
+        let canvas = document.createElement("canvas");
+        
+                  let factor = (img.height / img.width)
+                  // Set the canvas to new dimensions using factor
+                  canvas.width = 200;
+                  canvas.height = factor * 200;
+         
+                  let ctx = canvas.getContext("2d");
+                  ctx.drawImage(img, 0, 0, canvas.width ,  canvas.height);
+                  this.previewImage_4_thumb =  canvas.toDataURL(image2.type)
+        }; 
+        //end reader for thumbnail 
+
     },
  //  IMAGE 5 
     uploadImage_5(e)
@@ -389,7 +509,28 @@ methods: {
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = e =>{ this.previewImage_5 = e.target.result;};
-    this.show_uploadPicture_5_preview=true
+      this.show_uploadPicture_5_preview=true
+
+     //reader for thumbnail
+      const image2 = e.target.files[0];
+      const reader2 = new FileReader();
+      reader2.readAsDataURL(image2);
+      reader2.onload = e =>{ 
+        let img = document.createElement("img"); 
+        img.src = e.target.result;
+        let canvas = document.createElement("canvas");
+        
+                  let factor = (img.height / img.width)
+                  // Set the canvas to new dimensions using factor
+                  canvas.width = 200;
+                  canvas.height = factor * 200;
+         
+                  let ctx = canvas.getContext("2d");
+                  ctx.drawImage(img, 0, 0, canvas.width ,  canvas.height);
+                  this.previewImage_5_thumb =  canvas.toDataURL(image2.type)
+        }; 
+        //end reader for thumbnail 
+
     },
 
 //  IMAGE upload
@@ -424,12 +565,18 @@ async upload(reader, img_num)
                           exchange_option3 : this.input_exchange_option3 ,
                           exchange_other :   this.input_exchange_other,
 
-                          session_data : this.session_data ,                 
+                          session_data : this.session_data , 
+
                           image1 : this.previewImage_1,
+                          image1_thumb : this.previewImage_1_thumb,
                           image2 : this.previewImage_2,
+                          image2_thumb : this.previewImage_2_thumb,
                           image3 : this.previewImage_3,
+                          image3_thumb : this.previewImage_3_thumb,
                           image4 : this.previewImage_4,
+                          image4_thumb : this.previewImage_4_thumb,
                           image5 : this.previewImage_5,   
+                          image5_thumb : this.previewImage_5_thumb,
                               }
         /*
         validate_input_name : false ,
