@@ -31,25 +31,25 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         </div>
         -->
         <div class="bg-dark text-center" style="max-height: 350px; max-width: 350px;">
-            <img @click="zoomImage()"  style="max-height: 350px;max-width:350px;border-radius: 7px;" :src="main_image"  /> 
+            <img @click="zoomImage()"  style="max-height: 350px;max-width:350px;border-radius: 7px;" :src="main_image+'_thumb'"  /> 
         </div>
         
         <div class="d-flex justify-content-start ">
                 <div @click="viewImage(image1)" class="bg-dark m-1 " style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image1"  /> 
+                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image1+'_thumb'"  /> 
                 </div>
 
                 <div @click="viewImage(image2)" class="bg-dark m-1 " style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image2"  /> 
+                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image2+'_thumb'"  /> 
                 </div>
                 <div @click="viewImage(image3)" class="bg-dark m-1" style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image3" /> 
+                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image3+'_thumb'" /> 
                 </div>
                 <div @click="viewImage(image4)" class="bg-dark m-1" style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image4" /> 
+                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image4+'_thumb'" /> 
                 </div>
                 <div v-if="image5!=null" @click="viewImage(image5)" class="bg-dark m-1" style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:90px;border-radius: 3px;" :src="image5" /> 
+                    <img class=""  style="max-width:60px;max-height:90px;border-radius: 3px;" :src="image5+'_thumb'" /> 
                 </div>
         </div>
         
