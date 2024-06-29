@@ -40,11 +40,7 @@ import axios from 'axios'
 
   </div>
 -->
-
-  
   <div v-if="showForm && !spinnerOn">
-
- 
   
   <div>
       <input type="text" placeholder="Titulo"  v-model="input_name" id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark    text-white border-white" required minlength="4" maxlength="40"  />
@@ -63,13 +59,6 @@ import axios from 'axios'
           <text class="text-warning" v-if="!validate_input_img1" > Debe ingresar una Imagen principal de tu producto.  </text>
 
       </div>
-
-
-
-
-
-
-
 
 <!--
 <br>
@@ -302,6 +291,8 @@ export default {
         //***************** */
         showForm : true,
 
+        temporal_urldata_image : null , 
+
       }
   },
   props: ['session_data'],
@@ -323,30 +314,29 @@ methods: {
     },
     */
     capitalizeNames(newVal) {
-    if (newVal!=null && newVal.length>0)
-    {
-        name= newVal.charAt(0).toUpperCase() + newVal.slice(1).toLowerCase() ;
+        if (newVal!=null && newVal.length>0)
+        {
+            name= newVal.charAt(0).toUpperCase() + newVal.slice(1).toLowerCase() ;
 
-        /*
-        for (let i = 0; i < newVal.length; i++) {
-                
-                if ( newVal[i-1] === " "  )
-                {
-                console.log("Text Before SPace:-"+newVal.slice(0,i)+"-");
-                console.log("Text Afetr Space:-"+newVal.slice(i)+"-");
-                name= newVal.slice(0,i) + newVal.charAt(i).toUpperCase() + newVal.slice(i+1).toLowerCase() 
+            /*
+            for (let i = 0; i < newVal.length; i++) {
+                    
+                    if ( newVal[i-1] === " "  )
+                    {
+                    console.log("Text Before SPace:-"+newVal.slice(0,i)+"-");
+                    console.log("Text Afetr Space:-"+newVal.slice(i)+"-");
+                    name= newVal.slice(0,i) + newVal.charAt(i).toUpperCase() + newVal.slice(i+1).toLowerCase() 
 
-               // name=  newVal.slice(0,i) +  newVal.charAt(i+1).toUpperCase()+ newVal.slice(i+2).toLowerCase()
+                  // name=  newVal.slice(0,i) +  newVal.charAt(i+1).toUpperCase()+ newVal.slice(i+2).toLowerCase()
+                    }
                 }
-            }
-            */
-        return name 
-    }
-    else 
-    {
-        return null 
-    }
-
+                */
+            return name 
+        }
+        else 
+        {
+            return null 
+        }
     }, 
 
 /*
@@ -362,20 +352,54 @@ methods: {
       this.show_uploadPicture_1_preview=true
     },
     */
-/*
-    async create_thumbnail(imageURLdata,img_type) 
+    async lala1(aux)
     {
-        var img = document.createElement("img"); 
-        img.src = imageURLdata;
-        var canvas = document.createElement("canvas");
-                  canvas.width = 50;
-                  canvas.height = 50;
-                  var ctx = canvas.getContext("2d");
-                  ctx.drawImage(img, 0, 0, 50, 50);
-                  return (canvas.toDataURL(img_type))
-      
+      return aux+"soylala1" 
     },
-*/
+
+    async lala2(aux)
+    {
+      return aux+"soylala2"
+    },
+    
+    
+    async resize_image(image , newWidth) 
+    {
+      var urldataImage = "NOSET" ;
+
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      //reader.onload = readedResult =>{ this.previewImage_2 = readedResult.target.result;};
+      //this.show_uploadPicture_2_preview=true
+      
+      reader.onload = async resultReader =>{ 
+                  let img_aux = await document.createElement("img"); 
+                  img_aux.src = await resultReader.target.result;
+                  console.log("RESIZE  img_aux.src "+ img_aux.src)
+                  let canvas_aux = await document.createElement("canvas");
+        
+                  let factor = (img_aux.height / img_aux.width)
+                  // Set the canvas to new dimensions using factor
+                  canvas_aux.width = newWidth;
+                  canvas_aux.height = factor * newWidth;
+         
+                  let ctx = await canvas_aux.getContext("2d");
+                  await ctx.drawImage(img_aux, 0, 0, canvas_aux.width ,  canvas_aux.height);
+                  urldataImage = await canvas_aux.toDataURL(image.type)
+                  console.log("RESIZE image RETURN  : "+ urldataImage)
+
+
+                  return function(e) {
+                    return (e)
+                  }
+
+                  return (urldataImage)
+        }; 
+        
+    },
+    
+    
+
     async uploadImage_1(e)
     {
       const image  = e.target.files[0];
@@ -384,7 +408,7 @@ methods: {
       reader.onload =  async readedResult =>{ 
         this.previewImage_1 = readedResult.target.result;
         };    
-      this.show_uploadPicture_1_preview=true
+      
       
       //reader for thumbnail
       let image2 = e.target.files[0];
@@ -403,6 +427,7 @@ methods: {
                   let ctx = canvas.getContext("2d");
                   ctx.drawImage(img, 0, 0, canvas.width ,  canvas.height);
                   this.previewImage_1_thumb =  canvas.toDataURL(image2.type)
+                  this.show_uploadPicture_1_preview=true
         }; 
         //end reader for thumbnail 
      
@@ -422,11 +447,11 @@ methods: {
       //reader for thumbnail
       let image_thumb = e.target.files[0];
       let reader_thumb = new FileReader();
-      reader_thumb.readAsDataURL(image_thumb);
-      reader_thumb.onload = resultReader =>{ 
-                  let img_thumb = document.createElement("img"); 
-                  img_thumb.src = resultReader.target.result;
-                  let canvas_thumb = document.createElement("canvas");
+      reader_thumb.readAsDataURL(image);
+      reader_thumb.onload = async resultReader =>{ 
+                  let img_thumb = await document.createElement("img"); 
+                  img_thumb.src = await resultReader.target.result;
+                  let canvas_thumb = await document.createElement("canvas");
         
                   let factor = (img_thumb.height / img_thumb.width)
                   // Set the canvas to new dimensions using factor
@@ -437,7 +462,7 @@ methods: {
                   ctx.drawImage(img_thumb, 0, 0, canvas_thumb.width ,  canvas_thumb.height);
                   this.previewImage_2_thumb =  canvas_thumb.toDataURL(image_thumb.type)
 
-        this.show_uploadPicture_2_preview=true
+                  this.show_uploadPicture_2_preview=true
         }; 
         //end reader for thumbnail 
     },
@@ -445,29 +470,33 @@ methods: {
 //  IMAGE 3
     uploadImage_3(e)
     {
+      /*
       const image = e.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = e =>{ this.previewImage_3 = e.target.result;};
-      this.show_uploadPicture_3_preview=true
+     */
 
       //reader for thumbnail
       const image2 = e.target.files[0];
       const reader2 = new FileReader();
       reader2.readAsDataURL(image2);
-      reader2.onload = e =>{ 
-        let img = document.createElement("img"); 
-        img.src = e.target.result;
-        let canvas = document.createElement("canvas");
+      reader2.onload = async readerResult =>{ 
+            
+            let img = await document.createElement("img"); 
+            img.src =  await readerResult.target.result;
+            let canvas = await document.createElement("canvas");
         
-                  let factor = (img.height / img.width)
-                  // Set the canvas to new dimensions using factor
-                  canvas.width = 200;
-                  canvas.height = factor * 200;
+            let factor = (img.height / img.width)
+            // Set the canvas to new dimensions using factor
+            canvas.width = 200;
+            canvas.height = factor * 200;
          
-                  let ctx = canvas.getContext("2d");
-                  ctx.drawImage(img, 0, 0, canvas.width ,  canvas.height);
-                  this.previewImage_3_thumb =  canvas.toDataURL(image2.type)
+            let ctx = await canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, 200 , factor * 200);
+            this.previewImage_3_thumb =  await canvas.toDataURL(image2.type)
+            
+            this.show_uploadPicture_3_preview=true
         }; 
         //end reader for thumbnail 
     },
@@ -503,33 +532,59 @@ methods: {
 
     },
  //  IMAGE 5 
-    uploadImage_5(e)
+    async uploadImage_5(e)
     {
+/*
+      console.log("TEST ASYNC start")
+      let mensaje1 = await this.lala1("hola")
+      console.log("TEST Mensaje1:"+mensaje1)
+      let mensaje2 = await this.lala2(mensaje1)
+      console.log("TEST Mensaje2:"+mensaje2)
+      
+      console.log("TEST ASYNC FINISH")
+*/
+      /*
       const image = e.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(image);
-      reader.onload = e =>{ this.previewImage_5 = e.target.result;};
+      reader.onload = e =>{ 
+        this.previewImage_5 = e.target.result;
+          
+      };
+*/
+      //let src_thumb= await resize_image(e.target.files[0],50) 
+    /*
+      this.previewImage_5_thumb = await this.resize_image(e.target.files[0],50)
       this.show_uploadPicture_5_preview=true
+      */
 
+      let src_thumb = await this.resize_image(e.target.files[0],50)
+      console.log("src_thumb="+await src_thumb)
+
+
+     // this.resize_image(e.target.files[0],50).then( function(e) {this.show_uploadPicture_5_preview=true ; this.previewImage_5_thumb = e } )
+     
+      /*
      //reader for thumbnail
       const image2 = e.target.files[0];
       const reader2 = new FileReader();
       reader2.readAsDataURL(image2);
-      reader2.onload = e =>{ 
-        let img = document.createElement("img"); 
-        img.src = e.target.result;
-        let canvas = document.createElement("canvas");
+      reader2.onload = resultReader =>{ 
+              let img = document.createElement("img"); 
+              img.src = resultReader.target.result;
+              let canvas = document.createElement("canvas");
         
-                  let factor = (img.height / img.width)
-                  // Set the canvas to new dimensions using factor
-                  canvas.width = 200;
-                  canvas.height = factor * 200;
+              let factor = (img.height / img.width)
+              // Set the canvas to new dimensions using factor
+              canvas.width = 200;
+              canvas.height = factor * 200;
          
-                  let ctx = canvas.getContext("2d");
-                  ctx.drawImage(img, 0, 0, canvas.width ,  canvas.height);
-                  this.previewImage_5_thumb =  canvas.toDataURL(image2.type)
+              let ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0, canvas.width ,  canvas.height);
+              this.previewImage_5_thumb =  canvas.toDataURL(image2.type)
         }; 
         //end reader for thumbnail 
+      */
 
     },
 
