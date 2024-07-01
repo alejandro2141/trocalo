@@ -230,7 +230,13 @@ methods: {
     async getProposalsSent()
     {
     console.log("Get Proposals update list")
-    let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_proposals_sent",this.session_data);
+
+    let json_request = 
+      {
+        session_data : this.session_data,
+      }
+    
+    let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_proposals_sent",json_request);
     console.log("/private_get_proposals_sent Response:"+JSON.stringify(response_json.data))
     let proposals = response_json.data.proposals
 
