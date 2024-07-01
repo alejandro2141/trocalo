@@ -232,8 +232,12 @@ methods: {
     async getProposalsReceived()
     {
       console.log("--- getPRoposalsReceived")
+      let json_request = 
+      {
+        session_data : this.session_data,
+      }
 
-      let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_proposals_received", this.session_data);
+      let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_proposals_received", json_request);
       console.log("/private_get_proposals_received Response:"+JSON.stringify(response_json.data))
       //this.inventoryObjects = jsonResponse.data
       //this.inventory_objects_filtered=this.inventoryObjects
