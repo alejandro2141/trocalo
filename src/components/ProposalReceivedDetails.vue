@@ -688,8 +688,12 @@ methods: {
     async loadMyInventory()
     {
     console.log(" LoadMyInventory ")
+    let json_request = 
+      {
+        session_data : this.session_data,
+      }
     
-    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_my_objects", this.session_data);
+    let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_my_objects", json_request);
     console.log("/private_get_my_objects  Response:"+JSON.stringify(jsonResponse.data))
     this.DBmyInventoryObjects = jsonResponse.data 
     },
