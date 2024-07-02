@@ -5,13 +5,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
 
 
-
 const location = useRoute();
 
 </script>
 
 <template>
-  <div class=" m-1 p-0 w-100" >
+  <div class=" m-1 p-0 w-100" style="width: 350px;" >
    
   <div class="d-flex justify-content-center" >
    
@@ -66,7 +65,7 @@ const location = useRoute();
             
       </div> 
       
-      <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
+    <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
       <!-- 
         <RouterLink   style="font-size : 45px ; border-radius: 10px;" class="p-2 text-secondary" :class="{'bg-success text-white'  :underline_inventory}" @click="setUnderline(4)" to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
         <RouterLink   style="font-size : 45px ; border-radius: 10px;" class="p-0 text-secondary" :class="{'bg-success text-white' :underline_received}" @click="setUnderline(5)" to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
@@ -96,9 +95,11 @@ const location = useRoute();
           </div>
         </RouterLink>    
 
-      </div>
+    </div>
       
       <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
+
+     
 
     </div>
 
@@ -235,7 +236,7 @@ export default {
     */
 
     sessionCreated(session_data)
-        {
+      {
             console.log("IN APP sessionCreateda :"+JSON.stringify(session_data))
             /*
             this.session_data.user = session_data.user
@@ -245,7 +246,15 @@ export default {
            this.$router.push('ViewSearch') 
            this.underline_search=true 
             
-        },
+      },
+
+      goToLogin()
+      {
+        this.session_data = null ; 
+        this.$router.push('ViewLogin') 
+      },
+
+
 
 
       },
