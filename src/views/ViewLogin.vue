@@ -29,21 +29,26 @@ import { BKND_CONFIG } from '../../config.js'
        
         <div style="height:10px"></div>
 
-        
-             
-        <Transition> 
-                <div v-if="true">
-                    <UserData :session_data="session_data"/>
-                </div>
-            
-        </Transition>    
 
-        <!-- CHANGE MY DATA -->
         <div  style="font-size:20px" class="d-flex justify-content-left mt-1 text-white">
-          <text @click="showInsertEmail_Data=!showInsertEmail_Data" class="" style="border-radius:15px"  > 
-              <i class="bi bi-person-lines-fill"></i>&nbsp;&nbsp;&nbsp;&nbsp; Modificar Mis Datos &nbsp;&nbsp;&nbsp;&nbsp; 
+          <text @click="showUserData=!showUserData" class="" style="border-radius:15px"  > 
+              <i class="bi bi-person-lines-fill"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{session_data.name}} &nbsp;&nbsp;&nbsp;&nbsp; 
           </text>
         </div>
+
+        <Transition> 
+                <div v-if="showUserData">
+                        <UserData :session_data="session_data"/>
+                    
+                        <!-- CHANGE MY DATA -->
+                        <div  style="font-size:20px" class="d-flex justify-content-left mt-1 text-white">
+                          <text @click="showInsertEmail_Data=!showInsertEmail_Data" class="" style="border-radius:15px"  > 
+                              <i class="bi bi-person-lines-fill"></i>&nbsp;&nbsp;&nbsp;&nbsp; Modificar Mis Datos &nbsp;&nbsp;&nbsp;&nbsp; 
+                          </text>
+                        </div>
+                  </div>
+        </Transition>    
+
 
         <!--  INSER EMAIL CHANGE DATA -->
         <div v-if="showInsertEmail_Data" class="position-absolute top-0 start-0 bg-dark w-100 ">
@@ -121,11 +126,21 @@ import { BKND_CONFIG } from '../../config.js'
         </div>
         <!--  INSER EMAIL CHANGE PASSWORD -->
 
-
-
-
         <br>
          <!-- CAMBIAR PASSWORD -->  
+
+
+        <!-- Invite other users   -->
+        <div  style="font-size:20px" class="d-flex justify-content-start mt-1 text-primary   ">
+          <text @click="showInsertEmail_password=!showInsertEmail_password" class="" style="border-radius:15px"  > 
+            <i class="bi bi-people"></i>
+            &nbsp;&nbsp;&nbsp;&nbsp; Enviar invitacion a otros usuarios. 
+          </text>
+        </div>
+
+
+
+
 
         <hr>
 
@@ -290,6 +305,8 @@ export default {
 
         login_message:"" ,
         requestReceived:null ,
+
+        showUserData : false ,
 
         }
     },
