@@ -242,9 +242,10 @@ methods: {
       //this.inventoryObjects = jsonResponse.data
       //this.inventory_objects_filtered=this.inventoryObjects
 
-      let proposals = response_json.data
+      let proposals = []
+      proposals = response_json.data
 
-      //filter 
+       //filter 
       this.ofReceived = proposals.filter(item => item.status ==  1).sort((a, b) => (a.id > b.id) ? 1 : -1);
       this.ofAccepted = proposals.filter(item => item.status ==  100).sort((a, b) => (a.id > b.id) ? 1 : -1);
       this.ofInTransfer = proposals.filter(item => item.status ==  200).sort((a, b) => (a.id > b.id) ? 1 : -1);
@@ -252,8 +253,7 @@ methods: {
       this.ofClosedSuccessfully = proposals.filter(item => item.status ==  400).sort((a, b) => (a.id > b.id) ? 1 : -1);
       this.ofExpired = proposals.filter( item =>  item.status ==  500 ).sort((a, b) => (a.id > b.id) ? 1 : -1);
       this.ofAcceptedExpired = proposals.filter( item =>  item.status ==  101 ).sort((a, b) => (a.id > b.id) ? 1 : -1);
-
-
+      
       // Objects Ids to obtain objects images  
         let objectsIds= proposals.map((prop) => [prop.source_object1, prop.source_object2, prop.source_object3, prop.source_object4, prop.source_object5, prop.dest_object1,prop.dest_object2,prop.dest_object3,prop.dest_object4,prop.dest_object5] );
        
