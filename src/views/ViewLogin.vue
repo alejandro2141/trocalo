@@ -133,7 +133,7 @@ import { BKND_CONFIG } from '../../config.js'
         <!-- INVITATIONS TO OTHER USERS   -->
       <div v-if="session_data!=null  && session_data.invitations !=null && session_data.invitations > 0 ">
         <div  style="font-size:20px" class="text-start mt-1 text-primary   ">
-          <text @click="showSendInvitation=!showSendInvitation" class="" style="border-radius:15px"  > 
+          <text @click="showSendInvitation=!showSendInvitation ; showInvitationSent=false" class="" style="border-radius:15px"  > 
             <i class="bi bi-people"></i>
             &nbsp;&nbsp;&nbsp;&nbsp;  Invitaciones disponibles {{ session_data.invitations }}
           </text>
@@ -155,10 +155,6 @@ import { BKND_CONFIG } from '../../config.js'
                         </div>
                     </div>
                   </div> 
-                
-               
-                 
-
             </div>
 
 
