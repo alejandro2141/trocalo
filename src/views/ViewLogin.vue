@@ -132,35 +132,45 @@ import { BKND_CONFIG } from '../../config.js'
 
         <!-- INVITATIONS TO OTHER USERS   -->
       <div v-if="session_data!=null  && session_data.invitations !=null && session_data.invitations > 0 ">
-        <div  style="font-size:20px" class="d-flex justify-content-start mt-1 text-primary   ">
+        <div  style="font-size:20px" class="text-start mt-1 text-primary   ">
           <text @click="showSendInvitation=!showSendInvitation" class="" style="border-radius:15px"  > 
             <i class="bi bi-people"></i>
-            &nbsp;&nbsp;&nbsp;&nbsp; Tienes {{ session_data.invitations }} Invitaciones disponibles 
+            &nbsp;&nbsp;&nbsp;&nbsp;  Invitaciones disponibles {{ session_data.invitations }}
           </text>
         </div>
 
-          <!--  INSER EMAIL CHANGE DATA -->
+       
          
             <div v-if="showSendInvitation" style="width: 300px;">
                 <div class="mb-3" >
                   <br>
-                    <input v-model="emailToInvite" type="email" placeholder="Ingresa el correo de tu amigo"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text text-white">Enviaremos una invitacion al correo que indica</div>
-                </div> 
+                  <p class="text-start">Envia una invitacion a tu amigo para unirse a nuestra comunidad de intercambios.</p>
+                    <div class="d-flex justify-content-between">
+                        <input v-model="emailToInvite" type="email" placeholder="Ingresa el correo de tu amigo"  class="form-control w-75" :class="{ 'border border-4 border-success': isValidEmail }" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    
+                        <div v-if="isValidEmail" class="text-end">
+                          <button v-on:click="sendInvitation(); showSendInvitation = false; requestReceived=true  " type="button" class="btn btn-success">  
+                              Enviar
+                            </button>
+                        </div>
+                    </div>
+                  </div> 
                 
-                <button v-on:click="sendInvitation(); showSendInvitation = false; requestReceived=true  " type="button" class="btn btn-secondary">Enviar</button>
+               
+                 
 
-             </div>
-      </div>
-        <!-- END  INSERT EMAIL CHANGE DATA -->
-
-
-      
+            </div>
 
 
+        </div>
+        <div v-if="showInvitationSent" style="font-size: 20px;">
+          <i class="bi bi-emoji-kiss"></i>  Invitacion enviada
+        </div>
         <!-- END SEND INVITATIONS  -->
 
         <hr>
+        <br>
+        <br>
 
         <Transition> 
           <div class="" style="border-radius:15px; " >
@@ -228,11 +238,10 @@ import { BKND_CONFIG } from '../../config.js'
             <div v-if='showRegisterForm' class="position-absolute top-0 start-0 bg-dark w-100 h-100 d-flex justify-content-center ">
               
               <div style="width:350px" >
-                            
                 <p  @click="showRegisterForm=false "  class="text-white text-end"><i class="display-5 bi bi-x-lg"></i></p> 
                 <RegisterForm  />
-              
               </div>
+            
             </div>
 <!-- REGISTER FORM -->
 
@@ -329,6 +338,11 @@ export default {
         showSendInvitation: false ,
         emailToInvite : null ,
 
+        isValidEmail : false ,
+
+        showInvitationSent : false ,
+       
+
         }
     },
 
@@ -341,6 +355,22 @@ export default {
 			},
 
   methods: {
+
+    async validateEmail(input) {
+
+          //var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+          var validRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,4}$/ 
+
+          if ( new String(input).match(validRegex)) {
+            console.log("Valid email address! "+input);
+            return true;
+          } 
+          else {
+            console.log("Invalid email address! "+input);
+            return false;
+          }
+
+        },
 
         async sendInvitation()
         {
@@ -356,6 +386,8 @@ export default {
               }
             
               this.session_data.invitations -= 1 
+
+              this.showInvitationSent=true
 
         },
 
@@ -428,7 +460,13 @@ export default {
       },
 
   watch : {
+
+        async emailToInvite(newval,oldval)
+        {
+        this.isValidEmail= await this.validateEmail(newval)
         }
+
+      }
 }
 </script>
 
