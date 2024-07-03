@@ -130,17 +130,35 @@ import { BKND_CONFIG } from '../../config.js'
          <!-- CAMBIAR PASSWORD -->  
 
 
-        <!-- Invite other users   -->
+        <!-- INVITATIONS TO OTHER USERS   -->
+      <div v-if="session_data!=null  && session_data.invitations !=null && session_data.invitations > 0 ">
         <div  style="font-size:20px" class="d-flex justify-content-start mt-1 text-primary   ">
-          <text @click="showInsertEmail_password=!showInsertEmail_password" class="" style="border-radius:15px"  > 
+          <text @click="showSendInvitation=!showSendInvitation" class="" style="border-radius:15px"  > 
             <i class="bi bi-people"></i>
-            &nbsp;&nbsp;&nbsp;&nbsp; Enviar invitacion a otros usuarios. 
+            &nbsp;&nbsp;&nbsp;&nbsp; Tienes {{ session_data.invitations }} Invitaciones disponibles 
           </text>
         </div>
 
+          <!--  INSER EMAIL CHANGE DATA -->
+         
+            <div v-if="showSendInvitation" style="width: 300px;">
+                <div class="mb-3" >
+                  <br>
+                    <input v-model="emailToInvite" type="email" placeholder="Ingresa el correo de tu amigo"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text text-white">Enviaremos una invitacion al correo que indica</div>
+                </div> 
+                
+                <button v-on:click="sendInvitation(); showSendInvitation = false; requestReceived=true  " type="button" class="btn btn-secondary">Enviar</button>
+
+             </div>
+      </div>
+        <!-- END  INSERT EMAIL CHANGE DATA -->
 
 
+      
 
+
+        <!-- END SEND INVITATIONS  -->
 
         <hr>
 
@@ -308,6 +326,9 @@ export default {
 
         showUserData : false ,
 
+        showSendInvitation: false ,
+        emailToInvite : null ,
+
         }
     },
 
@@ -315,14 +336,28 @@ export default {
     emits: ['sessionCreated'],
 
 	created() {
-		console.log("Login Created")
+		    console.log("Login Created")
         console.log("Login session_data:"+JSON.stringify(this.session_data))
-	
 			},
 
-
-
   methods: {
+
+        async sendInvitation()
+        {
+          console.log("send Invitation")
+          const json_request = {
+                              session_data : this.session_data,
+                              email : this.emailToInvite
+                              }
+          
+          if (this.emailToInvite != null && this.session_data != null )
+              {
+                let json_response = await axios.post(BKND_CONFIG.BKND_HOST+"/private_send_invitation",json_request );
+              }
+            
+              this.session_data.invitations -= 1 
+
+        },
 
         async sendLogin()
         {
@@ -355,6 +390,7 @@ export default {
                   session_data_result.address_country =   "Chile"
                   session_data_result.token  =   response_json.data.token
                   session_data_result.id  =   response_json.data.id
+                  session_data_result.invitations = response_json.data.invitations
                   
                   this.$emit('sessionCreated',session_data_result);
                   console.log("session data created:"+JSON.stringify( session_data_result) )
