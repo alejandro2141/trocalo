@@ -30,7 +30,7 @@
                 Ten a mano tus objetos :<br>
                  <div class="d-flex justify-content-start">
                     <div v-for="p_object in partner_objects">
-                       <img v-if="p_object!=null" class="m-1"  style="height:90px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
+                       <img v-if="p_object!=null" class="m-1"  style="height:90px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1+'_thumb'" /> 
                     </div>
                 </div>   
                 
@@ -38,7 +38,7 @@
                 
                 <br>
                 Y  te llevaremo el objeto de <b>@{{offer.dest_owner_name}}</b><br>
-               <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
+               <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1+'_thumb'" /> 
                 {{offer.title}}  
 
                  <br>
