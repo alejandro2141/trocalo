@@ -34,7 +34,7 @@
                 <div class="d-flex  flex-column"> 
                     <text class="text-secondary" >Su Objeto</text>
                     <div class="d-flex align-items-center h-100" >
-                    <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1" /> 
+                    <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1+'_thumb'" /> 
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
                     
                     <div v-for="p_object in partner_objects">
                        
-                       <img v-if="p_object!=null" class="m-1"  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1" /> 
+                       <img v-if="p_object!=null" class="m-1"  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+p_object.img_ref1+'_thumb'" /> 
                
                     </div>
 
