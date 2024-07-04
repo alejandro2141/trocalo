@@ -23,7 +23,7 @@ import axios from 'axios'
         </div>
 
         <div class="d-flex align-items-center mt-3 "  >
-          <input  v-model="ftext" style="text-align:center; width:190px;  font-size:26px ;border-radius:15px" class="form-control-sm form-control-sm bg-dark border-2  text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="Mi Inventario"> 
+          <input  v-model="ftext" style="text-align:center; width:190px;  font-size:26px ;border-radius:15px" class="form-control-sm form-control-sm bg-dark border-0  text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="Mi Inventario"> 
         </div>
       
         <div>
