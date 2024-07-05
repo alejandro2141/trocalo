@@ -95,7 +95,7 @@ import axios from 'axios'
       </div>
 
     <!-- DELETE CONFIRMATION -->
-    <div v-if="showConfirmDeleteDone"  class="position-absolute top-0  w-100 bg-dark" >
+    <div v-if="showConfirmDeleteDone" style="position: absolute; top:0px;right:0px " class="p-0  w-100 bg-dark"  >
        
       <div class="d-flex justify-content-center">
         <div>
