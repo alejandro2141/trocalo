@@ -45,7 +45,9 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         </div>
 
         <div v-else class="text-secondary d-flex justify-content-center">
-            <button   type="button" class="btn btn-secondary">Debe estar registrado <br>para intercambiar &nbsp;&nbsp; <i style="font-size:30px" class="bi bi-key"></i> </button>
+            Usted debe estar registrado para comenzar a intercambiar 
+
+            <!-- <button type="button" class="btn btn-success">Debe estar registrado</button> -->
         </div> 
 
     </div>
