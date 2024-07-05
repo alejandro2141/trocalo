@@ -2,8 +2,8 @@
 </script>
 
 <template>
-    <div v-if="spinner_on" class="spinner text-center mt-0 pt-5" style="transition:visibility 0.5s linear; opacity: 0.6 "  >
-        <div  style="">
+    <div v-if="spinner_on" class="spinner text-center mt-0 pt-5 bg-dark w-100 d-flex justify-content-center" style="transition:visibility 0.5s linear; opacity: 0.9 ;width:350px; ;position:fixed"  >
+        <div  style="width:350px">
             <img src="/public/spinner1.gif" style="width:200px;height:200px;">
         </div>
     </div>  
