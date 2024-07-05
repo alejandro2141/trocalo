@@ -70,15 +70,21 @@ import axios from 'axios'
           <br>
           <br>
           <br>
+          <br>
+          <br>
+          <br>
 
             <!-- FOOTER -->
         
             <div v-if="objectsOfferList_temp != null && objectsOfferList_temp.length>0" class="fixed-bottom  d-flex justify-content-center  text-success  bg-dark p-3 ">  
               
-              <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center border border-2 border-success  "> 
-                <div class="d-flex justify-content-start">
-                    
-                    
+              <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center   "> 
+                  
+                  <button type="button" style="font-size:36px" class="btn btn-success">Siguiente 
+                    <i style="font-size:36px" class="bi bi-caret-right"></i> 
+                  </button>
+                  
+                  <!--                     
                   <div   class="d-flex justify-content-center">
                     <div >
                       
@@ -89,6 +95,9 @@ import axios from 'axios'
                     
                     </div>
                   </div>
+
+                -->
+
                   <!-- 
                     <div  @click="goToNextStep()" class="">
                         <i class="bi bi-check2 display-4 text-success p-1 m-1"> </i> 
@@ -96,7 +105,7 @@ import axios from 'axios'
                     <text style="font-size:20px" >Siguente</text>
                   -->
 
-                </div>
+                
               </div>
 
 
