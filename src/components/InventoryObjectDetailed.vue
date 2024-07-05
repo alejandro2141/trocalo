@@ -13,7 +13,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
 <div>
 
-    <div  v-if="showObjectDetail" class=" mt-0" style="width:350px ; font-size:16px">
+    <div  v-if="showObjectDetail" class=" mt-0 w-100" style=" font-size:16px;width: 100%">
 
     <div class="" style="width: 100%">
     <!--
@@ -33,6 +33,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div class="bg-dark text-center" style="max-height: 350px; max-width: 350px;">
             <img @click="zoomImage()"  style="max-height: 350px;max-width:350px;border-radius: 7px;" :src="main_image+'_thumb'"  /> 
         </div>
+        <br>
         
         <div class="d-flex justify-content-start ">
                 <div @click="viewImage(image1)" class="bg-dark m-1 " style="width:60px; height:60px">
@@ -52,11 +53,13 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                     <img class=""  style="max-width:60px;max-height:90px;border-radius: 3px;" :src="image5+'_thumb'" /> 
                 </div>
         </div>
-        
+        <br>
         <div >
             {{object.description}}
         </div>
-        
+        <br>
+        <br>
+        <br>
     <!--
         <div  style="font-size:16px" class="w-100 text-start">
            Pertenece a: {{object.owner_name}}
