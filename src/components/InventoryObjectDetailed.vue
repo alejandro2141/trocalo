@@ -57,9 +57,8 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div >
             {{object.description}}
         </div>
-        <br>
-        <br>
-        <br>
+        
+     
     <!--
         <div  style="font-size:16px" class="w-100 text-start">
            Pertenece a: {{object.owner_name}}
@@ -114,12 +113,14 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
   </div>
 
 
-  <div v-if="showZoomImage" class="bg-dark zoom" style="max-width:350px;"  >
-        <div style="opacity: 0.9;position:fixed; right:0; top:0" class="bg-secondary"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 bi bi-x-lg"></i>  </div>
-        <img   :src="main_image"  /> 
+  <div v-if="showZoomImage" class="bg-danger zoom" style="max-width:350px;"  >
+        <div style="opacity: 1.9;position:fixed; z-index:101; right:0; top:0" class="bg-secondary"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 bi bi-x-lg"></i>  </div>
+        <img style="position:fixed;  z-index:0px ;  top:30px"  :src="main_image"  /> 
   </div>
 
-
+        <br>
+        <br>
+    
 </div>
 </template>
 
@@ -128,7 +129,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 .zoom {
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: 30px;
   z-index: 99;
 }
 
