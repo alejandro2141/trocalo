@@ -10,12 +10,19 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
     
 
 <div class="modal-centered bg-dark" >
-
-    <div  class="mt-0  " style="width:350px ; font-size:16px">
         
-        <div class="d-flex justify-content-end m-1"> 
+    <div style="position:fixed ; top:0px ; right:0px" class="d-flex justify-content-end m-0 p-3 bg-dark"> 
             <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
-        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div  class="mt-4" style="width:350px ; font-size:16px">
+        
+       
+
             <InventoryObjectDetailed  :object=object   :session_data="session_data" />
         
             <p v-if="session_data!=null && object!= null"  style="font-size:16px" class="w-100 text-start mt-2">
