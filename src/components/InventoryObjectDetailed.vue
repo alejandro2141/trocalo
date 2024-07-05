@@ -112,7 +112,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
 
   <div v-if="showZoomImage" class="bg-dark zoom" style="max-width:350px;"  >
-        <div style="opacity: 0.5;position:absolute; right:0; top:0" class="bg-secondary"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 bi bi-x-lg"></i>  </div>
+        <div style="opacity: 0.9;position:fixed; right:0; top:0" class="bg-secondary"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 bi bi-x-lg"></i>  </div>
         <img   :src="main_image"  /> 
   </div>
 
