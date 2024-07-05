@@ -49,7 +49,7 @@ import axios from 'axios'
     <!-- END LIST ALL INVENTORY OBJECTS-->
 
     <!-- SHOW DETAILED OBJECT DATA -->
-    <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
+    <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark"  >
           <div class="" >
                   <div class="d-flex justify-content-end"> 
                   <i @click="showModalDetails=false;; showInventory=true " class="bi bi-x-lg display-1" ></i>
