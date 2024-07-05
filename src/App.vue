@@ -10,15 +10,15 @@ const location = useRoute();
 </script>
 
 <template>
-  <div class=" m-1 p-0 w-100" style="width: 350px;" >
+
+  <div class="" >
    
-  <div class="d-flex justify-content-center" >
+  <div class="m-0 p-0" >
+    
    
-    <div  style="width: 350px;">
+    <div class="bg-dark p-0 m-0" style="width: 350px;">
 
       <div  v-if="session_data==null"  class="d-flex justify-content-between">
-          
-
           
         <RouterLink  style="position:absolute ; top:0px ; right:0px " class="" :class="{'text-decoration-underline' :underline_login}"   to="/ViewLogin"> 
              <div class="bg-secondary text-end" style="width:60px;height:50px;border-radius: 0px 0px 0px 100px;" > 
@@ -96,19 +96,16 @@ const location = useRoute();
         </RouterLink>    
 
     </div>
-      
       <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
-
-     
-
+    
+    
+    
+    
     </div>
 
   </div>
 
-
-
-
-  </div>
+</div>
 </template>
 
 <style scoped>
