@@ -16,7 +16,7 @@ const location = useRoute();
   <div class="m-0 p-0" >
     
    
-    <div class="bg-dark p-0 m-0" style="width: 350px;">
+    <div class="bg-dark p-0 m-0" style="width: 350px; top:0px">
 
       <div  v-if="session_data==null"  class="d-flex justify-content-between">
           
@@ -42,8 +42,6 @@ const location = useRoute();
               </a>
             </div>
         </div>
-
-         
 
       </div>
 
