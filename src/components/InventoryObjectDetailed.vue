@@ -11,9 +11,9 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 <div  class="position-absolute top-50 start-50 translate-middle bg-dark">
 -->
 
-<div>
+<div style="width:360px">
 
-    <div  v-if="showObjectDetail" class=" mt-0 w-100" style=" font-size:16px;width: 100%">
+    <div  v-if="showObjectDetail" class=" mt-0 pt-0 w-100" style=" font-size:16px;width: 100%">
 
     <div class="" style="width: 100%">
     <!--
@@ -36,25 +36,26 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <br>
         
         <div class="d-flex justify-content-start ">
-                <div @click="viewImage(image1)" class="bg-dark m-1 " style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image1+'_thumb'"  /> 
+                <div v-if="image1!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image1 == main_image) }" style="width:60px; height:60px">
+                    <img @click="viewImage(image1)" onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image1+'_thumb'"  /> 
                 </div>
 
-                <div @click="viewImage(image2)" class="bg-dark m-1 " style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image2+'_thumb'"  /> 
+                <div v-if="image2!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image2 == main_image) }" style="width:60px; height:60px">
+                    <img @click="viewImage(image2)" onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image2+'_thumb'"  /> 
                 </div>
-                <div @click="viewImage(image3)" class="bg-dark m-1" style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image3+'_thumb'" /> 
+                <div v-if="image3!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image3 == main_image) }" style="width:60px; height:60px">
+                    <img @click="viewImage(image3)" onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image3+'_thumb'" /> 
                 </div>
-                <div @click="viewImage(image4)" class="bg-dark m-1" style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image4+'_thumb'" /> 
+                <div v-if="image4!=null" class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image4 == main_image) }" style="width:60px; height:60px">
+                    <img @click="viewImage(image4)"  onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image4+'_thumb'" /> 
                 </div>
-                <div v-if="image5!=null" @click="viewImage(image5)" class="bg-dark m-1" style="width:60px; height:60px">
-                    <img class=""  style="max-width:60px;max-height:90px;border-radius: 3px;" :src="image5+'_thumb'" /> 
+                <div v-if="image5!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image5 == main_image) }"  style="width:60px; height:60px">
+                    <img @click="viewImage(image5)" onerror="this.style.display='none' " class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image5+'_thumb'" /> 
                 </div>
         </div>
+        
         <br>
-        <div >
+        <div v-if="object.description!='null'">
             {{object.description}}
         </div>
         
@@ -112,12 +113,12 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
   </div>
 
-  <div v-if="showZoomImage" class="bg-dark w-100" style="max-width:350px ; position:absolute; left:0px ; top:0px ; z-index:9999 ; "  >
+  <div v-if="showZoomImage" class="bg-dark w-100 bg-danger text-center" style="max-width:350px ; position:absolute; left:0px ; top:0px ; z-index:99 ; "  >
    
         <div style="opacity: 1.9;position:fixed; z-index:101; right:0; top:0" class="bg-secondary"> 
-            <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 bi bi-x-lg"></i>  
+            <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 m-2 bi bi-x-lg"></i>  
         </div>
-        <img class="bg-warning" style="position:fixed;  z-index:0px ;  top:10px"  :src="main_image"  /> 
+        <img class="bg-warning mt-3" style="position:static; right:0px ; top:0px "  :src="main_image"  /> 
   </div>
 
         <br>
@@ -170,11 +171,12 @@ export default {
         return {
             showModal:false  ,
             main_image: PATH_PRODUCT_IMG+'/'+this.object.img_ref1 ,
-            image1: PATH_PRODUCT_IMG+'/'+this.object.img_ref1 ,
+            image1: PATH_PRODUCT_IMG+'/'+this.object.img_ref1 ,           
             image2: PATH_PRODUCT_IMG+'/'+this.object.img_ref2 ,
             image3: PATH_PRODUCT_IMG+'/'+this.object.img_ref3 ,
             image4: PATH_PRODUCT_IMG+'/'+this.object.img_ref4 ,
             image5: PATH_PRODUCT_IMG+'/'+this.object.img_ref5 ,
+            imgDisp:1,
 
             showObjectDetail : true ,
             showZoomImage : false , 
@@ -191,6 +193,11 @@ export default {
 			},
 
   methods: {
+        hiddeImg(val)
+        {
+            console.log("ERROR Hide image "+val)
+
+        },
 
         zoomImage()
         {
