@@ -24,7 +24,7 @@ import axios from 'axios'
   -->
 
   <div v-if="search_event" class="text-warning text-center">
-    <div class="text-warning" v-if="objects_filtered !=null && objects_filtered.length > 0">
+    <div class="text-white" v-if="objects_filtered !=null && objects_filtered.length > 0">
         Econtramos {{objects_filtered.length}}
         objectos para tu búsqueda<br>
     </div>
