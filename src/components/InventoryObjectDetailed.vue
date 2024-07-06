@@ -112,10 +112,12 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
   </div>
 
-
-  <div v-if="showZoomImage" class="bg-danger zoom" style="max-width:350px;"  >
-        <div style="opacity: 1.9;position:fixed; z-index:101; right:0; top:0" class="bg-secondary"> <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 bi bi-x-lg"></i>  </div>
-        <img style="position:fixed;  z-index:0px ;  top:30px"  :src="main_image"  /> 
+  <div v-if="showZoomImage" class="bg-dark w-100" style="max-width:350px ; position:absolute; left:0px ; top:0px ; z-index:9999 ; "  >
+   
+        <div style="opacity: 1.9;position:fixed; z-index:101; right:0; top:0" class="bg-secondary"> 
+            <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 bi bi-x-lg"></i>  
+        </div>
+        <img class="bg-warning" style="position:fixed;  z-index:0px ;  top:10px"  :src="main_image"  /> 
   </div>
 
         <br>
@@ -126,12 +128,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
 <style scoped>
 
-.zoom {
-  position: absolute;
-  left: 0px;
-  top: 30px;
-  z-index: 99;
-}
+
 
 
 /*
