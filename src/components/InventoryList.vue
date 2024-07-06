@@ -48,12 +48,18 @@ import axios from 'axios'
   </div>
     <!-- END LIST ALL INVENTORY OBJECTS-->
 
+
     <!-- SHOW DETAILED OBJECT DATA -->
     <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark"  >
+      <br>
+      <br>
           <div class="" >
-                  <div class="d-flex justify-content-end"> 
-                  <i @click="showModalDetails=false;; showInventory=true " class="bi bi-x-lg display-1" ></i>
+                  
+                  <div style="position:fixed ; top:0px ; right:0px" class="d-flex justify-content-end p-3 bg-dark"> 
+                    <i @click="showModalDetails=false; showInventory=true " class="bi bi-x-lg display-1" ></i>
                   </div>
+
+
                   <InventoryObjectDetailed  :object="objectDetails"  :session_data="session_data" />
                   <br>
                   <div  class="d-flex justify-content-center text-danger " >
