@@ -9,9 +9,9 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 <template>
     
 
-<div class="modal-centered bg-dark" >
+<div class="modal-centered w-100 bg-dark" >
         
-    <div style="position:fixed ; top:0px ; right:0px" class="d-flex justify-content-end m-0 p-3 bg-dark"> 
+    <div style="position:fixed ; top:0px ; right:0px; z-index:10 ;" class="d-flex justify-content-end m-0 p-3 bg-dark"> 
             <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
     </div>
 
@@ -42,7 +42,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
         </div>
 
-        <div v-else class="text-secondary d-flex justify-content-center">
+        <div v-else class="text-secondary d-flex justify-content-center border border-1 p-4">
             Usted debe estar registrado para comenzar a intercambiar 
 
             <!-- <button type="button" class="btn btn-success">Debe estar registrado</button> -->
