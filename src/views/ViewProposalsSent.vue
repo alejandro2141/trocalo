@@ -37,8 +37,7 @@ import axios from 'axios'
 
 <div>
 
-
-  <div v-if='session_data!=null'>
+  <div v-if="session_data!=null">
 
   <div style="height:20px">
   </div>
@@ -121,11 +120,11 @@ import axios from 'axios'
 <!-- OF SENT ENDED -->
 
     <div  v-if="showProposalSentDetails"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-          <ProposalSentDetails         :session_data="this.session_data" :offer="offerSent"         v-on:close="closeModal" />
+          <ProposalSentDetails         :session_data="session_data" :offer="offerSent"         v-on:close="closeModal" />
     </div>
 
     <div  v-if="showProposalSentAcceptedDetails"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
-         <ProposalSentAcceptedDetails :session_data="this.session_data" :offer="offerSentAccepted" v-on:close="closeModal" />
+         <ProposalSentAcceptedDetails :session_data="session_data" :offer="offerSentAccepted" v-on:close="closeModal" />
     </div>
 
     <div  v-if="showProposalSentInTransferDetails"  class="position-absolute top-0 start-0 bg-dark w-100 d-flex justify-content-center" >
@@ -244,19 +243,19 @@ methods: {
     
     //filter 
     this.ofSent = proposals.filter(item => item.status ==  1).sort((a, b) => (a.id > b.id) ? 1 : -1);
-    this.ofSent.sort((a, b) =>  b.id - a.id);
+    //this.ofSent.sort((a, b) =>  b.id - a.id);
 
     this.ofAccepted = proposals.filter(item => item.status ==  100).sort((a, b) => (a.id > b.id) ? 1 : -1);
-    this.ofAccepted.sort((a, b) =>  b.id - a.id);
+    //this.ofAccepted.sort((a, b) =>  b.id - a.id);
 
     this.ofInTransfer = proposals.filter(item => item.status ==  200).sort((a, b) => (a.id > b.id) ? 1 : -1);
-    this.ofInTransfer.sort((a, b) =>  b.id - a.id);  
+    //this.ofInTransfer.sort((a, b) =>  b.id - a.id);  
     
     this.ofCancelled = proposals.filter(item => item.status ==  300).sort((a, b) => (a.id > b.id) ? 1 : -1);
-    this.ofCancelled.sort((a, b) =>  b.id - a.id);  
+    //this.ofCancelled.sort((a, b) =>  b.id - a.id);  
     
     this.ofClosedSuccessfully = proposals.filter(item => item.status ==  400).sort((a, b) => (a.id > b.id) ? 1 : -1);
-    this.ofClosedSuccessfully.sort((a, b) =>  b.id - a.id);  
+    //this.ofClosedSuccessfully.sort((a, b) =>  b.id - a.id);  
 
     this.ofExpired = proposals.filter( item =>  item.status ==  500 ).sort((a, b) => (a.id > b.id) ? 1 : -1);
     this.ofAcceptedExpired = proposals.filter( item =>  item.status ==  101 ).sort((a, b) => (a.id > b.id) ? 1 : -1);
