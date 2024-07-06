@@ -4,14 +4,27 @@
 
 <template>
  
- <div class="text-center">
+ <div class="text-center w-100 bg-dark text-warning" style="position: absolute; top: 0;  left: 0;">
 
-    <h4><i class="bi bi-sign-stop display-3"></i>
-        <br>
-        Sesión Inválida<br> 
-        Se hizo login desde otro dispositivo
-    </h4>
+    <div class="m-4 p-4">
+            <h4><i class="bi bi-sign-stop display-3"></i>
+                <br>
+                <br>
+                Sesión Inválida<br> 
+                Otro dispositivo hizo login con esta misma cuenta.
+            </h4>
+           <br>
+            <text class="" style="" @click="$emit('sessionCreated',null ); " > 
+                <button type="button" class="btn btn-success">Regresar</button>
+            </text>
 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+    </div>
    
 
 </div>
