@@ -11,9 +11,9 @@ import { CATEGORIES } from '../../config.js'
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="font-size:40px" class="bi bi-controller "></i> </text>
         -->
-        <input  v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-warning border-2 p-1 border-warning" required minlength="4" maxlength="30" size="15" />
+        <input  v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-white border-2 p-1 border-white" required minlength="4" maxlength="30" size="15" />
          
-        <i  style="margin-left: -85px;font-size:36px ;" @click="search(textFilter)" class="text-left text-warning bi bi-search-heart p-0 mt-1"></i>
+        <i  style="margin-left: -85px;font-size:36px ;" @click="search(textFilter)" class="text-left text-secondary bi bi-search-heart p-0 mt-1"></i>
        
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(2) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="font-size:40px" class="bi bi-bicycle "></i> </text>
@@ -25,7 +25,7 @@ import { CATEGORIES } from '../../config.js'
         <text> </text>
     -->
 
-  <div class=" text-warning">
+  <div class=" text-white">
 
     <div  style="font-size:25px" >
       <div class="d-flex justify-content-between"> 
@@ -107,12 +107,12 @@ import { CATEGORIES } from '../../config.js'
 ::placeholder {
   /*color: white;*/
   opacity: 1; /* Firefox */
-  color: #D0B400 ;
+  color: #ffffff ;
 }
 
 ::-ms-input-placeholder { /* Edge 12-18 */
  /* color: white; */
- color: #D0B400 ;
+ color: #ffffff ;
 }
 
 </style>
