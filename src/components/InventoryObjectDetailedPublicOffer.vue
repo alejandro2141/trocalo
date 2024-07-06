@@ -15,9 +15,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
     </div>
 
-    <br>
-    <br>
-    <br>
+    
     <br>
     <div  class="mt-4" style="width:350px ; font-size:16px">
         
