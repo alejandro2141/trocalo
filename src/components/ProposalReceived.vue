@@ -30,10 +30,14 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 <!-- HEADER -->
     <div  class="d-flex justify-content-between">
     
-        <div v-if="isNewProposal()" class="text-warning text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:40px"> 
+        <div v-if="isNewProposal()" class="text-primary text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:20px"> 
             <i  class="bi bi-star-fill"> </i>
         </div>
         <div v-else>
+        </div>
+    
+        <div class=" m-1 "> 
+            De @{{offer.source_owner_name}} 
         </div>
 
         <div class="text-warning">
@@ -42,10 +46,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
     </div>
 <!-- BODY -->  
-    <div class=" m-2 "> 
-        Recibiste una propuesta de <b>@{{offer.source_owner_name}}</b> 
-    </div>
-
+   
     <div >
             
             <div class="d-flex justify-content-around">
