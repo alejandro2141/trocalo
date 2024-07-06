@@ -10,11 +10,13 @@
 
         <div class="d-flex justify-content-between">
           
-            <div v-if="isNewProposal()" class="text-warning text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:40px"> 
+            <div v-if="isNewProposal()" class="text-success text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:20px"> 
                 <i  class="bi bi-star-fill"> </i>
             </div>
             <div v-else>
             </div>
+
+            <text> Enviada a @{{offer.dest_owner_name}} </text>
 
             <div class="text-warning">
             {{ evaluateRemainingDays(offer.timestamp) }} dias  <i style="font-size:20px" class="bi bi-clock-history"></i>
@@ -23,15 +25,12 @@
         </div>
 
         <!-- BODY -->  
-        <div class=" m-2 "> 
-            Enviaste una propuesta a <b>@{{offer.dest_owner_name}}</b> 
-        </div>
-
+      
 
         <div class="d-flex justify-content-around">
                 
                 <!--COLUMN 1-->
-                <div class="d-flex  flex-column"> 
+                <div class="d-flex  flex-column m-1"> 
                     <text class="text-secondary" >Su Objeto</text>
                     <div class="d-flex align-items-center h-100" >
                     <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1+'_thumb'" /> 
