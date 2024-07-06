@@ -733,6 +733,7 @@ async upload(reader, img_num)
                 this.validate_input_name = false 
               }
               //validate Product Description
+              /*
               if ( data_product != null &&  data_product.description != null &&  data_product.description.length > 4 )
               {
                 this.validate_input_description = true 
@@ -741,15 +742,19 @@ async upload(reader, img_num)
               {
                 this.validate_input_description = false 
               }
+              */
               //validate Product Category1
+              /*
               if ( data_product != null &&  data_product.category1 != null   &&  data_product.category1 != 0   )
               {
                 this.validate_input_category1 = true 
               } 
+              
               else 
               {
                 this.validate_input_category1 = false 
               }
+                */
               //validate Product validate_input_img1
               if ( data_product != null &&  data_product.image1 != null )
               {
@@ -778,7 +783,7 @@ async upload(reader, img_num)
                 this.validate_input_img3 = false 
               }
 
-          if ( this.validate_input_name  &&  this.validate_input_description && this.validate_input_category1  && this.validate_input_img1 )
+          if ( this.validate_input_name  &&  this.validate_input_description   && this.validate_input_img1 )
           {
           console.log("Sending to /user_create_product" + JSON.stringify(data_product) )
           this.showForm = false 
