@@ -42,16 +42,16 @@ import axios from 'axios'
 -->
   <div v-if="showForm && !spinnerOn">
   
-  <div>
-      <input type="text" placeholder="Titulo"  v-model="input_name" id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark    text-white border-white" required minlength="4" maxlength="40"  />
-    <br>
-    <text class="text-warning" v-if="!validate_input_name" > Debe ingresar el nombre de tu producto.  </text>
+    <div>
+        <input type="text" placeholder="Titulo"  v-model="input_name" id="searchText" name="searchText" class="form-control-lg mt-1 bg-dark    text-white border-white" required minlength="4" maxlength="40"  />
+        <br>
+        <text class="text-warning" v-if="!validate_input_name" > Debe ingresar el nombre de tu producto.  </text>
     </div>
 
 
     <div class="d-flex flex-wrap w-100">
 
-      <div @click="$refs.show_uploadPicture_1_input.click()" style="width:200px; height:200px ; border-radius:15px" class="bg-dark border m-1 text-center">
+      <div @click="$refs.show_uploadPicture_1_input.click()" style="width:200px; height:200px ; border-radius:15px" class="bg-dark border m-1 text-center" :class="{'border-0': show_uploadPicture_1_preview  }"  >
           <i v-if="!show_uploadPicture_1_preview" style="font-size:100px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_1_thumb' class="uploading-image" style="max-width:200px; max-height:200px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_1_input" type="file" accept="image/*" capture="camera" @change='uploadImage_1' style="display: none">
@@ -71,25 +71,25 @@ import axios from 'axios'
 <br>          
     -->
 
-      <div @click="$refs.show_uploadPicture_2_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
+      <div @click="$refs.show_uploadPicture_2_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center" :class="{'border-0': show_uploadPicture_2_preview  }">
           <i v-if="!show_uploadPicture_2_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_2_thumb' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_2_input" type="file" accept="image/*" capture="camera" @change='uploadImage_2' style="display: none">
       </div>
 
-      <div @click="$refs.show_uploadPicture_3_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
+      <div @click="$refs.show_uploadPicture_3_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center" :class="{'border-0': show_uploadPicture_3_preview  }">
           <i v-if="!show_uploadPicture_3_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_3_thumb' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_3_input" type="file" accept="image/*" capture="camera" @change='uploadImage_3' style="display: none">
       </div>
 
-      <div @click="$refs.show_uploadPicture_4_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
+      <div @click="$refs.show_uploadPicture_4_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center" :class="{'border-0': show_uploadPicture_4_preview  }">
           <i v-if="!show_uploadPicture_4_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_4_thumb' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_4_input" type="file" accept="image/*" capture="camera" @change='uploadImage_4' style="display: none">
       </div>
 
-      <div @click="$refs.show_uploadPicture_5_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center">
+      <div @click="$refs.show_uploadPicture_5_input.click()" style="width:100px; height:100px ; border-radius:15px" class="bg-dark border m-1 text-center" :class="{'border-0': show_uploadPicture_5_preview  }">
           <i v-if="!show_uploadPicture_5_preview" style="font-size:50px" class="bi bi-camera text-secondary pt-3"></i>
           <img v-else   :src='previewImage_5_thumb' class="uploading-image" style="max-width:100px; max-height:100px ; border-radius:15px"  />   
           <input ref="show_uploadPicture_5_input" type="file" accept="image/*" capture="camera" @change='uploadImage_5' style="display: none">
