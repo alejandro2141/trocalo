@@ -31,13 +31,13 @@ import axios from 'axios'
        <!-- TITLE -->
           <div style="font-size:16px" class="mb-4 ">
                          
-              <p style="font-size:20px" class="text-center text-warning">
-                Tiempo restante <i style="font-size:30px"  class="bi bi-cash text-warning"></i> <br>
-                <text class="" style="font-size:30px" > {{ evaluateRemainingDays(offer.date_acceptance) }} </text> dias
+              <p style="font-size:20px" class="text-center ">
+                Tiempo restante <i style="font-size:30px"  class="bi bi-cash "></i> <br>
+                <text class="text-warning" style="font-size:30px" > {{ evaluateRemainingDays(offer.date_acceptance) }} dias </text> 
               </p>         
             
             <text style="font-size:16px" >
-               En caso que <b>  {{offer.source_owner_name}}</b> no concrete el pago, el intercambio será anulado
+               @{{offer.source_owner_name}} debe concretar el pago de Retiro y Despacho
             </text>
           </div>       
           
@@ -46,14 +46,19 @@ import axios from 'axios'
           <i style="font-size:30px" class="bi bi-geo-alt text-warning"></i>
 
           <text style="font-size:16px" class="m-2">
-                Tu direccion para el retiro de tu objeto: <br>
-                Dirección: {{session_data.address_street}} <br>
-                Numero: {{session_data.address_number}}<br>
+                Tu direccion de retiro: <br>
+                Dirección: {{session_data.address_street}}, 
+                {{session_data.address_number}} ,
+                {{session_data.address_zone2}},
+                {{session_data.address_city}}
+
+          <!--
                 Departamento:{{session_data.address_apartment}} <br>
                 Region:{{session_data.address_zone1}}  <br>
                 Comuna: {{session_data.address_zone2}}<br>
                 Ciudad{{session_data.address_city}}<br>
                 Pais {{session_data.address_country}}<br>
+          -->
               
           </text>
            <br>
@@ -63,7 +68,7 @@ import axios from 'axios'
             Tu objeto : 
           </div>
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>
           <!-- END LIST MY OFFER OBJECT  --> 
          
@@ -72,7 +77,7 @@ import axios from 'axios'
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
           <!-- END LIST PARTNER OFFER OBJECT  -->
 
@@ -84,6 +89,27 @@ import axios from 'axios'
   <!-- ******************************* -->
   <!--       END SHOW STEP 1           -->
   <!-- ******************************* -->
+
+
+  <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
+                <div class="" >
+                        <div class="d-flex justify-content-end"> 
+                        <i @click="showModalDetails=false;" class="bi bi-x-lg display-1" ></i>
+                        </div>
+                        <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModal()" :session_data="session_data" />
+                </div>
+              <!--
+                <div class="m-4 pb-4" v-if="showModalDetails && session_data.id!=null && session_data.id != object.owner_id">
+                        <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showExchangeProposal=true ; showModalDetails=false  " type="button" class="btn btn-primary">Hacer oferta por este producto</button>
+                        <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
+                </div>   
+              -->   
+                <br>
+                <br>
+                <br>  
+  </div>
+
+
 
           <!-- SPACE FILLER -->
           <p style="height:300px">
