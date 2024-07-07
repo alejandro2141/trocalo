@@ -20,11 +20,13 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             </div> 
             -->
 
-            <div v-if="isNewProposal()" class="text-warning text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:40px"> 
+            <div v-if="isNewProposal()" class="text-warning text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:20px"> 
                 <i  class="bi bi-star-fill"> </i>
             </div>
             <div v-else>
             </div>
+
+            <text> De @{{offer.source_owner_name}}</text>
 
             <div>
                 {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} dias <i style="font-size:20px"  class="bi bi-cash m-0"></i>
@@ -40,15 +42,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
        
     <!-- BODY -->
 
-        <div class="d-flex justify-content-between">
-           
-                    <div class="m-2">      
-                        Aceptaste la propuesta de <b> @{{offer.source_owner_name}} </b>   
-                        <br>
-                        <br>
-                        {{offer.title}}  
-                    </div>
-        </div>
+
 
         <div>
             <div class="d-flex justify-content-around">
@@ -89,9 +83,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
         <div style="font-size:16px" class=" m-2 " >
             <p class="text-start">
-                Quedan 
-                <text style="font-size:26px"><b> {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} </b> </text> dias 
-                para que <b> {{offer.source_owner_name}} </b> concrete el pago para la por Recoleccion y despacho.
+                    @{{offer.source_owner_name}} debe concretar el pago de Recoleccion y Despacho.
                 <br>
             </p>
 
