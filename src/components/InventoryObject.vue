@@ -53,8 +53,25 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
     </div> 
 -->
 
+    <div  v-if="display_horizontal_short &&  object!=null"> 
+        <div v-if="object!=null" @click="selectObject=!selectObject"  class="w-100 border border-2 rounded d-flex justify-content-start" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:110px ; border-style: dotted" >
+                
+                <div class=" image-container rounded text-center"  style="width:100px; height:100px">
+                    <div class="image-container img  w-110 text-center">
+                        <img class="m-1" style="max-height: 100px; max-width: 100px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
+                    </div>
+                   
+                </div>
+               &nbsp;&nbsp;
+                <div  class="d-flex align-items-center m-1">
+                    {{object.title}}<br>
+                 <!-- {{object.description}} -->
+                </div>
+        </div>
+    </div> 
+
     <!-- INVENTORY OBJECT  -->
-    <div class="" >
+    <div v-else class="" >
         <div v-if="object!=null" @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:110px ; border-style: dotted" >
                 <div class=" image-container rounded text-center"  style="width:100px; height:100px">
                     <div class="image-container img  w-110 text-center">
@@ -125,7 +142,7 @@ export default {
         }
     },
 
-    props: ['showProductDetails','horizontal_short','horizontal' ,'object' ],
+    props: ['showProductDetails','display_horizontal_short','horizontal' ,'object' ],
     emits: [],
 
 	created() {
