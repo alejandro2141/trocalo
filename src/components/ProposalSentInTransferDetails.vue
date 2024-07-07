@@ -65,7 +65,7 @@ import axios from 'axios'
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
            <div v-for="obj in yourOfferObjects"  class="mb-4" > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>  
           <!-- END LIST MY OFFER OBJECT  --> 
          <br>
@@ -74,7 +74,7 @@ import axios from 'axios'
             Ten a mano tu objeto: 
           </div>
           <div v-for="obj in partnerOfferObjects"  > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
 
 
