@@ -77,7 +77,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         -->
         <div  v-if="object.alternative1 != 'null' || object.alternative2 != 'null' || object.alternative3 != 'null'  ">
             <br>
-            <text class="text-white" style="font-size:16px"> <b>{{object.owner_name}}</b> cambiaria por:</text>
+            <text class="text-white" style="font-size:16px"> @{{object.owner_name}} cambiaria por:</text>
             <div class="m-2">
                 <i v-if="object.alternative1 != 'null'" style="font-size:16px" class="bi bi-shuffle text-white"> &nbsp;&nbsp; {{object.alternative1}} </i> <br v-if="object.alternative1 != 'null'">
                 <i v-if="object.alternative2 != 'null'" style="font-size:16px" class="bi bi-shuffle text-white"> &nbsp;&nbsp; {{object.alternative2}} </i> <br v-if="object.alternative2 != 'null'">
