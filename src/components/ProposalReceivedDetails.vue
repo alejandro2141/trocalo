@@ -36,8 +36,8 @@ import axios from 'axios'
           <div style="font-size:20px" class="m-3 d-flex justify-content-center" >
           
             <div class="text-center">
-             Tiempo Restante <i style="font-size:30px" class="bi bi-clock-history"> </i><br>
-              <text class="" style="font-size:30px" >  {{ evaluateRemainingDays(offer.timestamp)}} dias </text>
+             Tiempo Restante <i style="font-size:30px" class="bi bi-clock-history"> </i> <br>
+              <text class="text-warning" style="font-size:30px" >  {{ evaluateRemainingDays(offer.timestamp)}} dias </text>
             </div>
           
           </div>  
@@ -50,7 +50,7 @@ import axios from 'axios'
           </div>
           <!-- LIST MY OFFER OBJECT  -->
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; showStep1=false; objectDetails=obj" :object="obj"    class="mb-1" /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; showStep1=false; objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>
           <!-- END LIST MY OFFER OBJECT  --> 
          
@@ -59,7 +59,7 @@ import axios from 'axios'
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true; showStep1=false ;  objectDetails=obj" :object="obj" class="mb-1"  /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true; showStep1=false ;  objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
           <!-- END LIST PARTNER OFFER OBJECT  -->
 
