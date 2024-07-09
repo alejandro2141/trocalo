@@ -13,7 +13,7 @@ import axios from 'axios'
 
 <template>
 
-  <div  style="width:400px" class="m-0"   >
+  <div  style="width:350px" class="m-0"   >
 
     <div style="height:10px">
     </div>
