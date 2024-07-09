@@ -113,7 +113,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
   </div>
 
-  <div v-if="showZoomImage" class="bg-dark w-100  h-100 d-flex justify-content-center" style="position:absolute;  top:0px ; left:0 ; z-index:99 ; "  >
+  <div v-if="showZoomImage" class="bg-dark w-100  h-100 d-flex justify-content-center" style="position:fixed;  top:0px ; left:0 ; z-index:99 ; "  >
   
     <div class="bg-danger bg-dark text-center m-0 p-0" style="max-width:350px ;  ">
 
