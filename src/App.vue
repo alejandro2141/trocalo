@@ -55,7 +55,7 @@ const location = useRoute();
           
           <div class="d-flex justify-content-center w-100">
             <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
-              <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 45px ;"> REUSAR.CL</text>
+              <i style="color:#FFF ; font-size : 25px ;" class="bi bi-recycle"></i> <text style="color:#FFF ; font-size : 25px ;"> REUSAR.CL</text>
             </RouterLink>   
           </div> 
           
@@ -75,21 +75,21 @@ const location = useRoute();
         <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">
           <div class="d-flex align-items-center flex-column" >
             <i class="bi bi-backpack3"></i> 
-            <text style="font-size:16px ; " class="m-4" >Inventario</text> 
+            <p style="font-size:16px ; " class="m-1" >Inventario</p> 
           </div>
         </RouterLink>         
         
-        <RouterLink   style="color:#91D5FE ; font-size : 45px ;" class="p-0" :class="{'selected'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">
+        <RouterLink   style="color:#91D5FE ; font-size : 45px ;" class="p-2" :class="{'selected'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">
           <div class="d-flex align-items-center flex-column" >
             <i class=" bi bi-cloud-download"></i>
-            <text style="font-size:16px" class="m-4">Recibidas</text>
+            <p style="font-size:16px" class="m-1">Recibidas</p>
           </div>
         </RouterLink>    
         
-        <RouterLink   style="color:#17C000 ; font-size : 45px ; " class="p-0" :class="{ 'selected' : ( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">
+        <RouterLink   style="color:#17C000 ; font-size : 45px ; " class="p-2" :class="{ 'selected' : ( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">
           <div class="d-flex align-items-center flex-column" >
             <i class=" bi bi-cloud-upload"></i>
-            <text style="font-size:16px" class="m-4">Enviadas</text>
+            <p style="font-size:16px" class="m-1">Enviadas</p>
           </div>
         </RouterLink>    
 
