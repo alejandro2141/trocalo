@@ -11,10 +11,19 @@ import { CATEGORIES } from '../../config.js'
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="font-size:40px" class="bi bi-controller "></i> </text>
         -->
-        <input  v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ;border-radius:15px" id="searchText" name="searchText" class=" mt-1 bg-dark text-white border-2 p-1 border-white" required minlength="4" maxlength="30" size="15" />
+        <input  v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ; border-radius: 10px 0px 0px 10px;" id="searchText" name="searchText" class=" m-0 bg-dark text-white border-2  border-white w-75 " required minlength="4" maxlength="30" size="15" />
          
-        <i  style="margin-left: -85px;font-size:36px ;" @click="search(textFilter)" class="text-left text-secondary bi bi-search-heart p-0 mt-1"></i>
-       
+        <!--
+        <i  style="margin-left: -85px;font-size:36px ;" @click="search(textFilter)" class="text-left text-secondary bi bi-search-heart p-0 mt-1 w-25"></i>
+        -->
+
+      <button type="button" class="btn btn-primary w-25  m-0 p-0">
+        
+         <i  style="margin-left: 0px;font-size:36px ;" @click="search(textFilter)" class="text-left text-white bi bi-search-heart p-0 mt-0 "></i>
+
+      </button>
+      
+
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(2) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(2)" > <i style="font-size:40px" class="bi bi-bicycle "></i> </text>
         -->
