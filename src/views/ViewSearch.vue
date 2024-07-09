@@ -21,7 +21,6 @@ import axios from 'axios'
 
 </script>
 
-
 <template>
 
 <div>
@@ -54,6 +53,7 @@ import axios from 'axios'
           <hr>
           <SearchCategoriesClothes v-on:exchangeObject="exchangeObject" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
+   
 
   </div>
 
