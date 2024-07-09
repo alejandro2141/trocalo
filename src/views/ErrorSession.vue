@@ -4,7 +4,7 @@
 
 <template>
  
- <div class="text-center w-100 bg-dark text-warning" style="position: absolute; top: 0;  left: 0;">
+ <div class="text-center w-100 bg-dark text-white" style="position: absolute; top: 0;  left: 0;">
 
     <div class="m-4 p-4">
             <h4><i class="bi bi-sign-stop display-3"></i>
