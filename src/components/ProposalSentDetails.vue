@@ -37,7 +37,7 @@ import axios from 'axios'
           
           <div class="text-center">
            Costo Retiro y Despacho <br>
-           <text class="text-warning" style="font-size:30px" > ${{offer.amount}} </text>
+           <text class="text-warning" style="font-size:30px" > ${{ formatAmount(offer.amount) }} </text>
           </div>
         
         </div>  
@@ -173,6 +173,10 @@ created() {
     },
 
 methods: {
+
+    formatAmount(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+    }, 
 
     evaluateRemainingDays(timestamp)
     {
