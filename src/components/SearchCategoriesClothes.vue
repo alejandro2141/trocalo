@@ -13,7 +13,7 @@ import axios from 'axios'
 
 <template>
 
-<div  style="width:400px" class="m-0"   >
+<div  style="" class="m-0"   >
 
     <text style="font-size: 25px;"> Ropa y Accesorios </text>
     <br>
