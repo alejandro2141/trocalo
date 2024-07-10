@@ -9,18 +9,16 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 <template>
     
 
-<div class="modal-centered w-100 bg-dark" >
+<div class="w-100 bg-dark"  style="position:absolute ; top:0px ; right:0px;">
         
-    <div style="position:fixed ; top:0px ; right:0px; z-index:10 ;" class="d-flex justify-content-end m-0 p-3 bg-dark"> 
+    <div style="position:absolute ; top:0px ; right:0px; z-index:10 ;" class="d-flex justify-content-end m-0 p-0 bg-dark"> 
             <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
     </div>
 
     
-    <br>
+    <div class="d-flex justify-content-center">
     <div  class="mt-4" style="width:350px ; font-size:16px">
         
-       
-
             <InventoryObjectDetailed  :object=object   :session_data="session_data" />
         
             <p v-if="session_data!=null && object!= null"  style="font-size:16px" class="w-100 text-start mt-2">
@@ -28,7 +26,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
             </p>
         
         <div v-if="session_data!=null && object!= null"  class="m-4 pb-4 d-flex justify-content-center" >
-              <!-- && session_data.id != objectDetails.owner_id && showModalDetails -->
+              
             <div v-if="session_data.id!=null && session_data.id != object.owner_id" >
 
                
@@ -45,10 +43,12 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         <div v-else class="text-secondary d-flex justify-content-center border border-1 p-4">
             Usted debe estar registrado para comenzar a intercambiar 
 
-            <!-- <button type="button" class="btn btn-success">Debe estar registrado</button> -->
+          
         </div> 
 
     </div>
+    </div>
+
 
 </div>
     
