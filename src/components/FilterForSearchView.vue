@@ -17,7 +17,7 @@ import { CATEGORIES } from '../../config.js'
         <i  style="margin-left: -85px;font-size:36px ;" @click="search(textFilter)" class="text-left text-secondary bi bi-search-heart p-0 mt-1 w-25"></i>
         -->
 
-      <button type="button" class="btn btn-primary w-25  m-0 p-0">
+      <button type="button" style="border-radius: 0px 10px 10px 0px;" class="btn btn-secondary border border-white w-25  m-0 p-0">
         
          <i  style="margin-left: 0px;font-size:36px ;" @click="search(textFilter)" class="text-left text-white bi bi-search-heart p-0 mt-0 "></i>
 
