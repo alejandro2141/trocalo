@@ -53,7 +53,7 @@ import axios from 'axios'
 
           <!-- LIST PARTNER OBJECT-->
           <div v-if="proposal_summary!=null" class="d-flex align-content-stretch flex-wrap">
-            <InventoryObject :object=proposal_summary.objectYouWant  :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
+            <InventoryObject :object=proposal_summary.objectYouWant  :display_horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
           </div>
           
           <!-- END LIST PARTNER OBJECT-->
@@ -68,7 +68,7 @@ import axios from 'axios'
         
             
             <div v-for="obj in proposal_summary.objectsYouOfferList"  class="d-flex justify-content-start"  > 
-              <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/>
+              <InventoryObject :object=obj :display_horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/>
             </div>
             
           </div>
@@ -87,9 +87,10 @@ import axios from 'axios'
               <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center   "> 
 
                 <button type="button" style="font-size:36px" class="btn btn-success">Siguiente 
-                    <i style="font-size:36px" class="bi bi-caret-right"></i> 
-                    <i style="font-size:36px" class="bi bi-caret-right"></i> 
-                    <i style="font-size:36px" class="bi bi-caret-right"></i>
+                    <i class="bi bi-caret-right-fill"></i>
+                    <i class="bi bi-caret-right-fill"></i>
+                    <i class="bi bi-caret-right"></i> 
+                    
                 </button>
 
               </div>
