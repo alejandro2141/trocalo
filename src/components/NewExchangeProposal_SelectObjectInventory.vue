@@ -81,7 +81,9 @@ import axios from 'axios'
               <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center   "> 
                   
                   <button type="button" style="font-size:36px" class="btn btn-success">Siguiente 
-                    <i style="font-size:36px" class="bi bi-caret-right"></i> 
+                        <i style="font-size:36px" class="bi bi-caret-right"></i> 
+                        <i style="font-size:36px" class="bi bi-caret-right"></i>
+                        <i style="font-size:36px" class="bi bi-caret-right"></i>
                   </button>
                   
                   <!--                     
