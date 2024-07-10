@@ -176,13 +176,13 @@ import axios from 'axios'
   </div>
 
 
-  <div v-if="showRequestConfirmation"  style="width:350px;height:500px">
-     <div class="position-absolute top-0  text-center start-0 bg-dark w-100 h-100" >
+  <div v-if="showRequestConfirmation" style="position: fixed; left:0px ; top :0px " class="w-100 h-100 bg-danger">
+     <div class="text-center start-0 bg-dark w-100 h-100 bg-primary" >
         <div>
             <!-- SPACE FILLER -->
-            <p style="height:200px">
+            <p style="height:100px">
             </p>
-            Articulo Guardado con Exito en tu Inventario
+            Articulo Guardado con Exito en tu Inventario a
         </div>
       <br>
 
@@ -790,6 +790,7 @@ async upload(reader, img_num)
           this.spinnerOn=true
           let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/user_create_product",data_product );
           //step1=false;
+          this.showForm =false 
           this.spinnerOn=false
          
           this.showRequestConfirmation=true
