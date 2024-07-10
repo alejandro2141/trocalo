@@ -62,8 +62,8 @@ import { CATEGORIES } from '../../config.js'
         <text  class="p-0" :class="[ categories.includes(8) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=8" > <i style="" class="bi bi-car-front"></i> </text>
         <text  class="p-2" :class="[ categories.includes(9) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=9" > <i style="" class="bi bi-sunglasses"></i> </text>
         <text  class="p-2" :class="[ categories.includes(10) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=10" > <i style="" class="bi bi-camera"></i> </text>
-
       </div>
+
       <div  class="d-flex justify-content-between"  style="font-size:25px" >
           <text  class="p-0" :class="[ categories.includes(11) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=11" > <i style="" class="bi bi-card-image"></i> </text>
           <text  class="p-0" :class="[ categories.includes(12) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=12" > <i style="" class="bi bi-laptop"></i> </text>
@@ -71,6 +71,7 @@ import { CATEGORIES } from '../../config.js'
           <text  class="p-0" :class="[ categories.includes(14) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=14" > <i style="" class="bi bi-phone-vibrate"></i> </text>
           <text  class="p-0" :class="[ categories.includes(15) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=15" > <i style="" class="bi bi-lamp"></i> </text>
       </div>
+
       <div  class="d-flex justify-content-between"  style="font-size:25px" >
           <text  class="p-0" :class="[ categories.includes(16) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=16" > <i style="" class="bi bi-scooter"></i> </text>
           <text  class="p-0" :class="[ categories.includes(17) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=17" > <i style="" class="bi bi-tree"></i> </text>
