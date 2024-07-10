@@ -27,6 +27,7 @@ import axios from 'axios'
 
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
 
+  
       <div>
           <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data" />
       </div>
@@ -44,6 +45,7 @@ import axios from 'axios'
           <hr>
           <SearchCategoriesGames v-on:exchangeObject="exchangeObject" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
+
       <div>
           <hr>
           <SearchCategoriesBooks v-on:exchangeObject="exchangeObject" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" /> 
