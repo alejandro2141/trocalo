@@ -52,7 +52,7 @@ const location = useRoute();
           
           <div class="d-flex justify-content-center w-100">
             <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
-              <i style="color:#FFF ; font-size : 25px ;" class="bi bi-recycle"></i> <text style="color:#FFF ; font-size : 25px ;"> REUSAR.CL</text>
+              <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text>
             </RouterLink>   
           </div> 
           
