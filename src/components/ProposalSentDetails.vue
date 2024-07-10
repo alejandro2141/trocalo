@@ -50,7 +50,7 @@ import axios from 'axios'
          
         <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true; showStep1=false ;  objectDetails=obj" :object="obj" class="mb-1"  /> 
           </div>
         <!-- END LIST PARTNER OFFER OBJECT  -->
           
@@ -60,7 +60,7 @@ import axios from 'axios'
         
         <!-- LIST MY OFFER OBJECT  -->
            <div v-for="obj in yourOfferObjects"  class="mb-4" > 
-              <InventoryObject  :horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; showStep1=false ;  objectDetails=obj" :object="obj"    class="mb-1" /> 
           </div>
         <!-- END LIST MY OFFER OBJECT  --> 
                 
@@ -130,6 +130,26 @@ import axios from 'axios'
 
     </div>
 
+
+<!-- ******************************* -->
+<!--         SHOW OBJECT DETAILS     -->
+<!-- ******************************* -->
+
+<div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
+      <div class="" >
+          <div class="d-flex justify-content-end"> 
+            <i @click="showModalDetails=false; showStep1=true ; "  class="bi bi-x-lg display-1" ></i>
+          </div>
+          <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModal()" :session_data="session_data" />
+      </div>
+              <!--
+                <div class="m-4 pb-4" v-if="showModalDetails && session_data.id!=null && session_data.id != object.owner_id">
+                        <button v-if="session_data!=null && session_data.user!=null && !showMyInventory" @click="showExchangeProposal=true ; showModalDetails=false  " type="button" class="btn btn-primary">Hacer oferta por este producto</button>
+                        <button v-else  type="button" class="btn btn-secondary">Debe estar registrado para ofertar</button>
+                </div>   
+              -->     
+</div>
+
     
      <!-- SPACE FILLER -->
      <p style="height:300px">
@@ -154,6 +174,7 @@ export default {
         showStep1 : true , 
         showCancelMessage : false ,
         showCancelMessageConfirmation : false ,
+        showModalDetails : false ,
 
         yourOfferObjects  : [],
 
@@ -253,12 +274,23 @@ methods: {
       this.showModalDetails= false
     },
 
+
     goToMainSearch()
     {
       console.log("goTOMainSearch")
     },
 
     },
+/*
+    closeModal()
+    {
+      console.log("aaaaaaaaaaaaaaaaaaa")
+      //this.showModalDetails= false
+      this.showModalDetails=false;
+      this.showStep1=true
+
+    },
+    */
 
 watch : {
       }
