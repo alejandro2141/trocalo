@@ -59,7 +59,7 @@ import axios from 'axios'
           <!-- LIST PARTNER OBJECT-->
           <div  class="d-flex align-content-stretch flex-wrap">
 
-              <InventoryObject :object=objectYouWant :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
+              <InventoryObject :object=objectYouWant :display_horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/> 
            
           </div>
           <!-- END LIST PARTNER OBJECT-->
@@ -72,7 +72,7 @@ import axios from 'axios'
            <!-- LIST MY OBJECT  -->
           <div  class="d-flex align-content-stretch flex-wrap">
             <div v-for="obj in objectsOfferList_temp"  class="d-flex justify-content-start"  > 
-              <InventoryObject :object=obj :horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/>
+              <InventoryObject :object=obj :display_horizontal_short="true" :showProductDetails="true"   @click="showPartnerObjectDetailed=true"/>
               <div class="text-danger" @click="removeFromObjectsOfferList(obj)"> <i class="bi bi-x-lg "></i> </div>
             </div>
         <!-- 
@@ -115,8 +115,10 @@ import axios from 'axios'
               <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center  "> 
                                   
                 <button type="button" style="font-size:36px" class="btn btn-success">Siguiente 
+                    <i class="bi bi-caret-right-fill"></i>
                     <i style="font-size:36px" class="bi bi-caret-right"></i> 
                     <i style="font-size:36px" class="bi bi-caret-right"></i> 
+
                 </button>
                   
               </div>
