@@ -15,7 +15,7 @@ import axios from 'axios'
 
   <div  style="width:350px;" class="m-0"   >
 
-      <text style="font-size: 25px;"> Jugetes </text>
+      <text style="font-size: 25px;"> Juguetes </text>
       <br>
 
       <!-- 1 LIST OBJECT CATEGORIES -->
