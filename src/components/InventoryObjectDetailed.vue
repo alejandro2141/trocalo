@@ -11,29 +11,23 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 <div  class="position-absolute top-50 start-50 translate-middle bg-dark">
 -->
 
-<div style="width:360px">
+
+<div style="width:350px">
 
     <div  v-if="showObjectDetail" class=" mt-0 pt-0 w-100" style=" font-size:16px;width: 100%">
 
     <div class="" style="width: 100%">
-    <!--
-        <div>
-            <text @click="$emit('closeModalObjectDetails')"> x </text>
-        </div>
-    -->
+  
         <div style="font-size:20px">
          {{object.title}} 
         </div>
        
-        <!--
-        <div class="bg-secondary" style="width:350px; height:300px">
-            <img @click="zoomImage()"  style="width:350px; height:300px" :src="main_image"  /> 
-        </div>
-        -->
+      
         <div class="bg-dark text-center" style="max-height: 350px; max-width: 350px;">
             <img @click="zoomImage()"  style="max-height: 350px;max-width:350px;border-radius: 7px;" :src="main_image+'_thumb'"  /> 
         </div>
         <br>
+
         
         <div class="d-flex justify-content-start ">
                 <div v-if="image1!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image1 == main_image) }" style="width:60px; height:60px">
@@ -49,9 +43,12 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                 <div v-if="image4!=null" class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image4 == main_image) }" style="width:60px; height:60px">
                     <img @click="viewImage(image4)"  onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image4+'_thumb'" /> 
                 </div>
+                <br>
+              
                 <div v-if="image5!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image5 == main_image) }"  style="width:60px; height:60px">
                     <img @click="viewImage(image5)" onerror="this.style.display='none' " class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image5+'_thumb'" /> 
                 </div>
+            
         </div>
         
         <br>
@@ -60,21 +57,13 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         </div>
         
      
-    <!--
-        <div  style="font-size:16px" class="w-100 text-start">
-           Pertenece a: {{object.owner_name}}
-        </div>
-    -->
+  
 
         <div v-if="object.blocked_due_proposal_accepted">
             <i style="font-size:40px" class="bi bi-unlock text-secondary"></i> 
             Objeto asociado a intercambio aceptado. 
         </div>
-        <!--
-        <div class="mt-1" style="font-size:40px">
-            <i class="bi bi-shuffle text-secondary"></i>
-        </div>
-        -->
+       
         <div  v-if="object.alternative1 != 'null' || object.alternative2 != 'null' || object.alternative3 != 'null'  ">
             <br>
             <text class="text-white" style="font-size:16px"> @{{object.owner_name}} cambiaria por:</text>
@@ -82,33 +71,9 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                 <i v-if="object.alternative1 != 'null'" style="font-size:16px" class="bi bi-shuffle text-white"> &nbsp;&nbsp; {{object.alternative1}} </i> <br v-if="object.alternative1 != 'null'">
                 <i v-if="object.alternative2 != 'null'" style="font-size:16px" class="bi bi-shuffle text-white"> &nbsp;&nbsp; {{object.alternative2}} </i> <br v-if="object.alternative2 != 'null'">
                 <i v-if="object.alternative3 != 'null'" style="font-size:16px" class="bi bi-shuffle text-white"> &nbsp;&nbsp; {{object.alternative3}} </i> <br v-if="object.alternative3 != 'null'">
-                <!--
-                <i style="font-size:20px" class="bi bi-shuffle text-secondary"></i> Cambiaría por Otros Objetos
-                    <text v-if="object.otherObj" style="font-size:25px" class="text-success">
-                            SI
-                    </text>
-                    <text v-else class="text-danger" style="font-size:25px" >
-                            NO
-                    </text>
-                -->
              </div>
         </div>
 
-        
-
-
-        <!-- 
-        <div class="mt-1" style="font-size:20px">
-           Cambiaria por otros objetos:  
-           <text v-if="object.otherObj" class="text-success">
-                 SI
-           </text>
-           <text v-else class="text-danger" >
-                 NO
-           </text>
-
-        </div>
-    -->
   </div> 
 
   </div>
@@ -129,6 +94,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
         <br>
         <br>
+    
     
 </div>
 </template>
