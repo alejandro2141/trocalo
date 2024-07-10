@@ -18,6 +18,7 @@ const location = useRoute();
    
     <div class="bg-dark p-0 m-0" style="width: 350px; top:0px">
 
+     
       <div  v-if="session_data==null"  class="d-flex justify-content-between">
           
         <RouterLink  style="position:absolute ; top:0px ; right:0px " class="" :class="{'text-decoration-underline' :underline_login}"   to="/ViewLogin"> 
@@ -25,13 +26,7 @@ const location = useRoute();
                 <i style="font-size:30px" class="bi bi-person-circle text-dark p-2"></i>
              </div>
         </RouterLink> 
-         
-        <!--
-          <RouterLink style="" class='text-decoration-none'    to="/ViewSearch"> 
-            <i style="color:#EEEEEE ; font-size : 35px ;" class="bi bi-recycle"></i> <text style="color:#EEEEEE ; font-size : 35px ;">REUSAR.CL</text>
-          </RouterLink>
-        -->
-
+       
         <div class="d-flex justify-content-center w-100">
             <div  class='text-decoration-none text-center'    > 
               <a HREF="/" >  
@@ -45,33 +40,28 @@ const location = useRoute();
 
       </div>
 
+
+
       <div v-if="session_data!=null && session_data.user!=null" class=" d-flex justify-content-between text-white" style="font-size : 20px ">
             
           <RouterLink  style="position:absolute ; top:0px ; right:0px "  class="text-secondary " :class="{'text-decoration-underline' :underline_account}"  to="/Viewlogin">
               <div class="bg-secondary  text-end" style="width:60px;height:50px; border-radius: 0px 0px 0px 100px;" > 
-                <text class="text-dark m-1 " style="font-size:17px" >{{session_data.user.split(" ")[0] }}</text>
+                <text class="text-dark  " style="font-size:17px" >{{session_data.user.split(" ")[0] }}</text>
               </div>
           </RouterLink> 
           
           <div class="d-flex justify-content-center w-100">
-            <RouterLink  style="font-size : 20px ; border-radius: 10px;"  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
+            <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
               <i style="color:#FFF ; font-size : 25px ;" class="bi bi-recycle"></i> <text style="color:#FFF ; font-size : 25px ;"> REUSAR.CL</text>
             </RouterLink>   
           </div> 
           
-           <!-- <a href="/">Buscar</a>  :class="[isActive ? activeClass : '', errorClass]"  --> 
-            
       </div> 
-      
+    
+
+     
     <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
-      <!-- 
-        <RouterLink   style="font-size : 45px ; border-radius: 10px;" class="p-2 text-secondary" :class="{'bg-success text-white'  :underline_inventory}" @click="setUnderline(4)" to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
-        <RouterLink   style="font-size : 45px ; border-radius: 10px;" class="p-0 text-secondary" :class="{'bg-success text-white' :underline_received}" @click="setUnderline(5)" to="/ViewProposalsReceived">&nbsp;&nbsp;<i class=" bi bi-cloud-download"></i>&nbsp;&nbsp;</RouterLink>    
-        <RouterLink   style="font-size : 45px ; border-radius: 10px;" class="p-0 text-secondary" :class="{'bg-success text-white' :underline_sent}" @click="setUnderline(6)"  to="/ViewProposalsSent">&nbsp;&nbsp;<i class=" bi bi-cloud-upload"></i>&nbsp;&nbsp;</RouterLink>    
-      --> 
-      <!-- 
-        <RouterLink   style="color:#B88B5C ; font-size : 45px ; border-radius: 0px;" class="p-2" :class="{'border-bottom'  :underline_inventory}" @click="setUnderline(4)" to="/ViewMyInventory">&nbsp;&nbsp;<i class="bi bi-backpack3"></i>&nbsp;&nbsp;</RouterLink>         
-      -->
+     
         <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">
           <div class="d-flex align-items-center flex-column" >
             <i class="bi bi-backpack3"></i> 
@@ -94,7 +84,10 @@ const location = useRoute();
         </RouterLink>    
 
     </div>
+  
+  
       <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
+    
     
     
     
