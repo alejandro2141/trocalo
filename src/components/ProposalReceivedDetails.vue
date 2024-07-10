@@ -128,9 +128,16 @@ import axios from 'axios'
         </p>
         
         <br>
+
         <div class="d-flex justify-content-center text-success">
-          <a style="font-size:25px" @click="$emit('closeModal')" > <i class="bi bi-arrow-left-square"></i> Regresar  </a>
+              <button type="button"  @click="$emit('closeModal')" class="btn btn-success" style="font-size:25px" >
+              <i class="bi bi-arrow-left-square"></i> Regresar
+              </button>  
         </div>
+        
+        <br>
+
+
 
       <!-- 
         <div class="fixed-bottom  d-flex justify-content-center display-1 text-success w-100 bg-dark p-3 " >
