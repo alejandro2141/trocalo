@@ -20,9 +20,14 @@ import axios from 'axios'
   <div v-if="showStep1" >
 
 
-    <div class="d-flex justify-content-end"> <i  @click="$emit('close')" class="display-1 bi bi-x-lg"></i>  </div>
+    <div class="d-flex justify-content-end w-100" style="position:absolute ; top:0px ; right:0px; z-index:10 ;"> 
+        <i  @click="$emit('close')" class="display-1 bi bi-x-lg"></i>  
+    </div>
 
-        <p style="font-size:20px" >Propuestas de Intercambio Enviada</p>
+
+        <br>
+
+        <p class="mt-1" style="font-size:20px" >Propuesta de Intercambio Enviada</p>
 
         <div style="font-size:20px" class="m-3 d-flex justify-content-center" >
           
