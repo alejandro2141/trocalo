@@ -68,7 +68,7 @@ import axios from 'axios'
             Tu objeto : 
           </div>
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
-              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj" :object="obj"    class="mb-1" /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true' @click="showModalDetails=true; objectDetails=obj; showStep1=false " :object="obj"    class="mb-1" /> 
           </div>
           <!-- END LIST MY OFFER OBJECT  --> 
          
@@ -77,7 +77,7 @@ import axios from 'axios'
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
-              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj" :object="obj" class="mb-1"  /> 
+              <InventoryObject  :display_horizontal_short='true' :showProductDetails='true'   @click="showModalDetails=true;   objectDetails=obj; showStep1=false " :object="obj" class="mb-1"  /> 
           </div>
           <!-- END LIST PARTNER OFFER OBJECT  -->
 
@@ -94,7 +94,7 @@ import axios from 'axios'
   <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark" >
                 <div class="" >
                         <div class="d-flex justify-content-end"> 
-                        <i @click="showModalDetails=false;" class="bi bi-x-lg display-1" ></i>
+                        <i @click="showModalDetails=false;showStep1=true" class="bi bi-x-lg display-1" ></i>
                         </div>
                         <InventoryObjectDetailed :showMakeOffer=false  :object=objectDetails  v-on:showMyInventory='showMyInventory=true'  v-on:closeModalObjectDetails="closeModal()" :session_data="session_data" />
                 </div>
