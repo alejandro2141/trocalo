@@ -233,7 +233,7 @@ import axios from 'axios'
 
             <div v-for="obj in partnerOfferObjects"  > 
               <div class="d-flex justify-content-start">
-                <InventoryObject :horizontal_short='true' :showProductDetails='true' :object=obj  @click="showPartnerObjectDetailed=true"/> 
+                <InventoryObject :display_horizontal_short='true' :showProductDetails='true' :object=obj  @click="showPartnerObjectDetailed=true"/> 
                 <div style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > 
                   <i style="font-size:40px" @click="removeFromPartnerOfferObjects(obj)"  class=" bi bi-x-lg "></i> 
                 </div>
