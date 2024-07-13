@@ -182,6 +182,9 @@ import axios from 'axios'
             <!-- SPACE FILLER -->
             <p style="height:100px">
             </p>
+
+           
+
             Articulo Guardado con Exito en tu Inventario a
         </div>
       <br>
@@ -191,9 +194,13 @@ import axios from 'axios'
            <div class=" text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
 
+                 <button type="button" style="font-size:16px" @click="$emit('closeNewObjectForm')" class="btn btn-success"><i class="bi bi-arrow-left-square"></i> Regresar al Inventario</button>
+
+              <!--
                 <a style="font-size:25px" @click="$emit('closeNewObjectForm')" >
                   <i class="bi bi-arrow-left-square"></i>  Regresar al Inventario
                 </a>
+              -->
               
               </div>
             </div>
