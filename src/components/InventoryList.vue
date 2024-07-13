@@ -36,7 +36,7 @@ import axios from 'axios'
       <!-- LIST ALL INVENTORY OBJECTS-->
       <div>
           <div class="d-flex flex-wrap"> 
-            <InventoryObjectEmpty  @click="showNewObjectForm=true; showInventory=false" class="m-1"  />
+            <InventoryObjectEmpty  @click="showNewObjectForm=true; showInventory=false" class="mt-2"  />
             <div v-for="obj in inventory_objects_filtered"  > 
               <InventoryObject @click="objectDetails=obj ;showModalDetails=true; showInventory=false"  :object=obj class="m-1"   />
             </div>
