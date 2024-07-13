@@ -337,6 +337,8 @@ export default {
         isValidEmail : false ,
 
         showInvitationSent : false ,
+
+        emailToRecover : false ,
        
 
         }
@@ -351,6 +353,12 @@ export default {
 			},
 
   methods: {
+
+    recoverPassword()
+    {
+      console.log("Recover Password "+ this.emailToRecover)
+
+    },
 
     async validateEmail(input) {
 
