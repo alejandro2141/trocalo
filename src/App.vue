@@ -31,6 +31,7 @@ const location = useRoute();
             <div  class='text-decoration-none text-center'    > 
               <a HREF="/" >  
                     <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> 
+                  <!--  <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-search"></i>-->
                     <text style="color:#EEEEEE ; font-size : 45px ;"> 
                       REUSAR.CL
                     </text>
