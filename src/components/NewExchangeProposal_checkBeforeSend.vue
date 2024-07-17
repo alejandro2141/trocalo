@@ -22,11 +22,11 @@ import axios from 'axios'
                 <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
         </div>
 
-        <text style="font-size:20px">Revise la propuesta antes de enviar </text><br>
+        <text style="font-size:20px">Confirme antes de enviar </text><br>
 
         <br>
           <div class="d-flex justify-content-between">
-              <div class="align-self-center" style="font-size:16px " >Propuesta válida por: 
+              <div class="align-self-center" style="font-size:16px " >Tiempo de validez: 
                     <text v-if="proposal_summary!=null">
                         {{proposal_summary.proposal_duration}}
                     </text>
@@ -37,9 +37,8 @@ import axios from 'axios'
           
           <div>
                 <div style="font-size:16px">
-                  Deberás pagar retiro y despacho<br>
+                  Costo retiro y despacho<br>
                   <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp <br>
-                  
                 </div>      
           </div>
           <br>
@@ -84,9 +83,15 @@ import axios from 'axios'
        
             <!-- FOOTER -->
             <div v-if="true" class="fixed-bottom  d-flex justify-content-center  text-success  bg-dark p-3 ">  
-              <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center   "> 
+              <div  style="width:350px" class="d-flex justify-content-center   "> 
 
-                <button type="button" style="font-size:36px" class="btn btn-success">Siguiente 
+
+                <button @click="closeModal()" type="button" style="font-size:26px" class="btn btn-success ">
+                        <i style="font-size:26px" class="bi bi-caret-left"></i> 
+                </button>
+                &nbsp;
+
+                <button @click="goToNextStep()" type="button" style="font-size:26px" class="btn btn-success">Finalizar 
                     <i class="bi bi-caret-right-fill"></i>
                     <i class="bi bi-caret-right-fill"></i>
                     <i class="bi bi-caret-right"></i> 
