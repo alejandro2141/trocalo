@@ -815,10 +815,12 @@ async upload(reader, img_num)
     },
 
 watch : {
+      /*
       input_name(newVal,oldVal)
       {
        this.input_name=this.capitalizeNames(newVal)
       }
+      */
 
       }
 }
