@@ -180,7 +180,14 @@ import axios from 'axios'
         <br>
         
         <div class="d-flex justify-content-center text-success">
+         <!-- 
           <a style="font-size:25px" @click="$emit('closeModal')" > <i class="bi bi-arrow-left-square"></i>Regresar  </a>
+        -->
+
+
+            <button @click="$router.push({ name: 'ViewSearch' })" type="button" class="btn btn-success">
+              <i class="bi bi-arrow-left-square"></i> Regresar</button>
+
         </div>
 
       <!-- 
@@ -478,7 +485,10 @@ import axios from 'axios'
           <!-- FOOTER -->
           <div class="fixed-bottom  text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
-                 <a @click="$router.push({ name: 'ViewSearch' })" > <i style="font-size:40px" class="bi bi-house"></i> </a>
+                
+                <button @click="$router.push({ name: 'ViewSearch' })" type="button" class="btn btn-success">Regresar</button>
+                  <!--
+                 <a @click="$router.push({ name: 'ViewSearch' })" > <i style="font-size:40px" class="bi bi-house"></i> </a>-->
               </div>
           </div>
           <!-- END FOOTER -->
