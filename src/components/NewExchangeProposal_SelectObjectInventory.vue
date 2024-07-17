@@ -78,12 +78,16 @@ import axios from 'axios'
         
             <div v-if="objectsOfferList_temp != null && objectsOfferList_temp.length>0" class="fixed-bottom  d-flex justify-content-center  text-success  bg-dark p-3 ">  
               
-              <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center   "> 
+              <div style="width:350px" class="d-flex justify-content-center   "> 
                   
-                  <button type="button" style="font-size:36px" class="btn btn-success">Siguiente 
-                        <i style="font-size:36px" class="bi bi-caret-right"></i> 
-                        <i style="font-size:36px" class="bi bi-caret-right"></i>
-                        <i style="font-size:36px" class="bi bi-caret-right"></i>
+                   <button @click="closeModal()" type="button" style="font-size:26px" class="btn btn-success ">
+                        <i style="font-size:26px" class="bi bi-caret-left"></i> 
+                  </button>
+&nbsp;
+                  <button  @click="goToNextStep()" type="button" style="font-size:26px" class="btn btn-success">Siguiente 
+                        <i style="font-size:26px" class="bi bi-caret-right"></i> 
+                        <i style="font-size:26px" class="bi bi-caret-right"></i>
+                        <i style="font-size:26px" class="bi bi-caret-right"></i>
                   </button>
                   
                   <!--                     
