@@ -15,7 +15,7 @@ import axios from 'axios'
 
 <div  style="" class="m-0"   >
 
-    <text style="font-size: 25px;"> Ropa y Accesorios </text>
+    <text @click="$emit('filterByCategory',[9,4])" style="font-size: 25px;" > Ropa y Accesorios <i class="bi bi-caret-right-fill"></i> </text>
     <br>
 
     <!-- 1 LIST OBJECT CATEGORIES -->
@@ -58,7 +58,7 @@ export default {
   },
 
   props: ['session_data'],
-  emits: ['showPublicObjectDetails'],
+  emits: ['showPublicObjectDetails','filterByCategory'],
 
 created() {
     console.log("Search Categories Games")
