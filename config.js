@@ -6,8 +6,8 @@ let BKND_REGIONS = [] ;
 let BKND_CONFIG = {
     //BKND_HOST : "HTTP://ec2-3-143-168-51.us-east-2.compute.amazonaws.com:8080",
     //local ENv
-  BKND_HOST : "https://reusar.cl:8084",
-  //BKND_HOST : "http://localhost:8080",
+  //BKND_HOST : "https://reusar.cl:8084",
+  BKND_HOST : "http://localhost:8080",
    // BKND_HOST : "http://ec2-3-149-255-22.us-east-2.compute.amazonaws.com:8080",
     
     //DEVEL
@@ -23,24 +23,24 @@ let BKND_CONFIG = {
 
 
  let CATEGORIES = [
-  { name: "- Otras Categorias -"        , id: 0 , icon:"" } ,
-  { name: "Accesorios"        , id: 9 , icon:"bi bi-bicycle" } ,
-  { name: "Arte"              , id: 11 , icon:"bi bi-bicycle" } ,
-  { name: "Computacion"       , id: 12 , icon:"bi bi-bicycle" } ,
+  { name: "- Otras  -"        , id: 0 , icon:"" } ,
+  { name: "Accesorios"        , id: 9 , icon:"bi bi-sunglasses" } ,
+  { name: "Arte"              , id: 11 , icon:"bi bi-card-image" } ,
+  { name: "Computacion"       , id: 12 , icon:"bi bi-laptop" } ,
   { name: "Deportes"          , id: 5 , icon:"bi bi-bicycle" } ,
-  { name: "Electrodomesticos" , id: 13 , icon:"bi bi-bicycle" } ,
-  { name: "ElectroHogar"      , id: 15 , icon:"bi bi-bicycle" } ,
-  { name: "Fotografia"        , id: 10 , icon:"bi bi-bicycle" } ,
-  { name: "Herramientas"      , id: 6 , icon:"bi bi-bicycle" } ,
-  { name: "Hogar"             , id: 3 , icon:"bi bi-bicycle" } ,
-  { name: "Jardin"            , id: 17 , icon:"bi bi-bicycle" } , 
-  { name: "Juegos"            , id: 1 , icon:"bi bi-bicycle" } ,
-  { name: "Jugetes"           , id: 7 , icon:"bi bi-bicycle" } , 
-  { name: "Libros"            , id: 2 , icon:"bi bi-bicycle" } ,
-  { name: "Mobilidad"         , id: 16 , icon:"bi bi-bicycle" } , 
-  { name: "Telefonia"         , id: 14 , icon:"bi bi-bicycle" },
-  { name: "Vehiculos"         , id: 8 , icon:"bi bi-bicycle" } , 
-  { name: "Vestuario"         , id: 4 , icon:"bi bi-bicycle" } ,
+  { name: "Electrodomesticos" , id: 13 , icon:"bi bi-plug" } ,
+  { name: "ElectroHogar"      , id: 15 , icon:"bi bi-lamp" } ,
+  { name: "Fotografia"        , id: 10 , icon:"bi bi-camera" } ,
+  { name: "Herramientas"      , id: 6 , icon:"bi bi-wrench" } ,
+  { name: "Hogar"             , id: 3 , icon:"bi bi-house" } ,
+  { name: "Jardin"            , id: 17 , icon:"bi bi-tree" } , 
+  { name: "Juegos"            , id: 1 , icon:"bi bi-controller" } ,
+  { name: "Jugetes"           , id: 7 , icon:"bi bi-rocket" } , 
+  { name: "Libros"            , id: 2 , icon:"bi bi-book" } ,
+  { name: "Mobilidad"         , id: 16 , icon:"bi bi-scooter" } , 
+  { name: "Telefonia"         , id: 14 , icon:"bi bi-phone-vibrate" },
+  { name: "Vehiculos"         , id: 8 , icon:"bi bi-car-front" } , 
+  { name: "Vestuario"         , id: 4 , icon:"bi bi-universal-access" } ,
 
 
 
