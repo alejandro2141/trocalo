@@ -45,7 +45,7 @@ import { CATEGORIES } from '../../config.js'
         <text  class="p-2" :class="[ categories.includes(2) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=2" > <i style="" class="bi bi-book"></i> </text>
         <text  class="p-2" :class="[ categories.includes(3) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=3" > <i style="" class="bi bi-house"></i> </text>
         <text  class="p-0" :class="[ categories.includes(4) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=4" > <i style="" class="bi bi-universal-access"></i> </text>
-        <text  class="p-0" :class="[ categories.includes(5) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=5" > <i style="" class="bi bi-bicycle "></i> </text>
+        <text  class="p-0" :class="[ categories.includes(5) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=5" > <i style="" class="bi bi-bicycle"></i> </text>
         
         <text v-if="!showAllOptions" @click="showAllOptions=!showAllOptions" style="border-radius: 30px;"  ><i style="font-size:30px" class="text-secondary bi bi-play-fill p-2 "></i></text>
         <text v-else @click="showAllOptions=!showAllOptions; " style="border-radius: 30px;"  ><i style="font-size:40px" class="text-white bg-secondary bi bi-x-lg p-2 "></i></text>
