@@ -22,7 +22,7 @@ import axios from 'axios'
     <div v-if="objects_filtered !=null" class="d-flex flex-wrap"> 
           <div v-for="obj in objects_filtered"  > 
          
-            <InventoryObject @click="showObjectDetailsPublic(obj)" :object=obj  class="m-1"/>
+            <InventoryObject @click="showObjectDetailsPublic(obj)" :object=obj  class="m-0"/>
           </div>
     </div>
 
