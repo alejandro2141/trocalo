@@ -43,17 +43,17 @@ import axios from 'axios'
       
       <div>
           <hr>
-          <SearchCategoriesGames v-on:exchangeObject="exchangeObject" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
+          <SearchCategoriesGames v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
 
       <div>
           <hr>
-          <SearchCategoriesBooks v-on:exchangeObject="exchangeObject" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" /> 
+          <SearchCategoriesBooks v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" /> 
       </div>
 
       <div >
           <hr>
-          <SearchCategoriesClothes v-on:exchangeObject="exchangeObject" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
+          <SearchCategoriesClothes v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
    
 
