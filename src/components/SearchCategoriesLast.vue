@@ -14,7 +14,9 @@ import axios from 'axios'
 <template>
  <div  class="m-0"   >
 
-    <text style="font-size: 25px;"> Ultimas novedades </text>
+    <text @click="$emit('filterByCategory',999)" style="font-size: 25px;"> 
+      Ultimas novedades 
+      <i class="bi bi-caret-right-fill"></i></text>
     <br>
 
     <!-- 1 LIST OBJECT CATEGORIES -->
@@ -53,7 +55,7 @@ export default {
       }
   },
   props: ['session_data'],
-  emits: ['showPublicObjectDetails'],
+  emits: ['showPublicObjectDetails','filterByCategory'],
 
 created() {
     console.log("APP CREATED")
