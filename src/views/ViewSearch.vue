@@ -32,13 +32,15 @@ import axios from 'axios'
           <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data" />
       </div>
 
+ 
       <div>
           <SearchResult    v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
       </div>
-      
+
+  <div v-if="showCategories">   
       <div>
           <hr>
-          <SearchCategoriesLast  v-on:exchangeObject="exchangeObject"  v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data"/>
+          <SearchCategoriesLast  v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data"/>
       </div>
       
       <div>
@@ -55,7 +57,7 @@ import axios from 'axios'
           <hr>
           <SearchCategoriesClothes v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
-   
+  </div> 
 
   </div>
 
@@ -85,6 +87,10 @@ import axios from 'axios'
 
 
   <SpinnerLoading  :onOff=spinnerOn />
+  
+  <br>
+  <br>
+  <br>
   
 </div>
 </template>
@@ -118,6 +124,7 @@ export default {
         proposal_summary : null ,
 
         search_event : false ,
+        showCategories : true ,
       }
 
   },
@@ -189,14 +196,16 @@ methods: {
       this.spinnerOn=true
       
       console.log ("Flter by category viewSearch {"+category+"}")
-      this.searchParams.search_categories = category ;     
+      this.searchParams.search_categories = category ; 
+      this.searchParams.limited = 39 ;   
 
       let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects_by_category",this.searchParams);
+
       console.log("/public_search_objects_by_category Response:"+JSON.stringify(response_json.data))
       this.objects = response_json.data ; 
       this.objects.sort((a, b) => b.id - a.id );
       this.objects_filtered=this.objects ; 
-      
+      this.showCategories = false 
       this.spinnerOn=false
       }
      
