@@ -1,5 +1,5 @@
 <script setup  >
-import { PATH_PRODUCT_IMG } from '../../config.js'
+import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
 
 </script>
 
@@ -82,10 +82,14 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
                     </div>
                 </div>
                
-                <div  class="d-flex align-items-center m-1">
-                    {{object.title}}<br>
+            <div class="d-flex align-items-center">
+                <div  class="d-flex align-items-start m-1">
+                <i class="text-warning" :class="getCategoryIcon(object.category1)"></i> &nbsp;   {{object.title}}<br>
                  <!-- {{object.description}} -->
                 </div>
+            </div>
+
+
         </div>
     </div>
 
@@ -153,6 +157,14 @@ export default {
 
 
   methods: {
+
+    getCategoryIcon(cat)
+    {
+
+        let iconData = CATEGORIES.find((element) => element.id === cat);
+        console.log("icon data found:"+JSON.stringify(iconData) )
+        return iconData.icon
+    },
 
     isLocked()
     {
