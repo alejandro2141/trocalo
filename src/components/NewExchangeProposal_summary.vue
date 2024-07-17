@@ -26,10 +26,10 @@ import axios from 'axios'
 
         <br>
           <div class="d-flex justify-content-between">
-              <div class="align-self-center" style="font-size:16px " >Propuesta  válida por : </div>
+              <div class="align-self-center" style="font-size:16px " >Tiempo Validez : </div>
           
               <div class="w-25">
-                  <select v-model="proposal_duration" class="form-control bg-dark border-success text-white" id="sel1">
+                  <select v-model="proposal_duration" class="bg-success text-white form-control  border-success border-2 text-white" id="sel1">
                     <option value="30">30 dias</option>
                     <option value="25">25 dias</option>
                     <option value="20">20 dias</option>
@@ -112,12 +112,17 @@ import axios from 'axios'
 
             <!-- FOOTER -->
             <div v-if="objectsOfferList_temp != null && objectsOfferList_temp.length>0" class="fixed-bottom  d-flex justify-content-center  text-success  bg-dark p-3 ">  
-              <div @click="goToNextStep()" style="width:350px" class="d-flex justify-content-center  "> 
+              <div  style="width:350px" class="d-flex justify-content-center  "> 
                                   
-                <button type="button" style="font-size:36px" class="btn btn-success">Siguiente 
+ 
+                <button @click="closeModal()" type="button" style="font-size:26px" class="btn btn-success ">
+                    <i style="font-size:26px" class="bi bi-caret-left"></i> 
+                </button>
+                &nbsp;
+                <button @click="goToNextStep()" type="button" style="font-size:26px" class="btn btn-success">Siguiente 
                     <i class="bi bi-caret-right-fill"></i>
-                    <i style="font-size:36px" class="bi bi-caret-right"></i> 
-                    <i style="font-size:36px" class="bi bi-caret-right"></i> 
+                    <i style="font-size:26px" class="bi bi-caret-right"></i> 
+                    <i style="font-size:26px" class="bi bi-caret-right"></i> 
 
                 </button>
                   
