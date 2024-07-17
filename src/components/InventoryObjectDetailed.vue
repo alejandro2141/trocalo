@@ -18,6 +18,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
     <div class="" style="width: 100%">
   
+        <br>
         <div style="font-size:20px">
          {{object.title}} 
         </div>
