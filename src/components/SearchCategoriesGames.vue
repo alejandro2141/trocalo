@@ -15,7 +15,7 @@ import axios from 'axios'
 
   <div  style="width:350px;" class="m-0"   >
 
-      <text style="font-size: 25px;"> Juguetes </text>
+      <text style="font-size: 25px;" @click="$emit('filterByCategory',7)" > Juguetes <i class="bi bi-caret-right-fill"></i></text>
       <br>
 
       <!-- 1 LIST OBJECT CATEGORIES -->
@@ -45,7 +45,7 @@ export default {
       }
   },
   props: ['session_data'],
-  emits: ['showPublicObjectDetails'],
+  emits: ['showPublicObjectDetails','filterByCategory'],
 
 created() {
     let jsonRequest = {
