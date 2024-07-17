@@ -129,9 +129,16 @@ import axios from 'axios'
         <p style="font-size:20px" class="text-center">  Propuesta de Intercambio ha sido Cancelada 
         </p>
         <br>
+
+
+<p class="text-center">
+        <button @click="$emit('close')" type="button" class="btn btn-success"> <i class="bi bi-arrow-left-square"></i> Regresar  a Enviadas</button>
+</p>
+      <!--
         <p style="font-size:20px" @click="$emit('closeExchangeProposalSent')" class="text-center text-success"> 
           <i class="bi bi-arrow-left-square"></i> Regresar  a Enviadas
         </p>
+      -->
 
     </div>
 
