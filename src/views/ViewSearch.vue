@@ -16,7 +16,7 @@ import NewExchangeProposal_sentConfirmation from '../components/NewExchangePropo
 
 import SpinnerLoading from '../components/SpinnerLoading.vue'
 
-import { BKND_CONFIG } from '../../config.js'
+import { BKND_CONFIG , CATEGORIES } from '../../config.js'
 import axios from 'axios'
 
 </script>
@@ -28,18 +28,32 @@ import axios from 'axios'
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
 
   
-      <div>
-          <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data" />
-      </div>
+    <div>
+      <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data" />
+    </div>
+     <br>
 
- 
-      <div>
-          <SearchResult    v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
-      </div>
+    <!-- SHOW RESULT SEARCH-->
+
+    <div v-if="!showCategories" >
+        <div class="d-flex justify-content-between">
+            <text style="font-size: 25px;" class="m-2">{{titleSearchResult}}</text>
+            <button  @click="$router.push({ name: 'ViewSearch' }); showCategories=true" type="button" class="btn btn-secondary">
+                   <i style="font-size: 35px;" class="bi bi-x-lg"></i>
+            </button>  
+        </div>
+
+        <div>
+           <SearchResult    v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
+        </div>
+    </div>
+
+    <!-- END SHOW RESULT SEARCH-->
+
 
   <div v-if="showCategories">   
       <div>
-          <hr>
+
           <SearchCategoriesLast  v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data"/>
       </div>
       
@@ -125,6 +139,8 @@ export default {
 
         search_event : false ,
         showCategories : true ,
+
+        titleSearchResult : ""
       }
 
   },
@@ -148,6 +164,29 @@ methods: {
     },
     */
 //comes from object details public offer
+
+
+    getCategoryName(cat)
+    {
+
+        console.log("categorias  :"+cat)
+        console.log("categorias largo  :"+cat.length)
+        console.log(typeof cat)
+       
+        if (cat< 100)
+        {
+        let iconData = CATEGORIES.find((element) => element.id === cat);
+        console.log("icon data found:"+JSON.stringify(iconData) )
+        return iconData.name
+        }
+        else 
+        {
+          return "Ultimas Novedades"
+        }
+
+    },
+
+
     exchangeObject(obj)
     { 
       this.showObjectDetails=false 
@@ -183,6 +222,7 @@ methods: {
       }
 
       this.search_event = true 
+      this.showCategories = false 
 
       this.spinnerOn=false
       
@@ -205,8 +245,14 @@ methods: {
       this.objects = response_json.data ; 
       this.objects.sort((a, b) => b.id - a.id );
       this.objects_filtered=this.objects ; 
+      this.search_event = true
       this.showCategories = false 
+
+      this.titleSearchResult =  this.getCategoryName(category)
+
+
       this.spinnerOn=false
+
       }
      
     },
