@@ -201,7 +201,7 @@ import { BKND_CONFIG } from '../../config.js'
                         </a>
                         --> 
                         <a HREF="/nested/publicSearch.html" class="text-decoration-none" style="color :#2e5668"> 
-                            <text class="display-4">Cambialo</text>  
+                            <text class="display-4">REUSAR.CL</text>  
                         </a> 
                     
                         <div class="text-secondary">Lo tienes, lo quiero,  te lo cambio 
