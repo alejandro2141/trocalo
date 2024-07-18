@@ -14,7 +14,7 @@ import axios from 'axios'
 <template>
  <div  class="m-0"   >
 
-    <text @click="$emit('filterByCategory',999)" style="font-size: 25px;"> 
+    <text @click="$emit('filterByCategory', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] )" style="font-size: 25px;"> 
       Ultimas novedades 
       <i class="bi bi-caret-right-fill"></i></text>
     <br>
