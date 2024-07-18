@@ -1,6 +1,6 @@
 <script setup  >
 
-import { PATH_PRODUCT_IMG } from '../../config.js'
+import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
 
 
 </script>
@@ -20,7 +20,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
   
         <br>
         <div style="font-size:20px">
-         {{object.title}} 
+       <i class="text-warning" :class="getCategoryIcon(object.category1)"></i>   {{object.title}} 
         </div>
        
       
@@ -81,12 +81,12 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
   <div v-if="showZoomImage" class="bg-dark w-100  h-100 d-flex justify-content-center" style="position:fixed;  top:0px ; left:0 ; z-index:99 ; "  >
   
-    <div class="bg-danger bg-dark text-center m-0 p-0" style="max-width:350px ;  ">
+    <div class="bg-dark text-center m-0 p-0" style="max-width:350px ;  ">
 
         <div style="opacity: 1.9;position:fixed; z-index:101; right:0; top:0" class="bg-secondary"> 
             <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 m-0 bi bi-x-lg"></i>  
         </div>
-        <img class="bg-warning mt-3" style="position:static;  top:0px "  :src="main_image"  /> 
+        <img class="bg-dark mt-3" style="position:static;  top:0px ; border-radius: 5px; "  :src="main_image"  /> 
   
     </div>
 
@@ -166,6 +166,15 @@ export default {
 			},
 
   methods: {
+
+
+        getCategoryIcon(cat)
+        {
+            let iconData = CATEGORIES.find((element) => element.id === cat);
+            console.log("icon data found:"+JSON.stringify(iconData) )
+            return iconData.icon
+        },
+
         hiddeImg(val)
         {
             console.log("ERROR Hide image "+val)
