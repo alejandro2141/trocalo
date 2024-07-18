@@ -23,19 +23,19 @@ import axios from 'axios'
     </text>
   -->
 
-  <div v-if="search_event" class="text-warning text-center">
-    <div class="text-white" v-if="objects_filtered !=null && objects_filtered.length > 0">
+  <div v-if="search_event" class="text-warning text-start">
+    <div class="text-warning" v-if="objects_filtered !=null && objects_filtered.length > 0">
         Econtramos {{objects_filtered.length}}
         objectos para tu búsqueda<br>
     </div>
     <div v-else class="mt-2 ">
       
-      <text style="font-size:20px">
-        Sin resultados para tu busqueda
+
+      <text style="">
+         Econtramos 0 objectos para tu búsqueda<br>
       </text>
 
-      <br>
-      <i style="font-size:60px" class="bi bi-wind text-center"></i>
+     
     </div>
     
 
@@ -51,6 +51,9 @@ import axios from 'axios'
      No encontramos resultados para tu busqueda<br>
     </text>
   -->
+
+
+    
 
     <!-- 1- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
     <div v-if="showExchangeProposal==false && showModalDetails==false" >
