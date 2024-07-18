@@ -56,7 +56,7 @@ export default {
       }
   },
   props: ['session_data'],
-  emits: ['showPublicObjectDetails'],
+  emits: ['showPublicObjectDetails','filterByCategory'],
 
 created() {
     console.log("Search Categories Games")
