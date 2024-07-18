@@ -99,15 +99,10 @@ import { CATEGORIES } from '../../config.js'
         <text>| </text>
         
         <text>| </text>
-    -->
-     
-        
-         
+    -->    
 
     </div>
     
-    <br>
-   
 
   </div>
 </template>
@@ -173,7 +168,7 @@ methods: {
       this.categories.push(val)
       } 
       // console.log("this.categories[]: "+this.categories)
-      this.$emit('filterByCategory',this.categories)
+      this.$emit('filterByCategory',this.categories[0])
     },
   
       
