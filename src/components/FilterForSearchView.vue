@@ -34,13 +34,12 @@ import { CATEGORIES } from '../../config.js'
         <text> </text>
     -->
 
+<!--
   <div class=" text-white">
 
     <div  style="font-size:25px" >
       <div class="d-flex justify-content-between"> 
-      <!-- 
-      <text style="border-radius: 30px;" class="border p-2" :class="[ categories.includes(3) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(3)" > <i style="font-size:40px" class="bi bi-lamp"></i> </text>
-      -->
+    
         <text  class="p-0" :class="[ categories.includes(1) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=1" > <i style="" class="bi bi-controller "></i> </text>
         <text  class="p-2" :class="[ categories.includes(2) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=2" > <i style="" class="bi bi-book"></i> </text>
         <text  class="p-2" :class="[ categories.includes(3) ? 'text-success border-bottom border-success': 'border-dark' ]"  @click="category=3" > <i style="" class="bi bi-house"></i> </text>
@@ -91,6 +90,8 @@ import { CATEGORIES } from '../../config.js'
     </div>
    
   </div>
+
+-->
 
     <!--
         <text><i class="bi bi-house"></i></text>
