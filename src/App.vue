@@ -4,8 +4,12 @@ import { RouterLink, RouterView } from 'vue-router'
 
 import { useRoute } from 'vue-router'
 
+import FilterForSearchViewMinimal from './components/FilterForSearchViewMinimal.vue'
+import FilterForSearchView from './components/FilterForSearchView.vue'
 
 const location = useRoute();
+
+
 
 </script>
 
@@ -18,31 +22,38 @@ const location = useRoute();
    
     <div class="bg-dark p-0 m-0" style="width: 350px; top:0px">
 
+          
+          <div class="d-flex justify-content-center w-100">
+            <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="ViewSearch">  
+              <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text>
+            </RouterLink>   
+          </div> 
+
      
-      <div  v-if="session_data==null"  class="d-flex justify-content-between">
+<!-- PUBLIC  -->
+  <div v-if="session_data==null" >
+      <div    class="d-flex justify-content-between">
           
         <RouterLink  style="position:absolute ; top:0px ; right:0px " class="" :class="{'text-decoration-underline' :underline_login}"   to="/ViewLogin"> 
              <div class="bg-secondary text-end" style="width:60px;height:50px;border-radius: 0px 0px 0px 100px;" > 
                 <i style="font-size:30px" class="bi bi-person-circle text-dark p-2"></i>
              </div>
         </RouterLink> 
-       
-        <div class="d-flex justify-content-center w-100">
-            <div  class='text-decoration-none text-center'    > 
-              <a HREF="/" >  
-                    <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-recycle"></i> 
-                  <!--  <i style="color:#EEEEEE ; font-size : 55px ;" class="bi bi-search"></i>-->
-                    <text style="color:#EEEEEE ; font-size : 45px ;"> 
-                      REUSAR.CL
-                    </text>
-              </a>
-            </div>
-        </div>
+
 
       </div>
 
+      <div>
+        <FilterForSearchViewMinimal v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />        
+      </div>
+  </div>
+
+<!-- END PUBLIC  -->
 
 
+<!-- PRIVATE  -->
+
+  <!-- PRIVATE HEADER  -->
       <div v-if="session_data!=null && session_data.user!=null" class=" d-flex justify-content-between text-white" style="font-size : 20px ">
             
           <RouterLink  style="position:absolute ; top:0px ; right:0px "  class="text-secondary " :class="{'text-decoration-underline' :underline_account}"  to="/Viewlogin">
@@ -51,16 +62,23 @@ const location = useRoute();
               </div>
           </RouterLink> 
           
+          
+
+         <FilterForSearchViewMinimal v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
+
+        <!--
           <div class="d-flex justify-content-center w-100">
             <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
               <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text>
             </RouterLink>   
           </div> 
+        -->
+        
           
       </div> 
     
+<!-- PRIVATE  INVENTORY, RECEIVED, SENT -->
 
-     
     <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
      
         <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">
@@ -85,9 +103,9 @@ const location = useRoute();
         </RouterLink>    
 
     </div>
+<!-- END PRIVATE  --> 
   
-  
-      <RouterView  v-on:sessionCreated="sessionCreated"   :session_data='session_data' />
+      <RouterView  v-on:sessionCreated="sessionCreated"  :textToSearch="textToSearch" :session_data='session_data' />
     
     
     
@@ -162,6 +180,8 @@ export default {
           underline_received : false ,
           underline_sent : false ,
 
+          textToSearch : null,
+
 
         }
     },
@@ -176,6 +196,16 @@ export default {
 
 
   methods: {
+
+    filterByText(val)
+    {
+      console.log("search by text:"+val)
+      this.$router.push({ name: 'ViewSearch',  params: { textToSearch: val }    })
+      this.textToSearch=val
+    },
+
+    
+
 /*
     setUnderline(val)
     {
