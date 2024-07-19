@@ -16,6 +16,7 @@ import NewExchangeProposal_sentConfirmation from '../components/NewExchangePropo
 
 import SpinnerLoading from '../components/SpinnerLoading.vue'
 
+
 import { BKND_CONFIG , CATEGORIES } from '../../config.js'
 import axios from 'axios'
 
@@ -26,21 +27,25 @@ import axios from 'axios'
 <div>
 
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
-
   
+  <!-- EDITED 18/07/2024
     <div>
       <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data" />
     </div>
      <br>
+  -->
 
     <!-- SHOW RESULT SEARCH-->
 
     <div v-if="!showCategories" >
         <div class="d-flex justify-content-between">
             <text style="font-size: 25px;" class="m-2">{{titleSearchResult}}</text>
+            
+            <!-- BUTTON TO CLOSE SEARCH RESULT
             <button  @click="$router.push({ name: 'ViewSearch' }); showCategories=true" type="button" class="btn btn-secondary">
                    <i style="font-size: 35px;" class="bi bi-x-lg"></i>
             </button>  
+            -->
         </div>
 
         <div>
@@ -145,7 +150,7 @@ export default {
 
   },
 
-  props: ['session_data'],
+  props: ['session_data', 'textToSearch'],
   emits: ['sessionCreated'],
 
 created() {
@@ -286,6 +291,12 @@ methods: {
     },
 
 watch : {
+
+  textToSearch(newval,oldval)
+    {
+      console.log("textToSearch in ViewSearch newval:"+newval+"   oldval:"+oldval)
+      this.filterByText(newval)
+    }
 
 
 
