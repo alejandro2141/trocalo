@@ -25,6 +25,7 @@ import axios from 'axios'
 <template>
 
 <div>
+  category: {{category}}
 
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
   
@@ -55,7 +56,7 @@ import axios from 'axios'
 
     <!-- END SHOW RESULT SEARCH-->
 
-
+<!--
   <div v-if="showCategories">   
       <div>
 
@@ -77,6 +78,8 @@ import axios from 'axios'
           <SearchCategoriesClothes v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
   </div> 
+
+-->
 
   </div>
 
@@ -150,7 +153,7 @@ export default {
 
   },
 
-  props: ['session_data', 'textToSearch'],
+  props: ['session_data', 'textToSearch','category'],
   emits: ['sessionCreated'],
 
 created() {
@@ -292,10 +295,16 @@ methods: {
 
 watch : {
 
-  textToSearch(newval,oldval)
+    textToSearch(newval,oldval)
     {
       console.log("textToSearch in ViewSearch newval:"+newval+"   oldval:"+oldval)
       this.filterByText(newval)
+    },
+
+    category(newval,oldval)
+    {
+      console.log("Show category in ViewSearch:"+newval+"   oldval:"+oldval)
+      //this.filterByText(newval)
     }
 
 
