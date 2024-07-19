@@ -22,18 +22,20 @@ const location = useRoute();
    
     <div class="bg-dark p-0 m-0" style="width: 350px; top:0px">
 
-          
+     
+  <!-- ALWAYS DISPLAY  -->     
           <div class="d-flex justify-content-center w-100">
-            <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="ViewSearch">  
+            <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="Welcome">  
               <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text>
             </RouterLink>   
           </div> 
-
+  <!-- END ALWAYS DISPLAY  -->
      
 <!-- PUBLIC  -->
   <div v-if="session_data==null" >
       <div    class="d-flex justify-content-between">
           
+        <!-- login icon -->
         <RouterLink  style="position:absolute ; top:0px ; right:0px " class="" :class="{'text-decoration-underline' :underline_login}"   to="/ViewLogin"> 
              <div class="bg-secondary text-end" style="width:60px;height:50px;border-radius: 0px 0px 0px 100px;" > 
                 <i style="font-size:30px" class="bi bi-person-circle text-dark p-2"></i>
@@ -43,19 +45,23 @@ const location = useRoute();
 
       </div>
 
+      <!-- SEARCH FORM -->
       <div>
-        <FilterForSearchViewMinimal v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />        
+        <FilterForSearchViewMinimal @click="$router.push({ name: 'ViewSearch' })"  v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />        
       </div>
+      <!-- END SEARCH FORM -->
+
   </div>
 
 <!-- END PUBLIC  -->
 
 
-<!-- PRIVATE  -->
+<!-- PRIVATE SESSION -->
 
   <!-- PRIVATE HEADER  -->
       <div v-if="session_data!=null && session_data.user!=null" class=" d-flex justify-content-between text-white" style="font-size : 20px ">
             
+          <!-- login icon -->
           <RouterLink  style="position:absolute ; top:0px ; right:0px "  class="text-secondary " :class="{'text-decoration-underline' :underline_account}"  to="/Viewlogin">
               <div class="bg-secondary  text-end" style="width:60px;height:50px; border-radius: 0px 0px 0px 100px;" > 
                 <text class="text-dark  " style="font-size:17px" >{{session_data.user.split(" ")[0] }}</text>
@@ -103,7 +109,7 @@ const location = useRoute();
         </RouterLink>    
 
     </div>
-<!-- END PRIVATE  --> 
+<!-- END PRIVATE SESSION --> 
   
       <RouterView  v-on:sessionCreated="sessionCreated"  :textToSearch="textToSearch" :session_data='session_data' />
     
@@ -200,7 +206,8 @@ export default {
     filterByText(val)
     {
       console.log("search by text:"+val)
-      this.$router.push({ name: 'ViewSearch',  params: { textToSearch: val }    })
+      //this.$router.push({ name: 'ViewSearch',  params: { textToSearch: val }    })
+      this.$router.push({ name: 'ViewSearch' })
       this.textToSearch=val
     },
 
