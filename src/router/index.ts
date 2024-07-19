@@ -1,13 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ViewSearch from '../views/ViewSearch.vue'
+import Welcome from '../views/Welcome.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  
   routes: [
     {
       path: '/',
       name: 'mainView',
-      component: ViewSearch
+      component: Welcome
+    },
+
+    {
+      path: '/Welcome',
+      name: 'Welcome',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      props: true,
+      component: () => import('../views/Welcome.vue')
     },
    
     {
@@ -21,6 +33,7 @@ const router = createRouter({
     {
       path: '/ViewSearch',
       name: 'ViewSearch',
+      props: true,
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
