@@ -23,7 +23,7 @@ let BKND_CONFIG = {
 
 
  let CATEGORIES = [
-  { name: "- Otras  -"        , id: 0 , icon:"" } ,
+  { name: "Todos los Objetos ", id: 0 , icon:"" } ,
   { name: "Accesorios"        , id: 9 , icon:"bi bi-sunglasses" } ,
   { name: "Arte"              , id: 11 , icon:"bi bi-card-image" } ,
   { name: "Computacion"       , id: 12 , icon:"bi bi-laptop" } ,
