@@ -25,7 +25,7 @@ import axios from 'axios'
 <template>
 
 <div>
-  category: {{category}}
+ 
 
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
   
@@ -40,7 +40,7 @@ import axios from 'axios'
 
     <div v-if="!showCategories" >
         <div class="d-flex justify-content-between">
-            <text style="font-size: 25px;" class="m-2">{{titleSearchResult}}</text>
+            <text style="font-size: 25px;" class="m-2"></text>
             
             <!-- BUTTON TO CLOSE SEARCH RESULT
             <button  @click="$router.push({ name: 'ViewSearch' }); showCategories=true" type="button" class="btn btn-secondary">
@@ -148,12 +148,13 @@ export default {
         search_event : false ,
         showCategories : true ,
 
-        titleSearchResult : ""
+        titleSearchResult : "",
+
       }
 
   },
 
-  props: ['session_data', 'textToSearch','category'],
+  props: ['session_data', 'textToSearch','category', 'state' ],
   emits: ['sessionCreated'],
 
 created() {
