@@ -18,10 +18,8 @@ const location = useRoute();
   <div class="" >
    
   <div class="m-0 p-0" >
-    
    
     <div class="bg-dark p-0 m-0" style="width: 350px; top:0px">
-
      
   <!-- ALWAYS DISPLAY  -->     
           <div class="d-flex justify-content-center w-100">
@@ -30,7 +28,8 @@ const location = useRoute();
             </RouterLink>   
           </div> 
   <!-- END ALWAYS DISPLAY  -->
-     
+  
+
 <!-- PUBLIC  -->
   <div v-if="session_data==null" >
       <div    class="d-flex justify-content-between">
@@ -42,12 +41,11 @@ const location = useRoute();
              </div>
         </RouterLink> 
 
-
       </div>
 
       <!-- SEARCH FORM -->
       <div>
-        <FilterForSearchViewMinimal @click="$router.push({ name: 'ViewSearch' })"  v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />        
+        <FilterForSearchViewMinimal   v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />        
       </div>
       <!-- END SEARCH FORM -->
 
@@ -64,13 +62,13 @@ const location = useRoute();
           <!-- login icon -->
           <RouterLink  style="position:absolute ; top:0px ; right:0px "  class="text-secondary " :class="{'text-decoration-underline' :underline_account}"  to="/Viewlogin">
               <div class="bg-secondary  text-end" style="width:60px;height:50px; border-radius: 0px 0px 0px 100px;" > 
-                <text class="text-dark  " style="font-size:17px" >{{session_data.user.split(" ")[0] }}</text>
+                <text class="text-white m-2" style="font-size:17px; text-transform: uppercase;" >{{ getNameLetters(session_data.user)}}</text>
               </div>
           </RouterLink> 
           
           
 
-         <FilterForSearchViewMinimal v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
+         <FilterForSearchViewMinimal  v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
 
         <!--
           <div class="d-flex justify-content-center w-100">
@@ -83,9 +81,9 @@ const location = useRoute();
           
       </div> 
     
-<!-- PRIVATE  INVENTORY, RECEIVED, SENT -->
+<!-- PRIVATE  INVENTORY, RECEIVED, SENT , SHOW only when is not FOR SEARCH -->
 
-    <div v-if="session_data!=null && session_data.user!=null" class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
+    <div v-if="session_data!=null && session_data.user!=null && $route.name != 'ViewSearch' " class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
      
         <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">
           <div class="d-flex align-items-center flex-column" >
@@ -203,6 +201,13 @@ export default {
 
   methods: {
 
+    getNameLetters(name)
+    {
+      let aux  = name.split(" ")
+      let lettersName =   aux[0].charAt(0) + aux[0].charAt(1) + aux[0].charAt(2)
+      return lettersName  
+    },
+
     filterByText(val)
     {
       console.log("search by text:"+val)
@@ -269,7 +274,7 @@ export default {
             this.session_data.pass = session_data.pass
             */
            this.session_data = session_data ; 
-           this.$router.push('ViewSearch') 
+           this.$router.push('Welcome') 
            this.underline_search=true 
             
       },
