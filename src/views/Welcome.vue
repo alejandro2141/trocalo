@@ -2,10 +2,12 @@
 
 import FilterForSearchView from '../components/FilterForSearchView.vue'
 import SearchResult from '../components/SearchResult.vue'
-import SearchCategoriesLast from '../components/SearchCategoriesLast.vue'
-import SearchCategoriesGames from '../components/SearchCategoriesGames.vue'
-import SearchCategoriesBooks from '../components/SearchCategoriesBooks.vue'
-import SearchCategoriesClothes from '../components/SearchCategoriesClothes.vue'
+
+//import SearchCategoriesLast from '../components/SearchCategoriesLast.vue'
+//import SearchCategoriesGames from '../components/SearchCategoriesGames.vue'
+//import SearchCategoriesBooks from '../components/SearchCategoriesBooks.vue'
+//import SearchCategoriesClothes from '../components/SearchCategoriesClothes.vue'
+
 import InventoryObjectDetailedPublicOffer from '../components/InventoryObjectDetailedPublicOffer.vue'
 
 import NewExchangeProposal_SelectObjectInventory from '../components/NewExchangeProposal_SelectObjectInventory.vue'
@@ -13,6 +15,9 @@ import NewExchangeProposal_summary from '../components/NewExchangeProposal_summa
 
 import NewExchangeProposal_checkBeforeSend from '../components/NewExchangeProposal_checkBeforeSend.vue'
 import NewExchangeProposal_sentConfirmation from '../components/NewExchangeProposal_sentConfirmation.vue'
+
+import ShowCategories from '../components/ShowCategories.vue'
+
 
 import SpinnerLoading from '../components/SpinnerLoading.vue'
 
@@ -26,11 +31,6 @@ import axios from 'axios'
 
 <div>
   
-  ******************* welcome ***********************
-  ******************* welcome ***********************
-  ******************* welcome ***********************
-
-
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
   
   <!-- EDITED 18/07/2024
@@ -42,11 +42,25 @@ import axios from 'axios'
 
     <!-- SHOW RESULT SEARCH-->
 
+
 <!--
-    <div v-if="!showCategories" >
+    <div v-if="!showCategories" style="position: absolute; top: 0px;" class="bg-danger">
+          
+
+        <button  style="position:absolute ; top:0px ; right:0px " @click="showCategories=true" type="button" class="btn btn-secondary">
+                <i style="font-size:26px" class="bi bi-arrow-left-square"></i>
+        </button>
+        
         <div class="d-flex justify-content-between">
-            <text style="font-size: 25px;" class="m-2">{{titleSearchResult}}</text>
+           
+
+            <div class="d-flex justify-content-between">
+                <text style="font-size: 25px;" class="m-2">{{titleSearchResult}}</text>
+            </div> 
+
+           
         </div>
+
 
         <div>
            <SearchResult    v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
@@ -58,25 +72,129 @@ import axios from 'axios'
 
 
   <div v-if="showCategories">   
-      <div>
+      
+      
+
+<!-- END NEW OBJECTS -->
+      <div v-if="category2display == 0 || category2display == 999  ">
+          <hr>
+          <text style="font-size: 25px;" @click="selectedCategory(999)" > 
+            
+            <text v-if="category2display == 999" class="text-warning"> <i class="bi bi-caret-left-fill"></i> ........... 
+            </text>
+            <text v-else> <i class="bi bi-caret-right-fill"></i>  
+            </text>
+            Nuevos Objetos
+          </text>
+        
+          <div v-if="category2display != 999" >    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="6" :session_data=" session_data"/>
+          </div>
+          <div v-else>    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="30" :session_data=" session_data"/>
+          </div>
+      </div>
+<!-- END NEW OBJECTS -->
+
+<!-- BOOKS -->
+      <div v-if="category2display == 0 || category2display == 2 ">
+          <hr>
+          <text style="font-size: 25px;" @click="selectedCategory(2)" > 
+            
+            <text v-if="category2display == 2" class="text-warning"> <i class="bi bi-caret-left-fill"></i> ........... 
+            </text>
+            <text v-else> <i class="bi bi-caret-right-fill"></i>  
+            </text>
+            
+              Libros 
+            
+          </text>
+        
+          <div v-if="category2display != 2" >    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="6" :session_data=" session_data"/>
+          </div>
+          <div v-else>    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="30" :session_data=" session_data"/>
+          </div>
+      </div>
+<!-- END BOOKS -->
+
+
+<!-- BOOKS -->
+      <div v-if="category2display == 0 || category2display == 7 ">
+          <hr>
+          <text style="font-size: 25px;" @click="selectedCategory(7)" > 
+            
+            <text v-if="category2display == 7" class="text-warning"> <i class="bi bi-caret-left-fill"></i> ........... 
+            </text>
+            <text v-else> <i class="bi bi-caret-right-fill"></i>  
+            </text>
+              Juegos 
+          </text>
+        
+          <div v-if="category2display != 7" >    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="6" :session_data=" session_data"/>
+          </div>
+          <div v-else>    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="30" :session_data=" session_data"/>
+          </div>
+      </div>
+<!-- END BOOKS -->
+
+
+<!-- VESTUARIO -->
+      <div v-if="category2display == 0 || category2display == 4 ">
+          <hr>
+          <text style="font-size: 25px;" @click="selectedCategory(4)" > 
+            
+            <text v-if="category2display == 4" class="text-warning"> <i class="bi bi-caret-left-fill"></i> ....... 
+            </text>
+            <text v-else> <i class="bi bi-caret-right-fill"></i>  
+            </text>
+              Vestuario 
+          </text>
+        
+          <div v-if="category2display != 7" >    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="6" :session_data=" session_data"/>
+          </div>
+          <div v-else>    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="30" :session_data=" session_data"/>
+          </div>
+      </div>
+<!-- END VESTUARIO -->
+
+
+<!--
+      <div v-if="category2display == 0 ">
 
           <SearchCategoriesLast  v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data"/>
       </div>
       
-      <div>
+      <div v-if="category2display==7 || category2display == 0">
           <hr>
           <SearchCategoriesGames v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
 
-      <div>
+      <div v-if="category2display == 2 || category2display == 0">
           <hr>
-          <SearchCategoriesBooks v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" /> 
+          <SearchCategoriesBooks v-on:exchangeObject="exchangeObject" :categoryDisplay="category2display" v-on:selectedCategory="selectedCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" /> 
       </div>
 
-      <div >
+      <div v-if="category2display == 4 || category2display == 0">
           <hr>
           <SearchCategoriesClothes v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
       </div>
+-->
+
+
   </div> 
 
   </div>
@@ -146,7 +264,9 @@ export default {
         search_event : false ,
         showCategories : true ,
 
-        titleSearchResult : ""
+        titleSearchResult : "" ,
+
+        category2display : 0 
       }
 
   },
@@ -159,6 +279,22 @@ created() {
      },
 
 methods: {
+
+    selectedCategory(val)
+    {
+      console.log("Selected category value : "+val)
+
+      if (val == this.category2display)
+        {
+          this.category2display = 0 
+        }
+      else 
+        {
+         this.category2display = val  
+        }
+
+      
+    },
     /*
     async SearchObjects(searchParams)
     {
@@ -170,7 +306,6 @@ methods: {
     },
     */
 //comes from object details public offer
-
 
     getCategoryName(cat)
     {
@@ -191,8 +326,7 @@ methods: {
         }
 
     },
-
-
+   
     exchangeObject(obj)
     { 
       this.showObjectDetails=false 
@@ -238,13 +372,13 @@ methods: {
 
     async filterByCategory(category)
     {
-      console.log("FIlter by category :"+category)
+      console.log("Welcome Filter by category :"+category)
 
-      this.$router.push({ name: 'ViewSearch', category : 12312  })
+     // this.$router.push({ name: 'ViewSearch' })
 
 //      $router.push({ name: 'somewhere', state: { myData } })
 
-      /*
+      
       if (category != null && category !="")
       {
       this.spinnerOn=true
@@ -266,8 +400,7 @@ methods: {
 
       this.spinnerOn=false
       }
-      */
-     
+      
     },
 
     showProposalSummary(myobjects)
@@ -299,13 +432,13 @@ methods: {
     },
 
 watch : {
-
+/*
   textToSearch(newval,oldval)
     {
       console.log("textToSearch in ViewSearch newval:"+newval+"   oldval:"+oldval)
       this.filterByText(newval)
     }
-
+*/
 
 
       }
