@@ -7,16 +7,11 @@ import { CATEGORIES } from '../../config.js'
 
     <div class="text-white">
 
-
-
-      
-
-
       <div class="d-flex justify-content-around mt-4 mb-4">
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="font-size:40px" class="bi bi-controller "></i> </text>
         -->
-        <input  v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ; border-radius: 10px 0px 0px 10px;" id="searchText" name="searchText" class=" m-0 bg-dark text-white border-2  border-white w-75 " required minlength="4" maxlength="30" size="15" />
+        <input @click="$router.push({ name: 'ViewSearch' })" v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ; border-radius: 10px 0px 0px 10px;" id="searchText" name="searchText" class=" m-0 bg-dark text-white border-2  border-white w-75 " required minlength="4" maxlength="30" size="15" />
          
         <!--
         <i  style="margin-left: -85px;font-size:36px ;" @click="search(textFilter)" class="text-left text-secondary bi bi-search-heart p-0 mt-1 w-25"></i>
@@ -29,7 +24,7 @@ import { CATEGORIES } from '../../config.js'
       </button>
 -->
 
-      <button @click="textFilter=''" type="button" style="border-radius: 0px 10px 10px 0px;" class="btn btn-secondary border border-white w-25  m-0 p-0">
+      <button @click="cleanSearch()" type="button" style="border-radius: 0px 10px 10px 0px;" class="btn btn-secondary border border-white w-25  m-0 p-0">
          <i  style="margin-left: 0px;font-size:36px ;"  class="text-left text-white bi bi-x p-0 mt-0 "></i>
       </button>
 
@@ -154,6 +149,19 @@ created() {
     },
 
 methods: {
+
+    cleanSearch()
+    {
+      if (this.textFilter == '')
+      {
+        this.$router.push({ name: 'Welcome' })
+      }
+      else 
+      {
+      this.textFilter=''
+      }
+
+    },
 
     onEnter()
     {
