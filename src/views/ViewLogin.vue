@@ -21,14 +21,12 @@ import { BKND_CONFIG } from '../../config.js'
 
    
     <div v-if="session_data!=null && session_data.user!=null" class="text-center" >
-
        
         <div class="d-flex flex-row-reverse bd-highlight"> 
-                    <a @click="$router.push('ViewSearch')" type="button" class=""><i class="display-2 bi bi-x-lg text-white"></i></a>
+                <a @click="$router.push('Welcome')" type="button" class=""><i class="display-2 bi bi-x-lg text-white"></i></a>
         </div>
        
         <div style="height:10px"></div>
-
 
         <div  style="font-size:20px" class="d-flex justify-content-left mt-1 text-white">
           <text @click="showUserData=!showUserData" class="" style="border-radius:15px"  > 
@@ -186,7 +184,7 @@ import { BKND_CONFIG } from '../../config.js'
         <div class=" m-3 bg-dark" style=" border-radius: 15px;">
 
         <div class="d-flex justify-content-end">
-          <a  @click="$router.push('ViewSearch')"  class="text-white"><i class="display-5 bi bi-x-lg"></i></a> 
+          <a  @click="$router.push('Welcome')"  class="text-white"><i class="display-5 bi bi-x-lg"></i></a> 
         </div>
        
      
