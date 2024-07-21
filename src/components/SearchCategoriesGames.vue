@@ -15,7 +15,7 @@ import axios from 'axios'
 
   <div  style="width:350px;" class="m-0"   >
 
-      <text style="font-size: 25px;" @click="$emit('filterByCategory',7)" > Juguetes <i class="bi bi-caret-right-fill"></i></text>
+      <text style="font-size: 25px;" @click="getMoreObjects()" > Juguetes <i class="bi bi-caret-right-fill"></i></text>
       <br>
 
       <!-- 1 LIST OBJECT CATEGORIES -->
@@ -41,6 +41,7 @@ export default {
       return {
         objects : [ ],
         objects_filtered : [] ,
+        search_categories : [7] ,
        
       }
   },
@@ -48,8 +49,9 @@ export default {
   emits: ['showPublicObjectDetails','filterByCategory'],
 
 created() {
+  
     let jsonRequest = {
-        search_categories : [7]
+        search_categories : this.search_categories
       }
 
     this.getObjectsCategory(jsonRequest)
@@ -58,6 +60,22 @@ created() {
     },
 
 methods: {
+
+    async getMoreObjects()
+    {
+      let jsonRequest = {
+        search_categories : this.search_categories,
+        limited : 400
+        }
+
+        let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects_by_category",jsonRequest);
+        console.log("/public_search_objects_by_category Response:"+JSON.stringify(response_json.data))
+        this.objects = response_json.data ; 
+        this.objects.sort((a, b) => b.id - a.id );
+        this.objects_filtered=this.objects ;
+
+    },
+
 
     showObjectDetailsPublic(obj)
     {
