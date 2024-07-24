@@ -10,17 +10,12 @@
     <div class="border border-1 rounded text-white border-success" >
 
          <!--HEADER -->
-         <div class="d-flex justify-content-between">
-            <div class="m-2 p-2" >
-                 Intercambio en Camino
-            </div>
+         <div>
+             Tiempo estimado : <text style="font-size:16px" class="text-warning">2 dias</text> <br>
+             Costo Retiro y Despacho : <text class="text-warning"> $ {{offer.amount}}</text><br>
+             Forma de Pago : <text class="text-warning"> {{paymentType(offer.payment_type)}}</text> <br>
+         </div>
 
-            <div class="text-center" >
-                <i style="font-size:36px"  class="text-success bi bi-truck m-3"></i>
-                <br>
-                <text style="font-size:20px" class="text-success">2 dias</text>
-            </div>
-        </div>
         <!-- BODY -->
 
         <!-- BODY -->
@@ -35,8 +30,6 @@
                 </div>   
                 
                 
-                
-                <br>
                 Y  te llevaremo el objeto de <b>@{{offer.dest_owner_name}}</b><br>
                <img v-if="my_objects!=null && my_objects.length>0 " class=""  style="width:80px" :src="PATH_PRODUCT_IMG+'/'+my_objects[0].img_ref1+'_thumb'" /> 
                 {{offer.title}}  
@@ -108,6 +101,14 @@ created() {
     },
 
 methods: {
+
+    paymentType(offer)
+    {
+        if (offer==1)
+        {return "Transferencia"}
+        if (offer ==2)
+        {return "Contra Entrega"}
+    },
 
     amountFormatter(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
