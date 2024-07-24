@@ -6,7 +6,7 @@
  
  <div>
   
-    <div class="border border-1  " style="border-radius: 15px; background-color:#090C15"    >
+    <div class="border border-1  " style="border-radius: 15px;"    >
 
         <div class="d-flex justify-content-between">
           
