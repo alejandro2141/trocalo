@@ -101,7 +101,7 @@ import axios from 'axios'
 
 
     <div v-else>
-      <PaymentProcessStart :offer="offer" v-on:close="closePaymentProcessStart"/>
+      <PaymentProcessStart :offer="offer" :session_data="session_data" v-on:close="closePaymentProcessStart"/>
     </div>
 
 
