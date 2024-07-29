@@ -93,8 +93,7 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
   
   </div>
 
-        <br>
-        <br>
+        
     
     
 </div>
