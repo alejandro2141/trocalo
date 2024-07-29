@@ -5,7 +5,7 @@ import InventoryList from './InventoryList.vue'
 import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
 import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
 
-import { BKND_CONFIG } from '../../config.js'
+import { BKND_CONFIG ,SHIPPING_PRICE } from '../../config.js'
 import axios from 'axios'
 
 </script>
@@ -29,15 +29,13 @@ import axios from 'axios'
             <p>
 
             <text  v-if="proposal_summary!=null && proposal_summary.objectYouWant!=null" class="fw-bold">  
-                {{proposal_summary.objectYouWant.owner_name}}
+               <b>@{{proposal_summary.objectYouWant.owner_name}}</b>
             </text>
               podrá  Aceptar o Rechazar tu Propuesta.
-            
             </p> 
             
-                        
-            Cuando {{proposal_summary.objectYouWant.owner_name}} acepte,  tendrás 3 dias para pagar el  Retiro y Despacho de los objetos<br>
-            <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp <br>
+            Si acepta, tu tendrás 3 dias para pagar el  Retiro y Despacho de los objetos<br>
+            <text style="font-size:20px" class="text-warning"> ${{SHIPPING_PRICE}} </text> Clp <br>
             <br>
             Tan pronto el pago este realizado, el retiro del producto se realizara en tu dirección registrada: 
 
