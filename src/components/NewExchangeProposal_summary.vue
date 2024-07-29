@@ -5,7 +5,7 @@ import InventoryList from './InventoryList.vue'
 import InventoryObjectEmpty from './InventoryObjectEmpty.vue'
 import ShowSenderTransactionConfirmation from './ShowSenderTransactionConfirmation.vue'
 
-import { BKND_CONFIG } from '../../config.js'
+import { BKND_CONFIG,SHIPPING_PRICE } from '../../config.js'
 import axios from 'axios'
 
 </script>
@@ -47,7 +47,7 @@ import axios from 'axios'
 
 
           <p>
-          Costo Retiro y Despacho : <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp 
+          Costo Retiro y Despacho : <text style="font-size:20px" class="text-warning"> ${{SHIPPING_PRICE}} </text>Clp 
           </p>
           
           <div  style="font-size:16px "  class="d-flex justify-content-start">
