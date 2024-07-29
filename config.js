@@ -6,8 +6,8 @@ let BKND_REGIONS = [] ;
 let BKND_CONFIG = {
     //BKND_HOST : "HTTP://ec2-3-143-168-51.us-east-2.compute.amazonaws.com:8080",
     //local ENv
-  BKND_HOST : "https://reusar.cl:8084",
-  //BKND_HOST : "http://localhost:8080",
+  //BKND_HOST : "https://reusar.cl:8084",
+  BKND_HOST : "http://localhost:8080",
    // BKND_HOST : "http://ec2-3-149-255-22.us-east-2.compute.amazonaws.com:8080",
     
     //DEVEL
@@ -20,6 +20,9 @@ let BKND_CONFIG = {
 
 // let PATH_PRODUCT_IMG = "public/productImages/" ;
  let PATH_PRODUCT_IMG = "/public/productImages/" ;
+
+// SHIPPING PRICE DEFAULT clp
+ let SHIPPING_PRICE = "5.000" ;
 
 
  let CATEGORIES = [
@@ -41,18 +44,6 @@ let BKND_CONFIG = {
   { name: "Telefonia"         , id: 14 , icon:"bi bi-phone-vibrate" },
   { name: "Vehiculos"         , id: 8 , icon:"bi bi-car-front" } , 
   { name: "Vestuario"         , id: 4 , icon:"bi bi-universal-access" } ,
-
-
-
-
- 
-
- 
-
-
-
-
-
  
 ] ;
 
@@ -542,5 +533,5 @@ let REGION_ZONES = {
 
 
 
-export {REGION_ZONES ,CATEGORIES, BKND_CONFIG, PATH_PRODUCT_IMG } ;
+export {REGION_ZONES ,CATEGORIES, BKND_CONFIG, PATH_PRODUCT_IMG, SHIPPING_PRICE } ;
 
