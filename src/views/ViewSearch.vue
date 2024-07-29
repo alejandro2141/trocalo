@@ -2,10 +2,12 @@
 
 import FilterForSearchView from '../components/FilterForSearchView.vue'
 import SearchResult from '../components/SearchResult.vue'
+/*
 import SearchCategoriesLast from '../components/SearchCategoriesLast.vue'
 import SearchCategoriesGames from '../components/SearchCategoriesGames.vue'
 import SearchCategoriesBooks from '../components/SearchCategoriesBooks.vue'
 import SearchCategoriesClothes from '../components/SearchCategoriesClothes.vue'
+*/
 import InventoryObjectDetailedPublicOffer from '../components/InventoryObjectDetailedPublicOffer.vue'
 
 import NewExchangeProposal_SelectObjectInventory from '../components/NewExchangeProposal_SelectObjectInventory.vue'
