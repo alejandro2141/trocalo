@@ -1,7 +1,7 @@
 <script setup  >
 import InventoryObjectDetailed from './InventoryObjectDetailed.vue'
 
-import { PATH_PRODUCT_IMG } from '../../config.js'
+import { PATH_PRODUCT_IMG,SHIPPING_PRICE } from '../../config.js'
 
 
 </script>
@@ -21,15 +21,13 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
         
             <InventoryObjectDetailed  :object=object   :session_data="session_data" />
         
-            <p v-if="session_data!=null && object!= null"  style="font-size:16px" class="w-100 text-start mt-2">
-                    Valor Retiro y Despacho  <text style="font-size:20px" class="text-warning"> $10.000 </text>Clp
+            <p v-if="object!= null"  style="font-size:16px" class="w-100 text-start mt-2">
+                    Valor Retiro y Despacho  <text style="font-size:20px" class="text-warning"> ${{SHIPPING_PRICE}} </text> Clp
             </p>
         
         <div v-if="session_data!=null && object!= null"  class="m-4 pb-4 d-flex justify-content-center" >
               
             <div v-if="session_data.id!=null && session_data.id != object.owner_id" >
-
-               
                 <button @click="nextStep(object)"   type="button" class="btn btn-primary">
                     Me interesa este Objeto
                 </button>
@@ -42,8 +40,6 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
         <div v-else class="text-secondary d-flex justify-content-center border border-1 p-4">
             Usted debe estar registrado para comenzar a intercambiar 
-
-          
         </div> 
 
     </div>
