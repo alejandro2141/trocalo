@@ -34,7 +34,7 @@ import axios from 'axios'
             <input type="email" maxlength="40" style="border-radius: 10px;" autocomplete="off" class="form-control w-75 m-1 " id="inputEmail4" placeholder="" v-model="email">
             </div>
             -->
-            <text class="text-secondary" style="font-size:20px">¿ Como te sientes ? <i class="bi bi-envelope"></i> </text>
+            <text class="text-secondary" style="font-size:20px">¿ Como te sientes ? <br> Envianos tus comentarios<i class="bi bi-envelope"></i> </text>
             <div class="d-flex justify-content-center">
                             
                             <div>
@@ -88,7 +88,7 @@ import axios from 'axios'
 
     <div v-if="show_comments" class=" text-start  w-100 m-2"  >
                 
-                <text>Estamos trabajando para solucionar: </text>
+                <text>Ultimos mensajes: </text>
                <br>
                 <div v-for="comment in comments" :key="comment.id" class="mt-2 " >
                 
