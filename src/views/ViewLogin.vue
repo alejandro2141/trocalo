@@ -129,6 +129,7 @@ import { BKND_CONFIG } from '../../config.js'
 
 
         <!-- INVITATIONS TO OTHER USERS   -->
+        <!--
       <div v-if="session_data!=null  && session_data.invitations !=null && session_data.invitations > 0 ">
         <div  style="font-size:20px" class="text-start mt-1 text-primary   ">
           <text @click="showSendInvitation=!showSendInvitation ; showInvitationSent=false" class="" style="border-radius:15px"  > 
@@ -160,6 +161,8 @@ import { BKND_CONFIG } from '../../config.js'
         <div v-if="showInvitationSent" style="font-size: 20px;">
           <i class="bi bi-emoji-kiss"></i>  Invitacion enviada
         </div>
+
+      --> 
         <!-- END SEND INVITATIONS  -->
 
         <hr>
