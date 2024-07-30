@@ -89,11 +89,11 @@ import axios from 'axios'
         
           <div v-if="category2display != 999" >    
             <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="6" :session_data=" session_data"/>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="21" :session_data=" session_data"/>
           </div>
           <div v-else>    
             <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="30" :session_data=" session_data"/>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="60" :session_data=" session_data"/>
           </div>
       </div>
 <!-- END NEW OBJECTS -->
@@ -114,11 +114,11 @@ import axios from 'axios'
         
           <div v-if="category2display != 2" >    
             <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="6" :session_data=" session_data"/>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="21" :session_data=" session_data"/>
           </div>
           <div v-else>    
             <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="30" :session_data=" session_data"/>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="60" :session_data=" session_data"/>
           </div>
       </div>
 <!-- END BOOKS -->
@@ -138,11 +138,11 @@ import axios from 'axios'
         
           <div v-if="category2display != 7" >    
             <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="6" :session_data=" session_data"/>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="21" :session_data=" session_data"/>
           </div>
           <div v-else>    
             <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="30" :session_data=" session_data"/>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="60" :session_data=" session_data"/>
           </div>
       </div>
 <!-- END BOOKS -->
@@ -162,11 +162,11 @@ import axios from 'axios'
         
           <div v-if="category2display != 7" >    
             <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="6" :session_data=" session_data"/>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="21" :session_data=" session_data"/>
           </div>
           <div v-else>    
             <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="30" :session_data=" session_data"/>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="60" :session_data=" session_data"/>
           </div>
       </div>
 <!-- END VESTUARIO -->
