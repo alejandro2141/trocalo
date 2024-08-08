@@ -27,23 +27,29 @@ import { BKND_CONFIG } from '../../config.js'
         </div>
        
         <div style="height:10px"></div>
-
-        <div  style="font-size:20px" class="d-flex justify-content-left mt-1 text-white">
+<!-- 
+        <button  style="font-size:20px" type="button" class="btn btn-primary m-2 ">
           <text @click="showUserData=!showUserData" class="" style="border-radius:15px"  > 
-              <i class="bi bi-person-lines-fill"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{session_data.name}} &nbsp;&nbsp;&nbsp;&nbsp; 
+             &nbsp;&nbsp;&nbsp;&nbsp; {{session_data.name}} (Tu)&nbsp;&nbsp;&nbsp;&nbsp;  
+             <i class="bi bi-person-lines-fill"></i>
           </text>
-        </div>
-
+        </button>
+-->
         <Transition> 
                 <div v-if="showUserData">
-                        <UserData :session_data="session_data"/>
+                        <UserData v-on:restartSession="$emit('sessionCreated',null )" :session_data="session_data"/>
                     
                         <!-- CHANGE MY DATA -->
-                        <div  style="font-size:20px" class="d-flex justify-content-left mt-1 text-white">
+                      <!--
+                        <button style="font-size:20px" class="btn btn-secondary m-2 ">
                           <text @click="showInsertEmail_Data=!showInsertEmail_Data" class="" style="border-radius:15px"  > 
-                              <i class="bi bi-person-lines-fill"></i>&nbsp;&nbsp;&nbsp;&nbsp; Modificar Mis Datos &nbsp;&nbsp;&nbsp;&nbsp; 
+                              &nbsp;&nbsp;&nbsp;&nbsp; Modificar Mis Datos &nbsp;&nbsp;&nbsp;&nbsp; 
+                              <i class="bi bi-person-lines-fill"></i>
                           </text>
-                        </div>
+                        </button>
+
+                      -->
+                        <hr>
                   </div>
         </Transition>    
 
@@ -79,28 +85,30 @@ import { BKND_CONFIG } from '../../config.js'
          <!-- CHANGE MY DATA -->  
 
          <!-- CLOSE SESION -->
-        <div  style="font-size:20px" class="d-flex justify-content-start mt-1 text-success">
+        <button  style="font-size:20px" type="button" class="btn btn-warning m-2 ">
           <text class="" style="" @click="$emit('sessionCreated',null ); " > 
-            <i class="bi bi-door-open"></i> 
-              &nbsp;&nbsp;&nbsp;&nbsp; Cerrar Sesion &nbsp; Exit
+            
+              &nbsp;&nbsp;&nbsp;&nbsp; Cerrar Sesion &nbsp; Exit &nbsp;&nbsp;
+              <i class="bi bi-door-open"></i> 
           </text>
-        </div>
+        </button>
         <br>
          <!-- CLOSE SESION -->  
 
 
 
         <!-- CAMBIAR PASSWORD -->
-        <div  style="font-size:20px" class="d-flex justify-content-start mt-1 text-warning   ">
+        <button  style="font-size:20px"  type="button" class="btn btn-danger m-2"  >
           <text @click="showInsertEmail_password=!showInsertEmail_password" class="" style="border-radius:15px"  > 
+            
+            &nbsp;&nbsp;&nbsp;&nbsp; Cambiar Password  &nbsp;&nbsp;&nbsp;&nbsp;
             <i class="bi bi-key"></i>
-            &nbsp;&nbsp;&nbsp;&nbsp; Cambiar Password 
           </text>
-        </div>
+        </button>
 
         <!--  INSER EMAIL CHANGE PASSWORD -->
         <div v-if="showInsertEmail_password" class="position-absolute top-0 start-0 bg-dark w-100 ">
-          <div class="d-flex justify-content-center w-100">
+          <div class="d-flex justify-content-center w-100  ">
 
             <div> 
 
@@ -131,12 +139,14 @@ import { BKND_CONFIG } from '../../config.js'
         <!-- INVITATIONS TO OTHER USERS   -->
         
       <div v-if="session_data!=null  && session_data.invitations !=null && session_data.invitations > 0 ">
-        <div  style="font-size:20px" class="text-start mt-1 text-primary   ">
+        <button  style="font-size:20px" type="button" class="btn btn-success m-2">
           <text @click="showSendInvitation=!showSendInvitation ; showInvitationSent=false" class="" style="border-radius:15px"  > 
+            
+            <!-- {{ session_data.invitations }} -->
+            &nbsp;&nbsp;&nbsp;&nbsp;  Invitar a un amigo &nbsp;&nbsp;&nbsp;&nbsp;
             <i class="bi bi-people"></i>
-            &nbsp;&nbsp;&nbsp;&nbsp;  Invitaciones disponibles {{ session_data.invitations }}
           </text>
-        </div>
+        </button>
 
        
          
@@ -330,7 +340,7 @@ export default {
         login_message:"" ,
         requestReceived:null ,
 
-        showUserData : false ,
+        showUserData : true ,
 
         showSendInvitation: false ,
         emailToInvite : null ,
