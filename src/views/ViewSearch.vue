@@ -57,14 +57,12 @@ import axios from 'axios'
     </div>
 
     <div v-else>
-
             <div v-for="category in CATEGORIES"  >
                 <text @click="filterByCategory(category.id)" style="font-size:16px" > 
                   <i class="bi" :class="category.icon" ></i>  {{category.name}} 
                 </text> 
                 <br>
             </div>
-        
     </div>
 
     <!-- END SHOW RESULT SEARCH-->
