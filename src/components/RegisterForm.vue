@@ -131,11 +131,8 @@ import {  REGION_ZONES, BKND_CONFIG } from '../../config.js'
                     <input type="text"  autocomplete="off"  class="form-control" id="specialty" placeholder="Ej: Kinesiologia, psicologia, terapia.." v-model="specialty">
                 -->
                     <select class="form-select form-select border-2"  name="languages" id="zone" :class="[{ 'border-success' : (valid_address_location_zone==3)},{ 'border-danger' : (valid_address_location_zone==1)}]"  v-model="address_location_zone" placeholder="XXX" >
-                        
                         <option  value="0">- Seleccione Comuna -</option>        
                         <option v-for="comuna in comunas_list_filtered" :value="comuna.identifier" >{{comuna.name}}</option>        
-                      
-
                     </select>
                 </div>
                 <br>
