@@ -80,11 +80,16 @@ import axios from 'axios'
           <hr>
           <text style="font-size: 25px;" @click="selectedCategory(999)" > 
             
-            <text v-if="category2display == 999" class="text-warning"> <i class="bi bi-caret-left-fill"></i> ........... 
+            <text v-if="category2display == 999" class="text-warning"> 
+              <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp; Nuevos Objetos
             </text>
-            <text v-else> <i class="bi bi-caret-right-fill"></i>  
+
+            <text v-else> 
+              <i class="bi bi-caret-right-fill"></i> Nuevos Objetos
             </text>
-            Nuevos Objetos
+            
+           
+          
           </text>
         
           <div v-if="category2display != 999" >    
@@ -103,12 +108,14 @@ import axios from 'axios'
           <hr>
           <text style="font-size: 25px;" @click="selectedCategory(2)" > 
             
-            <text v-if="category2display == 2" class="text-warning"> <i class="bi bi-caret-left-fill"></i> ........... 
+            <text v-if="category2display == 2" class="text-warning"> 
+                <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp;  Libros 
             </text>
-            <text v-else> <i class="bi bi-caret-right-fill"></i>  
+            <text v-else> 
+              <i class="bi bi-caret-right-fill"></i> Libros 
             </text>
             
-              Libros 
+           
             
           </text>
         
@@ -129,11 +136,11 @@ import axios from 'axios'
           <hr>
           <text style="font-size: 25px;" @click="selectedCategory(7)" > 
             
-            <text v-if="category2display == 7" class="text-warning"> <i class="bi bi-caret-left-fill"></i> ........... 
+            <text v-if="category2display == 7" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juegos
             </text>
-            <text v-else> <i class="bi bi-caret-right-fill"></i>  
+            <text v-else> <i class="bi bi-caret-right-fill"></i>   Juegos
             </text>
-              Juegos 
+             
           </text>
         
           <div v-if="category2display != 7" >    
@@ -153,11 +160,11 @@ import axios from 'axios'
           <hr>
           <text style="font-size: 25px;" @click="selectedCategory(4)" > 
             
-            <text v-if="category2display == 4" class="text-warning"> <i class="bi bi-caret-left-fill"></i> ....... 
+            <text v-if="category2display == 4" class="text-warning"> <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp; Vestuario 
             </text>
-            <text v-else> <i class="bi bi-caret-right-fill"></i>  
+            <text v-else> <i class="bi bi-caret-right-fill"></i>  Vestuario
             </text>
-              Vestuario 
+             
           </text>
         
           <div v-if="category2display != 7" >    
