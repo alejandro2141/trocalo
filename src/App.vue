@@ -24,7 +24,10 @@ const location = useRoute();
   <!-- ALWAYS DISPLAY  -->     
           <div class="d-flex justify-content-center w-100">
             <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="Welcome">  
-              <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text>
+               <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> 
+              <!-- <i style="color:#FFF ; font-size : 55px ;"   class="bi bi-bootstrap-reboot"></i> -->
+
+              <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text>
             </RouterLink>   
           </div> 
   <!-- END ALWAYS DISPLAY  -->
@@ -108,6 +111,8 @@ const location = useRoute();
 
     </div>
 <!-- END PRIVATE SESSION --> 
+
+    
   
       <RouterView  v-on:sessionCreated="sessionCreated"  :textToSearch="textToSearch" :session_data='session_data' />
     
@@ -118,6 +123,15 @@ const location = useRoute();
     </div>
 
   </div>
+  
+
+  <div  v-if="$route.name == 'mainView' || $route.name == 'Welcome' " style="position: fixed; bottom: 0px; width: 350px;" >
+      <div class="d-flex justify-content-center">
+          <a href="whatsapp://send?text=REUSAR.CL.%20Intercambia%2C%20reusa%2C%20recicla%20tus%20objetos%20en%20nuestra%20comunidad%20https%3A%2F%2Freusar.cl" data-action="share/whatsapp/share"><i style="font-size: 26px" class="bi bi-whatsapp text-success p-2"></i></a>
+      </div>
+  </div>
+
+  
 
 </div>
 </template>
