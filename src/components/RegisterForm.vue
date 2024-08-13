@@ -45,20 +45,13 @@ import {  REGION_ZONES, BKND_CONFIG } from '../../config.js'
                                 +56    
                             </div>
                             <div>
-                                <input type="text"  autocomplete="off" class="form-control border-2" :class="[{ 'border-success ' : (valid_phone==3)},{ 'border-danger' : (valid_phone==1)}]" id="inputPhone" placeholder="Ej: XXXXXXXXX" v-model="phone">
+                                <input type="text"  autocomplete="off" class="form-control border-2" :class="[{ 'border-success ' : (valid_phone==3)},{ 'border-danger' : (valid_phone==1)}]" id="inputPhone" placeholder="Ej: +56975323322" v-model="phone">
                             </div>
                         </div>
                     </div>
                    
                 </div>
-
-               
-                <!--
-                <div class="form-group ">
-                    <label for="inputDocId">N° Cedula RUT </label>
-                    <input type="text"  autocomplete="off" class="form-control" id="inputDocId" placeholder="xx.xxx.xxx-y" v-model="doc_id">
-                </div>
-                -->
+              
             <br>
             
         <!-- 
