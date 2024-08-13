@@ -19,7 +19,7 @@ const location = useRoute();
    
   <div class="m-0 p-0" >
    
-    <div class="bg-dark p-0 m-0" style="width: 350px; top:0px">
+    <div class="bg-dark p-0 m-0" style="width: 380px; top:0px">
      
   <!-- ALWAYS DISPLAY  -->     
           <div class="d-flex justify-content-center w-100">
