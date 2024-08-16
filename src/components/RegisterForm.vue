@@ -473,7 +473,7 @@ export default {
         {
             this.names = this.capitalizeNames(newVal) 
             //validate Names
-            if (this.names.length > 3 )
+            if (this.names.length > 1 )
             {
                 this.valid_names = 3 
             }
@@ -488,7 +488,7 @@ export default {
         {
             this.last_name1=this.capitalizeNames(newVal)    
               //validate Names
-            if (this.last_name1.length > 5 )
+            if (this.last_name1.length > 1 )
             {
                 this.valid_last_name1 = 3 
             }
@@ -502,7 +502,7 @@ export default {
         {
             this.last_name2=this.capitalizeNames(newVal)
                //validate Names
-               if (this.last_name2.length > 5 )
+               if (this.last_name2.length > 1 )
                 {
                     this.valid_last_name2 = 3 
                 }
