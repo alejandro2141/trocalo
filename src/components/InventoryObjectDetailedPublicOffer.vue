@@ -23,7 +23,7 @@ import { PATH_PRODUCT_IMG,SHIPPING_PRICE } from '../../config.js'
         
             <p v-if="object!= null"  style="font-size:16px" class="w-100 text-start mt-2">
                     Valor Retiro y Despacho  <text style="font-size:20px" class="text-warning"> ${{SHIPPING_PRICE}} </text> Clp
-            </p>
+            </p> 
         
         <div v-if="session_data!=null && object!= null"  class="m-4 pb-4 d-flex justify-content-center" >
               
@@ -36,17 +36,35 @@ import { PATH_PRODUCT_IMG,SHIPPING_PRICE } from '../../config.js'
                   Este objeto te pertenece
             </div>
 
+
+
         </div>
 
         <div v-else class="text-secondary d-flex justify-content-center border border-1 p-4">
             Usted debe estar registrado para comenzar a intercambiar 
-        </div> 
+        </div>
+
+        <div class="d-flex justify-content-center m-2 text-success">
+     
+            <a class="button text-success" :href="'whatsapp://send?text='+getTextToShareURLEncoded(object)+' '" data-action="share/whatsapp/share">
+
+                compartir
+                <i style="font-size: 26px" class="bi bi-whatsapp text-success p-2"></i>
+                
+
+            </a>
+
+        </div>
+    </div>
+
+
+
+        </div>
+
+          
 
     </div>
-    </div>
-
-
-</div>
+   
     
 
 </template>
@@ -91,6 +109,17 @@ export default {
 			},
 
   methods: {
+
+    getTextToShareURLEncoded(obj)
+    {
+        let text_share=`https://reusar.cl/ViewObjectFromSocial?id=${obj.id} 
+        ${obj.title}
+        ${obj.description}  
+        ` ;
+         
+        return  encodeURI(text_share);
+    },
+
     closeModal()
     {
         this.$emit('closeModal')
