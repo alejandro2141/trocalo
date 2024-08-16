@@ -12,7 +12,7 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
 -->
 
 
-<div style="width:350px">
+<div style="width:380px">
 
     <div  v-if="showObjectDetail" class=" mt-0 pt-0 w-100" style=" font-size:16px;width: 100%">
 
