@@ -87,22 +87,32 @@ const location = useRoute();
 <!-- PRIVATE  INVENTORY, RECEIVED, SENT , SHOW only when is not FOR SEARCH -->
 
     <div v-if="session_data!=null && session_data.user!=null && $route.name != 'ViewSearch' " class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
-     
+   
+        <!-- 
         <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">
           <div class="d-flex align-items-center flex-column" >
             <i class="bi bi-backpack3"></i> 
             <p style="font-size:16px ; " class="m-1" >Inventario</p> 
           </div>
-        </RouterLink>         
+        </RouterLink>       
+        -->  
+   
+      <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') , 'nonselected' : ( location.name  != 'ViewMyInventory') }"  to="/ViewMyInventory">
+          <div class="d-flex align-items-center flex-column" >
+            <i class="bi bi-backpack3"></i> 
+            <p style="font-size:16px ; " class="m-1" >Inventario</p> 
+          </div>
+      </RouterLink>   
+
         
-        <RouterLink   style="color:#91D5FE ; font-size : 45px ;" class="p-2" :class="{'selected'  : ( location.name  == 'ViewProposalsReceived') }"  to="/ViewProposalsReceived">
+        <RouterLink   style="color:#91D5FE ; font-size : 45px ;" class="p-2" :class="{'selected'  : ( location.name  == 'ViewProposalsReceived') , 'nonselected' : ( location.name  != 'ViewProposalsReceived')  }"  to="/ViewProposalsReceived">
           <div class="d-flex align-items-center flex-column" >
             <i class=" bi bi-cloud-download"></i>
             <p style="font-size:16px" class="m-1">Recibidas</p>
           </div>
         </RouterLink>    
         
-        <RouterLink   style="color:#17C000 ; font-size : 45px ; " class="p-2" :class="{ 'selected' : ( location.name  == 'ViewProposalsSent') }"   to="/ViewProposalsSent">
+        <RouterLink   style="color:#17C000 ; font-size : 45px ; " class="p-2" :class="{ 'selected' : ( location.name  == 'ViewProposalsSent') , 'nonselected' : ( location.name  != 'ViewProposalsSent')  }"   to="/ViewProposalsSent">
           <div class="d-flex align-items-center flex-column" >
             <i class=" bi bi-cloud-upload"></i>
             <p style="font-size:16px" class="m-1">Enviadas</p>
@@ -155,16 +165,16 @@ font-size:40px ;
 color:white
 }
 
-.selected{
-/*background-color  : #172F14*/
-/*background-color  : #1F321D */
-/* background-color  : #122810 */ 
-/*background-color  : #063000 */
-
-/*background-color  : #6c757d*/
-
-background-color  : #111 ;
+.nonselected{
 border-radius: 17px; 
+border : solid ; 
+border-color: #333 ;
+}
+
+.selected{
+
+border-radius: 17px; 
+border : solid ;  
 
 }
 
