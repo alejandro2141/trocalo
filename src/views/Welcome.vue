@@ -33,47 +33,7 @@ import axios from 'axios'
   
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
   
-  <!-- EDITED 18/07/2024
-    <div>
-      <FilterForSearchView v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data" />
-    </div>
-     <br>
-  -->
-
-    <!-- SHOW RESULT SEARCH-->
-
-
-<!--
-    <div v-if="!showCategories" style="position: absolute; top: 0px;" class="bg-danger">
-          
-
-        <button  style="position:absolute ; top:0px ; right:0px " @click="showCategories=true" type="button" class="btn btn-secondary">
-                <i style="font-size:26px" class="bi bi-arrow-left-square"></i>
-        </button>
-        
-        <div class="d-flex justify-content-between">
-           
-
-            <div class="d-flex justify-content-between">
-                <text style="font-size: 25px;" class="m-2">{{titleSearchResult}}</text>
-            </div> 
-
-           
-        </div>
-
-
-        <div>
-           <SearchResult    v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
-        </div>
-    </div>
--->
-
-    <!-- END SHOW RESULT SEARCH-->
-
-
-  <div v-if="showCategories">   
-      
-      
+  <div v-if="showCategories">       
 
 <!-- END NEW OBJECTS -->
       <div v-if="category2display == 0 || category2display == 999  ">
@@ -88,8 +48,7 @@ import axios from 'axios'
               <i class="bi bi-caret-right-fill"></i> Nuevos Objetos
             </text>
             
-           
-          
+         
           </text>
         
           <div v-if="category2display != 999" >    
@@ -179,29 +138,6 @@ import axios from 'axios'
 <!-- END VESTUARIO -->
 
 
-<!--
-      <div v-if="category2display == 0 ">
-
-          <SearchCategoriesLast  v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data"/>
-      </div>
-      
-      <div v-if="category2display==7 || category2display == 0">
-          <hr>
-          <SearchCategoriesGames v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
-      </div>
-
-      <div v-if="category2display == 2 || category2display == 0">
-          <hr>
-          <SearchCategoriesBooks v-on:exchangeObject="exchangeObject" :categoryDisplay="category2display" v-on:selectedCategory="selectedCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" /> 
-      </div>
-
-      <div v-if="category2display == 4 || category2display == 0">
-          <hr>
-          <SearchCategoriesClothes v-on:exchangeObject="exchangeObject" v-on:filterByCategory="filterByCategory" v-on:showPublicObjectDetails="showPublicObjectDetails" :session_data="session_data" />
-      </div>
--->
-
-
   </div> 
 
   </div>
@@ -283,9 +219,38 @@ export default {
 
 created() {
    this.search_event = false
+   this.getUrlParams()
      },
 
 methods: {
+
+  // Check if URL bring a objectID from Social to Show
+
+    async getUrlParams()
+    {
+      const url = new URL(window.location.href);
+      console.log("param URL url :"+url)
+      var objid = url.searchParams.get("id");
+      if (objid != null )
+      {
+        console.log("param URL objid:"+objid)
+        this.getObjectById(objid)
+      }
+    },
+
+    async getObjectById(objid)
+    {
+    let json_request ={
+      objects_ids : objid
+      }
+
+    let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_get_objects",json_request);
+    console.log("/private_get_objects Response:"+JSON.stringify(response_json.data))
+    let object  = response_json.data ; 
+    console.log("param object found : "+JSON.stringify(object[0]))
+     this.showPublicObjectDetails(object[0])
+    },
+
 
     selectedCategory(val)
     {
@@ -299,7 +264,6 @@ methods: {
         {
          this.category2display = val  
         }
-
       
     },
     /*
