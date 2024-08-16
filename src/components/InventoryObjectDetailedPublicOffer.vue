@@ -112,11 +112,23 @@ export default {
 
     getTextToShareURLEncoded(obj)
     {
-        let text_share=`https://reusar.cl/ViewObjectFromSocial?id=${obj.id} 
-        ${obj.title}
-        ${obj.description}  
-        ` ;
+        let text_share=`Este objeto esta disponible para Intercambiar 
+         ${obj.title}
+         `
+
+         if (obj.description != "null"  )
+         {
+         text_share = text_share + obj.description 
+         }
+
+         if (obj.alternative1 != "null"  )
+         {
+         text_share = text_share + " Lo cambiaria por:"+obj.alternative1
+         }
+
+        text_share=text_share+ `Puedes hacer una propuesta de intercambio en:  https://reusar.cl/ViewObjectFromSocial?id=${obj.id} `;
          
+
         return  encodeURI(text_share);
     },
 
