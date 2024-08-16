@@ -24,8 +24,10 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
         </div>
        
       
-        <div class="bg-dark text-center" style="max-height: 350px; max-width: 350px;">
-            <img @click="zoomImage()"  style="max-height: 350px;max-width:350px;border-radius: 7px;" :src="main_image+'_thumb'"  /> 
+      <!--  <div class="bg-dark text-center" style="max-height: 350px; max-width: 350px; min-height: 350px  "> -->
+        <!--  <div class="bg-dark text-center" style="height: 350px; width: 350px; ">-->
+        <div class="bg-dark text-center" style="max-height: 370px; max-width: 370px; min-height: 250px ">
+            <img @click="zoomImage()"  style="max-height: 370px;max-width:370px;border-radius: 7px;" :src="main_image+'_thumb'"  /> 
         </div>
         <br>
 
