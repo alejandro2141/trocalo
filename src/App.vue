@@ -112,24 +112,19 @@ const location = useRoute();
     </div>
 <!-- END PRIVATE SESSION --> 
 
-    
-  
       <RouterView  v-on:sessionCreated="sessionCreated"  :textToSearch="textToSearch" :session_data='session_data' />
-    
-    
-    
-    
     
     </div>
 
   </div>
   
-
+<!--
   <div  v-if="$route.name == 'mainView' || $route.name == 'Welcome' " style="position: fixed; bottom: 0px; width: 350px;" >
       <div class="d-flex justify-content-center">
           <a href="whatsapp://send?text=REUSAR.CL.%20Intercambia%2C%20reusa%2C%20recicla%20tus%20objetos%20en%20nuestra%20comunidad%20https%3A%2F%2Freusar.cl" data-action="share/whatsapp/share"><i style="font-size: 26px" class="bi bi-whatsapp text-success p-2"></i></a>
       </div>
   </div>
+-->
 
   
 
