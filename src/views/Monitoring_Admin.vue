@@ -10,11 +10,8 @@ import { BKND_CONFIG } from '../../config.js'
 <template>
   <div class="w-100 position-absolute top-0 start-0 bg-dark ">
 
-
     <div v-if="showLogin" class="w-100 h-100 bg-darg" >
-       
         
-          
           <div class="container">
             <label for="uname"><b>Username</b></label>
             <br>
@@ -28,16 +25,7 @@ import { BKND_CONFIG } from '../../config.js'
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
           </div>
 
-        
-
-
-
-
-
-
     </div>
-
-
 
     <div v-else>
         <div class=" m-1 p-0 w-100" >
