@@ -11,14 +11,12 @@ import { BKND_CONFIG } from '../../config.js'
 </script>
 
 
-
 <template>
   <div class="w-100 position-absolute top-0 start-0 bg-dark ">
 
     <div class=" m-1 p-0 w-100" >
     <div class="d-flex justify-content-center" >
     <div  style="width: 350px;">
-
    
     <div v-if="session_data!=null && session_data.user!=null" class="text-center" >
        
@@ -200,8 +198,9 @@ import { BKND_CONFIG } from '../../config.js'
           <a  @click="$router.push('Welcome')"  class="text-white"><i class="display-5 bi bi-x-lg"></i></a> 
         </div>
        
-     
- <!-- LOGIN FORM --> 
+ <!-- ***************************************** -->    
+ <!-- MAIN LOGIN FORM --> 
+ <!-- ***************************************** --> 
 
             <div class="d-flex justify-content-center mt-5">
                     <div class=""  > 
@@ -223,6 +222,7 @@ import { BKND_CONFIG } from '../../config.js'
          
             <div id="formLogin" class="mx-auto p-3"  style="width: 95%;">
                 <form autocomplete="on" >
+
                    <input  v-model="form_token" id="form_token" name="form_token" type="hidden"  > 
                    <input class="form-control form-control-lg ml-2" v-model="form_email" id="form_email" name="form_email"  type="email" placeholder="Email" aria-label=".form-control-lg example"   style=" border-radius: 15px;" >
                    <br/>
@@ -235,7 +235,7 @@ import { BKND_CONFIG } from '../../config.js'
                     </i>
                 </form>   
             </div>
-
+ <!-- ***************************************** --> 
 
 <!-- REGISTER FORM -->
              <div  v-if="!requestReceived" @click="showRegisterForm=!showRegisterForm; requestReceived=false" class="d-flex justify-content-center w-100">
@@ -351,6 +351,7 @@ export default {
 
         emailToRecover : false ,
        
+        
 
         }
     },
@@ -407,7 +408,7 @@ export default {
         },
 
         async sendLogin()
-        {
+        { 
             console.log("Login attemp user: "+this.form_email+" password:"+this.form_pass)
            const login_data = {
                               user : this.form_email,
@@ -439,6 +440,17 @@ export default {
                   session_data_result.id  =   response_json.data.id
                   session_data_result.invitations = response_json.data.invitations
                   
+
+                //CHECK IF IS A LOGIN FORCED FROM SOCIALVIEWOBJECT
+                   let objid= await this.getObjectIdFromSocial()
+                   console.log("Object id from social:"+objid)
+                   if (objid!=null)
+                   {
+                   session_data_result.objectid = objid ; 
+                   }
+                //***************************************************
+
+
                   this.$emit('sessionCreated',session_data_result);
                   console.log("session data created:"+JSON.stringify( session_data_result) )
                   
@@ -457,9 +469,6 @@ export default {
             console.log("Login User Data NULL")
            }
 
-
-           
-
         /*
           let session_data_result = {user:"JAMO123", active:true , pass:"eeee", name:"Juan Alejandro Morales Miranda", rut:"139093712"  , phone1:"56975397200", phone2:"56975397200" , address_street:"Avenida San Pablo" , address_number:"123" , address_apartment:true , address_house:true ,  address_zone1:"Independencia" ,  address_zone2:"Region Metropolitana" ,  address_city:"Santiago" ,  address_country:"Chile"  } 
         
@@ -469,7 +478,19 @@ export default {
           */
             //this.$router.push('/dashboard')
 
-        }
+        },
+
+        async getObjectIdFromSocial()
+          {
+            const url = new URL(window.location.href);
+            console.log("param URL url :"+url)
+            var objid = url.searchParams.get("objid");
+            if (objid != null )
+            {
+              console.log("param URL objid:"+objid)
+              return objid
+            }
+          },
 
 
       },
