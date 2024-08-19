@@ -36,12 +36,18 @@ import { PATH_PRODUCT_IMG,SHIPPING_PRICE } from '../../config.js'
                   Este objeto te pertenece
             </div>
 
-
-
         </div>
 
         <div v-else class="text-secondary d-flex justify-content-center border border-1 p-4">
-            Usted debe estar registrado para comenzar a intercambiar 
+           <div>
+               Debe Ingresar para intercambiar <br>
+                   <button @click="$router.push({ path: 'ViewLogin', query: { objid: object.id } })" type="button" class="btn btn-primary">
+                    Ingresar 
+                   </button> 
+
+
+             </div>
+ 
         </div>
 
         <div class="d-flex justify-content-center m-2 text-success">
@@ -112,21 +118,30 @@ export default {
 
     getTextToShareURLEncoded(obj)
     {
-        let text_share=`Este objeto esta disponible para Intercambiar 
+
+        let text_share=`Encontré esto en REUSAR.CL  
          ${obj.title}
          `
 
          if (obj.description != "null"  )
          {
-         text_share = text_share + obj.description 
+         text_share = text_share + `
+           ${obj.description} 
+           `  
          }
 
          if (obj.alternative1 != "null"  )
          {
-         text_share = text_share + " Lo cambiaria por:"+obj.alternative1
+         
+         text_share = text_share + ` 
+         Lo cambiaria por: ${obj.alternative1} 
+
+         `  
          }
 
-        text_share=text_share+ `Puedes hacer una propuesta de intercambio en:  https://reusar.cl/ViewObjectFromSocial?id=${obj.id} `;
+        text_share=text_share+ `
+          Puedes hacer una propuesta para intercambiarlo en:  https://reusar.cl/ViewObjectFromSocial?id=${obj.id} 
+          `;
          
 
         return  encodeURI(text_share);
