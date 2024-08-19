@@ -292,9 +292,21 @@ export default {
             this.session_data.user = session_data.user
             this.session_data.pass = session_data.pass
             */
+
            this.session_data = session_data ; 
-           this.$router.push('Welcome') 
            this.underline_search=true 
+
+
+           if (session_data.objid !=null )
+           {
+            $router.push({ path: 'ViewObjectFromSocial', query: { id: session_data.objid } })
+           }
+           else 
+           {
+           this.$router.push('Welcome') 
+           }
+
+
             
       },
 
