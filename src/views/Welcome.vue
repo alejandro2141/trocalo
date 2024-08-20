@@ -220,9 +220,23 @@ export default {
 created() {
    this.search_event = false
    this.getUrlParams()
+   this.getSessionObject()
      },
 
 methods: {
+
+  // Check if URL bring a objectID from Social to Show
+     async getSessionObject()
+    {
+      
+      if ( this.session_data.objectid != null )
+      {
+        console.log("objid from session params:"+this.session_data.objectid)
+        this.getObjectById(this.session_data.objectid)
+        this.session_data.objectid = null 
+
+      }
+    },
 
   // Check if URL bring a objectID from Social to Show
 
