@@ -485,7 +485,7 @@ export default {
             const url = new URL(window.location.href);
             console.log("param URL url :"+url)
             var objid = url.searchParams.get("objid");
-            if (objid != null )
+            if (objid != null  )
             {
               console.log("param URL objid:"+objid)
               return objid
