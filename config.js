@@ -33,7 +33,7 @@ let BKND_CONFIG = {
   { name: "Hogar"             , id: 3 , icon:"bi bi-house" } ,
   { name: "Jardin"            , id: 17 , icon:"bi bi-tree" } , 
   { name: "Juegos"            , id: 1 , icon:"bi bi-controller" } ,
-  { name: "Jugetes"           , id: 7 , icon:"bi bi-rocket" } , 
+  { name: "Juguetes"           , id: 7 , icon:"bi bi-rocket" } , 
   { name: "Libros"            , id: 2 , icon:"bi bi-book" } ,
   { name: "Mobilidad"         , id: 16 , icon:"bi bi-scooter" } , 
   { name: "Telefonia"         , id: 14 , icon:"bi bi-phone-vibrate" },
