@@ -30,6 +30,8 @@ import axios from 'axios'
 <template>
 
 <div>
+
+  <SpinnerLoading  :onOff=spinnerOn />
   
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
   
@@ -90,14 +92,14 @@ import axios from 'axios'
 <!-- END BOOKS -->
 
 
-<!-- BOOKS -->
+<!-- JUGUETES -->
       <div v-if="category2display == 0 || category2display == 7 ">
           <hr>
           <text style="font-size: 25px;" @click="selectedCategory(7)" > 
             
-            <text v-if="category2display == 7" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juegos
+            <text v-if="category2display == 7" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juguetes
             </text>
-            <text v-else> <i class="bi bi-caret-right-fill"></i>   Juegos
+            <text v-else> <i class="bi bi-caret-right-fill"></i>   Juguetes
             </text>
              
           </text>
@@ -111,7 +113,33 @@ import axios from 'axios'
             <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="60" :session_data=" session_data"/>
           </div>
       </div>
-<!-- END BOOKS -->
+<!-- END JUGUETES -->
+
+
+<!-- JUEGOS -->
+      <div v-if="category2display == 0 || category2display == 1 ">
+          <hr>
+          <text style="font-size: 25px;" @click="selectedCategory(1)" > 
+            
+            <text v-if="category2display == 1" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juegos
+            </text>
+            <text v-else> <i class="bi bi-caret-right-fill"></i>   Juegos
+            </text>
+             
+          </text>
+        
+          <div v-if="category2display != 1" >    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="21" :session_data=" session_data"/>
+          </div>
+          <div v-else>    
+            <br>
+            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="60" :session_data=" session_data"/>
+          </div>
+      </div>
+<!-- END JUEGOS -->
+
+
 
 
 <!-- VESTUARIO -->
@@ -167,7 +195,7 @@ import axios from 'axios'
   </div>
 
 
-  <SpinnerLoading  :onOff=spinnerOn />
+  
   
   <br>
   <br>
@@ -222,6 +250,15 @@ created() {
    this.getUrlParams()
    this.getSessionObject()
      },
+
+beforeCreate(){
+ // this.spinnerOn = true ;
+
+},
+
+mounted() {
+//this.spinnerOn = false  ;
+      },
 
 methods: {
 
