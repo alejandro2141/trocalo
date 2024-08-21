@@ -41,7 +41,7 @@ import { PATH_PRODUCT_IMG,SHIPPING_PRICE } from '../../config.js'
         <div v-else class="text-secondary d-flex justify-content-center ">
             <div>
                 <button @click="$router.push({ path: 'ViewLogin', query: { objid: object.id } })" type="button" class="btn btn-primary">
-                    Registrarse para Intercambiar 
+                    Registrate para Intercambiar 
                 </button> 
             </div>
  
@@ -116,7 +116,7 @@ export default {
     getTextToShareURLEncoded(obj)
     {
 
-        let text_share=`Encontré esto en REUSAR.CL
+        let text_share=`Esto te podría interesar. Encontré esto en REUSAR.CL
         "${obj.title}" `
 
          if (obj.description != "null"  )
