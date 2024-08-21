@@ -31,7 +31,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
     <div  class="d-flex justify-content-between">
     
         <div v-if="isNewProposal()" class="text-primary text-start"  style="margin-top: -0.7em; margin-left: -0.5em; font-size:20px"> 
-            <i  class="bi bi-star-fill"> </i>
+            <i  class="bi text-primary bi-star-fill"> </i>
         </div>
         <div v-else>
         </div>
