@@ -43,9 +43,9 @@ import axios from 'axios'
     <p class=" text-center" style="font-size:26px; color:#91D5FE ; ">Recibidas </p>
 
 
-      <!-- OF SENT -->
-          <p class=" text-start" style="font-size:20px; ">Porpuestas de Intercambio </p>
-          <p class="text-secondary" style="font-size:12px" >Otros usuarios te envian las siguientes propuestas que puedes aceptar o rechazar, estas expiran en tiempo indicado </p>
+      <!-- OF RECEIVED -->
+         <!--  <p class=" text-start" style="font-size:20px; ">Porpuestas de Intercambio </p> -->
+          <p class="text-secondary" style="font-size:12px" >A la espera que aceptes o rechaces estas propuestas </p>
             <div v-for="of in ofReceived"  > 
 
               <ProposalReceived v-if="getObjBlocked([of.dest_object1,of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5]) == null"  class="m-2" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
