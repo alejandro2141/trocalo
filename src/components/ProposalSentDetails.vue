@@ -50,7 +50,7 @@ import axios from 'axios'
 
 
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-              Te interesa el objeto de <b>{{offer.dest_owner_name}}</b> :  
+              Te interesa el objeto de &nbsp; <b>@{{offer.dest_owner_name}}</b>   
           </div>
          
         <!-- LIST PARTNER OFFER OBJECT  -->
@@ -59,9 +59,9 @@ import axios from 'axios'
           </div>
         <!-- END LIST PARTNER OFFER OBJECT  -->
           
-          <div  style="font-size:16px "  class="m-2">
+          <p  style="font-size:16px "  class="mt-3 mb-0">
             Propones cambiarlo por: 
-          </div>
+          </p>
         
         <!-- LIST MY OFFER OBJECT  -->
            <div v-for="obj in yourOfferObjects"  class="mb-4" > 
