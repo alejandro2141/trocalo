@@ -22,7 +22,7 @@ import axios from 'axios'
                 <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
         </div>
 
-        <text style="font-size:20px">Confirme antes de enviar </text><br>
+        <text style="font-size:21px">Confirme antes de enviar </text><br>
 
         <br>
           <div class="d-flex justify-content-between">
