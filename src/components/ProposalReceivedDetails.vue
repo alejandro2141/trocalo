@@ -46,7 +46,7 @@ import axios from 'axios'
 
           
           <div  style="font-size:16px "  class="text-start">
-            {{offer.source_owner_name}} le interesa tu objeto/s:  
+            <b>@{{offer.source_owner_name}}</b> le interesa tu objeto/s:  
           </div>
           <!-- LIST MY OFFER OBJECT  -->
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
