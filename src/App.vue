@@ -297,7 +297,7 @@ export default {
            this.underline_search=true 
 
 
-           if (session_data.objid !=null )
+           if ( session_data!=null && session_data.objid !=null )
            {
             $router.push({ path: 'ViewObjectFromSocial', query: { id: session_data.objid } })
            }
