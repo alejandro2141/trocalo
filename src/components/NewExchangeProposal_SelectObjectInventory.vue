@@ -27,7 +27,7 @@ import axios from 'axios'
               <div class="d-flex justify-content-between m-0 "  > 
                 
                 <div>
-                  <i style="font-size:45px ;color:rgb(184, 139, 92)" class="bi bi-backpack2"></i>
+                  <i style="font-size:45px ;color:rgb(184, 139, 92)" class="bi bi-backpack3"></i>
                 </div>
 
                 <div></div>
@@ -38,8 +38,8 @@ import axios from 'axios'
 
               </div>
 
-              <div  style="font-size:16px "  class="m-2 w-100 ">
-                 Selecciona objetos de tu Inventario para intercambiar 
+              <div  style="font-size:21px "  class="m-2 w-100 ">
+                 Selecciona de tu Inventario para intercambiar 
              </div>
               <br>
 
