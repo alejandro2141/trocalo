@@ -56,7 +56,11 @@ import axios from 'axios'
           <div v-if="category2display != 999" >    
             <br>
             <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="21" :session_data=" session_data"/>
+            <p @click="selectedCategory(999)" class="text-end p-2 text-primary"> Ver Mas ... </p>
+
           </div>
+
+
           <div v-else>    
             <br>
             <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="60" :session_data=" session_data"/>
@@ -83,6 +87,7 @@ import axios from 'axios'
           <div v-if="category2display != 2" >    
             <br>
             <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="21" :session_data=" session_data"/>
+            <p @click="selectedCategory(2)" class="text-end p-2 text-primary"> Ver Mas ... </p>
           </div>
           <div v-else>    
             <br>
@@ -107,6 +112,7 @@ import axios from 'axios'
           <div v-if="category2display != 7" >    
             <br>
             <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="21" :session_data=" session_data"/>
+            <p @click="selectedCategory(7)" class="text-end p-2 text-primary"> Ver Mas ... </p>
           </div>
           <div v-else>    
             <br>
@@ -131,6 +137,7 @@ import axios from 'axios'
           <div v-if="category2display != 1" >    
             <br>
             <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="21" :session_data=" session_data"/>
+            <p @click="selectedCategory(1)" class="text-end p-2 text-primary"> Ver Mas ... </p>
           </div>
           <div v-else>    
             <br>
@@ -154,9 +161,10 @@ import axios from 'axios'
              
           </text>
         
-          <div v-if="category2display != 7" >    
+          <div v-if="category2display != 4" >    
             <br>
             <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="21" :session_data=" session_data"/>
+            <p @click="selectedCategory(4)" class="text-end p-2 text-primary"> Ver Mas ... </p>
           </div>
           <div v-else>    
             <br>
@@ -164,6 +172,20 @@ import axios from 'axios'
           </div>
       </div>
 <!-- END VESTUARIO -->
+
+
+<!-- FOOTER  LIST CATEGORIES -->
+      <hr> 
+     
+      <div v-for="category in CATEGORIES"  >
+                <text @click="selectedCategory(category.id)" style="font-size:21px" > 
+                    <p class="bi text-center"> 
+                         {{category.name}} <i class="bi" :class="category.icon" ></i>  
+                       
+                    </p>
+                </text>    
+      </div>
+<!-- -->
 
 
   </div> 
