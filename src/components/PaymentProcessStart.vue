@@ -19,8 +19,9 @@ import axios from 'axios'
       </div>
       Actualmente contamos con las siguientes formas de pago. 
       <br>
+        <text class="text-danger">{{error_message}}</text>
       <br>
-      <br>
+
       <button @click="showPaymentOnceDeliver=!showPaymentOnceDeliver ;showTransferData = false ; buttonMsg = 'Contra Entrega' " type="button" class="btn" :class="{ 'btn-success': showPaymentOnceDeliver ,  'btn-secondary': !showPaymentOnceDeliver  }">
         <i class="bi bi-cash-stack "></i>  
         Efectivo contra entrega
@@ -54,10 +55,11 @@ import axios from 'axios'
 
 
       <div class="w-100 d-flex text-center m-3" style="position: fixed; bottom:0%;">
-          <button @click="sendPaymentMethod(); showSelectPaymentMeans=false"  type="button"  class="btn btn-success">
+          <button @click="sendPaymentMethod()"  type="button"  class="btn btn-success">
               Continuar {{buttonMsg}}
           </button>
 
+          
       </div>
 
 
@@ -202,6 +204,7 @@ export default {
         showSelectPaymentMeans : true ,
         PaymentBankTransfer : false ,
         PaymentOnceDeliver : false ,
+        error_message : "" ,
 
         }
   },
@@ -228,17 +231,31 @@ methods: {
         }
 
        console.log("Send Payment Method") 
-       let json_request = 
+       //check if one options was chosen
+
+       if (payment_type != 0)
+       {
+
+             let json_request = 
+              {
+                session_data : this.session_data,
+                proposal_id  : this.offer.id ,
+                payment_type : payment_type   
+              }
+
+              let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_update_proposal_payment", json_request);
+              console.log("/private_update_proposal_payment Response:"+JSON.stringify(jsonResponse.data))
+          
+              let response = jsonResponse.data
+
+              this.showSelectPaymentMeans=false
+
+        }
+        else 
         {
-          session_data : this.session_data,
-          proposal_id  : this.offer.id ,
-          payment_type : payment_type   
+          this.error_message ="Debe seleccionar un metodo de pago"
         }
 
-        let jsonResponse = await axios.post(BKND_CONFIG.BKND_HOST+"/private_update_proposal_payment", json_request);
-        console.log("/private_update_proposal_payment Response:"+JSON.stringify(jsonResponse.data))
-    
-        let response = jsonResponse.data
 
       },
 
