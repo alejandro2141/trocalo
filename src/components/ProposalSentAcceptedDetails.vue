@@ -53,8 +53,8 @@ import axios from 'axios'
                 Dirección: {{session_data.address_street}} <br>
                 Numero: {{session_data.address_number}}<br>
                 Departamento:{{session_data.address_apartment}} <br>
-                Region:{{session_data.address_zone1}}  <br>
-                Comuna: {{session_data.address_zone2}}<br>
+                Region/Region:{{session_data.address_zone1}}  <br>
+                <!-- Comuna/Region: {{session_data.address_zone2}}<br> -->
                 Ciudad{{session_data.address_city}}<br>
                 Pais {{session_data.address_country}}<br>
             
@@ -89,7 +89,9 @@ import axios from 'axios'
         <div class="display-1 text-success w-100 bg-dark p-3 ">  
             <div class="d-flex justify-content-center">
                 <div @click="startPaymentProcess(offer)"  class="">
-                    <button type="button" class="btn btn-danger">Pagar Despacho y Retiro</button>
+                    <button type="button" class="btn btn-success">Seleccionar forma de pago 
+                           <br> <i class="bi bi-cash-coin" style="font-size:21px"></i>
+                    </button>
                 </div>
             </div>
         </div>
