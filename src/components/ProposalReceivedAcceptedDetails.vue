@@ -37,7 +37,7 @@ import axios from 'axios'
               </p>         
             
             <text style="font-size:16px" >
-               @{{offer.source_owner_name}} debe concretar el pago de Retiro y Despacho
+              <b> @{{offer.source_owner_name}} </b>  debe concretar el pago de Retiro y Despacho
             </text>
           </div>       
           
@@ -47,10 +47,12 @@ import axios from 'axios'
 
           <text style="font-size:16px" class="m-2">
                 Tu direccion de retiro: <br>
-                Dirección: {{session_data.address_street}}, 
-                {{session_data.address_number}} ,
-                {{session_data.address_zone2}},
-                {{session_data.address_city}}
+                Dirección: <text > {{session_data.address_street}}, </text>
+                Número: <text > {{session_data.address_number}} ,</text>
+                Departamento: <text > {{session_data.address_number}} ,</text>
+                Comuna/Region :<text> {{session_data.address_zone1}},  </text>
+                <!-- <text v-if="session_data.address_zone2 != 'No Set'" > {{session_data.address_zone2}},  </text> -->
+                Ciudad : <text v-if="session_data.address_city != 'No Set'" > {{session_data.address_city}}    </text>
 
           <!--
                 Departamento:{{session_data.address_apartment}} <br>
