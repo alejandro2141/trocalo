@@ -40,16 +40,19 @@ import axios from 'axios'
             Tan pronto el pago este realizado, el retiro del producto se realizara en tu dirección registrada: 
 
             <i style="font-size:40px" class="bi bi-geo-alt text-warning"></i>
-
-            <br>{{session_data.address_street}} 
-             {{session_data.address_number}}
-             {{session_data.address_apartment}} 
-             {{session_data.address_zone1}}  
-             {{session_data.address_zone2}}
-             {{session_data.address_city}}
-            <br>{{session_data.address_country}}
-            <br>{{session_data.token}} 
             
+                <br>
+                Dirección: {{session_data.address_street}} <br>
+                Numero: {{session_data.address_number}}<br>
+                Departamento:{{session_data.address_apartment}} <br>
+                Region/Region:{{session_data.address_zone1}}  <br>
+                <!-- Comuna/Region: {{session_data.address_zone2}}<br> -->
+                Pais {{session_data.address_country}}<br>
+
+
+
+
+
           </div>
           
           <br>
