@@ -19,13 +19,19 @@
             </div>
 
             <div>
+                 Aceptada por <b> @{{offer.dest_owner_name}} </b>  
+            </div>
+
+
+            <div>
                 {{ evaluateRemainingDaysToPay(offer.date_acceptance) }} dias <i style="font-size:20px"  class="bi bi-cash m-0"></i>
             </div>
         
         </div>
 
     <!-- BODY -->
-    <div class="d-flex justify-content-between">
+<!--
+    <div class="d-flex justify-content-center">
            <div class="m-2">      
                Aceptada por <b> @{{offer.dest_owner_name}} </b>   
                <br>
@@ -33,6 +39,7 @@
                {{offer.title}}  
            </div>
     </div>
+-->
 
     <div>
             <div class="d-flex justify-content-around">
@@ -64,6 +71,11 @@
 
             </div>
     </div>
+
+    <p class="text-start">
+                    Debes concretar el pago de Recoleccion y Despacho.
+                <br>
+    </p>
 
     <!--
         <div class="d-flex justify-content-between">
