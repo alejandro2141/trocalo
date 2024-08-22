@@ -123,7 +123,7 @@ import axios from 'axios'
         <div style="height: 100px;"></div>
         <br>
         
-        <p style="font-size:20px"> Gracias, ya estamos notificando a <b> {{offer.source_owner_name}}</b> que has aceptado el intercambio de objetos. 
+        <p style="font-size:20px"> Gracias, ya estamos notificando a <b> @{{offer.source_owner_name}}</b> que has aceptado el intercambio de objetos. 
           <br> El deberá confirmar en un plazo máximo de 3 dias. 
         </p>
         
