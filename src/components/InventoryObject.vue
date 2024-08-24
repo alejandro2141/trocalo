@@ -27,7 +27,7 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
 
     <!-- INVENTORY OBJECT  -->
     <div v-else class="" >
-        <div v-if="object!=null" @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:120px ; border-style: dotted" >
+        <div v-if="object!=null" @click="selectObject=!selectObject"  class="" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:120px " >
                 <div class=" image-container rounded text-center"  style="width:120px; height:120px">
                     <div class="image-container img  w-100 text-center">
                         <img class="m-1" style=" max-width: 115px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
