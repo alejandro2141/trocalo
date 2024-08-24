@@ -32,163 +32,241 @@ import axios from 'axios'
 <div>
 
   <SpinnerLoading  :onOff=spinnerOn />
+
+
+<!-- END DISPLAY CATEGORIES --> 
+  <div class="d-none d-lg-inline-block" style="width:990px">
+    <hr>
+    <div v-for="category in CATEGORIES" class="d-none d-lg-inline-block" >
+                      <text @click="selectedCategory(category.id)" style="font-size:12px" > 
+                          <p class="bi text-center"> 
+                               {{category.name}} <i class="bi" :class="category.icon" ></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                             
+                          </p>
+                      </text>    
+    </div>
+    <hr>
+  </div>
+ <!-- END DISPLAY CATEGORIES --> 
   
-  <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
+
+
+  <div class="d-flex justify-content-between" v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
   
+
+  <!-- START  LEFT  SECTION Display only in Large devices -->
+      <!-- START BOOKS -->
+  <div class="d-none d-lg-inline-block p-3"   style="width:600px" > 
+    
+            <div v-if="category2display == 0 || category2display == 2 " class="border border-0  category" style="padding-left:20px" >
+             
+              <div v-if="category2display != 2" class="border border-0  " style="border-radius: 10px;" > 
+                <div>
+                <text style="font-size: 25px;" class="text-white" > 
+                Libros
+              </text>   
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="21" :session_data=" session_data"/>
+                <p @click="selectedCategory(2)" class="text-end p-2 "> Ver Mas ... </p>
+
+                </div>
+              </div>
+              <div v-else>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="60" :session_data=" session_data"/>
+              </div>
+          </div>
+  
+  </div>
+      <!-- END BOOKS -->
+  <!-- END  LEFT  SECTION Display only in Large devices -->
+
+
+
+
+<!-- CENTER SECTION ALL DEVICES -->
+
   <div v-if="showCategories">       
 
-<!-- END NEW OBJECTS -->
-      <div v-if="category2display == 0 || category2display == 999  ">
-          <hr>
-          <text style="font-size: 25px;" @click="selectedCategory(999)" > 
-            
-            <text v-if="category2display == 999" class="text-warning"> 
-              <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp; Nuevos Objetos
-            </text>
+    <!-- END NEW OBJECTS -->
+          <div v-if="category2display == 0 || category2display == 999 " class="category">
+              
+              <text style="font-size: 25px;" @click="selectedCategory(999)" > 
+                
+                <text v-if="category2display == 999" class="text-warning"> 
+                  <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp; Recién llegados
+                </text>
 
-            <text v-else> 
-              <i class="bi bi-caret-right-fill"></i> Nuevos Objetos
-            </text>
+                <text v-else> 
+                  <i class="bi bi-caret-right-fill"></i> Recién llegados
+                </text>
+                
+             
+              </text>
             
+              <div v-if="category2display != 999" >    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="21" :session_data=" session_data"/>
+                <p @click="selectedCategory(999)" class="text-end p-2 text-primary"> Ver Mas ... </p>
+
+              </div>
+
+
+              <div v-else>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="60" :session_data=" session_data"/>
+              </div>
+          </div>
+    <!-- END NEW OBJECTS -->
+
+    <!-- BOOKS  sm,md,lg,xl,xxl -->
+          <div class="d-block d-lg-none  p-3 " v-if="category2display == 0 || category2display == 2 ">
+              <hr>
+              <text style="font-size: 25px;" @click="selectedCategory(2)" > 
+                
+                <text v-if="category2display == 2" class="text-warning"> 
+                    <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp;  Libros 
+                </text>
+                <text v-else> 
+                  <i class="bi bi-caret-right-fill"></i> Libros 
+                </text>
+                
+               
+                
+              </text>
+            
+              <div v-if="category2display != 2" >    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="21" :session_data=" session_data"/>
+                <p @click="selectedCategory(2)" class="text-end p-2 "> Ver Mas ... </p>
+              </div>
+              <div v-else>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="60" :session_data=" session_data"/>
+              </div>
+          </div>
+    <!-- END BOOKS -->
+
+
+    <!-- JUGUETES -->
+          <div class="d-block d-lg-none  p-3 " v-if="category2display == 0 || category2display == 7 ">
+              <hr>
+              <text style="font-size: 25px;" @click="selectedCategory(7)" > 
+                
+                <text v-if="category2display == 7" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juguetes
+                </text>
+                <text v-else> <i class="bi bi-caret-right-fill"></i>   Juguetes
+                </text>
+                 
+              </text>
+            
+              <div v-if="category2display != 7" >    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="21" :session_data=" session_data"/>
+                <p @click="selectedCategory(7)" class="text-end p-2 "> Ver Mas ... </p>
+              </div>
+              <div v-else>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="60" :session_data=" session_data"/>
+              </div>
+          </div>
+    <!-- END JUGUETES -->
+
+
+    <!-- JUEGOS -->
+          <div v-if="category2display == 0 || category2display == 1 ">
+              <hr>
+              <text style="font-size: 25px;" @click="selectedCategory(1)" > 
+                
+                <text v-if="category2display == 1" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juegos
+                </text>
+                <text v-else> <i class="bi bi-caret-right-fill"></i>   Juegos
+                </text>
+                 
+              </text>
+            
+              <div v-if="category2display != 1" >    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="21" :session_data=" session_data"/>
+                <p @click="selectedCategory(1)" class="text-end p-2 "> Ver Mas ... </p>
+              </div>
+              <div v-else>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="60" :session_data=" session_data"/>
+              </div>
+          </div>
+    <!-- END JUEGOS -->
+
+
+
+
+    <!-- VESTUARIO -->
+          <div v-if="category2display == 0 || category2display == 4 ">
+              <hr>
+              <text style="font-size: 25px;" @click="selectedCategory(4)" > 
+                
+                <text v-if="category2display == 4" class="text-warning"> <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp; Vestuario 
+                </text>
+                <text v-else> <i class="bi bi-caret-right-fill"></i>  Vestuario
+                </text>
+                 
+              </text>
+            
+              <div v-if="category2display != 4" >    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="21" :session_data=" session_data"/>
+                <p @click="selectedCategory(4)" class="text-end p-2 "> Ver Mas ... </p>
+              </div>
+              <div v-else>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="60" :session_data=" session_data"/>
+              </div>
+          </div>
+    <!-- END VESTUARIO -->
+
+
+    <!-- FOOTER  LIST CATEGORIES (Only in  sm devices)-->
+          <hr> 
          
-          </text>
-        
-          <div v-if="category2display != 999" >    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="21" :session_data=" session_data"/>
-            <p @click="selectedCategory(999)" class="text-end p-2 text-primary"> Ver Mas ... </p>
-
+          <div v-for="category in CATEGORIES" class="d-block d-lg-none  p-3 " >
+                    <text @click="selectedCategory(category.id)" style="font-size:21px" > 
+                        <p class="bi text-center"> 
+                             {{category.name}} <i class="bi" :class="category.icon" ></i>  
+                           
+                        </p>
+                    </text>    
           </div>
-
-
-          <div v-else>    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="60" :session_data=" session_data"/>
-          </div>
-      </div>
-<!-- END NEW OBJECTS -->
-
-<!-- BOOKS -->
-      <div v-if="category2display == 0 || category2display == 2 ">
-          <hr>
-          <text style="font-size: 25px;" @click="selectedCategory(2)" > 
-            
-            <text v-if="category2display == 2" class="text-warning"> 
-                <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp;  Libros 
-            </text>
-            <text v-else> 
-              <i class="bi bi-caret-right-fill"></i> Libros 
-            </text>
-            
-           
-            
-          </text>
-        
-          <div v-if="category2display != 2" >    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="21" :session_data=" session_data"/>
-            <p @click="selectedCategory(2)" class="text-end p-2 text-primary"> Ver Mas ... </p>
-          </div>
-          <div v-else>    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="60" :session_data=" session_data"/>
-          </div>
-      </div>
-<!-- END BOOKS -->
-
-
-<!-- JUGUETES -->
-      <div v-if="category2display == 0 || category2display == 7 ">
-          <hr>
-          <text style="font-size: 25px;" @click="selectedCategory(7)" > 
-            
-            <text v-if="category2display == 7" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juguetes
-            </text>
-            <text v-else> <i class="bi bi-caret-right-fill"></i>   Juguetes
-            </text>
-             
-          </text>
-        
-          <div v-if="category2display != 7" >    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="21" :session_data=" session_data"/>
-            <p @click="selectedCategory(7)" class="text-end p-2 text-primary"> Ver Mas ... </p>
-          </div>
-          <div v-else>    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="60" :session_data=" session_data"/>
-          </div>
-      </div>
-<!-- END JUGUETES -->
-
-
-<!-- JUEGOS -->
-      <div v-if="category2display == 0 || category2display == 1 ">
-          <hr>
-          <text style="font-size: 25px;" @click="selectedCategory(1)" > 
-            
-            <text v-if="category2display == 1" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juegos
-            </text>
-            <text v-else> <i class="bi bi-caret-right-fill"></i>   Juegos
-            </text>
-             
-          </text>
-        
-          <div v-if="category2display != 1" >    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="21" :session_data=" session_data"/>
-            <p @click="selectedCategory(1)" class="text-end p-2 text-primary"> Ver Mas ... </p>
-          </div>
-          <div v-else>    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="60" :session_data=" session_data"/>
-          </div>
-      </div>
-<!-- END JUEGOS -->
-
-
-
-
-<!-- VESTUARIO -->
-      <div v-if="category2display == 0 || category2display == 4 ">
-          <hr>
-          <text style="font-size: 25px;" @click="selectedCategory(4)" > 
-            
-            <text v-if="category2display == 4" class="text-warning"> <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp; Vestuario 
-            </text>
-            <text v-else> <i class="bi bi-caret-right-fill"></i>  Vestuario
-            </text>
-             
-          </text>
-        
-          <div v-if="category2display != 4" >    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="21" :session_data=" session_data"/>
-            <p @click="selectedCategory(4)" class="text-end p-2 text-primary"> Ver Mas ... </p>
-          </div>
-          <div v-else>    
-            <br>
-            <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="60" :session_data=" session_data"/>
-          </div>
-      </div>
-<!-- END VESTUARIO -->
-
-
-<!-- FOOTER  LIST CATEGORIES -->
-      <hr> 
-     
-      <div v-for="category in CATEGORIES"  >
-                <text @click="selectedCategory(category.id)" style="font-size:21px" > 
-                    <p class="bi text-center"> 
-                         {{category.name}} <i class="bi" :class="category.icon" ></i>  
-                       
-                    </p>
-                </text>    
-      </div>
-<!-- -->
-
-
+    <!-- -->
   </div> 
+
+
+   <!-- START  RIGHT SECTION Display only in Large devices -->
+     <div class="d-none d-lg-inline-block p-3" style="width:400px "> 
+    
+            <div v-if="category2display == 0 || category2display == 7 ">
+
+              
+                        
+              <div v-if="category2display != 7" class="category" style="padding-left:20px" >  
+                <text style="font-size: 25px;"> 
+                  Juguetes
+                </text>  
+                
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="21" :session_data=" session_data"/>
+                <p @click="selectedCategory(2)" class="text-end p-2 "> Ver Mas ... </p>
+              </div>
+              <div v-else>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="60" :session_data=" session_data"/>
+              </div>
+          </div>
+  
+    </div>
+    <!-- END RIGHT SECTION Display only in Large devices -->
+  
+
+
+
 
   </div>
 
@@ -227,6 +305,12 @@ import axios from 'axios'
 </template>
 
 <style>
+
+.category 
+{
+border-radius: 10px;
+background-color:#222 ; 
+}
 
 </style>
 
