@@ -116,7 +116,7 @@ export default {
     getTextToShareURLEncoded(obj)
     {
 
-        let text_share=`Esto te podría interesar. Encontré esto en REUSAR.CL
+        let text_share=`REUSAR.CL
         "${obj.title}" `
 
          if (obj.description != "null"  )
