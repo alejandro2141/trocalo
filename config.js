@@ -15,6 +15,7 @@ let BKND_CONFIG = {
 
 // let PATH_PRODUCT_IMG = "public/productImages/" ;
  let PATH_PRODUCT_IMG = "/public/productImages/" ;
+ let PATH_BANNER_IMG = "/public/banners/" ;
 
 // SHIPPING PRICE DEFAULT clp
  let SHIPPING_PRICE = "5.000" ;
@@ -528,5 +529,5 @@ let REGION_ZONES = {
 
 
 
-export {REGION_ZONES ,CATEGORIES, BKND_CONFIG, PATH_PRODUCT_IMG, SHIPPING_PRICE } ;
+export {REGION_ZONES ,CATEGORIES, BKND_CONFIG, PATH_PRODUCT_IMG, PATH_BANNER_IMG , SHIPPING_PRICE } ;
 
