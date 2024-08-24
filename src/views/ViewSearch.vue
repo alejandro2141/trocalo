@@ -19,7 +19,7 @@ import NewExchangeProposal_sentConfirmation from '../components/NewExchangePropo
 import SpinnerLoading from '../components/SpinnerLoading.vue'
 
 
-import { BKND_CONFIG , CATEGORIES } from '../../config.js'
+import { BKND_CONFIG ,PATH_BANNER_IMG, CATEGORIES } from '../../config.js'
 import axios from 'axios'
 
 </script>
@@ -28,6 +28,30 @@ import axios from 'axios'
 
 <div>
  
+ <!-- START DISPLAY CATEGORIES --> 
+
+  <div class="d-none d-flex d-lg-inline-block" style="width:990px">
+    <hr>
+    <div v-for="category in CATEGORIES" class="d-flex d-lg-inline-block" >
+                      <text @click="filterByCategory(category.id)" style="font-size:12px" > 
+                          <p class="bi text-center"> 
+                               {{category.name}} <i class="bi" :class="category.icon" ></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                             
+                          </p>
+                      </text>    
+    </div>
+    <hr>
+  </div>
+
+ <!-- END DISPLAY CATEGORIES --> 
+
+
+
+
+
+
+
+<div  class="">
 
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
   
@@ -55,7 +79,7 @@ import axios from 'axios'
            <SearchResult    v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
         </div>
     </div>
-
+<!-- 
     <div v-else>
             <div v-for="category in CATEGORIES"  >
                 <text @click="filterByCategory(category.id)" style="font-size:16px" > 
@@ -64,7 +88,7 @@ import axios from 'axios'
                 <br>
             </div>
     </div>
-
+-->
     <!-- END SHOW RESULT SEARCH-->
 
 <!--
@@ -93,6 +117,64 @@ import axios from 'axios'
 -->
 
   </div>
+
+
+ <!-- START BANNERS -->
+<div class="d-flex  flex-wrap" >
+
+  <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Libros
+     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+  </div>
+   <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Video Juegos
+     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Games.png'" />
+  </div>
+   <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Juguetes
+     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Juguetes.png'" />
+  </div>
+   <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Electrodomesticos
+     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Electrodomesticos.png'" />
+  </div>
+
+
+
+<div class="p-1 m-2 "   style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
+    Libros5
+     <img @click="filterByCategory(2)" class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+  </div>
+
+
+  <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Libros6
+     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+  </div>
+   <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Libros7
+     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+  </div>
+
+
+
+<div class="p-1 m-2 "   style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
+    Libros
+     <img @click="filterByCategory(2)" class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+  </div>
+
+  
+ 
+
+</div>
+
+ 
+ </div>
+
+
+
+
+
 
   <div v-if="showObjectDetails" >
     <InventoryObjectDetailedPublicOffer  v-on:nextStep="exchangeObject"  v-on:closeModal="showObjectDetails=false" :object=objectToShowDetails  :session_data="session_data" />
