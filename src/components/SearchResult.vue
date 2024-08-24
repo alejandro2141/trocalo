@@ -5,6 +5,7 @@ import FilterForSearchView from '../components/FilterForSearchView.vue'
 import InventoryList from '../components/InventoryList.vue' 
 import ExchangeProposal from '../components/ExchangeProposal.vue'
 import Article from '../classes/Article.js'
+import ShowCategories from '../components/ShowCategories.vue'
 
 import { BKND_CONFIG } from '../../config.js'
 import axios from 'axios'
@@ -13,7 +14,7 @@ import axios from 'axios'
 
 <template>
 
-<div  style="width:350px" class="m-0"   >
+<div  style="" class="m-0 w-100"   >
 
   <!-- 
     <text v-if="objects_filtered !=null && objects_filtered.length > 0">
@@ -22,6 +23,8 @@ import axios from 'axios'
       No encontramos Objetos para tu busqueda<br>
     </text>
   -->
+
+
 
   <div v-if="search_event" class="text-warning text-start">
     <div class="text-warning" v-if="objects_filtered !=null && objects_filtered.length > 0">
