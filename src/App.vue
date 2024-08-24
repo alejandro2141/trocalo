@@ -19,17 +19,56 @@ const location = useRoute();
    
   <div class="m-0 p-0" >
    
-    <div class="bg-dark p-0 m-0" style="width: 380px; top:0px">
+    <div class="bg-dark p-0 m-0" >
      
-  <!-- ALWAYS DISPLAY  -->     
-          <div class="d-flex justify-content-center w-100">
-            <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="Welcome">  
-               <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> 
-              <!-- <i style="color:#FFF ; font-size : 55px ;"   class="bi bi-bootstrap-reboot"></i> -->
+  <!-- ALWAYS DISPLAY  d-flex flex-wrap justify-content-start -->     
+  <div class="bg-dark d-flex align-content-start flex-wrap" >
 
-              <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text>
+         <div>
+            <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="Welcome">  
+             <!--  <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> -->
+               <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text> &nbsp;&nbsp;&nbsp;&nbsp;
             </RouterLink>   
-          </div> 
+        </div>
+
+        <div class="">
+            <FilterForSearchViewMinimal  v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
+        </div>      
+
+      <!-- INVENTORY, RECEIVED, SENT -->
+        <div v-if="session_data!=null && session_data.user!=null && $route.name != 'ViewSearch' " class="mt-0 pt-1 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px ; width:350px" >
+       
+          <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') , 'nonselected' : ( location.name  != 'ViewMyInventory') }"  to="/ViewMyInventory">
+              <div class="d-flex align-items-center flex-column" >
+                <i class="bi bi-backpack3"></i> 
+                <p style="font-size:16px ; " class="m-1" >Inventario</p> 
+              </div>
+          </RouterLink>   
+
+            
+            <RouterLink   style="color:#91D5FE ; font-size : 45px ;" class="p-2" :class="{'selected'  : ( location.name  == 'ViewProposalsReceived') , 'nonselected' : ( location.name  != 'ViewProposalsReceived')  }"  to="/ViewProposalsReceived">
+              <div class="d-flex align-items-center flex-column" >
+                <i class=" bi bi-cloud-download"></i>
+                <p style="font-size:16px" class="m-1">Recibidas</p>
+              </div>
+            </RouterLink>    
+            
+            <RouterLink   style="color:#17C000 ; font-size : 45px ; " class="p-2" :class="{ 'selected' : ( location.name  == 'ViewProposalsSent') , 'nonselected' : ( location.name  != 'ViewProposalsSent')  }"   to="/ViewProposalsSent">
+              <div class="d-flex align-items-center flex-column" >
+                <i class=" bi bi-cloud-upload"></i>
+                <p style="font-size:16px" class="m-1">Enviadas</p>
+              </div>
+            </RouterLink>    
+
+        </div>
+
+      <!--END SELECTION INVENTORY, RECEIVED, SENT -->
+
+  </div> 
+
+        
+
+
   <!-- END ALWAYS DISPLAY  -->
   
 
@@ -47,9 +86,10 @@ const location = useRoute();
       </div>
 
       <!-- SEARCH FORM -->
-      <div>
+      <!-- <div>
         <FilterForSearchViewMinimal   v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />        
       </div>
+    -->
       <!-- END SEARCH FORM -->
 
   </div>
@@ -70,9 +110,9 @@ const location = useRoute();
           </RouterLink> 
           
           
-
+<!-- 
          <FilterForSearchViewMinimal  v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
-
+-->
         <!--
           <div class="d-flex justify-content-center w-100">
             <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="/ViewSearch">  
@@ -83,19 +123,12 @@ const location = useRoute();
         
           
       </div> 
-    
-<!-- PRIVATE  INVENTORY, RECEIVED, SENT , SHOW only when is not FOR SEARCH -->
-
-    <div v-if="session_data!=null && session_data.user!=null && $route.name != 'ViewSearch' " class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px " >
    
-        <!-- 
-        <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') }"  to="/ViewMyInventory">
-          <div class="d-flex align-items-center flex-column" >
-            <i class="bi bi-backpack3"></i> 
-            <p style="font-size:16px ; " class="m-1" >Inventario</p> 
-          </div>
-        </RouterLink>       
-        -->  
+
+<!-- PRIVATE  INVENTORY, RECEIVED, SENT , SHOW only when is not FOR SEARCH -->
+<!--
+    <div v-if="session_data!=null && session_data.user!=null && $route.name != 'ViewSearch' " class="mt-4 pt-2 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px ; width:350px" >
+   
    
       <RouterLink   style="color:#B88B5C ; font-size : 45px ;"    class="p-2" :class="{'selected' : ( location.name  == 'ViewMyInventory') , 'nonselected' : ( location.name  != 'ViewMyInventory') }"  to="/ViewMyInventory">
           <div class="d-flex align-items-center flex-column" >
@@ -120,8 +153,9 @@ const location = useRoute();
         </RouterLink>    
 
     </div>
+  -->
 <!-- END PRIVATE SESSION --> 
-
+    
       <RouterView  v-on:sessionCreated="sessionCreated"  :textToSearch="textToSearch" :session_data='session_data' />
     
     </div>
