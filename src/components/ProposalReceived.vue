@@ -5,7 +5,7 @@ import { PATH_PRODUCT_IMG } from '../../config.js'
 
 <template>
  
- <div class="border border-1 rounded ">
+ <div class="border border-1 rounded " style="width:350px">
     <div v-if="hasBlockedObjects!=null" class="text-info">
         <div @click="showFreezingMessage=!showFreezingMessage" class="d-flex justify-content-between">  
             <text> Propuesta Congelada.<br> Alguien se te ha adelantado!!</text>
