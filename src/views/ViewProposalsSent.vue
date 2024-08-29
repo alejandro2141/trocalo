@@ -53,20 +53,27 @@ import axios from 'axios'
       <!-- OF SENT -->
           <p class="text-center" style="font-size:26px ; color:#17C000 ;">Enviadas </p>
           <p class="text-secondary" style="font-size:12px" >A la espera de que el otro usuario acepte el intercambio </p>
-          <div v-for="of in ofSent"  > 
-              <ProposalSent  class="m-0" @click="showProposalSentDetails =true ; offerSent=of"  :offer='of'   :object1="getObjectProposal(of)" :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'  />
-              <br>
+          
+
+          <div class="d-flex flex-wrap">
+            <div v-for="of in ofSent"  > 
+                <ProposalSent  class="m-2" @click="showProposalSentDetails =true ; offerSent=of"  :offer='of'   :object1="getObjectProposal(of)" :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'  />
+                <br>
+            </div>
           </div>
-      <!-- OF SENT -->
+        <!-- OF SENT -->
 
           <br>
 
       <!-- OF SENT ACCEPTED -->
           <p class=" text-start" style="font-size:20px">Aceptadas </p>
           <p class="text-secondary" style="font-size:12px" >Debes pagar monto indicado para completar el intercambio </p>
+          
+          <div class="d-flex flex-wrap">
           <div v-for="of in ofAccepted"  > 
-              <ProposalSentAccepted class="m-1" :accepted='true' @click="showProposalSentAcceptedDetails = true; offerSentAccepted=of"  :offer='of'  :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
-              <br>
+                  <ProposalSentAccepted class="m-2" :accepted='true' @click="showProposalSentAcceptedDetails = true; offerSentAccepted=of"  :offer='of'  :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
+                  <br>
+              </div>
           </div>
       <!-- OF SENT ACCEPTED -->
         
@@ -76,9 +83,11 @@ import axios from 'axios'
           <p class=" text-start" style="font-size:20px"> <i class="bi bi-truck"></i> En Despacho </p>
           <p class="text-secondary" style="font-size:12px" >Los objetos estan en ruta para su recoleccion y despacho  </p>
         
-          <div v-for="of in ofInTransfer"  > 
-              <ProposalSentInTransfer  class="m-2" :accepted='true' @click="ofSelected=of ;showProposalSentInTransferDetails=true"  :offer='of'   :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'  />
-              <br>
+          <div class="d-flex flex-wrap">
+              <div v-for="of in ofInTransfer"  > 
+                  <ProposalSentInTransfer  class="m-2" :accepted='true' @click="ofSelected=of ;showProposalSentInTransferDetails=true"  :offer='of'   :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'  />
+                  <br>
+              </div>
           </div>
       <!-- OF IN TRANSFER -->
 
