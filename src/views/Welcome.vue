@@ -22,7 +22,7 @@ import ShowCategories from '../components/ShowCategories.vue'
 import SpinnerLoading from '../components/SpinnerLoading.vue'
 
 
-import { BKND_CONFIG , CATEGORIES } from '../../config.js'
+import { BKND_CONFIG , PATH_BANNER_IMG, CATEGORIES } from '../../config.js'
 import axios from 'axios'
 
 </script>
@@ -30,15 +30,13 @@ import axios from 'axios'
 <template>
 
 <div>
-
   <SpinnerLoading  :onOff=spinnerOn />
+<!-- START DISPLAY MENU CATEGORIES --> 
 
-
-<!-- END DISPLAY CATEGORIES --> 
-  <div class="d-none d-lg-inline-block" style="width:990px">
+  <div class="d-none d-lg-inline-block" >
     <hr>
     <div v-for="category in CATEGORIES" class="d-none d-lg-inline-block" >
-                      <text @click="selectedCategory(category.id)" style="font-size:12px" > 
+                      <text @click="filterByCategory(category.id)" style="font-size:12px" > 
                           <p class="bi text-center"> 
                                {{category.name}} <i class="bi" :class="category.icon" ></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                              
@@ -47,24 +45,33 @@ import axios from 'axios'
     </div>
     <hr>
   </div>
- <!-- END DISPLAY CATEGORIES --> 
+ <!-- END DISPLAY MENU CATEGORIES --> 
   
 
 
+ <!-- START SHOW OBJECTS CATEGORIES -->
+<!--
   <div class="d-flex justify-content-between" v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
-  
+<div v-show=eliminame >
+-->
 
+
+
+ <div class="" v-show="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
+
+ 
   <!-- START  LEFT  SECTION Display only in Large devices -->
       <!-- START BOOKS -->
-  <div class="d-none d-lg-inline-block p-3"   style="width:600px" > 
+  <!--
+  <div  class="d-none d-lg-inline-block p-3"   style="width:600px" > 
     
             <div v-if="category2display == 0 || category2display == 2 " class="border border-0  category" style="padding-left:20px" >
              
               <div v-if="category2display != 2" class="border border-0  " style="border-radius: 10px;" > 
                 <div>
                 <text style="font-size: 25px;" class="text-white" > 
-                Libros
-              </text>   
+                  Libros
+                </text>   
                 <br>
                 <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="21" :session_data=" session_data"/>
                 <p @click="selectedCategory(2)" class="text-end p-2 "> Ver Mas ... </p>
@@ -78,154 +85,98 @@ import axios from 'axios'
           </div>
   
   </div>
-      <!-- END BOOKS -->
+-->
+  <!-- END BOOKS -->
   <!-- END  LEFT  SECTION Display only in Large devices -->
-
 
 
 
 <!-- CENTER SECTION ALL DEVICES -->
 
-  <div v-if="showCategories">       
+  <div v-show="ShowCategories">       
 
-    <!-- END NEW OBJECTS -->
-          <div v-if="category2display == 0 || category2display == 999 " class="category">
-              
-              <text style="font-size: 25px;" @click="selectedCategory(999)" > 
+    <!-- START NEW OBJECTS CATEGORY-->
+          <div  class="category">
                 
-                <text v-if="category2display == 999" class="text-warning"> 
-                  <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp; Recién llegados
-                </text>
-
-                <text v-else> 
+              <text @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" style="font-size: 25px;"> 
                   <i class="bi bi-caret-right-fill"></i> Recién llegados
-                </text>
-                
-             
               </text>
-            
-              <div v-if="category2display != 999" >    
-                <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="21" :session_data=" session_data"/>
-                <p @click="selectedCategory(999)" class="text-end p-2 text-primary"> Ver Mas ... </p>
 
+              <div>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="30" :session_data=" session_data"/>
+                <p @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="text-end p-2 text-primary"> Ver Mas ... </p>
               </div>
 
-
-              <div v-else>    
-                <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="60" :session_data=" session_data"/>
-              </div>
           </div>
-    <!-- END NEW OBJECTS -->
+    <!-- END NEW OBJECTS CATEGORY-->
 
-    <!-- BOOKS  sm,md,lg,xl,xxl -->
-          <div class="d-block d-lg-none  p-3 " v-if="category2display == 0 || category2display == 2 ">
-              <hr>
-              <text style="font-size: 25px;" @click="selectedCategory(2)" > 
+    <!-- START BOOKS CATEGORY-->
+          <div  class="category">
                 
-                <text v-if="category2display == 2" class="text-warning"> 
-                    <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp;  Libros 
-                </text>
-                <text v-else> 
-                  <i class="bi bi-caret-right-fill"></i> Libros 
-                </text>
-                
-               
-                
+              <text @click="$emit('showCategory',2)" style="font-size: 25px;"> 
+                  <i class="bi bi-caret-right-fill"></i> Libros
               </text>
-            
-              <div v-if="category2display != 2" >    
+
+              <div>    
                 <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="21" :session_data=" session_data"/>
-                <p @click="selectedCategory(2)" class="text-end p-2 "> Ver Mas ... </p>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="9" :session_data=" session_data"/>
+                <p @click="$emit('showCategory',2)" class="text-end p-2 text-primary"> Ver Mas ... </p>
               </div>
-              <div v-else>    
-                <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[2]" :limit="60" :session_data=" session_data"/>
-              </div>
+
           </div>
-    <!-- END BOOKS -->
+    <!-- END BOOKS CATEGORY-->
 
-
-    <!-- JUGUETES -->
-          <div class="d-block d-lg-none  p-3 " v-if="category2display == 0 || category2display == 7 ">
-              <hr>
-              <text style="font-size: 25px;" @click="selectedCategory(7)" > 
+    <!-- START JUGUETES CATEGORY -->
+          <div  class="category">
                 
-                <text v-if="category2display == 7" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juguetes
-                </text>
-                <text v-else> <i class="bi bi-caret-right-fill"></i>   Juguetes
-                </text>
-                 
+              <text @click="$emit('showCategory',7)" style="font-size: 25px;"> 
+                  <i class="bi bi-caret-right-fill"></i> Juguetes
               </text>
-            
-              <div v-if="category2display != 7" >    
+
+              <div>    
                 <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="21" :session_data=" session_data"/>
-                <p @click="selectedCategory(7)" class="text-end p-2 "> Ver Mas ... </p>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="7" :limit="9" :session_data=" session_data"/>
+                <p @click="$emit('showCategory',7)" class="text-end p-2 text-primary"> Ver Mas ... </p>
               </div>
-              <div v-else>    
-                <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="60" :session_data=" session_data"/>
-              </div>
+
           </div>
-    <!-- END JUGUETES -->
+    <!-- END JUEGUETES CATEGORY -->
 
-
-    <!-- JUEGOS -->
-          <div v-if="category2display == 0 || category2display == 1 ">
-              <hr>
-              <text style="font-size: 25px;" @click="selectedCategory(1)" > 
+   <!-- START JUEGOS CATEGORY -->
+          <div  class="category">
                 
-                <text v-if="category2display == 1" class="text-warning"> <i class="bi bi-caret-left-fill"></i>  &nbsp;&nbsp;  Juegos
-                </text>
-                <text v-else> <i class="bi bi-caret-right-fill"></i>   Juegos
-                </text>
-                 
+              <text @click="$emit('showCategory',1)" style="font-size: 25px;"> 
+                  <i class="bi bi-caret-right-fill"></i> Juegos
               </text>
-            
-              <div v-if="category2display != 1" >    
+
+              <div>    
                 <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="21" :session_data=" session_data"/>
-                <p @click="selectedCategory(1)" class="text-end p-2 "> Ver Mas ... </p>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="1" :limit="9" :session_data=" session_data"/>
+                <p @click="$emit('showCategory',1)" class="text-end p-2 text-primary"> Ver Mas ... </p>
               </div>
-              <div v-else>    
-                <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[1]" :limit="60" :session_data=" session_data"/>
-              </div>
+
           </div>
-    <!-- END JUEGOS -->
+    <!-- END JUEGOS CATEGORY -->
 
-
-
-
-    <!-- VESTUARIO -->
-          <div v-if="category2display == 0 || category2display == 4 ">
-              <hr>
-              <text style="font-size: 25px;" @click="selectedCategory(4)" > 
+    <!-- START JUEGOS CATEGORY -->
+          <div  class="category">
                 
-                <text v-if="category2display == 4" class="text-warning"> <i class="bi bi-caret-left-fill"></i> &nbsp;&nbsp; Vestuario 
-                </text>
-                <text v-else> <i class="bi bi-caret-right-fill"></i>  Vestuario
-                </text>
-                 
+              <text @click="$emit('showCategory',4)" style="font-size: 25px;"> 
+                  <i class="bi bi-caret-right-fill"></i> Vestuario
               </text>
-            
-              <div v-if="category2display != 4" >    
-                <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="21" :session_data=" session_data"/>
-                <p @click="selectedCategory(4)" class="text-end p-2 "> Ver Mas ... </p>
-              </div>
-              <div v-else>    
-                <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[4]" :limit="60" :session_data=" session_data"/>
-              </div>
-          </div>
-    <!-- END VESTUARIO -->
 
+              <div>    
+                <br>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="4" :limit="9" :session_data=" session_data"/>
+                <p @click="$emit('showCategory',4)" class="text-end p-2 text-primary"> Ver Mas ... </p>
+              </div>
+
+          </div>
+    <!-- END JUEGOS CATEGORY -->
 
     <!-- FOOTER  LIST CATEGORIES (Only in  sm devices)-->
+        <!--
           <hr> 
          
           <div v-for="category in CATEGORIES" class="d-block d-lg-none  p-3 " >
@@ -236,11 +187,69 @@ import axios from 'axios'
                         </p>
                     </text>    
           </div>
+        -->
     <!-- -->
+
+<!--  FOOTER CATERGORIES -->
+
+  <hr>
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Categorias 
+  </span>
+  <br>
+
+
+<div class="d-flex  flex-wrap" >
+
+  <div class="p-1 m-2 " @click="filterByCategory(2)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Libros
+     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+  </div>
+   <div class="p-1 m-2 " @click="filterByCategory(1)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+     Juegos
+     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Games.png'" />
+  </div>
+   <div class="p-1 m-2 " @click="filterByCategory(7)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Juguetes
+     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Juguetes.png'" />
+  </div>
+   <div class="p-1 m-2 " @click="filterByCategory(13)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Electrodomesticos
+     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Electrodomesticos.png'" />
+  </div>
+
+  <div class="p-1 m-2 " @click="filterByCategory(9)"  style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
+    Accesorios
+     <img  class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Accesorios.png'" />
+  </div>
+
+
+  <div class="p-1 m-2 " @click="filterByCategory(12)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Computacion
+     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Computacion.png'" />
+  </div>
+   <div class="p-1 m-2 "  @click="filterByCategory(5)" style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    Deportes
+     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Deportes.png'" />
+  </div>
+
+  <div class="p-1 m-2 " @click="filterByCategory(4)"  style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
+    Vestuario
+     <img  class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Vestuario.png'" />
+  </div>
+
+
+</div>
+
+
+<!-- -->
+
+
   </div> 
 
 
    <!-- START  RIGHT SECTION Display only in Large devices -->
+    <!--
      <div class="d-none d-lg-inline-block p-3" style="width:400px "> 
     
             <div v-if="category2display == 0 || category2display == 7 ">
@@ -262,13 +271,13 @@ import axios from 'axios'
           </div>
   
     </div>
+  -->
     <!-- END RIGHT SECTION Display only in Large devices -->
   
-
-
-
-
   </div>
+
+
+
 
   <div v-if="showObjectDetails" >
     <InventoryObjectDetailedPublicOffer  v-on:nextStep="exchangeObject"  v-on:closeModal="showObjectDetails=false" :object=objectToShowDetails  :session_data="session_data" />
@@ -343,12 +352,13 @@ export default {
 
         titleSearchResult : "" ,
 
-        category2display : 0 
+        category2display : 0 ,
+
       }
 
   },
 
-  props: ['session_data', 'textToSearch'],
+  props: ['session_data', 'textToSearch', 'showCategory'],
   emits: ['sessionCreated'],
 
 created() {
@@ -372,7 +382,7 @@ methods: {
      async getSessionObject()
     {
       
-      if ( this.session_data.objectid != null )
+      if ( this.session_data != null && this.session_data.objectid != null )
       {
         console.log("objid from session params:"+this.session_data.objectid)
         this.getObjectById(this.session_data.objectid)
@@ -408,8 +418,13 @@ methods: {
      this.showPublicObjectDetails(object[0])
     },
 
+    async filterByCategory(cat)
+    {
+      this.selectedCategory(cat) 
+    },
 
-    selectedCategory(val)
+
+    async selectedCategory(val)
     {
       console.log("Selected category value : "+val)
 
@@ -466,7 +481,8 @@ methods: {
     showPublicObjectDetails(obj)
     {
       this.objectToShowDetails=obj
-      this.showObjectDetails = true ; 
+      this.showObjectDetails = true  
+      //this.showCategories = false 
     },
 
     /*
@@ -498,14 +514,22 @@ methods: {
     },
     */
 
+    /*
+    async selectedCategory(cat)
+    {
+      this.filterByCategory(cat)
+    },
+    */
+
     async filterByCategory(category)
     {
       console.log("Welcome Filter by category :"+category)
+      this.$emit('showCategory',category)
 
      // this.$router.push({ name: 'ViewSearch' })
 
 //      $router.push({ name: 'somewhere', state: { myData } })
-
+/*
       
       if (category != null && category !="")
       {
@@ -528,6 +552,8 @@ methods: {
 
       this.spinnerOn=false
       }
+      */
+
       
     },
 
@@ -560,6 +586,15 @@ methods: {
     },
 
 watch : {
+
+
+    showObjectDetails(newvalue, oldvalue)
+    {
+      console.log("showObjectDetails newValue: "+newvalue)
+
+    }
+
+
 /*
   textToSearch(newval,oldval)
     {
