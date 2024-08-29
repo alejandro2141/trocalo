@@ -16,7 +16,7 @@ import NewObjectForm from '../components/NewObjectForm.vue'
         </div>
         -->
        
-        <InventoryList  :session_data="session_data" v-on:closeInventoyList="closeInventoyList"/>
+        <InventoryList  :session_data="session_data" v-on:closeInventoyList="closeInventoyList"    />
     </div>
     <div v-else>
         Ir a Login
