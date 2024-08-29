@@ -26,16 +26,16 @@ import axios from 'axios'
 
 
 
-  <div v-if="search_event" class="text-warning text-start">
+  <div v-if="search_event" class="text-warning text-start m-4">
     <div class="text-warning" v-if="objects_filtered !=null && objects_filtered.length > 0">
-        Econtramos {{objects_filtered.length}}
-        objectos para tu búsqueda<br>
+          {{objects_filtered.length}} objetos encontrados. 
+        <br>
     </div>
     <div v-else class="mt-2 ">
       
 
-      <text style="">
-         Econtramos 0 objectos para tu búsqueda<br>
+      <text style="m-3 p-3">
+           <text>Sin objetos </text><i class="bi bi-wind" style="font-size:46px;" ></i><br>
       </text>
 
      
@@ -44,6 +44,10 @@ import axios from 'axios'
 
   <br>
   </div>
+
+
+
+
 
   <div v-else>
    <!--  Objetos que podrian interesarte -->
@@ -95,7 +99,7 @@ export default {
       }
   },
 
-  props: ['session_data',  'objects_filtered' , 'search_event' ],
+  props: ['session_data',  'objects_filtered' , 'search_event' , 'title' ],
   emits: ['showObjectDetailsPublic'],
 
 created() {
