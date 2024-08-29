@@ -6,7 +6,6 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
 <template>
 
   <div class=""    >
-   
 
     <div  v-if="display_horizontal_short &&  object!=null"> 
         <div v-if="object!=null" @click="selectObject=!selectObject"  class="w-100 border border-2 rounded d-flex justify-content-start" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:110px ; border-style: dotted" >
@@ -25,8 +24,8 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
         </div>
     </div> 
 
-    <!-- INVENTORY OBJECT  -->
-    <div v-else class="" >
+        <!-- INVENTORY OBJECT  -->
+    <div v-else-if=greenSelected class="" >
         <div v-if="object!=null" @click="selectObject=!selectObject"  class="" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:120px " >
                 <div class=" image-container rounded text-center"  style="width:120px; height:120px">
                     <div class="image-container img  w-100 text-center">
@@ -44,6 +43,28 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
                 </div>
             </div>
 
+        </div>
+    </div>
+
+
+    <!-- INVENTORY OBJECT  -->
+    <div v-else class="" >
+        <div v-if="object!=null" @click="selectObject=!selectObject"  class="" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-dark' : 'border-dark' , '' ]"  style="width:120px " >
+                <div class=" image-container rounded text-center"  style="width:120px; height:120px">
+                    <div class="image-container img  w-100 text-center">
+                        <img class="m-1" style=" max-width: 115px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
+                    </div>
+                    <div v-if="object.blocked_due_proposal_accepted" class="overlay-text"  >
+                        <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
+                    </div>
+                </div>
+               
+            <div class="d-flex align-items-center">
+                <div  class="d-flex align-items-start m-1">
+                <i class="text-warning" :class="getCategoryIcon(object.category1)"></i> &nbsp;   {{object.title}}<br>
+                 <!-- {{object.description}} -->
+                </div>
+            </div>
 
         </div>
     </div>
@@ -101,7 +122,7 @@ export default {
         }
     },
 
-    props: ['showProductDetails','display_horizontal_short','horizontal' ,'object' ],
+    props: ['showProductDetails','display_horizontal_short','horizontal' ,'object' , 'greenSelected'  ],
     emits: [],
 
 	created() {
