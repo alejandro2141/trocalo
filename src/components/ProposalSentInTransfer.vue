@@ -5,7 +5,7 @@
 
 <template>
  
- <div>
+ <div  style="width:350px">
   
     <div class="border border-1 rounded text-white border-success" >
 
@@ -15,9 +15,6 @@
              Costo Retiro y Despacho : <text class="text-warning"> $ {{offer.amount}}</text><br>
              Forma de Pago : <text class="text-warning"> {{paymentType(offer.payment_type)}}</text> <br>
          </div>
-
-        <!-- BODY -->
-
         <!-- BODY -->
         <div class="">
             <div class="w-100 m-2">
