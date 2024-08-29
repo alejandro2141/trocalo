@@ -13,14 +13,11 @@ import axios from 'axios'
 <template>
 <div  style=""  >
  
-
     <div v-if="!showSenderConfirmation">
 
       <div class="w-100 m-2 "  >
       </div>
-     
-      
- 
+           
   <!-- ******************************* -->
   <!--             SHOW STEP 1         -->
   <!-- ******************************* -->
@@ -43,7 +40,7 @@ import axios from 'axios'
 
               <div class="d-flex flex-wrap ">
                 <div v-for="obj in DBmyInventoryObjects"  > 
-                  <InventoryObject @click="addRemoveOfferList(obj)" :object=obj  :showProductDetails="false" class="m-1" /> 
+                  <InventoryObject @click="addRemoveOfferList(obj)" :object=obj  :greenSelected=true :showProductDetails="false" class="m-1" /> 
                 </div>
               </div>
 
