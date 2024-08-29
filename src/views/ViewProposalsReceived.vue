@@ -43,28 +43,33 @@ import axios from 'axios'
     <p class=" text-center" style="font-size:26px; color:#91D5FE ; ">Recibidas </p>
 
 
-      <!-- OF RECEIVED -->
+      <!-- PROP RECEIVED -->
          <!--  <p class=" text-start" style="font-size:20px; ">Porpuestas de Intercambio </p> -->
-          <p class="text-secondary" style="font-size:12px" >A la espera que aceptes o rechaces estas propuestas </p>
-            <div v-for="of in ofReceived"  > 
+          <p class="text-secondary " style="font-size:12px" >A la espera que aceptes o rechaces estas propuestas </p>
+            
+            <div class="d-flex flex-wrap">
+              <div v-for="of in ofReceived" class="" > 
 
-              <ProposalReceived v-if="getObjBlocked([of.dest_object1,of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5]) == null"  class="m-2" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
-              <ProposalReceived v-else class="m-2"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
+                <!-- IF is blocked object -->
+                <ProposalReceived v-if="getObjBlocked([of.dest_object1,of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5]) == null"  class="m-2" @click="ofSelected=of ; showExchangeProposalReceived=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
+                <!-- ELSE is an available object -->
+                <ProposalReceived v-else class="m-2"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])'    />
 
 
-
+              </div>
             </div>
-      <!-- OF SENT -->
+      <!-- END PROP RECEIVED -->
 
           <br>
 
       <!-- OF SENT ACCEPTED -->
           <p class=" text-start" style="font-size:20px">Aceptadas </p>
           <p class="text-secondary" style="font-size:12px" >A la espera que quien te envio la propuesta debe pagar los costos de retiro y despacho  </p>
-          <div v-for="of in ofAccepted"  > 
-              <ProposalReceivedAccepted  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
-          <br>
-          
+         <div class="d-flex flex-wrap">
+            <div v-for="of in ofAccepted"  > 
+              <ProposalReceivedAccepted  class="m-2" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedAccepted=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
+            <br>
+            </div>
           </div>
       <!-- OF SENT ACCEPTED -->
         
@@ -75,11 +80,12 @@ import axios from 'axios'
           <p class=" text-start" style="font-size:20px"> En Despacho <i class="bi bi-truck"></i> </p>
           <p class="text-secondary" style="font-size:12px" >Los objetos estan en ruta para su recoleccion y despacho  </p>
         
+        <div class="d-flex flex-wrap">
           <div v-for="of in ofInTransfer"  > 
-              <ProposalReceivedInTransfer  class="m-1" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedInTransfer=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
+              <ProposalReceivedInTransfer  class="m-2" :accepted='true' @click="ofSelected=of ;showExchangeProposalReceivedInTransfer=true"  :offer='of' :my_objects='getObjects([of.dest_object1])' :partner_objects='getObjects([of.source_object1,of.source_object2,of.source_object3,of.source_object4,of.source_object5])' />
               <br>
-              
           </div>
+        </div>
         
       <!-- OF SENT ACCEPTED -->
 
