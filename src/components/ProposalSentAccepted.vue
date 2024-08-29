@@ -5,7 +5,7 @@
 
 <template>
  
- <div>
+ <div style="width:350px">
   
     <div class="border border-1 rounded text-warning border-warning" >
 
