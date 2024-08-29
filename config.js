@@ -6,8 +6,8 @@ let BKND_REGIONS = [] ;
 let BKND_CONFIG = {
     //BKND_HOST : "HTTP://ec2-3-143-168-51.us-east-2.compute.amazonaws.com:8080",
     //local ENv
-    //BKND_HOST : "https://reusar.cl:8084",
-    BKND_HOST : "http://localhost:8080",
+    BKND_HOST : "https://reusar.cl:8084",
+    //BKND_HOST : "http://localhost:8080",
    
     BKND_TIME : 1000,
     BNKD_USER : 'abc'
@@ -15,7 +15,7 @@ let BKND_CONFIG = {
 
 // let PATH_PRODUCT_IMG = "public/productImages/" ;
  let PATH_PRODUCT_IMG = "/public/productImages/" ;
- let PATH_BANNER_IMG = "/public/banners/" ;
+ let PATH_BANNER_IMG = "/banners/" ;
 
 // SHIPPING PRICE DEFAULT clp
  let SHIPPING_PRICE = "5.000" ;
