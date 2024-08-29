@@ -52,7 +52,7 @@ import axios from 'axios'
               
               <div  class="d-flex flex-wrap ">
                 <div v-for="obj in DBmyInventoryObjects"  > 
-                  <InventoryObject @click="addRemoveObjectsOfferList_temp(obj)" :object=obj  :showProductDetails="false" class="m-1" /> 
+                  <InventoryObject @click="addRemoveObjectsOfferList_temp(obj)" :object=obj :greenSelected=true :showProductDetails="false" class="m-1" /> 
                 </div>
               </div>
 
