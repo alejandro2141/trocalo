@@ -27,9 +27,9 @@ import axios from 'axios'
 <template>
 
 <div>
- 
- <!-- START DISPLAY CATEGORIES --> 
 
+ <!-- START DISPLAY CATEGORIES --> 
+<!--
   <div class="d-none d-flex d-lg-inline-block" style="width:990px">
     <hr>
     <div v-for="category in CATEGORIES" class="d-flex d-lg-inline-block" >
@@ -43,14 +43,10 @@ import axios from 'axios'
     <hr>
   </div>
 
- <!-- END DISPLAY CATEGORIES --> 
+-->
 
-
-
-
-
-
-
+    <!-- END DISPLAY CATEGORIES --> 
+     
 <div  class="">
 
   <div v-if="!(showObjectDetails || exchangeProposal_showInventory || exchangeProposal_showSummary  || exchangeProposal_checkBeforeSend || exchangeProposal_sentConfirmation) ">
@@ -76,7 +72,7 @@ import axios from 'axios'
         </div>
 
         <div>
-           <SearchResult    v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
+           <SearchResult  :title="'Categoria '+titleSearchResult"  v-on:exchangeObject="exchangeObject"  :search_event="search_event" :objects_filtered="objects_filtered" v-on:showPublicObjectDetails="showPublicObjectDetails"  :session_data="session_data" /> 
         </div>
     </div>
 <!-- 
@@ -119,7 +115,23 @@ import axios from 'axios'
   </div>
 
 
+
  <!-- START BANNERS -->
+<div v-if="!showObjectDetails" > 
+  <!--
+  <div style="width: 100%; height: 21px; border-bottom: 0.1px solid white; text-align: start" class="mt-2"  >
+      <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Categorias 
+      </span>
+  </div>
+  -->
+  <hr>
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Categorias 
+  </span>
+  <br>
+
+
 <div class="d-flex  flex-wrap" >
 
   <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
@@ -127,44 +139,41 @@ import axios from 'axios'
      <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
   </div>
    <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    Video Juegos
-     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Games.png'" />
+     Juegos
+     <img @click="filterByCategory(1)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Games.png'" />
   </div>
    <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
     Juguetes
-     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Juguetes.png'" />
+     <img @click="filterByCategory(7)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Juguetes.png'" />
   </div>
    <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
     Electrodomesticos
-     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Electrodomesticos.png'" />
+     <img @click="filterByCategory(13)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Electrodomesticos.png'" />
   </div>
 
-
-
-<div class="p-1 m-2 "   style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
-    Libros5
-     <img @click="filterByCategory(2)" class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+  <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
+    Accesorios
+     <img @click="filterByCategory(9)" class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Accesorios.png'" />
   </div>
 
 
   <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    Libros6
-     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+    Computacion
+     <img @click="filterByCategory(12)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Computacion.png'" />
   </div>
    <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    Libros7
-     <img @click="filterByCategory(2)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+    Deportes
+     <img @click="filterByCategory(5)" class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Deportes.png'" />
+  </div>
+
+  <div class="p-1 m-2 "   style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
+    Vestuario
+     <img @click="filterByCategory(4)" class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Vestuario.png'" />
   </div>
 
 
+</div>
 
-<div class="p-1 m-2 "   style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
-    Libros
-     <img @click="filterByCategory(2)" class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
-  </div>
-
-  
- 
 
 </div>
 
@@ -248,14 +257,17 @@ export default {
 
   },
 
-  props: ['session_data', 'textToSearch','category', 'state' ],
+  props: ['session_data', 'textToSearch','categoryToSearch' ,'category', 'state' ],
   emits: ['sessionCreated'],
 
 created() {
    this.search_event = false
+   this.filterByCategory(this.categoryToSearch)
+   this.category_search = null
      },
 
 methods: {
+
     /*
     async SearchObjects(searchParams)
     {
@@ -271,6 +283,8 @@ methods: {
 
     getCategoryName(cat)
     {
+      if (cat != null)
+      {
 
         console.log("categorias  :"+cat)
         console.log("categorias largo  :"+cat.length)
@@ -284,8 +298,9 @@ methods: {
         }
         else 
         {
-          return "Ultimas Novedades"
+          return "Recién llegados"
         }
+      }
 
     },
 
@@ -324,6 +339,7 @@ methods: {
         this.objects_filtered=null ;   
       }
 
+      this.titleSearchResult = ""; 
       this.search_event = true 
       this.showCategories = false 
 
@@ -396,10 +412,10 @@ watch : {
       this.filterByText(newval)
     },
 
-    category(newval,oldval)
+    categoryToSearch(newval,oldval)
     {
       console.log("Show category in ViewSearch:"+newval+"   oldval:"+oldval)
-      //this.filterByText(newval)
+      this.filterByCategory(newval)
     }
 
 
