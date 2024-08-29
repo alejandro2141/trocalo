@@ -15,6 +15,7 @@ import axios from 'axios'
 <div class=""  >
 
    
+  <!-- START SHOW INVENTORY -->
   <div v-if="showInventory">
 
       <!-- Main Options -->
@@ -38,7 +39,7 @@ import axios from 'axios'
           <div class="d-flex flex-wrap"> 
             <InventoryObjectEmpty  @click="showNewObjectForm=true; showInventory=false" class="mt-2"  />
             <div v-for="obj in inventory_objects_filtered"  > 
-              <InventoryObject @click="objectDetails=obj ;showModalDetails=true; showInventory=false"  :object=obj class="m-0"   />
+              <InventoryObject @click="objectDetails=obj ;showModalDetails=true; showInventory=false"   :object=obj class="m-0"    />
             </div>
 
           </div>
@@ -46,14 +47,15 @@ import axios from 'axios'
       </div>
 
   </div>
-    <!-- END LIST ALL INVENTORY OBJECTS-->
+  <!-- END  SHOW INVENTORY -->
+  
 
 
-    <!-- SHOW DETAILED OBJECT DATA -->
+  <!-- SHOW OBJECT DETAILS -->
     <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark"  >
       <br>
       <br>
-          <div class="" >
+      <div class="" >
                   
                   <div style="position:fixed ; top:0px ; right:0px" class="d-flex justify-content-end p-3 bg-dark"> 
                     <i @click="showModalDetails=false; showInventory=true " class="bi bi-x-lg display-1" ></i>
@@ -71,11 +73,11 @@ import axios from 'axios'
           </div>
           <div style="height:300px"></div>
     </div>
-    <!-- END SHOW DETAILED OBJECT DATA -->
+  <!-- END SHOW OBJECT DETAILS -->
 
 
-     <!-- ARE YOU SURE YOU WANT TO REMOVE THIS OBJECT -->
-      <div v-if="showConfirmDelete"  class="position-absolute top-0 start-10 bg-dark" >
+  <!-- ARE YOU SURE YOU WANT TO REMOVE THIS OBJECT -->
+    <div v-if="showConfirmDelete"  class="position-absolute top-0 start-10 bg-dark" >
         
         <div style="" class="d-flex justify-content-end">
             <i  @click="showConfirmDelete=false" style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
@@ -98,7 +100,8 @@ import axios from 'axios'
         <div style="height:800px">
         </div>
      
-      </div>
+    </div>
+
 
     <!-- DELETE CONFIRMATION -->
     <div v-if="showConfirmDeleteDone" style="position: absolute; top:0px;right:0px " class="p-0  w-100 bg-dark"  >
@@ -132,12 +135,16 @@ import axios from 'axios'
    <!-- END ARE YOU SURE YOU WANT TO REMOVE THIS OBJECT -->
 
     <!-- NEW OBJECT FORM -->
-    <div v-if="showNewObjectForm"  class="position-absolute top-0 start-10 bg-dark" >
+  <div v-if="showNewObjectForm" class="w-100 bg-dark" style=""> 
+    <!-- <div class="position-absolute top-0 start-10 bg-danger" > -->
+    <div class="position-absolute top-0 start-0 w-100 bg-dark" >
         <div style="transition: width 2s;" class="d-flex justify-content-end">
             <i  @click="showNewObjectForm=false; showInventory=true " style="font-size:50px;" class="display-1 bi bi-x-lg"></i>
         </div>
         <NewObjectForm :session_data="session_data" v-on:closeNewObjectForm="closeNewObjectForm" />
     </div>
+
+  </div>
     <!-- END NEW OBJECT FORM -->
 
 
