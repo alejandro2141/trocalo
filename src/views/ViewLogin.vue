@@ -14,6 +14,10 @@ import { BKND_CONFIG } from '../../config.js'
 <template>
   <div class="w-100 position-absolute top-0 start-0 bg-dark ">
 
+    
+
+
+
     <div class=" m-1 p-0 w-100" >
     <div class="d-flex justify-content-center" >
     <div  style="width: 350px;">
@@ -350,9 +354,7 @@ export default {
         showInvitationSent : false ,
 
         emailToRecover : false ,
-       
-        
-
+   
         }
     },
 
