@@ -24,7 +24,7 @@ const location = useRoute();
   <!-- ALWAYS DISPLAY  d-flex flex-wrap justify-content-start -->     
   <div class="bg-dark d-flex align-content-start flex-wrap" >
 
-         <div>
+        <div>
             <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="Welcome">  
              <!--  <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> -->
                <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -32,7 +32,7 @@ const location = useRoute();
         </div>
 
         <div class="">
-            <FilterForSearchViewMinimal  v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
+            <FilterForSearchViewMinimal @click="categoryToSearch=null" v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
         </div>      
 
       <!-- INVENTORY, RECEIVED, SENT -->
@@ -63,6 +63,11 @@ const location = useRoute();
         </div>
 
       <!--END SELECTION INVENTORY, RECEIVED, SENT -->
+
+      <div class="d-none d-lg-inline-block bg-warning" style="width:1200px">
+      </div>
+
+
 
   </div> 
 
@@ -156,7 +161,7 @@ const location = useRoute();
   -->
 <!-- END PRIVATE SESSION --> 
     
-      <RouterView  v-on:sessionCreated="sessionCreated"  :textToSearch="textToSearch" :session_data='session_data' />
+      <RouterView  v-on:sessionCreated="sessionCreated" :categoryToSearch="categoryToSearch" :textToSearch="textToSearch" :session_data='session_data' v-on:showCategory="showCategory" />
     
     </div>
 
@@ -238,6 +243,7 @@ export default {
           underline_sent : false ,
 
           textToSearch : null,
+          categoryToSearch : null , 
 
 
         }
@@ -253,6 +259,13 @@ export default {
 
 
   methods: {
+
+    showCategory(cat)
+    {
+      console.log("in APP category to show"+cat)
+      this.categoryToSearch = cat 
+      this.$router.push({ name: 'ViewSearch' })
+    },
 
     getNameLetters(name)
     {
@@ -359,7 +372,7 @@ export default {
 
       $route (to, from)
       {
-        console.log("router changes : "+to)
+        console.log("router changes : "+JSON.stringify(to) )
       } 
     
        
