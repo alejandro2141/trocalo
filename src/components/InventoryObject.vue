@@ -48,24 +48,30 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
 
 
     <!-- INVENTORY OBJECT  -->
-    <div v-else class="" >
-        <div v-if="object!=null" @click="selectObject=!selectObject"  class="" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-dark' : 'border-dark' , '' ]"  style="width:120px " >
-                <div class=" image-container rounded text-center"  style="width:120px; height:120px">
-                    <div class="image-container img  w-100 text-center">
-                        <img class="m-1" style=" max-width: 115px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
-                    </div>
-                    <div v-if="object.blocked_due_proposal_accepted" class="overlay-text"  >
-                        <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
+    <div v-else  >
+        <div class="object-background m-1 p-0 rounded">
+            <a href="#" v-if="object!=null" @click="selectObject=!selectObject"  class="m-0 p-0 link-object" style="border-radius: 3px; " >
+                            
+                 <div class="d-flex align-items-center m-0 link-object">
+                    <div  class="d-flex align-items-start m-0">
+                    <i class="text-warning" :class="getCategoryIcon(object.category1)"></i> 
+                     &nbsp; {{object.title.substring(0,12)}}<br>
+                     <!-- {{object.description}} -->
                     </div>
                 </div>
-               
-            <div class="d-flex align-items-center">
-                <div  class="d-flex align-items-start m-1">
-                <i class="text-warning" :class="getCategoryIcon(object.category1)"></i> &nbsp;   {{object.title}}<br>
-                 <!-- {{object.description}} -->
-                </div>
-            </div>
 
+                <div class=" text-center m-0 "  style="width:120px; height:120px">
+                        <div class="image-container img  w-100 text-center">
+                        <!--  <img class="m-1" style=" max-width: 115px ;  max-heigth:115px  ; width:115px; heigth:115px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
+                        -->
+                        <img class="m-1" style=" max-height:115px ; max-width:115px " :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
+
+                        </div>
+                        <div v-if="object.blocked_due_proposal_accepted" class="overlay-text"  >
+                            <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
+                        </div>
+                </div>
+            </a>
         </div>
     </div>
 
@@ -76,6 +82,29 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
 </template>
 
 <style scoped>
+
+
+.object-background
+{
+background-color: #000;
+}
+.object-background:hover
+{
+background-color: #444;    
+}
+
+.link-object
+{
+  color: #EEE ;
+  text-decoration: none;
+}
+
+.link-object:hover
+{
+color: #FFF ;
+}
+
+
 
 .image-container {
   position: relative;
