@@ -1,5 +1,5 @@
 <script setup >
-import { BKND_CONFIG } from '../config.js'
+import {  PATH_BANNER_IMG,BKND_CONFIG } from '../config.js'
 import { RouterLink, RouterView } from 'vue-router'
 
 import { useRoute } from 'vue-router'
@@ -8,8 +8,6 @@ import FilterForSearchViewMinimal from './components/FilterForSearchViewMinimal.
 import FilterForSearchView from './components/FilterForSearchView.vue'
 
 const location = useRoute();
-
-
 
 </script>
 
@@ -27,7 +25,11 @@ const location = useRoute();
         <div>
             <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="Welcome">  
              <!--  <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> -->
-               <text style="color:#FFF ; font-size : 45px ;"> REUSAR.CL</text> &nbsp;&nbsp;&nbsp;&nbsp;
+               <text style="color:#FFF ; font-size : 45px ;"> 
+              
+               <img  class="m-0" style="max-width: 320px;   " :src="PATH_BANNER_IMG+'/LogoBuscarREUSAR.png'" />
+
+              </text> &nbsp;&nbsp;&nbsp;&nbsp;
             </RouterLink>   
         </div>
 
@@ -64,10 +66,10 @@ const location = useRoute();
 
       <!--END SELECTION INVENTORY, RECEIVED, SENT -->
 
-      <div class="d-none d-lg-inline-block bg-warning" style="width:1200px">
+      <div class="d-none d-lg-inline-block" style="width:1200px; height:20px">
+<!--
+         <img  class="m-0" style="max-height: 170px; position: relative;top: -140px;  " :src="PATH_BANNER_IMG+'/MainBannerLargedevices.png'" />-->
       </div>
-
-
 
   </div> 
 
