@@ -38,7 +38,8 @@ import axios from 'axios'
     <div v-for="category in CATEGORIES" class="d-none d-lg-inline-block" >
                       <text @click="filterByCategory(category.id)" style="font-size:12px" > 
                           <p class="bi text-center"> 
-                               {{category.name}} <i class="bi" :class="category.icon" ></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                              <a href="#" class="link-title-object"> {{category.name}} <i class="bi" :class="category.icon" ></i></a> 
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                              
                           </p>
                       </text>    
@@ -98,14 +99,17 @@ import axios from 'axios'
     <!-- START NEW OBJECTS CATEGORY-->
           <div  class="category">
                 
-              <text @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" style="font-size: 25px;"> 
+              <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" style="font-size: 25px;" class="link-title-object"> 
                   <i class="bi bi-caret-right-fill"></i> Recién llegados
-              </text>
+              </a>
 
               <div>    
-                <br>
+               
                 <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="30" :session_data=" session_data"/>
-                <p @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="text-end p-2 text-primary"> Ver Mas ... </p>
+
+                <p class="text-end">
+                  <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="p-2  link-title-object text-white"> Ver Mas ... </a>
+                </p>
               </div>
 
           </div>
@@ -114,14 +118,17 @@ import axios from 'axios'
     <!-- START BOOKS CATEGORY-->
           <div  class="category">
                 
-              <text @click="$emit('showCategory',2)" style="font-size: 25px;"> 
+              <a href="#" @click="$emit('showCategory',2)" style="font-size: 25px;" class="link-title-object"> 
                   <i class="bi bi-caret-right-fill"></i> Libros
-              </text>
+              </a>
 
               <div>    
-                <br>
                 <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="9" :session_data=" session_data"/>
-                <p @click="$emit('showCategory',2)" class="text-end p-2 text-primary"> Ver Mas ... </p>
+
+                <p class="text-end">
+                    <a href="#" @click="$emit('showCategory',2)" class=" p-2 link-title-object text-white"> Ver Mas ... </a>
+                </p>
+
               </div>
 
           </div>
@@ -130,14 +137,17 @@ import axios from 'axios'
     <!-- START JUGUETES CATEGORY -->
           <div  class="category">
                 
-              <text @click="$emit('showCategory',7)" style="font-size: 25px;"> 
+              <a href="#" @click="$emit('showCategory',7)" style="font-size: 25px;" class="link-title-object"> 
                   <i class="bi bi-caret-right-fill"></i> Juguetes
-              </text>
+              </a>
 
               <div>    
-                <br>
                 <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="7" :limit="9" :session_data=" session_data"/>
-                <p @click="$emit('showCategory',7)" class="text-end p-2 text-primary"> Ver Mas ... </p>
+
+                <p class="text-end">
+                  <a href="#" @click="$emit('showCategory',7)" class="p-2 link-title-object text-white"> Ver Mas ... </a>
+                </p>
+
               </div>
 
           </div>
@@ -146,14 +156,17 @@ import axios from 'axios'
    <!-- START JUEGOS CATEGORY -->
           <div  class="category">
                 
-              <text @click="$emit('showCategory',1)" style="font-size: 25px;"> 
+              <a href="#" @click="$emit('showCategory',1)" style="font-size: 25px;" class="link-title-object"> 
                   <i class="bi bi-caret-right-fill"></i> Juegos
-              </text>
+              </a>
 
               <div>    
-                <br>
                 <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="1" :limit="9" :session_data=" session_data"/>
-                <p @click="$emit('showCategory',1)" class="text-end p-2 text-primary"> Ver Mas ... </p>
+
+                <p class="text-end">
+                  <a href="#" @click="$emit('showCategory',1)" class="p-2 link-title-object text-white"> Ver Mas ... </a>
+                </p>
+
               </div>
 
           </div>
@@ -162,14 +175,17 @@ import axios from 'axios'
     <!-- START JUEGOS CATEGORY -->
           <div  class="category">
                 
-              <text @click="$emit('showCategory',4)" style="font-size: 25px;"> 
+              <a href="#" @click="$emit('showCategory',4)" style="font-size: 25px;" class="link-title-object"> 
                   <i class="bi bi-caret-right-fill"></i> Vestuario
-              </text>
+              </a>
 
               <div>    
-                <br>
                 <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="4" :limit="9" :session_data=" session_data"/>
-                <p @click="$emit('showCategory',4)" class="text-end p-2 text-primary"> Ver Mas ... </p>
+
+              <p class="text-end">
+                <a href="#" @click="$emit('showCategory',4)" class="p-2 link-title-object text-white"> Ver Mas ... </a>
+              </p>
+
               </div>
 
           </div>
@@ -201,7 +217,7 @@ import axios from 'axios'
 
 <div class="d-flex  flex-wrap" >
 
-  <div class="p-1 m-2 " @click="filterByCategory(2)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+  <div class="p-1 m-2 justify-content-center" @click="filterByCategory(2)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
     Libros
      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
   </div>
@@ -321,6 +337,32 @@ border-radius: 10px;
 background-color:#222 ; 
 }
 
+
+.link-title-object
+{
+  color: #CCC ;
+  text-decoration: none;
+}
+
+.link-title-object:hover
+{
+  color: #FFF ;
+}
+
+
+.link-object
+{
+  color: #EEE ;
+  text-decoration: none;
+}
+
+.link-object:hover
+{
+color: #FFF ;
+}
+
+
+
 </style>
 
 
@@ -418,10 +460,12 @@ methods: {
      this.showPublicObjectDetails(object[0])
     },
 
+/*
     async filterByCategory(cat)
     {
       this.selectedCategory(cat) 
     },
+    */
 
 
     async selectedCategory(val)
