@@ -350,8 +350,11 @@ methods: {
     async filterByCategory(category)
     {
      
-      if (category != null && category !="")
+      if (category == null && category =="")
       {
+        category == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+      }
+
       this.spinnerOn=true
       
       console.log ("Flter by category viewSearch {"+category+"}")
@@ -372,7 +375,6 @@ methods: {
 
       this.spinnerOn=false
 
-      }
      
     },
 
@@ -408,6 +410,7 @@ watch : {
 
     textToSearch(newval,oldval)
     {
+
       console.log("textToSearch in ViewSearch newval:"+newval+"   oldval:"+oldval)
       this.filterByText(newval)
     },
