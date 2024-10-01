@@ -26,22 +26,20 @@ import axios from 'axios'
 
 
 
-  <div v-if="search_event" class="text-warning text-start m-4">
+  <div v-if="search_event" class="text-warning text-start m-0">
     <div class="text-warning" v-if="objects_filtered !=null && objects_filtered.length > 0">
           {{objects_filtered.length}} objetos encontrados. 
         <br>
     </div>
-    <div v-else class="mt-2 ">
-      
-
-      <text style="m-3 p-3">
-           <text>Sin objetos </text><i class="bi bi-wind" style="font-size:46px;" ></i><br>
+    <div v-else class="m-2 w-100 d-flex justify-content-start">
+      <text style="">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         
+           <i class="bi bi-wind" style="font-size:46px;" ></i><br>
       </text>
-
-     
     </div>
     
-
   <br>
   </div>
 
