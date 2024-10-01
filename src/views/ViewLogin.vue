@@ -353,7 +353,7 @@ export default {
 
         showInvitationSent : false ,
 
-        emailToRecover : false ,
+        emailToRecover : null ,
    
         }
     },
