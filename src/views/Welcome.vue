@@ -33,12 +33,12 @@ import axios from 'axios'
   <SpinnerLoading  :onOff=spinnerOn />
 <!-- START DISPLAY MENU CATEGORIES --> 
 
-  <div class="d-none d-lg-inline-block" >
+  <div class="d-none d-lg-inline-block" style="margin-top: -40px;" >
     <hr>
     <div v-for="category in CATEGORIES" class="d-none d-lg-inline-block" >
                       <text @click="filterByCategory(category.id)" style="font-size:12px" > 
                           <p class="bi text-center"> 
-                              <a href="#" class="link-title-object"> {{category.name}} <i class="bi" :class="category.icon" ></i></a> 
+                              <a href="#" class="link-title-object"> {{category.name}}<i class="bi" :class="category.icon" ></i></a> 
                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                              
                           </p>
@@ -105,7 +105,7 @@ import axios from 'axios'
 
               <div>    
                
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="30" :session_data=" session_data"/>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="9" :session_data=" session_data"/>
 
                 <p class="text-end">
                   <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="p-2  link-title-object text-white"> Ver Mas ... </a>
@@ -116,6 +116,7 @@ import axios from 'axios'
     <!-- END NEW OBJECTS CATEGORY-->
 
     <!-- START BOOKS CATEGORY-->
+        <!--
           <div  class="category">
                 
               <a href="#" @click="$emit('showCategory',2)" style="font-size: 25px;" class="link-title-object"> 
@@ -132,9 +133,11 @@ import axios from 'axios'
               </div>
 
           </div>
+        -->
     <!-- END BOOKS CATEGORY-->
 
     <!-- START JUGUETES CATEGORY -->
+        <!--
           <div  class="category">
                 
               <a href="#" @click="$emit('showCategory',7)" style="font-size: 25px;" class="link-title-object"> 
@@ -151,9 +154,11 @@ import axios from 'axios'
               </div>
 
           </div>
+        -->
     <!-- END JUEGUETES CATEGORY -->
 
    <!-- START JUEGOS CATEGORY -->
+       <!--
           <div  class="category">
                 
               <a href="#" @click="$emit('showCategory',1)" style="font-size: 25px;" class="link-title-object"> 
@@ -170,9 +175,11 @@ import axios from 'axios'
               </div>
 
           </div>
+        -->
     <!-- END JUEGOS CATEGORY -->
 
     <!-- START JUEGOS CATEGORY -->
+        <!--
           <div  class="category">
                 
               <a href="#" @click="$emit('showCategory',4)" style="font-size: 25px;" class="link-title-object"> 
@@ -189,6 +196,7 @@ import axios from 'axios'
               </div>
 
           </div>
+        -->
     <!-- END JUEGOS CATEGORY -->
 
     <!-- FOOTER  LIST CATEGORIES (Only in  sm devices)-->
@@ -206,9 +214,101 @@ import axios from 'axios'
         -->
     <!-- -->
 
-<!--  FOOTER CATERGORIES -->
 
-  <hr>
+<!--  FOOTER CATERGORIES -->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Coleccionables para intercambiar
+  </span>
+  <br>
+
+<div class="d-flex  flex-wrap" >
+
+  <div class="p-1 m-2 " @click="filterByCategory(1)"  style="background-color:#333 ; max-height: 180px; max-width: 180px;" > 
+    <a href="#">
+     <text class="link-title-object">Video Juegos</text><br>
+     <img  class="m-0" style="max-height: 170px; max-width: 170px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_VideoJuegos.png'" />
+    </a>
+  </div>
+
+  <div class="p-1 m-2 " @click="filterByCategory(7)"  style="background-color:#333 ; max-height: 180px; max-width: 180px;" > 
+    <a href="#">
+      <text class="link-title-object">Juguetes</text><br>
+      <img  class="m-0" style="max-height: 170px; max-width: 170px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Juguetes.png'" />
+    </a>
+  </div>
+   
+</div>
+
+<!--  FOOTER CATERGORIES -->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="">
+       Para el Hogar
+  </span>
+  <br>
+
+<div class="d-flex  flex-wrap" >
+
+  <div class="p-1 m-2 " @click="filterByCategory(13)"  style="background-color:#333 ; max-height: 180px; max-width: 180px;" > 
+    <a href="#">
+      <text class="link-title-object">Electrodomesticos</text><br>
+      <img  class="m-0" style="max-height: 170px; max-width: 170px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Electrodomesticos.png'" />
+    </a>
+  </div>
+
+  <div class="p-1 m-2 " @click="filterByCategory(3)"  style="background-color:#333 ; max-height: 180px; max-width: 180px;" > 
+    <a href="#">
+      <text class="link-title-object">Hogar</text><br>
+      <img  class="m-0" style="max-height: 170px; max-width: 170px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Hogar.png'" />
+    </a>
+  </div>
+
+  <div class="p-1 m-2 " @click="filterByCategory(17)"  style="background-color:#333 ; max-height: 180px; max-width: 180px;" > 
+    <a href="#">
+      <text class="link-title-object">Jardin</text><br>
+      <img  class="m-0" style="max-height: 170px; max-width: 170px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Jardin.png'" />
+    </a>
+  </div>
+  
+  <div class="p-1 m-2 " @click="filterByCategory(15)"  style="background-color:#333 ; max-height: 180px; max-width: 180px;" > 
+    <a href="#">
+     <text class="link-title-object">Electronica</text><br>
+     <img  class="m-0" style="max-height: 170px; max-width: 170px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_ElectroHogar.png'" />
+    </a>
+  </div>
+   
+</div>
+
+
+ <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+       Libros
+  </span>
+  <br>
+
+<div class="d-flex  flex-wrap" >
+   <div class="p-1 m-2 " @click="filterByCategory(1)"  style="background-color:#333 ; max-height: 380px; max-width: 380px;" > 
+    <a href="#">
+       <img  class="m-0" style="max-height: 370px; max-width: 370px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books2.png'" />
+    </a>
+  </div>
+
+  <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="6" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',2)" class=" p-2 link-title-object text-white"> Ver Mas ... </a>
+      </p>
+  </div>
+
+   
+</div>
+
+
+
+
+<!--  FOOTER CATERGORIES -->
+<!--
+  <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
         Categorias 
   </span>
@@ -218,44 +318,65 @@ import axios from 'axios'
 <div class="d-flex  flex-wrap" >
 
   <div class="p-1 m-2 justify-content-center" @click="filterByCategory(2)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    Libros
-     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+   <a href="#">
+      <text class="link-title-object">Libros</text>
+      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
+    </a>
   </div>
-   <div class="p-1 m-2 " @click="filterByCategory(1)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-     Juegos
+   
+  <div class="p-1 m-2 " @click="filterByCategory(1)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    <a href="#">
+     <text class="link-title-object">Juegos</text>
      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Games.png'" />
+    </a>
   </div>
-   <div class="p-1 m-2 " @click="filterByCategory(7)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    Juguetes
-     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Juguetes.png'" />
+
+  <div class="p-1 m-2 " @click="filterByCategory(7)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    <a href="#">
+      <text class="link-title-object">Juguetes</text>
+      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Juguetes.png'" />
+    </a>
   </div>
    <div class="p-1 m-2 " @click="filterByCategory(13)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    Electrodomesticos
-     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Electrodomesticos.png'" />
+    <a href="#">
+      <text class="link-title-object">Electrodomesticos</text>
+      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Electrodomesticos.png'" />
+    </a>
+  </div>
+
+  <div class="p-1 m-2 " @click="filterByCategory(12)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    <a href="#">
+      <text class="link-title-object"> Computacion </text>
+      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Computacion.png'" />
+    </a>
+  </div>
+  
+  <div class="p-1 m-2 "  @click="filterByCategory(5)" style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
+    <a href="#">
+      <text class="link-title-object">Deportes </text>
+     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Deportes.png'" />
+   </a>
   </div>
 
   <div class="p-1 m-2 " @click="filterByCategory(9)"  style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
-    Accesorios
+    <a href="#">
+      <text class="link-title-object"> Accesorios</text>
      <img  class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Accesorios.png'" />
-  </div>
-
-
-  <div class="p-1 m-2 " @click="filterByCategory(12)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    Computacion
-     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Computacion.png'" />
-  </div>
-   <div class="p-1 m-2 "  @click="filterByCategory(5)" style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    Deportes
-     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Deportes.png'" />
+    </a>
   </div>
 
   <div class="p-1 m-2 " @click="filterByCategory(4)"  style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
-    Vestuario
+    
+    <a href="#">
+      <text class="link-title-object"> Vestuario</text>
      <img  class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Vestuario.png'" />
+    </a>
   </div>
 
 
 </div>
+
+-->
 
 
 <!-- -->
