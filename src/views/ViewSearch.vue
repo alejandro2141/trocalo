@@ -117,14 +117,10 @@ import axios from 'axios'
 
 
  <!-- START BANNERS -->
+ 
+ <!--
 <div v-if="!showObjectDetails" > 
-  <!--
-  <div style="width: 100%; height: 21px; border-bottom: 0.1px solid white; text-align: start" class="mt-2"  >
-      <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-        Categorias 
-      </span>
-  </div>
-  -->
+ 
   <hr>
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
         Categorias 
@@ -177,6 +173,7 @@ import axios from 'axios'
 
 </div>
 
+-->
  
  </div>
 
