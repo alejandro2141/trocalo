@@ -7,9 +7,9 @@
 
     
     <div v-if="horizontal"> 
-        <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:100px ; border-style: dotted"   >
+        <div  @click="selectObject=!selectObject"  class="border border-2 rounded" :class="[selectObject ? 'border-white' : 'border-dark' , '' ]"  style="width:120px ; border-style: dotted"   >
 
-                <div class="bg-white"  style="display: grid;align-items: center;width:100px; height:100px">
+                <div class="bg-white"  style="display: grid;align-items: center;width:120px; height:120px">
                    +
                 </div>
 
@@ -50,8 +50,8 @@
     </div> 
 
     <div v-else class="" >
-        <div  @click="selectObject=!selectObject"   style="width:100px ;" >
-                <div class="bg-dark w-100 border border-2 rounded text-center "   :class="[selectObject ? 'border-white' : 'border-secondary' , '' ]"   style="width:100px; height:100px;align-items: center;display: grid;	align-items: center;">
+        <div  @click="selectObject=!selectObject"   style="width:120px ; height:120px" class="m-1" >
+                <div class=" m-1 bg-dark w-100 border border-2 rounded text-center "   :class="[selectObject ? 'border-white' : 'border-secondary' , '' ]"   style="width:120px; height:120px;align-items: center;display: grid;	align-items: center;">
                     <i style="font-size:40px" class="bi bi-plus-lg "></i>
                 </div>
                
