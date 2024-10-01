@@ -11,7 +11,7 @@ import { CATEGORIES } from '../../config.js'
         <!-- 
         <text style="border-radius: 30px;" class="border p-0" :class="[ categories.includes(1) ? 'border-secondary': 'border-dark' ]"  @click="addCategoryToSearch(1)" > <i style="font-size:40px" class="bi bi-controller "></i> </text>
         -->
-        <input @click="$router.push({ name: 'ViewSearch' })" v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:21px ; border-radius: 10px 0px 0px 10px;" id="searchText" name="searchText" class="m-0 p-0 bg-white border-white text-dark form-control border border-0" required minlength="4" maxlength="30"   />
+        <input @click="$router.push({ name: 'ViewSearch' })" v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:21px ; border-radius: 10px 0px 0px 10px;" id="searchText" name="searchText" class="m-0 p-0 bg-white border-white text-dark form-control border border-0" required minlength="4" maxlength="30" />
          
          <!-- 
               <input @click="$router.push({ name: 'ViewSearch' })" v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ; border-radius: 10px 0px 0px 10px;" id="searchText" name="searchText" class=" m-0 bg-dark text-white border-2  border-white form-control " required minlength="4" maxlength="30" />
