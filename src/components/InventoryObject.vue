@@ -27,14 +27,16 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
         <!-- INVENTORY OBJECT  -->
     <div v-else-if=greenSelected class="" >
         <div v-if="object!=null" @click="selectObject=!selectObject"  class="" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:120px " >
-                <div class=" image-container rounded text-center"  style="width:120px; height:120px">
-                    <div class="image-container img  w-100 text-center">
-                        <img class="m-1" style=" max-width: 115px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
-                    </div>
-                    <div v-if="object.blocked_due_proposal_accepted" class="overlay-text"  >
-                        <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
-                    </div>
+            
+            <div class=" image-container rounded text-center"  style="width:120px; height:120px">
+                <div class="image-container img  w-100 text-center">
+                    <img class="m-1" style=" max-width: 115px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
                 </div>
+                <div v-if="object.blocked_due_proposal_accepted" class="overlay-text"  >
+                    <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
+                </div>
+            
+            </div>
                
             <div class="d-flex align-items-center">
                 <div  class="d-flex align-items-start m-1">
@@ -50,7 +52,10 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
     <!-- INVENTORY OBJECT  -->
     <div v-else  >
         <div class="object-background m-1 p-0 rounded">
-            <a href="#" v-if="object!=null" @click="selectObject=!selectObject"  class="m-0 p-0 link-object" style="border-radius: 3px; " >
+            <a href="#" v-if="object!=null" @click="selectObject=!selectObject"  class="m-0 p-0 link-object image-container" style="border-radius: 3px; " >
+
+                
+
                             
                  <div class="d-flex align-items-center m-0 link-object">
                     <div  class="d-flex align-items-start m-0">
@@ -59,17 +64,19 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
                      <!-- {{object.description}} -->
                     </div>
                 </div>
+                
+                <div v-if="object.blocked_due_proposal_accepted" style="width:120px; height:120px" class=" overlay-text"  >
+                            <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
+                </div>
 
                 <div class=" text-center m-0 "  style="width:120px; height:120px">
-                        <div class="image-container img  w-100 text-center">
+                        <div class=" img  w-100 text-center">
                         <!--  <img class="m-1" style=" max-width: 115px ;  max-heigth:115px  ; width:115px; heigth:115px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
                         -->
                         <img class="m-1" style=" max-height:115px ; max-width:115px " :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
 
                         </div>
-                        <div v-if="object.blocked_due_proposal_accepted" class="overlay-text"  >
-                            <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
-                        </div>
+                    
                 </div>
             </a>
         </div>
@@ -121,8 +128,14 @@ color: #FFF ;
   width:95px; 
   height:95px ;
   position: absolute;
-  top: 50%; 
+  top: 60% ; 
   left: 50%; 
+  /*
+  top: 0px  ; 
+  left: 0px ;
+   top: ; 
+  left: 50%; 
+*/
   transform: translate(-50%, -50%); 
   background-color: #000000;  
   opacity:0.5;
@@ -168,7 +181,18 @@ export default {
 
         let iconData = CATEGORIES.find((element) => element.id === cat);
         console.log("icon data found:"+JSON.stringify(iconData) )
-        return iconData.icon
+
+        if (iconData != null && iconData.id != 0 )
+        {
+            console.log("Returning :--"+iconData.icon+"--"  )
+            return iconData.icon
+        }
+        else
+        {
+            console.log("Returning AAA"  )
+            return "bi bi-box" 
+        }
+
     },
 
     isLocked()
