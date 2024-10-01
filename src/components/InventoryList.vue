@@ -23,9 +23,9 @@ import axios from 'axios'
         <div>
         </div>
 
-        <div class="d-flex align-items-center mt-3 "  >
-          <input  v-model="ftext" style="text-align:center; width:190px;  font-size:26px ;border-radius:15px" class="form-control-sm form-control-sm bg-dark border-0  text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="Mi Inventario"> 
-        </div>
+          <div class="d-flex align-items-center mt-3 "  >
+            <input  v-model="ftext" style="text-align:center; width:190px;  font-size:26px ;border-radius:15px" class="form-control-sm form-control-sm bg-dark border-0  text-white"  type="text" minlength="4" maxlength="30" size="30" placeholder="Mi Inventario"> 
+          </div>
       
         <div>
         </div>
@@ -41,7 +41,6 @@ import axios from 'axios'
             <div v-for="obj in inventory_objects_filtered"  > 
               <InventoryObject @click="objectDetails=obj ;showModalDetails=true; showInventory=false"   :object=obj class="m-0"    />
             </div>
-
           </div>
           <div style="height:300px"></div>
       </div>
@@ -52,15 +51,15 @@ import axios from 'axios'
 
 
   <!-- SHOW OBJECT DETAILS -->
-    <div v-if="showModalDetails" class="position-absolute top-0 start-10 bg-dark"  >
+    <div v-if="showModalDetails" class="position-absolute top-0 start-0 bg-dark w-100"  >
       <br>
       <br>
-      <div class="" >
+          <div class="d-flex justify-content-center" >
+            <div>
                   
                   <div style="position:fixed ; top:0px ; right:0px" class="d-flex justify-content-end p-3 bg-dark"> 
                     <i @click="showModalDetails=false; showInventory=true " class="bi bi-x-lg display-1" ></i>
                   </div>
-
 
                   <InventoryObjectDetailed  :object="objectDetails"  :session_data="session_data" />
                   <br>
@@ -69,8 +68,9 @@ import axios from 'axios'
                       <i  style="font-size:30px" class="bi bi-trash"></i> Eliminar de mi Inventario  
                     </div>
                   </div>
-
+            </div>
           </div>
+
           <div style="height:300px"></div>
     </div>
   <!-- END SHOW OBJECT DETAILS -->
