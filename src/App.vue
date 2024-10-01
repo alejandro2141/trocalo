@@ -22,20 +22,27 @@ const location = useRoute();
   <!-- ALWAYS DISPLAY  d-flex flex-wrap justify-content-start -->     
   <div class="bg-dark d-flex align-content-start flex-wrap" >
 
+      <div style="" class="d-flex align-content-start flex-wrap">
         <div>
             <RouterLink  style="font-size : 20px ; "  class="p-0 text-secondary"  :class="[ underline_search ? ' text-white' : 'bg-dark' ]"    to="Welcome">  
              <!--  <i style="color:#FFF ; font-size : 55px ;" class="bi bi-recycle"></i> -->
-               <text style="color:#FFF ; font-size : 45px ;"> 
+               
               
                <img  class="m-0" style="max-width: 320px;   " :src="PATH_BANNER_IMG+'/LogoBuscarREUSAR.png'" />
-
-              </text> &nbsp;&nbsp;&nbsp;&nbsp;
+              <!-- 
+               <br>
+              <div style="font-size : 16px ;  margin-top: -20px; margin-left:10px">Intercambia, Reusa, Recicla</div>
+              -->
+              <div style="font-size : 14px ;  margin-top: -20px; margin-left:10px" class="text-warning">¡Intercambia y paga solo el envío!</div>
+               
             </RouterLink>   
         </div>
 
         <div class="">
             <FilterForSearchViewMinimal @click="categoryToSearch=null" v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
         </div>      
+
+      </div>
 
       <!-- INVENTORY, RECEIVED, SENT -->
         <div v-if="session_data!=null && session_data.user!=null && $route.name != 'ViewSearch' " class="mt-0 pt-1 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px ; width:350px" >
