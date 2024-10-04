@@ -52,11 +52,9 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
     <!-- INVENTORY OBJECT  -->
     <div v-else  >
         <div class="object-background m-1 p-0 rounded">
-            <a href="#" v-if="object!=null" @click="selectObject=!selectObject"  class="m-0 p-0 link-object image-container" style="border-radius: 3px; " >
+            <a href="#" v-if="object!=null" @click="selectObject=!selectObject"  class="m-0 p-0 link-object" style="border-radius: 3px; " >
 
-                
-
-                            
+                          
                  <div class="d-flex align-items-center m-0 link-object">
                     <div  class="d-flex align-items-start m-0">
                     <i class="text-warning" :class="getCategoryIcon(object.category1)"></i> 
@@ -64,20 +62,33 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
                      <!-- {{object.description}} -->
                     </div>
                 </div>
-                
-                <div v-if="object.blocked_due_proposal_accepted" style="width:120px; height:120px" class=" overlay-text"  >
-                            <i  style="font-size:40px" class="bi bi-unlock text-white"></i>
-                </div>
-
+              
+            <!--
                 <div class=" text-center m-0 "  style="width:120px; height:120px">
-                        <div class=" img  w-100 text-center">
-                        <!--  <img class="m-1" style=" max-width: 115px ;  max-heigth:115px  ; width:115px; heigth:115px; border-radius: 6px;" :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
-                        -->
+                        <div class=" img  w-100 text-center" >
+                       
                         <img class="m-1" style=" max-height:115px ; max-width:115px " :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
-
+                   
                         </div>
                     
                 </div>
+            -->
+
+                <div class=" text-center m-0 "  style="width:120px; height:120px">
+                        <div class=" " style="" >
+                       
+                        <img class="m-1" style=" max-width:115px;max-height:115px;border-radius: 3px; " :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
+                   
+                        </div>
+                    
+                </div>
+
+  
+                <div v-if="object.blocked_due_proposal_accepted" style="width:120px; height:120px" class=" overlay-text"  >
+                            <i   class="bi bi-unlock text-white"></i>
+                </div>
+
+
             </a>
         </div>
     </div>
@@ -125,23 +136,19 @@ color: #FFF ;
 }
 
 .overlay-text {
-  width:95px; 
-  height:95px ;
-  position: absolute;
-  top: 60% ; 
-  left: 50%; 
+ 
+  margin-top : -120px ; 
   /*
   top: 0px  ; 
   left: 0px ;
    top: ; 
   left: 50%; 
 */
-  transform: translate(-50%, -50%); 
+ 
   background-color: #000000;  
-  opacity:0.5;
+  opacity:0.8;
   color: #fff; 
-  padding: 0px 0px; 
-  font-size: 20px; 
+  font-size: 60px; 
   text-align: center;
 }
 
