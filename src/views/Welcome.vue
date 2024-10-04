@@ -100,15 +100,16 @@ import axios from 'axios'
           <div  class="category">
                 
               <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" style="font-size: 25px;" class="link-title-object"> 
-                  <i class="bi bi-caret-right-fill"></i> Recién llegados
+                  &nbsp;&nbsp; Recién llegados
               </a>
+
 
               <div>    
                
                 <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="9" :session_data=" session_data"/>
 
                 <p class="text-end">
-                  <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="p-2  link-title-object text-white"> Ver Mas ... </a>
+                  <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="p-2  link-title-object text-warning"> Ver Mas ... </a>
                 </p>
               </div>
 
@@ -218,7 +219,7 @@ import axios from 'axios'
 <!--  FOOTER CATERGORIES -->
   <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-        Coleccionables para intercambiar
+        Coleccionables 
   </span>
   <br>
 
@@ -226,7 +227,7 @@ import axios from 'axios'
 
   <div class="p-1 m-2 " @click="filterByCategory(1)"  style="background-color:#333 ; max-height: 180px; max-width: 180px;" > 
     <a href="#">
-     <text class="link-title-object">Video Juegos</text><br>
+     <text class="link-title-object" style="">Video Juegos</text><br>
      <img  class="m-0" style="max-height: 170px; max-width: 170px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_VideoJuegos.png'" />
     </a>
   </div>
@@ -243,7 +244,7 @@ import axios from 'axios'
 <!--  FOOTER CATERGORIES -->
   <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="">
-       Para el Hogar
+       Hogar
   </span>
   <br>
 
@@ -296,7 +297,7 @@ import axios from 'axios'
   <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="6" :session_data=" session_data"/>
       <p class="text-end">
-          <a href="#" @click="$emit('showCategory',2)" class=" p-2 link-title-object text-white"> Ver Mas ... </a>
+          <a href="#" @click="$emit('showCategory',2)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
   </div>
 
@@ -458,6 +459,10 @@ border-radius: 10px;
 background-color:#222 ; 
 }
 
+a
+{
+  text-decoration:none
+}
 
 .link-title-object
 {
