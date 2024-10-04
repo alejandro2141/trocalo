@@ -33,23 +33,23 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
 
         
         <div class="d-flex justify-content-start ">
-                <div v-if="image1!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image1 == main_image) }" style="width:60px; height:60px">
-                    <img @click="viewImage(image1)" onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image1+'_thumb'"  /> 
+                <div v-if="image1!=null" @click="viewImage(image1)" class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image1 == main_image) }" style="width:60px; height:60px">
+                    <img  onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image1+'_thumb'"  /> 
                 </div>
 
-                <div v-if="image2!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image2 == main_image) }" style="width:60px; height:60px">
-                    <img @click="viewImage(image2)" onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image2+'_thumb'"  /> 
+                <div v-if="image2!=null"  @click="viewImage(image2)" class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image2 == main_image) }" style="width:60px; height:60px">
+                    <img onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image2+'_thumb'"  /> 
                 </div>
-                <div v-if="image3!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image3 == main_image) }" style="width:60px; height:60px">
-                    <img @click="viewImage(image3)" onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image3+'_thumb'" /> 
+                <div v-if="image3!=null" @click="viewImage(image3)" class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image3 == main_image) }" style="width:60px; height:60px">
+                    <img  onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image3+'_thumb'" /> 
                 </div>
-                <div v-if="image4!=null" class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image4 == main_image) }" style="width:60px; height:60px">
-                    <img @click="viewImage(image4)"  onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image4+'_thumb'" /> 
+                <div v-if="image4!=null" @click="viewImage(image4)" class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image4 == main_image) }" style="width:60px; height:60px">
+                    <img   onerror="this.style.display='none'" class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px; " :src="image4+'_thumb'" /> 
                 </div>
                 <br>
               
-                <div v-if="image5!=null"  class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image5 == main_image) }"  style="width:60px; height:60px">
-                    <img @click="viewImage(image5)" onerror="this.style.display='none' " class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image5+'_thumb'" /> 
+                <div v-if="image5!=null" @click="viewImage(image5)" class="bg-dark m-1 text-center" :class="{'border-2 border-top': (image5 == main_image) }"  style="width:60px; height:60px">
+                    <img  onerror="this.style.display='none' " class="mt-1"  style="max-width:60px;max-height:70px;border-radius: 3px;" :src="image5+'_thumb'" /> 
                 </div>
             
         </div>
