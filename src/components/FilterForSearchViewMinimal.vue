@@ -13,9 +13,9 @@ import { CATEGORIES } from '../../config.js'
         -->
         <input @click="$router.push({ name: 'ViewSearch' })" v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:21px ; border-radius: 10px 0px 0px 10px;" id="searchText" name="searchText" class="m-0 p-0 bg-white border-white text-dark form-control border border-0" required minlength="4" maxlength="30" />
          
-         <!-- 
+        <!-- 
               <input @click="$router.push({ name: 'ViewSearch' })" v-on:keyup.enter="onEnter"  type="text" placeholder="Objeto que quieres" v-model="textFilter" style="text-align:center; color:white ; font-size:26px ; border-radius: 10px 0px 0px 10px;" id="searchText" name="searchText" class=" m-0 bg-dark text-white border-2  border-white form-control " required minlength="4" maxlength="30" />
-         -->
+        -->
         <!--
         <i  style="margin-left: -85px;font-size:36px ;" @click="search(textFilter)" class="text-left text-secondary bi bi-search-heart p-0 mt-1 w-25"></i>
         -->
