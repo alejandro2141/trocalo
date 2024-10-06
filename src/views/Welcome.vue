@@ -315,7 +315,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="18" :limit="6" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="18" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',18)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -331,7 +331,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="19" :limit="6" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="19" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',19)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -347,7 +347,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="20" :limit="6" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="20" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',20)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -364,7 +364,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="9" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="9" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',9)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -379,7 +379,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="12" :limit="6" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="12" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',12)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -394,7 +394,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',14)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -409,7 +409,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="16" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="16" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',16)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -425,7 +425,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="6" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="6" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',6)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -440,7 +440,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="8" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="8" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',8)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -457,7 +457,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="5" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="5" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',5)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -472,7 +472,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="10" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="10" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',10)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -487,7 +487,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',14)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
@@ -502,7 +502,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="11" :limit="3" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="11" :limit="9" :session_data=" session_data"/>
       <p class="text-end">
           <a href="#" @click="$emit('showCategory',11)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
