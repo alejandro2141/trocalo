@@ -7,8 +7,8 @@ let BKND_CONFIG = {
     //BKND_HOST : "HTTP://ec2-3-143-168-51.us-east-2.compute.amazonaws.com:8080",
     //local ENv
     
-    BKND_HOST : "https://reusar.cl:8084",
-    //BKND_HOST : "http://localhost:8080",
+    //BKND_HOST : "https://reusar.cl:8084",
+    BKND_HOST : "http://localhost:8080",
    
     BKND_TIME : 1000,
     BNKD_USER : 'abc'
@@ -34,14 +34,18 @@ let BKND_CONFIG = {
   { name: "Herramientas"      , id: 6 , icon:"bi bi-wrench" } ,
   { name: "Hogar"             , id: 3 , icon:"bi bi-house" } ,
   { name: "Jardin"            , id: 17 , icon:"bi bi-tree" } , 
-  { name: "Juegos"            , id: 1 , icon:"bi bi-controller" } ,
-  { name: "Juguetes"           , id: 7 , icon:"bi bi-rocket" } , 
+  { name: "Video Juegos"      , id: 1 , icon:"bi bi-controller" } ,
+  { name: "Juguetes"          , id: 7 , icon:"bi bi-rocket" } , 
   { name: "Libros"            , id: 2 , icon:"bi bi-book" } ,
   { name: "Mobilidad"         , id: 16 , icon:"bi bi-scooter" } , 
   { name: "Telefonia"         , id: 14 , icon:"bi bi-phone-vibrate" },
   { name: "Vehiculos"         , id: 8 , icon:"bi bi-car-front" } , 
   { name: "Vestuario"         , id: 4 , icon:"bi bi-universal-access" } ,
+  { name: "Hombre"            , id: 18 , icon:"bi bi-gender-male" } ,
+  { name: "Mujer"             , id: 19 , icon:"bi bi-gender-female" } ,
+  { name: "gender-ambiguous"  , id: 20 , icon:"bi bi-gender-ambiguous" } ,
  
+
 ] ;
 
 
