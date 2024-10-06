@@ -259,8 +259,9 @@ export default {
 
 created() {
    this.search_event = false
-   this.filterByCategory(this.categoryToSearch)
    this.category_search = null
+   //this.filterByCategory(this.categoryToSearch)
+
      },
 
 methods: {
