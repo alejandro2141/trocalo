@@ -241,6 +241,30 @@ import axios from 'axios'
    
 </div>
 
+
+
+
+<!--  CATERGORY LIBROS -->
+ <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+       Libros
+  </span>
+  <br>
+
+<div class="d-flex  flex-wrap" >
+   
+  <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="6" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',2)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+   
+</div>
+<!--  END CATERGORY  -->
+
+
+
 <!--  FOOTER CATERGORIES -->
   <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="">
@@ -281,30 +305,222 @@ import axios from 'axios'
 </div>
 
 
- <hr >
+
+
+<!--  CATERGORY HOMBRE -->
+  <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-       Libros
+        Hombre
   </span>
   <br>
 
-<div class="d-flex  flex-wrap" >
-   <div class="p-1 m-2 " @click="filterByCategory(1)"  style="background-color:#333 ; max-height: 380px; max-width: 380px;" > 
-    <a href="#">
-       <img  class="m-0" style="max-height: 370px; max-width: 370px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books2.png'" />
-    </a>
-  </div>
-
-  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="6" :session_data=" session_data"/>
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="18" :limit="6" :session_data=" session_data"/>
       <p class="text-end">
-          <a href="#" @click="$emit('showCategory',2)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+          <a href="#" @click="$emit('showCategory',18)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
   </div>
-
-   
-</div>
+<!--  END CATERGORY  -->
 
 
+<!--  CATERGORY MUJER -->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Mujer
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="19" :limit="6" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',19)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END CATERGORY  -->
+
+
+<!--  CATEGORY TELEFONIA-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        gender-ambiguous
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="20" :limit="6" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',20)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END CATERGORY  -->
+
+
+
+<!--  CATERGORY ACCESORIOS -->
+  <hr>
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Accesorios
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="9" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',9)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END CATERGORY  -->
+
+<!--  COMPUTACION -->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Computacion
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="12" :limit="6" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',12)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END CATERGORY  -->
+
+<!--  CATEGORY TELEFONIA-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Telefonia
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',14)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END CATERGORY  -->
+
+<!--  CATEGORY MOBILIDAD-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Mobilidad
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="16" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',16)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END MOBILIDAD  -->
+
+
+<!--  CATEGORY MOBILIDAD-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Herramientas
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="6" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',6)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END MOBILIDAD  -->
+
+<!--  CATEGORY MOBILIDAD-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Vehiculos
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="8" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',8)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END MOBILIDAD  -->
+
+
+
+<!--  CATEGORY DEPORTES-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Deportes
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="5" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',5)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END DEPORTES  -->
+
+<!--  CATEGORY FOTOGRAFIA-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Fotografia
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="10" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',10)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END FOTOGRAFIA -->
+
+<!--  CATEGORY FOTOGRAFIA-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Telefonia
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',14)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END FOTOGRAFIA -->
+
+<!--  CATEGORY FOTOGRAFIA-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Arte
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="11" :limit="3" :session_data=" session_data"/>
+      <p class="text-end">
+          <a href="#" @click="$emit('showCategory',11)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+      </p>
+  </div>
+<!--  END FOTOGRAFIA -->
+
+
+
+
+<!--
+
+ { name: "Todos los Objetos ", id: 0 , icon:"" } ,
+
+  { name: "Arte"              , id: 11 , icon:"bi bi-card-image" } ,
+
+ 
+
+-->
 
 
 <!--  FOOTER CATERGORIES -->
