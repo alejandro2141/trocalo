@@ -25,26 +25,27 @@ import axios from 'axios'
   -->
 
 
-
   <div v-if="search_event" class="text-warning text-start m-0">
     <div class="text-warning" v-if="objects_filtered !=null && objects_filtered.length > 0">
           {{objects_filtered.length}} objetos encontrados. 
         <br>
     </div>
-    <div v-else class="m-2 w-100 d-flex justify-content-start">
-      <text style="">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div v-else class="m-2  d-flex justify-content-start">
+      
+      <div class="d-flex justify-content-center">
          
-           <i class="bi bi-wind" style="font-size:46px;" ></i><br>
-      </text>
+          <text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+
+          <div style="margin-top: 20px;"> No encontramos objetos</div><text>&nbsp;&nbsp;&nbsp;</text>
+          <div> 
+            <i class="bi bi-wind" style="font-size:46px;" ></i>
+          </div>
+
+      </div>
     </div>
     
   <br>
   </div>
-
-
-
 
 
   <div v-else>
@@ -56,8 +57,6 @@ import axios from 'axios'
      No encontramos resultados para tu busqueda<br>
     </text>
   -->
-
-
     
 
     <!-- 1- SHOW PUBLIC OBJECTS ARE AVAILABLE FOR SEARCH-->
