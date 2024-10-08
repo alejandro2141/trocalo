@@ -256,7 +256,7 @@ import axios from 'axios'
   <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="6" :session_data=" session_data"/>
       <p class="text-end">
-          <a href="#" @click="$emit('showCategory',2)" class=" p-2 link-title-object text-warning"> Ver Mas ... </a>
+          <a href="#" @click="filterByCategory(2)" class="p-2 link-title-object text-warning"> Ver Mas ... </a>
       </p>
   </div>
    
@@ -742,8 +742,8 @@ export default {
 
   },
 
-  props: ['session_data', 'textToSearch', 'showCategory'],
-  emits: ['sessionCreated'],
+  props: ['session_data','textToSearch'],
+  emits: ['sessionCreated','showCategory'],
 
 created() {
    this.search_event = false
