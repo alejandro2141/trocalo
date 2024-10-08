@@ -260,8 +260,10 @@ export default {
 created() {
    this.search_event = false
    this.category_search = null
-   //this.filterByCategory(this.categoryToSearch)
-
+   if (this.categoryToSearch != null)
+       {
+        this.filterByCategory(this.categoryToSearch)
+       }
      },
 
 methods: {
@@ -415,7 +417,7 @@ watch : {
 
     categoryToSearch(newval,oldval)
     {
-      console.log("Show category in ViewSearch:"+newval+"   oldval:"+oldval)
+      console.log("In VIEW SEARCH Show category in ViewSearch:"+newval+"   oldval:"+oldval)
       this.filterByCategory(newval)
     }
 
