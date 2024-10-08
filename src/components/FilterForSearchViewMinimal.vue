@@ -26,7 +26,7 @@ import { CATEGORIES } from '../../config.js'
 
       </button>
 -->
-      <button @click="cleanSearch()" type="button" style="" class="m-0 p-0 border border-0 border-white bg-white"> 
+      <button  @click="cleanSearch()" type="button" style="" class="m-0 p-0 border border-0 border-white bg-white"> 
          <i  style="margin-left: 0px;font-size:36px ;"  class="text-left text-dark bi bi-x p-0 mt-0 "></i>
       </button>
 
