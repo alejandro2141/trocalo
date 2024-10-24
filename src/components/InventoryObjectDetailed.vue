@@ -26,8 +26,8 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
       
       <!--  <div class="bg-dark text-center" style="max-height: 350px; max-width: 350px; min-height: 350px  "> -->
         <!--  <div class="bg-dark text-center" style="height: 350px; width: 350px; ">-->
-        <div class="bg-dark text-center" style="max-height: 370px; max-width: 370px; min-height: 350px ">
-            <img @click="zoomImage()"  style="max-height: 370px;max-width:370px;min-height: 350px border-radius: 7px;" :src="main_image+'_thumb'"  /> 
+        <div class="bg-dark text-center" style="max-height: 390px; max-width: 390px; min-height: 390px ">
+            <img @click="zoomImage()"  style="max-height: 390px;max-width:390px;min-height: 390px border-radius: 7px;" :src="main_image+'_thumb'"  /> 
         </div>
         <br>
 
@@ -81,17 +81,70 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
 
   </div>
 
+<!-- 
   <div v-if="showZoomImage" class="bg-dark w-100  h-100 d-flex justify-content-center" style="position:fixed;  top:0px ; left:0 ; z-index:99 ; "  >
   
-    <div class="bg-dark text-center m-0 p-0" style="max-width:350px ;  ">
+    <div class="bg-dark text-center m-0 p-0 w-100" style=" ">
 
         <div style="opacity: 1.9;position:fixed; z-index:101; right:0; top:0" class="bg-secondary"> 
             <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 m-0 bi bi-x-lg"></i>  
         </div>
-        <img class="bg-dark mt-3" style="position:static;  top:0px ; border-radius: 5px; "  :src="main_image"  /> 
+        <img class="bg-dark mt-3" style="  top:0px ; border-radius: 5px; "  :src="main_image"  /> 
   
     </div>
 
+  
+  </div>
+-->
+
+ <div v-if="showZoomImage" class="d-flex w-100 h-100  m-0 p-0" style="position: absolute; top:0px; left:0px ; z-index:101;"  >
+  
+    <div class="m-0 w-100 h-100" style=" ">
+        <div style=" position:fixed; z-index:101; right:0; top:0 z-index:101; " class="bg-secondary opacity-50"> 
+            <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 m-0 bi bi-x-lg"></i>  
+        </div>
+
+        <div class="bg-dark">
+            <div>
+                <img @click="showPinchInfo=false" class="bg-dark m-4" style="; border-radius: 5px; " :style="{'width': zoomWidth + 'px' }"  :src="main_image"  /> 
+                <br><br><br><br><br><br>
+            </div>
+
+            <Transition>
+                <div v-if="showPinchInfo" class="m-0 p-2 w-100 d-flex justify-content-start" style="position:fixed; z-index:101; bottom:0; left:0 ;">
+                <img class="" style="bg-secondary border-radius: 5px; max-width:100px;max-height:100px;" src="/public/guidepinch.png"  /> 
+                </div>
+            </Transition>
+
+            <!-- NEXT  or PREV img-->
+            <div class="w-100 opacity-50"  style="position:fixed; z-index:102; bottom:0; left:0 ;">
+                <div class="d-flex justify-content-evenly  mb-3" style="">
+                    <div>
+                    </div>
+
+                    <div>
+                        <i @click="zoomOut()" class="bg-secondary p-3 m-4 bi bi-zoom-out"  style="font-size: 40px;"></i><br>
+                        <i @click="viewImagePrev()" class="bg-secondary p-3 m-4 bi bi-caret-left-fill" style="font-size: 40px;"></i> 
+                    </div>
+                    <div>
+                        <i @click="zoomIn()" class="bg-secondary p-3 m-4 bi bi-zoom-in" style="font-size: 40px;"></i><br>
+                        <i @click="viewImageNext()" class="bg-secondary p-3 m-4 bi bi-caret-right-fill" style="font-size: 40px;"></i> 
+                    </div>
+                </div>
+            </div>
+
+
+        <!--
+            <div class="p-4" @click="viewImagePrev()" style="position:fixed; z-index:102; bottom:0; left:0 ; font-size: 60px;">
+               <i class="text-secondary bi bi-caret-left-fill opacity-75"></i> 
+            </div>
+            <div class="p-4"  @click="viewImageNext()" style="position:fixed; z-index:102; bottom:0; right:0 ; font-size: 60px;">
+               <i class="text-secondary bi bi-caret-right-fill opacity-75"></i> 
+            </div>
+        -->
+
+        </div>
+    </div>
   
   </div>
 
@@ -103,7 +156,15 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
 
 <style scoped>
 
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 2.5s ease;
+}
 
+.v-enter-from  ,
+.v-leave-to {
+  opacity: 0;
+}
 
 
 /*
@@ -155,6 +216,10 @@ export default {
             showObjectDetail : true ,
             showZoomImage : false , 
 
+            showPinchInfo : true ,
+
+            zoomWidth : 300 ,
+
 
         }
     },
@@ -163,10 +228,35 @@ export default {
     emits: ['closeModalObjectDetails','showMyInventory'],
 
   created() {
-		console.log("created lala inventory Object detailed")
+		console.log("created lala inventory Object detailed") 
+        this.showPinchInfo = true    
 			},
 
+
+
+  mounted() {
+       // console.log("created lala inventory Object detailed") 
+        //this.showPinchInfo = false  
+        this.hiddePinchInfo();  
+            },
+
+
   methods: {
+
+        zoomIn()
+        {
+            console.log("Zooming In:"+this.zoomWidth)
+            this.zoomWidth = this.zoomWidth + 100
+        },
+
+        zoomOut()
+        {
+            if (this.zoomWidth > 100  )
+            {
+            console.log("Zooming Out:"+this.zoomWidth)
+            this.zoomWidth= this.zoomWidth - 100
+            }
+        },
 
 
         getCategoryIcon(cat)
@@ -186,14 +276,66 @@ export default {
         {
             this.showObjectDetail=false 
             this.showZoomImage = true 
-            
+         
+            if (this.showPinchInfo == true)
+            {
+                this.hiddePinchInfo()
+            }
         },
 
         viewImage(image)
         {
             this.main_image = image
             console.log("image to view: "+image)    
+        },
+
+        viewImageNext()
+        {
+            //make array Image
+            let imgArray= [this.image1 ,this.image2, this.image3, this.image4, this.image5] 
+            let indexarr = imgArray.indexOf(this.main_image)  
+            
+            if (indexarr  >= imgArray.length-1)
+                { 
+                    indexarr = 0
+                }
+            else 
+                {
+                    indexarr ++ 
+                }
+           
+            this.main_image = imgArray[indexarr]
+            this.zoomImage()
+           
+        },
+
+        viewImagePrev()
+        {
+            //make array Image
+            let imgArray= [this.image1 ,this.image2, this.image3, this.image4, this.image5] 
+            let indexarr = imgArray.indexOf(this.main_image)  
+            
+            if (indexarr  < 1  )
+                { 
+                    indexarr = 4
+                }
+            else 
+                {
+                    indexarr = indexarr -1 
+                }
+           
+            this.main_image = imgArray[indexarr]
+            this.zoomImage()
+           
+        },
+
+
+        hiddePinchInfo()
+        {
+            setTimeout(() => {this.showPinchInfo  = false;}, 3000);
+            console.log("hidde pinch info")
         }
+
 
       },
 
