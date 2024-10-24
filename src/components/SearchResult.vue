@@ -71,6 +71,16 @@ import axios from 'axios'
         </div>
     </div>
 
+
+<RouterLink to="Welcome">
+  <div class="fixed-bottom w-100 bg-secondary d-flex justify-content-center">
+    <hr>
+    <button type="button" class="btn btn-warning m-1"> <i class="bi bi-arrow-left-short"></i> Regresar</button>
+  </div>
+</RouterLink> 
+
+
+
 </div>
   
 </template>
