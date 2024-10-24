@@ -19,7 +19,6 @@ import axios from 'axios'
             <InventoryObject @click="showObjectDetailsPublic(obj);" :object=obj  class="mt-2"/>
           </div>
     </div>
-
 </div>
 </template>
 
