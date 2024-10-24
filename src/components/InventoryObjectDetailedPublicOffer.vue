@@ -116,8 +116,7 @@ export default {
     getTextToShareURLEncoded(obj)
     {
 
-        let text_share=`REUSAR.CL
-        "${obj.title}" `
+        let text_share=`REUSAR.CL  ${obj.title} : `
 
          if (obj.description != "null"  )
          {
@@ -128,11 +127,11 @@ export default {
          if (obj.alternative1 != "null"  )
          {
          
-         text_share = text_share + `Lo cambiaria por: ${obj.alternative1}
+         text_share = text_share + `Cambia x: ${obj.alternative1}
          `  
          }
 
-        text_share=text_share+`Puedes hacer una propuesta de intercambio en: https://reusar.cl/ViewObjectFromSocial?id=${obj.id} `; 
+        text_share=text_share+`https://reusar.cl/ViewObjectFromSocial?id=${obj.id} `; 
 
         return  encodeURI(text_share);
     },
