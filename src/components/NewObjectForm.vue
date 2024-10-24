@@ -300,8 +300,8 @@ export default {
 
         temporal_urldata_image : null , 
 
-        img_size : 400,
-        img_size_thumb:200,
+        img_size : 1200,
+        img_size_thumb:300,
 
       }
   },
