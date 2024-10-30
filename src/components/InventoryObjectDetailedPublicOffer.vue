@@ -50,14 +50,19 @@ import { PATH_PRODUCT_IMG,SHIPPING_PRICE } from '../../config.js'
         <div class="d-flex justify-content-center m-2 text-success">
      
             <a class="button text-success" :href="'whatsapp://send?text='+getTextToShareURLEncoded(object)+' '" data-action="share/whatsapp/share">
-
                 Avisale  a un amigo<i style="font-size: 26px" class="bi bi-whatsapp text-success p-2"></i>
-                
-                
-
             </a>
-
         </div>
+
+
+        <div class="d-flex justify-content-center mt-2">
+            <text class="mt-2" style="font-size:10px"> {{ getObjectUrl(object) }}</text> 
+            <button type="button" class="btn btn-dark">
+                 <i @click="copyToClipBoard()" class="bi bi-copy"></i> 
+            </button>
+             
+        </div>
+
     </div>
 
 
@@ -112,26 +117,38 @@ export default {
 			},
 
   methods: {
+    copyToClipBoard()
+    {
+    let aux = this.getObjectUrl(this.object)
+    navigator.clipboard.writeText(aux)
+    },
+
+    getObjectUrl(obj)
+    {
+        let url=`https://reusar.cl/ViewObjectFromSocial?id=${obj.id} ` ; 
+        console.log("Copy to CLipBoard:"+url)
+        return (url) ; 
+    },
 
     getTextToShareURLEncoded(obj)
     {
-
-        let text_share=`REUSAR.CL  ${obj.title} : `
-
+        let  text_share = `REUSAR.CL
+${obj.title}`
+        
          if (obj.description != "null"  )
          {
-         text_share = text_share + `${obj.description}
-         `  
+         text_share = text_share + `
+${obj.description}`  
          }
 
          if (obj.alternative1 != "null"  )
          {
-         
-         text_share = text_share + `Cambia x: ${obj.alternative1}
-         `  
+         text_share = text_share + `
+Cambio por: ${obj.alternative1}`  
          }
 
-        text_share=text_share+`https://reusar.cl/ViewObjectFromSocial?id=${obj.id} `; 
+           text_share=text_share +` 
+`+ this.getObjectUrl(obj) 
 
         return  encodeURI(text_share);
     },
