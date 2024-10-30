@@ -33,7 +33,9 @@ const location = useRoute();
                <br>
               <div style="font-size : 16px ;  margin-top: -20px; margin-left:10px">Intercambia, Reusa, Recicla</div>
               -->
-              <div style="font-size : 14px ;  margin-top: -20px; margin-left:10px" class="text-warning">¡Intercambia y paga solo el envío!</div>
+              <div style="font-size : 14px ;  margin-top: -20px; margin-left:10px" class="text-warning">
+                {{getWelcomeMessage()}} 
+              </div>
                
             </RouterLink>   
         </div>
@@ -254,6 +256,9 @@ export default {
           textToSearch : null,
           categoryToSearch : null , 
 
+          
+          welcomeMessage: ['¡Intercambia y paga solo el envío!' , 'El mejor lugar de Permutas de Chile' ,'Si algo te estorba, cambialo!','Puedes cambiar hasta tu suegra!','A puesto a que te cambiamos hasta el ánimo!','Permutamos hasta tu abuela!','Intercambia Objetos de forma segura!']  ,
+
 
         }
     },
@@ -268,6 +273,14 @@ export default {
 
 
   methods: {
+
+    getWelcomeMessage()
+    {
+      let aux_rand =  Math.floor(Math.random() *  this.welcomeMessage.length );
+
+      return this.welcomeMessage[aux_rand] 
+
+    },
 
     showCategory(cat)
     {
