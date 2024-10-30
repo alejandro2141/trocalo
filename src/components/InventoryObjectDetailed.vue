@@ -97,54 +97,69 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
   </div>
 -->
 
- <div v-if="showZoomImage" class="d-flex w-100 h-100  m-0 p-0" style="position: absolute; top:0px; left:0px ; z-index:101;"  >
-  
-    <div class="m-0 w-100 h-100" style=" ">
+ <div v-if="showZoomImage" class="w-100 h-100  m-0 p-0" style="position: absolute; top:0px; left:0px ; z-index:101;"  >
+        
+        <!-- Close -->
         <div style=" position:fixed; z-index:101; right:0; top:0 z-index:101; " class="bg-secondary opacity-50"> 
             <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 m-0 bi bi-x-lg"></i>  
         </div>
 
-        <div class="bg-dark">
-            <div>
-                <img @click="showPinchInfo=false" class="bg-dark m-4" style="; border-radius: 5px; " :style="{'width': zoomWidth + 'px' }"  :src="main_image"  /> 
-                <br><br><br><br><br><br>
-            </div>
-
-            <Transition>
-                <div v-if="showPinchInfo" class="m-0 p-2 w-100 d-flex justify-content-start" style="position:fixed; z-index:101; bottom:0; left:0 ;">
-                <img class="" style="bg-secondary border-radius: 5px; max-width:100px;max-height:100px;" src="/public/guidepinch.png"  /> 
+        <!-- NEXT  or PREV img-->
+        <div class=" opacity-50 w-100"  style="position:fixed; z-index:102; bottom:0; left:0 ;">
+            <div class="d-flex justify-content-center  mb-3 w-100" style="">
+                <div class ="d-flex flex-column">
+                        <!--
+                        <i @click="zoomOut()" class="bg-secondary p-3 m-4 bi bi-zoom-out"  style="font-size: 40px;"></i>
+                        -->
+                        <button @click="zoomOut()" type="button" class="btn btn-secondary m-1">
+                            <i class="bi bi-zoom-out" style="font-size: 40px;"></i>
+                        </button>
+                        <button @click="viewImagePrev()" type="button" class="btn btn-secondary m-1">
+                            <i class="bi bi-caret-left-fill" style="font-size: 40px;"></i>
+                        </button>
                 </div>
-            </Transition>
+                <div style="width:150px;">
 
-            <!-- NEXT  or PREV img-->
-            <div class="w-100 opacity-50"  style="position:fixed; z-index:102; bottom:0; left:0 ;">
-                <div class="d-flex justify-content-evenly  mb-3" style="">
-                    <div>
-                    </div>
-
-                    <div>
-                        <i @click="zoomOut()" class="bg-secondary p-3 m-4 bi bi-zoom-out"  style="font-size: 40px;"></i><br>
-                        <i @click="viewImagePrev()" class="bg-secondary p-3 m-4 bi bi-caret-left-fill" style="font-size: 40px;"></i> 
-                    </div>
-                    <div>
-                        <i @click="zoomIn()" class="bg-secondary p-3 m-4 bi bi-zoom-in" style="font-size: 40px;"></i><br>
-                        <i @click="viewImageNext()" class="bg-secondary p-3 m-4 bi bi-caret-right-fill" style="font-size: 40px;"></i> 
-                    </div>
+                </div>
+                <div class ="d-flex flex-column">
+                        <button @click="zoomIn()" type="button" class="btn btn-secondary m-1">
+                            <i class="bi bi-zoom-in" style="font-size: 40px;"></i>
+                        </button>
+                        <button @click="viewImageNext()" type="button" class="btn btn-secondary m-1">
+                            <i class="bi bi-caret-right-fill" style="font-size: 40px;"></i>
+                        </button>
                 </div>
             </div>
-
-
-        <!--
-            <div class="p-4" @click="viewImagePrev()" style="position:fixed; z-index:102; bottom:0; left:0 ; font-size: 60px;">
-               <i class="text-secondary bi bi-caret-left-fill opacity-75"></i> 
-            </div>
-            <div class="p-4"  @click="viewImageNext()" style="position:fixed; z-index:102; bottom:0; right:0 ; font-size: 60px;">
-               <i class="text-secondary bi bi-caret-right-fill opacity-75"></i> 
-            </div>
-        -->
-
         </div>
-    </div>
+
+        <!-- Display Zoom Image -->
+        <div class="m-0 w-100 h-100" style=" ">
+            
+            <div class="bg-dark">
+
+                <div class="d-flex justify-content-center">
+
+                    <img @click="showPinchInfo=false" class="bg-dark m-4" style="; border-radius: 5px; " :style="{'width': zoomWidth + 'px' }"  :src="main_image"  /> 
+                    <br><br><br><br><br><br>
+                </div>
+            <!--
+                <Transition>
+                    <div v-if="showPinchInfo" class="m-0 p-2 w-100 d-flex justify-content-start" style="position:fixed; z-index:101; bottom:0; left:0 ;">
+                    <img class="" style="bg-secondary border-radius: 5px; max-width:100px;max-height:100px;" src="/public/guidepinch.png"  /> 
+                    </div>
+                </Transition>
+            -->
+            <!--
+                <div class="p-4" @click="viewImagePrev()" style="position:fixed; z-index:102; bottom:0; left:0 ; font-size: 60px;">
+                   <i class="text-secondary bi bi-caret-left-fill opacity-75"></i> 
+                </div>
+                <div class="p-4"  @click="viewImageNext()" style="position:fixed; z-index:102; bottom:0; right:0 ; font-size: 60px;">
+                   <i class="text-secondary bi bi-caret-right-fill opacity-75"></i> 
+                </div>
+            -->
+
+            </div>
+        </div>
   
   </div>
 
@@ -166,6 +181,10 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
   opacity: 0;
 }
 
+.link-object:hover
+{
+background-color: #FFF ;
+}
 
 /*
 .zoom {      
