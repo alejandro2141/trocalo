@@ -61,7 +61,7 @@ const location = useRoute();
         -->
         <!-- BANNER REGISTER --> 
 
-      <button @click="$router.push({ name: 'ViewRegister' })" type="button" style="border-radius: 10px 10px 10px 10px; background-color:#DF9500 ;" class="mt-2 mb-4 p-0 border border-0"> 
+      <button v-if="session_data==null && $route.name == 'Welcome' " @click="$router.push({ name: 'ViewRegister' })" type="button" style="border-radius: 10px 10px 10px 10px; background-color:#DF9500 ;" class="mt-2 mb-4 p-0 border border-0"> 
         &nbsp;&nbsp;
          <text style="font-size:20px" >Registrarme </text>
         &nbsp;&nbsp;
