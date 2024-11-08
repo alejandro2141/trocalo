@@ -43,7 +43,7 @@ let BKND_CONFIG = {
   { name: "Vestuario"         , id: 4 , icon:"bi bi-universal-access" } ,
   { name: "Hombre"            , id: 18 , icon:"bi bi-gender-male" } ,
   { name: "Mujer"             , id: 19 , icon:"bi bi-gender-female" } ,
-  { name: "gender-ambiguous"  , id: 20 , icon:"bi bi-gender-ambiguous" } ,
+ // { name: "gender-ambiguous"  , id: 20 , icon:"bi bi-gender-ambiguous" } ,
  
 
 ] ;
