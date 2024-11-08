@@ -359,7 +359,7 @@ methods: {
       
       console.log ("Flter by category viewSearch {"+category+"}")
       this.searchParams.search_categories = category ; 
-      this.searchParams.limited = 39 ;   
+      this.searchParams.limited = 999 ;   
 
       let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_search_objects_by_category",this.searchParams);
 
