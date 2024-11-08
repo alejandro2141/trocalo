@@ -103,14 +103,14 @@ import axios from 'axios'
                   &nbsp;&nbsp; Recién llegados
               </a>
 
-
               <div>    
                
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="9" :session_data=" session_data"/>
+                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="27" :session_data=" session_data"/>
 
                 <p class="text-end mt-2">
                   <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="btn btn-warning p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
                 </p>
+
               </div>
 
           </div>
@@ -254,7 +254,7 @@ import axios from 'axios'
 <div class="d-flex flex-wrap" >
    
   <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="6" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
           <a href="#" @click="filterByCategory(2)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
@@ -340,6 +340,7 @@ import axios from 'axios'
 
 
 <!--  CATEGORY TELEFONIA-->
+<!--
   <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
         gender-ambiguous
@@ -352,6 +353,8 @@ import axios from 'axios'
           <a href="#" @click="$emit('showCategory',20)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
+
+-->
 <!--  END CATERGORY  -->
 
 
@@ -664,6 +667,13 @@ import axios from 'axios'
   <br>
   <br>
   
+
+<div style="position: absolute" >
+  <div class="w-100 text-white d-flex justify-content-center p-2" style="background-color:#000 ;position: fixed;bottom: 0px; left:0px ">
+    <text @click="$router.push({ name: 'ViewAboutReusar' })">¿Que es Reusar.cl?</text>
+  </div>
+</div>
+
 </div>
 </template>
 
