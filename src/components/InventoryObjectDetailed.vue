@@ -83,85 +83,52 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
 
 <!-- 
   <div v-if="showZoomImage" class="bg-dark w-100  h-100 d-flex justify-content-center" style="position:fixed;  top:0px ; left:0 ; z-index:99 ; "  >
-  
     <div class="bg-dark text-center m-0 p-0 w-100" style=" ">
-
         <div style="opacity: 1.9;position:fixed; z-index:101; right:0; top:0" class="bg-secondary"> 
             <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 m-0 bi bi-x-lg"></i>  
         </div>
         <img class="bg-dark mt-3" style="  top:0px ; border-radius: 5px; "  :src="main_image"  /> 
-  
     </div>
-
-  
   </div>
 -->
 
- <div v-if="showZoomImage" class="w-100 h-100  m-0 p-0" style="position: absolute; top:0px; left:0px ; z-index:101;"  >
-        
-        <!-- Close -->
-        <div style=" position:fixed; z-index:101; right:0; top:0 z-index:101; " class="bg-secondary opacity-50"> 
-            <i  @click="showZoomImage=false ;showObjectDetail=true  " class="display-1 p-2 m-0 bi bi-x-lg"></i>  
+
+ 
+    <!-- Close  Zoom Image-->
+    <div>
+        <div v-if="showZoomImage" class="opacity-50" style="position:fixed; top:0px; left:0px ; z-index:102;" > 
+              
+                <button @click="zoomOut()" type="button" class=" btn btn-secondary m-2 p-2">
+                    <i class="bi bi-zoom-out" style="font-size:80px" ></i>
+                </button> 
+                
+                <button @click="zoomIn()" type="button" class="btn btn-secondary m-1 p-2">
+                    <i class="bi bi-zoom-in"  style="font-size:80px"></i>
+                </button>  
+
+                <button @click="showZoomImage=false ;showObjectDetail=true" type="button" class="btn btn-secondary m-1 p-2">
+                     <i  style="font-size:80px" class="p-2 m-0 bi bi-x-lg bg-secondary"></i> 
+                </button>
+       
         </div>
+       
+    </div>
 
-        <!-- NEXT  or PREV img-->
-        <div class=" opacity-50 w-100"  style="position:fixed; z-index:102; bottom:0; left:0 ;">
-            <div class="d-flex justify-content-center  mb-3 w-100" style="">
-                <div class ="d-flex flex-column">
-                        <!--
-                        <i @click="zoomOut()" class="bg-secondary p-3 m-4 bi bi-zoom-out"  style="font-size: 40px;"></i>
-                        -->
-                        <button @click="zoomOut()" type="button" class="btn btn-secondary m-1">
-                            <i class="bi bi-zoom-out" style="font-size: 40px;"></i>
-                        </button>
-                        <button @click="viewImagePrev()" type="button" class="btn btn-secondary m-1">
-                            <i class="bi bi-caret-left-fill" style="font-size: 40px;"></i>
-                        </button>
-                </div>
-                <div style="width:150px;">
-
-                </div>
-                <div class ="d-flex flex-column">
-                        <button @click="zoomIn()" type="button" class="btn btn-secondary m-1">
-                            <i class="bi bi-zoom-in" style="font-size: 40px;"></i>
-                        </button>
-                        <button @click="viewImageNext()" type="button" class="btn btn-secondary m-1">
-                            <i class="bi bi-caret-right-fill" style="font-size: 40px;"></i>
-                        </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Display Zoom Image -->
-        <div class="m-0 w-100 h-100" style=" ">
+    <div v-if="showZoomImage" class="w-100 h-100  m-0 p-0" style="position: fixed; top:0px; left:0px ; z-index:101;"  >
             
-            <div class="bg-dark">
+            <!-- Display Zoom Image -->
+            <div class="m-0 w-100 h-100" style=" ">
+                
+                <div class="bg-dark">
+                    <div class="">
 
-                <div class="d-flex justify-content-center">
-
-                    <img @click="showPinchInfo=false" class="bg-dark m-4" style="; border-radius: 5px; " :style="{'width': zoomWidth + 'px' }"  :src="main_image"  /> 
-                    <br><br><br><br><br><br>
-                </div>
-            <!--
-                <Transition>
-                    <div v-if="showPinchInfo" class="m-0 p-2 w-100 d-flex justify-content-start" style="position:fixed; z-index:101; bottom:0; left:0 ;">
-                    <img class="" style="bg-secondary border-radius: 5px; max-width:100px;max-height:100px;" src="/public/guidepinch.png"  /> 
+                        <img @click="showPinchInfo=false" class="bg-dark m-4" style="; border-radius: 5px; " :style="{'width': zoomWidth + 'px' }"  :src="main_image"  /> 
+                        
                     </div>
-                </Transition>
-            -->
-            <!--
-                <div class="p-4" @click="viewImagePrev()" style="position:fixed; z-index:102; bottom:0; left:0 ; font-size: 60px;">
-                   <i class="text-secondary bi bi-caret-left-fill opacity-75"></i> 
                 </div>
-                <div class="p-4"  @click="viewImageNext()" style="position:fixed; z-index:102; bottom:0; right:0 ; font-size: 60px;">
-                   <i class="text-secondary bi bi-caret-right-fill opacity-75"></i> 
-                </div>
-            -->
-
             </div>
-        </div>
-  
-  </div>
+      
+    </div>
 
         
     
@@ -237,7 +204,7 @@ export default {
 
             showPinchInfo : true ,
 
-            zoomWidth : 300 ,
+            zoomWidth : 350 ,
 
 
         }
@@ -270,7 +237,7 @@ export default {
 
         zoomOut()
         {
-            if (this.zoomWidth > 100  )
+            if (this.zoomWidth > 200  )
             {
             console.log("Zooming Out:"+this.zoomWidth)
             this.zoomWidth= this.zoomWidth - 100
@@ -295,6 +262,7 @@ export default {
         {
             this.showObjectDetail=false 
             this.showZoomImage = true 
+            this.zoomWidth = 300 
          
             if (this.showPinchInfo == true)
             {
@@ -304,6 +272,7 @@ export default {
 
         viewImage(image)
         {
+            this.zoomWidth = 300 
             this.main_image = image
             console.log("image to view: "+image)    
         },
