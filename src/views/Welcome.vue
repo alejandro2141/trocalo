@@ -108,7 +108,7 @@ import axios from 'axios'
                 <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" :limit="27" :session_data=" session_data"/>
 
                 <p class="text-end mt-2">
-                  <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="btn btn-warning p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+                  <a href="#" @click="$emit('showCategory',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])" class="btn btn-warning p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
                 </p>
 
               </div>
@@ -256,7 +256,7 @@ import axios from 'axios'
   <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="filterByCategory(2)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="filterByCategory(2)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
    
@@ -317,7 +317,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="18" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',18)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',18)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END CATERGORY  -->
@@ -333,7 +333,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="19" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',19)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',19)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END CATERGORY  -->
@@ -369,7 +369,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="9" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',9)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',9)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END CATERGORY  -->
@@ -384,7 +384,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="12" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',12)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',12)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END CATERGORY  -->
@@ -399,7 +399,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',14)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',14)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END CATERGORY  -->
@@ -414,7 +414,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="16" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',16)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',16)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END MOBILIDAD  -->
@@ -430,7 +430,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="6" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',6)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',6)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END MOBILIDAD  -->
@@ -445,7 +445,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="8" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',8)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',8)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END MOBILIDAD  -->
@@ -462,7 +462,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="5" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',5)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',5)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END DEPORTES  -->
@@ -477,7 +477,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="10" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',10)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',10)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END FOTOGRAFIA -->
@@ -492,7 +492,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',14)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',14)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END FOTOGRAFIA -->
@@ -507,7 +507,7 @@ import axios from 'axios'
  <div>    
       <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="11" :limit="9" :session_data=" session_data"/>
       <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',11)" class="btn btn-warning  p-2">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+          <a href="#" @click="$emit('showCategory',11)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
 <!--  END FOTOGRAFIA -->
