@@ -16,6 +16,8 @@ const location = useRoute();
   <div class="" >
    
   <div class="m-0 p-0" >
+
+
    
     <div class="bg-dark p-0 m-0" >
      
@@ -36,16 +38,39 @@ const location = useRoute();
               <div style="font-size : 14px ;  margin-top: -20px; margin-left:10px" class="text-warning">
                 {{getWelcomeMessage()}} 
               </div>
-               
-            </RouterLink>   
+            </RouterLink>
+
+            
         </div>
 
         <div class="">
             <FilterForSearchViewMinimal @click="categoryToSearch=null" v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
-        </div>      
+        </div> 
+
+
+        <!-- BANNER REGISTER -->
+        <!--
+        <div class=" bg-dark d-flex justify-content-center">
+           
+            <button @click="$router.push({ name: 'ViewRegister' })" type="button" class="btn btn-warning border border-white m-3 p-0"> 
+              <img   class="mb-4" style="max-width: 50px; border-radius:0px;" :src="PATH_BANNER_IMG+'/Promotion/RegisterNow.png'" />
+              <text style="font-size:20px">Registrarme</text>
+            </button>
+        
+        </div>
+        -->
+        <!-- BANNER REGISTER --> 
+
+      <button @click="$router.push({ name: 'ViewRegister' })" type="button" style="border-radius: 10px 10px 10px 10px; background-color:#DF9500 ;" class="mt-2 mb-4 p-0 border border-0"> 
+        &nbsp;&nbsp;
+         <text style="font-size:20px" >Registrarme </text>
+        &nbsp;&nbsp;
+      </button>
+
 
       </div>
 
+     
       <!-- INVENTORY, RECEIVED, SENT -->
         <div v-if="session_data!=null && session_data.user!=null && $route.name != 'ViewSearch' " class="mt-0 pt-1 mb-4 d-flex justify-content-between  text-white" style="font-size : 20px ; width:350px" >
        
@@ -391,11 +416,12 @@ export default {
       },
 
   watch : {
-
+/*
       $route (to, from)
       {
-        console.log("router changes : "+JSON.stringify(to) )
+        //console.log("router changes : "+JSON.stringify(to) )
       } 
+      */
     
        
 }
