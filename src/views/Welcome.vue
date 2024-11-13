@@ -116,6 +116,75 @@ import axios from 'axios'
           </div>
     <!-- END NEW OBJECTS CATEGORY-->
 
+
+    <!--  CATERGORY LIBROS -->
+ <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+       Libros
+  </span>
+  <br>
+
+<div class="d-flex flex-wrap" >
+   
+  <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="9" :session_data=" session_data"/>
+      <p class="text-end mt-2">
+          <a href="#" @click="filterByCategory(2)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+      </p>
+  </div>
+   
+</div>
+<!--  END CATERGORY  -->
+
+<!--  CATERGORY ACCESORIOS -->
+  <hr>
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Accesorios
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="9" :limit="9" :session_data=" session_data"/>
+      <p class="text-end mt-2">
+          <a href="#" @click="$emit('showCategory',9)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+      </p>
+  </div>
+<!--  END CATERGORY  -->
+
+<!--  CATEGORY TOOLS-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Video Juegos
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="1" :limit="9" :session_data=" session_data"/>
+      <p class="text-end mt-2">
+          <a href="#" @click="$emit('showCategory',1)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+      </p>
+  </div>
+<!--  END TOOLS  -->
+
+
+<!--  CATEGORY TOOLS-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Herramientas
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="6" :limit="9" :session_data=" session_data"/>
+      <p class="text-end mt-2">
+          <a href="#" @click="$emit('showCategory',6)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+      </p>
+  </div>
+<!--  END TOOLS  -->
+
+
+
+
     <!-- START BOOKS CATEGORY-->
         <!--
           <div  class="category">
@@ -244,25 +313,6 @@ import axios from 'axios'
 
 
 
-<!--  CATERGORY LIBROS -->
- <hr >
-  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-       Libros
-  </span>
-  <br>
-
-<div class="d-flex flex-wrap" >
-   
-  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="9" :session_data=" session_data"/>
-      <p class="text-end mt-2">
-          <a href="#" @click="filterByCategory(2)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
-      </p>
-  </div>
-   
-</div>
-<!--  END CATERGORY  -->
-
 
 
 <!--  FOOTER CATERGORIES -->
@@ -359,20 +409,7 @@ import axios from 'axios'
 
 
 
-<!--  CATERGORY ACCESORIOS -->
-  <hr>
-  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-        Accesorios
-  </span>
-  <br>
 
- <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="9" :limit="9" :session_data=" session_data"/>
-      <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',9)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
-      </p>
-  </div>
-<!--  END CATERGORY  -->
 
 <!--  COMPUTACION -->
   <hr >
@@ -420,20 +457,7 @@ import axios from 'axios'
 <!--  END MOBILIDAD  -->
 
 
-<!--  CATEGORY MOBILIDAD-->
-  <hr >
-  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-        Herramientas
-  </span>
-  <br>
 
- <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="6" :limit="9" :session_data=" session_data"/>
-      <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',6)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
-      </p>
-  </div>
-<!--  END MOBILIDAD  -->
 
 <!--  CATEGORY MOBILIDAD-->
   <hr >
