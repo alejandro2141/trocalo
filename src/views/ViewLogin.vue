@@ -270,7 +270,7 @@ import { BKND_CONFIG } from '../../config.js'
              </div>
 
              <div v-if="requestReceived">
-                Le enviaremos información para recuperar su cuenta.
+                En los próximos segundos recibirás un email con las instrucciones para cambiar tu contraseña. 
              </div>
             
             <div class="m-5 p-5 ">
@@ -368,9 +368,19 @@ export default {
 
   methods: {
 
-    recoverPassword()
+    async recoverPassword()
     {
       console.log("Recover Password "+ this.emailToRecover)
+        const json_request = {
+                  session_data : this.session_data,
+                  email : this.emailToRecover
+                              }
+          
+        if (this.emailToRecover != null  )
+              {
+                let json_response = await axios.post(BKND_CONFIG.BKND_HOST+"/private_send_recover_password",json_request );
+              }
+
 
     },
 
