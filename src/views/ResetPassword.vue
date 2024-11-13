@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 import RegisterForm from '../components/RegisterForm.vue' 
 import { BKND_CONFIG } from '../../config.js'
+
+import axios from 'axios'
+
 </script>
 
 
@@ -9,18 +12,22 @@ import { BKND_CONFIG } from '../../config.js'
   
 
   <div class="w-100 bg-dark d-flex justify-content-center" style="">
-    <div>
-        Formulario para actualizar su contraseña. El cambio de su contraseña solo podrá ser efectivo durante 30 minutos.  
-      <form>
+    <div v-if="!showSuccess">
+        Formulario para actualizar su contraseña.<br>
+        Este link solo será valido por 30 minutos.   
+  <form >
         <br>
 
-        <label for="fname">Ingrese su Email</label><br>
-        <input type="text" id="email"  v-model="email" name="email" placeholder="@" ><br>
-        
-        <text class="text-warning" v-if="valid_email!=3 "> Email inválido <br> </text>
+      <div class="bg-dark d-flex justify-content-start m-2 p-2" >
+        <div style="width:300px" class="">
 
-       
-          <div class="form-group  d-flex justify-content-evenly" >
+            <div>
+                <label for="fname">Ingrese su Email</label><br>
+                <input type="text" class="form-control" id="email"  v-model="email" name="email" placeholder="@" ><br>
+                <text class="text-warning " v-if="valid_email!=3 "> Email inválido <br> </text>
+            </div>
+
+            <div class="form-group  " >
 
                 <div>
                         <div class=" m-1 ">
@@ -28,29 +35,54 @@ import { BKND_CONFIG } from '../../config.js'
                             <input :type="type_password1"  autocomplete="off" class="form-control border-2" :class="[{ 'border-success' : (valid_passwd==1)},{'border-danger' : (passwd != passwd2 && passwd2!=null)},{ 'border-danger' : (valid_passwd==1)}]"  placeholder="***" id="inputPassword4"  v-model="passwd">
                         </div>
                 </div>
-
+                
                 <div class=" m-1 ">
                          <label >Repita contraseña</label> 
                          <input :type="type_password1"  autocomplete="off" class="form-control border-2" :class="[{ 'border-success' : (valid_passwd==1)},{'border-danger' : (passwd != passwd2 && passwd2!=null)   },{ 'border-danger' : (valid_passwd==1)}]" placeholder="***" id="inputPassword2"  v-model="passwd2">
                 </div>
-
+                
                 <div class="mt-4 ml-2">
                         <i @click="showMePassword1()" style="font-size:30px" class="bi" :class="{ 'bi-eye-slash': !showPassword1 , 'bi-eye': showPassword1   }" > </i>
                 </div>
+               
                     
-          </div> 
-<br>
-<br>
-<br>
-<br>
-<br>
-          <button @click="sendPasswd()" type="button" class="btn btn-success">Cambiar Contraseña</button>
+          </div>
+
+        </div> 
+      </div>
+
+  </form>
+  
+  <br>
+  
+        <button @click="sendPasswd()" type="button" class="btn btn-success">Actualizar Contraseña</button>
+
+          <div v-if="showError" class="text-danger" >
+
+              {{ShowErrorMessage}}
+
+          </div>
+
+        
 
 
 
-    </form>
 
   </div>
+
+  <div v-if="showSuccess" class="text-success" >
+
+              <i class="bi bi-check-square" style="font-size:40px"></i>
+              <br>
+              Su contraseña ha sido modificada.
+              <br>
+              <button @click="$router.push('ViewLogin')"  type="button" class="btn btn-secondary">Ir a login</button>
+
+
+          </div>
+
+
+  
  </div>
 
 
@@ -78,6 +110,11 @@ export default {
           showPassword1 : false ,
           type_password1 : "password" ,
 
+          showError : false ,
+          ShowErrorMessage : "No Set" , 
+
+          showSuccess : false ,
+          
 
         }
     },
@@ -90,15 +127,36 @@ export default {
 
   methods: {
 
-    sendPasswd()
+    async sendPasswd()
     {
       console.log("send New Password : "+this.passwd+"   email:"+this.email)
+
+      const json = { 
+                   email : this.email,
+                   passwd  : this.passwd,
+                   };
+        //app.config.globalProperties.dbhost = 'http://192.168.0.114:8080' ;       
+        console.log ("send Reset Password  REQUEST :"+ JSON.stringify(json)  );
+        let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/private_reset_password",json );
+        console.log ("private_reset_password RESPONSE:"+JSON.stringify(response_json.data)) ;
+
+        if (response_json.data.error)
+        {
+          this.showError = true ;
+          this.ShowErrorMessage = "Error al intentar procesar su requerimiento"
+
+        }
+        else 
+        {
+          this.showError = false  ;
+          this.showSuccess = true ; 
+        }
 
 
 
     },
 
-     showMePassword1()
+    showMePassword1()
     {
     this.showPassword1= !this.showPassword1  
 
