@@ -100,10 +100,12 @@ import {  REGION_ZONES, BKND_CONFIG } from '../../config.js'
 
                 <br>
                 <p style="font-size:20px">Dirección</p>
-
+                    <text class="text-warning">Por ahora Solo disponible en Comunas de Region Metropolitana. Pronto llegaremos a tu casa </text> 
+                
                 <div class="form-group">
-                    <label for="inputSpecialty">Region</label>
-                    <br>
+                    <label for="inputSpecialty">Region</label><br>
+                    
+                    
                 <!-- 
                     <input type="text"  autocomplete="off"  class="form-control" id="specialty" placeholder="Ej: Kinesiologia, psicologia, terapia.." v-model="specialty">
                 -->
