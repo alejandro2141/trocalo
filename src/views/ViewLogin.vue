@@ -3,24 +3,24 @@ import { ref } from 'vue'
 import ContactUsForm from '../components/ContactUsForm.vue' 
 import UserData from '../components/UserData.vue' 
 import RegisterForm from '../components/RegisterForm.vue' 
+import LoginForm from '../components/LoginForm.vue' 
+
+
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-import { BKND_CONFIG } from '../../config.js'
+import { PATH_BANNER_IMG,BKND_CONFIG } from '../../config.js'
+
 </script>
 
 
 <template>
   <div class="w-100 position-absolute top-0 start-0 bg-dark ">
 
-    
-
-
-
     <div class=" m-1 p-0 w-100" >
-    <div class="d-flex justify-content-center" >
-    <div  style="width: 350px;">
+    <div class="" >
+    <div  style="">
    
     <div v-if="session_data!=null && session_data.user!=null" class="text-center" >
        
@@ -29,28 +29,10 @@ import { BKND_CONFIG } from '../../config.js'
         </div>
        
         <div style="height:10px"></div>
-<!-- 
-        <button  style="font-size:20px" type="button" class="btn btn-primary m-2 ">
-          <text @click="showUserData=!showUserData" class="" style="border-radius:15px"  > 
-             &nbsp;&nbsp;&nbsp;&nbsp; {{session_data.name}} (Tu)&nbsp;&nbsp;&nbsp;&nbsp;  
-             <i class="bi bi-person-lines-fill"></i>
-          </text>
-        </button>
--->
+
         <Transition> 
                 <div v-if="showUserData">
                         <UserData v-on:restartSession="$emit('sessionCreated',null )" :session_data="session_data"/>
-                    
-                        <!-- CHANGE MY DATA -->
-                      <!--
-                        <button style="font-size:20px" class="btn btn-secondary m-2 ">
-                          <text @click="showInsertEmail_Data=!showInsertEmail_Data" class="" style="border-radius:15px"  > 
-                              &nbsp;&nbsp;&nbsp;&nbsp; Modificar Mis Datos &nbsp;&nbsp;&nbsp;&nbsp; 
-                              <i class="bi bi-person-lines-fill"></i>
-                          </text>
-                        </button>
-
-                      -->
                         <hr>
                   </div>
         </Transition>    
@@ -71,10 +53,6 @@ import { BKND_CONFIG } from '../../config.js'
                 
                 <br><br>
                  <button  @click="showInsertEmail_Data=false"  type="button" class="btn btn-secondary">Si, enviar a mi correo</button>
-                <!-- 
-                <br>
-                <input type="text" placeholder=" Ingresa tu correo aqui para modificar tus datos" v-model="email_changeData" style="text-align:center; font-size:20px ;border-radius:15px" class=" mt-1 bg-dark text-white border border-1 p-0" required minlength="4" maxlength="60" size="13" />
-                -->
                 <div style="height:1900px"></div>
             </div>
 
@@ -119,10 +97,17 @@ import { BKND_CONFIG } from '../../config.js'
               </div>
              
             <div style="height:200px"></div>
-                <text>Te enviaremos un link para cambiar tu contraseña al correo actualmente registrado </text>
                 
-                <br><br>
-                 <button  @click="showInsertEmail_password=false"  type="button" class="btn btn-secondary">Si, enviar a mi correo</button>
+                <div class="mb-3" >
+                    <label for="exampleInputEmail1" class="form-label">Ingrese su correo registrado y te enviaremos un email para cambiar tu  tu contraseña</label>
+                    <input v-model="emailToRecover" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div v-if="showErrorEmail" class="text-danger">Revise su dirección de Correo</div>
+                    
+                    <div v-if="!showErrorEmail" id="emailHelp" class="">Enviaremos a su correo información para restablecer su contraseña</div>
+                </div> 
+                
+                <button v-on:click="recoverPassword();  " type="button" class="btn btn-secondary">Si, Enviar a mi Correo</button>
+
                 <!-- 
                 <br>
                 <input type="text" placeholder=" Ingresa tu correo aqui para modificar tus datos" v-model="email_changeData" style="text-align:center; font-size:20px ;border-radius:15px" class=" mt-1 bg-dark text-white border border-1 p-0" required minlength="4" maxlength="60" size="13" />
@@ -193,97 +178,32 @@ import { BKND_CONFIG } from '../../config.js'
     <!-- SESION IS NULL SO SHOW LOGIN -->
     <div v-else>
 
-      <div>
-      
-        
-        <div class=" m-3 bg-dark" style=" border-radius: 15px;">
+    <LoginForm />
 
-        <div class="d-flex justify-content-end">
-          <a  @click="$router.push('Welcome')"  class="text-white"><i class="display-5 bi bi-x-lg"></i></a> 
-        </div>
-       
- <!-- ***************************************** -->    
- <!-- MAIN LOGIN FORM --> 
- <!-- ***************************************** --> 
-
-            <div class="d-flex justify-content-center mt-5">
-                    <div class=""  > 
-                        <!--
-                        <a HREF="/index.html" class="display-4 text-decoration-none" style="color :#2e5668"> 
-                        <i class="bi bi-clipboard-pulse" style="font-size: 2rem; color: cornflowerblue;"></i>
-                            horapo 
-                        </a>
-                        --> 
-                        <a HREF="/nested/publicSearch.html" class="text-decoration-none" style="color :#2e5668"> 
-                            <text class="display-4">REUSAR.CL</text>  
-                        </a> 
-                    
-                        <div class="text-secondary">Lo tienes, lo quiero,  te lo cambio 
-                        </div>
-                    </div>
-            </div>
-		
-         
-            <div id="formLogin" class="mx-auto p-3"  style="width: 95%;">
-                <form autocomplete="on" >
-
-                   <input  v-model="form_token" id="form_token" name="form_token" type="hidden"  > 
-                   <input class="form-control form-control-lg ml-2" v-model="form_email" id="form_email" name="form_email"  type="email" placeholder="Email" aria-label=".form-control-lg example"   style=" border-radius: 15px;" >
-                   <br/>
-                   <input class="form-control form-control-lg" v-model="form_pass" id="form_pass" name="form_pass"  type="password" placeholder="Contraseña" aria-label=".form-control-lg example"  style=" border-radius: 15px;" >
-                    <br/> 
-
-                    <i  type="submit" v-on:click="sendLogin()" class="btn  btn-lg btn-block text-white bg-secondary " style="width: 100%; border-radius: 15px;"  >
-                      {{ login_message }} 
-                      <i class="m-2 p-2 bi bi-arrow-right-square"></i> 
-                    </i>
-                </form>   
-            </div>
- <!-- ***************************************** --> 
 
 <!-- REGISTER FORM -->
-             <div  v-if="!requestReceived" @click="showRegisterForm=!showRegisterForm; requestReceived=false" class="d-flex justify-content-center w-100">
+            <div  v-if="!requestReceived" @click="showRegisterForm=!showRegisterForm; requestReceived=false" class="d-flex justify-content-center w-100">
                 <small class="text-secondary">Registarme</small>
-             </div>
+            </div>
             
-            <div v-if='showRegisterForm' class="position-absolute top-0 start-0 bg-dark w-100 h-100 d-flex justify-content-center ">
+            <div v-if='showRegisterForm' class="position-absolute top-0 start-0 bg-dark w-100 h-100">
               
+                <div class="d-flex justify-content-end w-100 ">
+                    <button @click="showRegisterForm=false" type="button" class="btn btn-secondary m-1 p-2">
+                         <i  style="font-size:40px" class="p-2 m-0 bi bi-x-lg bg-secondary"></i> 
+                    </button>
+                </div>
+
+            <div class="w-100 d-flex justify-content-center">
               <div style="width:350px" >
-                <p  @click="showRegisterForm=false "  class="text-white text-end"><i class="display-5 bi bi-x-lg"></i></p> 
                 <RegisterForm  />
               </div>
+            </div>
             
             </div>
 <!-- REGISTER FORM -->
 
-            <div  v-if="!requestReceived" @click="showRecoverPassword=!showRecoverPassword; requestReceived=false" class="m-4 text-secondary"><small>¿Olvidaste tu contraseña?</small></div>
- 
-            <div v-if="showRecoverPassword" style="width: 300px;">
-                <div class="mb-3" >
-                    <label for="exampleInputEmail1" class="form-label">Ingrese su correo registrado</label>
-                    <input v-model="emailToRecover" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">Enviaremos a su correo registrado un link para actualizar su contraseña</div>
-                </div> 
-                
-                <button v-on:click="recoverPassword(); showRecoverPassword = false; requestReceived=true  " type="button" class="btn btn-secondary">Recuperar</button>
-
-             </div>
-
-             <div v-if="requestReceived">
-                En los próximos segundos recibirás un email con las instrucciones para cambiar tu contraseña. 
-             </div>
-            
-            <div class="m-5 p-5 ">
-            </div>
-
-        </div>		
-
-      </div>
      
-
-
-
-
     </div>
     <!-- END SESSION IS NULL -->
 
@@ -330,18 +250,20 @@ export default {
         pass : null ,
         sendComments:false ,
         showMyInfo : false,
-        showRecoverPassword : false ,
+       // showRecoverPassword : false ,
 
 
         showInsertEmail_Data : false, 
         showInsertEmail_password : false ,
         showRegisterForm : false ,
 
+/*
         form_token:null ,
         form_email:null ,
         form_pass:null ,
+        */
 
-        login_message:"" ,
+      //  login_message:"" ,
         requestReceived:null ,
 
         showUserData : true ,
@@ -354,6 +276,8 @@ export default {
         showInvitationSent : false ,
 
         emailToRecover : null ,
+
+        showErrorEmail : false ,
    
         }
     },
@@ -370,17 +294,30 @@ export default {
 
     async recoverPassword()
     {
-      console.log("Recover Password "+ this.emailToRecover)
-        const json_request = {
+      console.log("Recover Password "+ this.emailToRecover+" validacion:"+await this.validateEmail(this.emailToRecover) ) 
+     
+      if (await this.validateEmail(this.emailToRecover))
+      {
+          const json_request = {
                   session_data : this.session_data,
                   email : this.emailToRecover
                               }
           
-        if (this.emailToRecover != null  )
+          if (this.emailToRecover != null  )
               {
                 let json_response = await axios.post(BKND_CONFIG.BKND_HOST+"/private_send_recover_password",json_request );
               }
 
+          this.showRecoverPassword = false 
+          this.requestReceived=true 
+          this.showInsertEmail_password = false     
+
+      }
+      else 
+      {
+        console.log("Desplegando error mensaje Formato Email")
+        this.showErrorEmail = true
+      }
 
     },
 
@@ -394,13 +331,13 @@ export default {
             return true;
           } 
           else {
-            console.log("Invalid email address! "+input);
+            console.log("ERROR Invalid email address! "+input);
             return false;
           }
 
         },
 
-        async sendInvitation()
+      async sendInvitation()
         {
           console.log("send Invitation")
           const json_request = {
@@ -419,78 +356,7 @@ export default {
 
         },
 
-        async sendLogin()
-        { 
-            console.log("Login attemp user: "+this.form_email+" password:"+this.form_pass)
-           const login_data = {
-                              user : this.form_email,
-                              pass : this.form_pass
-                              }
 
-          if (this.form_email != null && this.form_pass != null )
-          {
-                console.log("Sending to Login")
-                let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/public_login_user",login_data );
-                //console.log("Response Login : "+JSON.stringify(response_json ))
-
-                let session_data_result = {} 
-                if (response_json !=null && response_json.data !=null  )
-                {
-                  session_data_result.user = response_json.data.token
-                  session_data_result.user =  response_json.data.names
-                  session_data_result.name =  response_json.data.names
-                  session_data_result.rut =  response_json.data.id_number
-                  session_data_result.phone1 = response_json.data.phone
-                  session_data_result.address_street =  response_json.data.address_street_name
-                  session_data_result.address_number =  response_json.data.address_street_number
-                  session_data_result.address_apartment =  response_json.data.address_street_apartment
-                  session_data_result.address_zone1 =  response_json.data.address_location_zone
-                  session_data_result.address_zone2 =  "No Set"
-                  session_data_result.address_city  =  "No Set"
-                  session_data_result.address_country =   "Chile"
-                  session_data_result.token  =   response_json.data.token
-                  session_data_result.id  =   response_json.data.id
-                  session_data_result.invitations = response_json.data.invitations
-                  
-
-                //CHECK IF IS A LOGIN FORCED FROM SOCIALVIEWOBJECT
-                   let objid= await this.getObjectIdFromSocial()
-                   console.log("Object id from social:"+objid)
-                   if (objid!=null)
-                   {
-                   session_data_result.objectid = objid ; 
-                   }
-                //***************************************************
-
-
-                  this.$emit('sessionCreated',session_data_result);
-                  console.log("session data created:"+JSON.stringify( session_data_result) )
-                  
-                }
-                else 
-                {
-                  session_data_result = null 
-                  this.login_message = "Login Fallido"
-                }
-                console.log("Login User Session Data : "+JSON.stringify(session_data_result))
-           }
-           else 
-           {
-            session_data_result = null 
-          
-            console.log("Login User Data NULL")
-           }
-
-        /*
-          let session_data_result = {user:"JAMO123", active:true , pass:"eeee", name:"Juan Alejandro Morales Miranda", rut:"139093712"  , phone1:"56975397200", phone2:"56975397200" , address_street:"Avenida San Pablo" , address_number:"123" , address_apartment:true , address_house:true ,  address_zone1:"Independencia" ,  address_zone2:"Region Metropolitana" ,  address_city:"Santiago" ,  address_country:"Chile"  } 
-        
-            //query backend for login
-            this.$emit('sessionCreated',session_data_result); 
-            console.log("Login - Emit Sent")
-          */
-            //this.$router.push('/dashboard')
-
-        },
 
         async getObjectIdFromSocial()
           {
