@@ -5,9 +5,31 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
 
 <template>
 
-  <div class=""    >
+  <div class="" v-if="object!=null" >
+    
+    <!--Object  SIZE M -->
+    <div v-if="size=='m'" style="border-radius: 3px; width:180px; height:200px;" class="object-background m-1 p-0 rounded"   >
+        <div  class="d-flex align-items-center m-1">
+                    {{object.title.substring(0,20)}}<br>
+        </div>
+        
+        <div  class="d-flex justify-content-center">
+            <img   class="m-1" style="max-width:170px;max-height:160px;border-radius: 3px; " :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
+        </div>
+    </div>
 
-    <div  v-if="display_horizontal_short &&  object!=null"> 
+    <!--Object  SIZE L -->
+    <div v-if="size=='l'" style="border-radius: 3px; width:360px; height:360px;" class="object-background m-1 p-0 rounded"   >
+        <div  class="d-flex align-items-center m-1">
+             {{object.title}}<br>
+        </div>
+        <div  class="d-flex justify-content-center">
+            <img   class="m-1" style="max-width:360px;max-height:330px;border-radius: 3px; " :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
+        </div>
+    </div>
+
+
+    <div  v-if="display_horizontal_short"> 
         <div v-if="object!=null" @click="selectObject=!selectObject"  class="w-100 border border-2 rounded d-flex justify-content-start" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:110px ; border-style: dotted" >
                 
                 <div class=" image-container rounded text-center"  style="width:100px; height:100px">
@@ -24,8 +46,10 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
         </div>
     </div> 
 
+
+
         <!-- INVENTORY OBJECT  -->
-    <div v-else-if=greenSelected class="" >
+    <div v-if="greenSelected" class="" >
         <div v-if="object!=null" @click="selectObject=!selectObject"  class="" :class="[(selectObject && !object.blocked_due_proposal_accepted) ? 'border-dark bg-success' : 'border-dark' , '' ]"  style="width:120px " >
             
             <div class=" image-container rounded text-center"  style="width:120px; height:120px">
@@ -50,11 +74,11 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
 
 
     <!-- INVENTORY OBJECT  -->
-    <div v-else  >
+    <div v-if="size==null && greenSelected==null && display_horizontal_short == null" >
+
         <div class="object-background m-1 p-0 rounded">
             <a href="#" v-if="object!=null" @click="selectObject=!selectObject"  class="m-0 p-0 link-object" style="border-radius: 3px; " >
-
-                          
+            
                  <div class="d-flex align-items-center m-0 link-object">
                     <div  class="d-flex align-items-start m-0">
                     <i class="text-warning" :class="getCategoryIcon(object.category1)"></i> 
@@ -76,9 +100,9 @@ import { PATH_PRODUCT_IMG, CATEGORIES } from '../../config.js'
 
                 <div class=" text-center m-0 "  style="width:120px; height:120px">
                         <div class=" " style="" >
-                       
-                        <img class="m-1" style=" max-width:115px;max-height:115px;border-radius: 3px; " :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
-                   
+                        
+                        <img  v-if="size == null" class="m-1" style=" max-width:115px;max-height:115px;border-radius: 3px; " :src="PATH_PRODUCT_IMG+'/'+object.img_ref1+'_thumb'" />
+
                         </div>
                     
                 </div>
@@ -171,7 +195,7 @@ export default {
         }
     },
 
-    props: ['showProductDetails','display_horizontal_short','horizontal' ,'object' , 'greenSelected'  ],
+    props: ['showProductDetails','display_horizontal_short','horizontal' ,'object' , 'greenSelected', 'size'  ],
     emits: [],
 
 	created() {
