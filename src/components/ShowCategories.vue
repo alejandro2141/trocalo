@@ -13,12 +13,13 @@ import axios from 'axios'
 
 <template>
 <div  style="" class="m-0"   >
-
+  
     <div v-if="objects_filtered !=null" class="d-flex flex-wrap"> 
           <div v-for="obj in objects_filtered"  > 
-            <InventoryObject @click="showObjectDetailsPublic(obj);" :object=obj  class="mt-2"/>
+            <InventoryObject @click="showObjectDetailsPublic(obj);" :object=obj :size='size' class="mt-2"/>
           </div>
     </div>
+
 </div>
 </template>
 
@@ -43,7 +44,7 @@ export default {
       }
 
   },
-  props: ['session_data','category','limit'],
+  props: ['session_data','category','limit','size'],
   emits: ['showPublicObjectDetails'],
 
 created() {
