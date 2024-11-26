@@ -10,10 +10,19 @@ import { PATH_PRODUCT_IMG,SHIPPING_PRICE } from '../../config.js'
     
 
 <div class="w-100 bg-dark"  style="position:absolute ; top:0px ; right:0px;">
-        
+   
+    <!--     
     <div style="position:absolute ; top:0px ; right:0px; z-index:10 ;" class="d-flex justify-content-end m-0 p-0 bg-dark"> 
             <i @click="closeModal()" class="bi bi-x-lg display-1" ></i>
     </div>
+    -->
+
+   <div class="d-flex justify-content-end w-100 " style="">
+            <button @click="closeModal()" type="button" class="btn btn-secondary m-1 p-2">
+                 <i  style="font-size:40px" class="p-2 m-0 bi bi-x-lg bg-secondary"></i> 
+            </button>
+    </div>
+
 
     
     <div class="d-flex justify-content-center">
