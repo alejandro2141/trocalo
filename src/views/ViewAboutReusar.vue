@@ -4,12 +4,25 @@ import { PATH_BANNER_IMG, CATEGORIES } from '../../config.js'
 
 <template>
  
- <div class="">
-    <div class="p-3 " >
+<div class="bg-dark w-100" style="position:absolute; top:0px; left:0px ; ">
+
+        <div class="d-flex justify-content-end w-100 " style="">
+            <button @click="$router.push('Welcome')" type="button" class="btn btn-secondary m-1 p-2">
+                 <i  style="font-size:40px" class="p-2 m-0 bi bi-x-lg bg-secondary"></i> 
+            </button>
+        </div>
+
+
+<div style="margin-top:0px;" class=" d-flex justify-content-center" >
+  <div>
+    <div class="p-0 " >
 
         <div> 
-           <text class="text-warning" style="font-size:30px">¿ Que es Reusar.cl ?</text><br>
-            <b>Hola, me llamo Tata Trueque y con la Abuela Cambalache te contaremos una historia... </b>
+           <text class="text-warning" style="font-size:40px">¿ Que es Reusar.cl ? </text>
+           <br>
+
+
+            Hola!, soy <b> Tata Trueque</b> y con la <b>Abuela Cambalache</b> te contaremos una historia... 
         </div>
 
         <div class="w-100">
@@ -61,8 +74,8 @@ import { PATH_BANNER_IMG, CATEGORIES } from '../../config.js'
 
             <div class="d-flex align-items-start m-2">
                 <div>
-                    <div class="border border-1 p-2" style="border-radius: 30px 30px 30px 30px;">
-                      Para  eso decidimos crear este espacio seguro de Intercambio, Trueque o Permuta  de objetos, para que todos puedan intercambiar cosas sin preocuparse ni  exponerse a bandidos y volvamos a hacer comunidad.  
+                    <div class="border border-1 p-2" style="border-radius: 30px 0px 30px 30px;">
+                      Para  eso decidimos crear este espacio seguro de Intercambio, Trueque o Permuta  de objetos, <br> para que todos puedan intercambiar cosas sin preocuparse ni  exponerse a bandidos y volvamos a hacer comunidad.  
                     </div>
                     
                 </div>
@@ -93,6 +106,9 @@ import { PATH_BANNER_IMG, CATEGORIES } from '../../config.js'
         </text>
     
     </div>
+
+
+
 <br> 
 
 <div  class="d-flex justify-content-start" >
@@ -235,16 +251,14 @@ import { PATH_BANNER_IMG, CATEGORIES } from '../../config.js'
 
 
 <div  class="d-flex justify-content-start w-100"  >
-    <div class="">
-        <img :src="PATH_BANNER_IMG+'/AboutUs/AbuelaCambalache.png'" style="max-width: 40px;"> 
-        <img :src="PATH_BANNER_IMG+'/AboutUs/TataTrueque.png'" style="max-width: 50px;"> 
-    </div>
+
 
 
     <div class=""> 
          
         <div style="font-size:15px">
-            <b> Tata Trueque</b> y <b>Abuela Cambalache </b> te recomiendan registrate para comenzar a Intercambiar!!
+            <img :src="PATH_BANNER_IMG+'/AboutUs/PerroPermuta.png'" style="width: 100px;">
+            <b> El perro permuta  </b> te recomiendan registrate para comenzar a Intercambiar!!
         </div>
 
     </div>
@@ -276,8 +290,8 @@ import { PATH_BANNER_IMG, CATEGORIES } from '../../config.js'
 
 
 
-
-
+</div>
+</div>
 
  </div>
 
