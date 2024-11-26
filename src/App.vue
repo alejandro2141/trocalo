@@ -61,11 +61,23 @@ const location = useRoute();
         -->
         <!-- BANNER REGISTER --> 
 
-      <button v-if="session_data==null && $route.name == 'Welcome' " @click="$router.push({ name: 'ViewRegister' })" type="button" style="border-radius: 10px 10px 10px 10px; background-color:#DF9500 ;" class="mt-2 mb-4 p-0 border border-0"> 
-        &nbsp;&nbsp;
-         <text style="font-size:20px" >Registrarme </text>
-        &nbsp;&nbsp;
-      </button>
+        <div v-if="session_data==null &&  ($route.name == 'Welcome' || $route.name == 'mainView' )  ">
+            &nbsp;&nbsp;
+            
+            <button  @click="$router.push({ name: 'ViewAboutReusar' })" type="button" style="border-radius: 10px 10px 10px 10px; background-color: rgb(59, 116, 109)"         class="mt-2 mb-4 p-1 border border-0 btn btn-secondary" > 
+              &nbsp;&nbsp;
+               <text class="" style="font-size:30px" >  <img :src="PATH_BANNER_IMG+'/AboutUs/TataTrueque.png'" style="width:40px;"> ¿Info? </text>
+              &nbsp;&nbsp;
+            </button> 
+            
+            &nbsp;&nbsp; &nbsp;&nbsp;
+
+            <button  @click="$router.push({ name: 'ViewRegister' })" type="button" style="border-radius: 10px 10px 10px 10px; background-color:#C27E35 " class="mt-2 mb-4 p-0 border border-0 btn btn-warning p-1"> 
+              &nbsp;&nbsp;
+               <text style="font-size:30px" > Registro <img :src="PATH_BANNER_IMG+'/AboutUs/AbuelaCambalache.png'" style="width: 40px;"></text>
+              &nbsp;&nbsp;
+            </button>
+        </div>
 
 
       </div>
