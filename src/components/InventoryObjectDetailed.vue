@@ -95,6 +95,7 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
 
  
     <!-- Close  Zoom Image-->
+<!--
     <div>
         <div v-if="showZoomImage" class="opacity-50" style="position:fixed; top:0px; left:0px ; z-index:102;" > 
               
@@ -111,23 +112,40 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
                 </button>
        
         </div>
-       
     </div>
+-->
 
-    <div v-if="showZoomImage" class="w-100 h-100  m-0 p-0" style="position: fixed; top:0px; left:0px ; z-index:101;"  >
-            
+    <div v-if="showZoomImage" class="h-100 w-100 m-0 p-0 d-flex justify-content-start bg-dark" style="position: absolute; top:0px; ; z-index:101;"  >
+
             <!-- Display Zoom Image -->
-            <div class="m-0 w-100 h-100" style=" ">
+        <div class=" bg-dark d-flex justify-content-start" style=" ">
+            
+            <div>
+            
+                 <img @click="showPinchInfo=false" class="bg-dark m-4 " style="; border-radius: 5px; " :style="{'width': zoomWidth + 'px' }"  :src="main_image"  /> 
                 
-                <div class="bg-dark">
-                    <div class="">
-
-                        <img @click="showPinchInfo=false" class="bg-dark m-4" style="; border-radius: 5px; " :style="{'width': zoomWidth + 'px' }"  :src="main_image"  /> 
+                <div  class="opacity-50 w-100 d-flex justify-content-center" style="position:fixed; top:0px;  z-index:102;" > 
+                    <div>
+                  
+                        <button @click="zoomOut()" type="button" class=" btn btn-secondary m-2 p-2">
+                            <i class="bi bi-zoom-out" style="font-size:5rem" ></i>
+                        </button> 
                         
+                        <button @click="zoomIn()" type="button" class="btn btn-secondary m-1 p-2">
+                            <i class="bi bi-zoom-in"  style="font-size:5rem"></i>
+                        </button>  
+
+                        <button @click="showZoomImage=false ;showObjectDetail=true" type="button" class="btn btn-secondary m-1 p-2">
+                             <i  style="font-size:5rem" class="p-2 m-0 bi bi-x-lg bg-secondary"></i> 
+                        </button>
                     </div>
+                    
                 </div>
+
             </div>
-      
+
+        </div>
+
     </div>
 
         
