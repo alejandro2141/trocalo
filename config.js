@@ -52,6 +52,7 @@ let BKND_CONFIG = {
 let REGION_ZONES = {
   "name": "Chile",
   "regions": [
+/*
     {
       "name": "Arica y Parinacota",
       "romanNumber": "XV",
@@ -182,6 +183,7 @@ let REGION_ZONES = {
         { "name": "Zapallar", "identifier": "V-38" }
       ]
     },
+    */
     {
       "name": "Metropolitana de Santiago",
       "romanNumber": "XIII",
@@ -242,6 +244,7 @@ let REGION_ZONES = {
         { "name": "Vitacura", "identifier": "XIII-52" }
       ]
     },
+    /*
     {
       "name": "Libertador Gral. Bernardo O’Higgins",
       "romanNumber": "VI",
@@ -526,6 +529,7 @@ let REGION_ZONES = {
         { "name": "Torres del Paine", "identifier": "XII-11" }
       ]
     }
+    */
   ]
 }
 
