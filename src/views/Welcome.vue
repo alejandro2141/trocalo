@@ -127,7 +127,7 @@ import axios from 'axios'
 <div class="d-flex flex-wrap" >
    
   <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="9" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="2" :limit="27" :session_data=" session_data"/>
       <p class="text-end mt-2">
           <a href="#" @click="filterByCategory(2)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
@@ -286,6 +286,7 @@ import axios from 'axios'
 
 
 <!--  FOOTER CATERGORIES -->
+<!-- 
   <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
         Coleccionables 
@@ -309,13 +310,14 @@ import axios from 'axios'
   </div>
    
 </div>
-
+-->
 
 
 
 
 
 <!--  FOOTER CATERGORIES -->
+<!-- 
   <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="">
        Hogar
@@ -354,7 +356,7 @@ import axios from 'axios'
    
 </div>
 
-
+-->
 
 
 <!--  CATERGORY HOMBRE -->
@@ -411,6 +413,24 @@ import axios from 'axios'
 
 
 
+
+
+<!--  CATEGORY TELEFONIA-->
+  <hr >
+  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
+        Telefonia
+  </span>
+  <br>
+
+ <div>    
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" size="m" :category="14" :limit="6" :session_data=" session_data"/>
+      <p class="text-end mt-2">
+          <a href="#" @click="$emit('showCategory',14)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
+      </p>
+  </div>
+<!--  END TELEFONIA -->
+
+
 <!--  COMPUTACION -->
   <hr >
   <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
@@ -426,20 +446,6 @@ import axios from 'axios'
   </div>
 <!--  END CATERGORY  -->
 
-<!--  CATEGORY TELEFONIA-->
-  <hr >
-  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-        Telefonia
-  </span>
-  <br>
-
- <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="9" :session_data=" session_data"/>
-      <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',14)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
-      </p>
-  </div>
-<!--  END CATERGORY  -->
 
 <!--  CATEGORY MOBILIDAD-->
   <hr >
@@ -449,7 +455,7 @@ import axios from 'axios'
   <br>
 
  <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="16" :limit="9" :session_data=" session_data"/>
+      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" size="l" :category="16" :limit="3" :session_data=" session_data"/>
       <p class="text-end mt-2">
           <a href="#" @click="$emit('showCategory',16)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
@@ -506,20 +512,7 @@ import axios from 'axios'
   </div>
 <!--  END FOTOGRAFIA -->
 
-<!--  CATEGORY FOTOGRAFIA-->
-  <hr >
-  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-        Telefonia
-  </span>
-  <br>
 
- <div>    
-      <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="14" :limit="9" :session_data=" session_data"/>
-      <p class="text-end mt-2">
-          <a href="#" @click="$emit('showCategory',14)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
-      </p>
-  </div>
-<!--  END FOTOGRAFIA -->
 
 <!--  CATEGORY FOTOGRAFIA-->
   <hr >
@@ -534,126 +527,10 @@ import axios from 'axios'
           <a href="#" @click="$emit('showCategory',11)" class="btn btn-warning  p-4">Ver Mas<i class="bi bi-arrow-right-short"></i></a>
       </p>
   </div>
-<!--  END FOTOGRAFIA -->
-
-
-
-
-<!--
-
- { name: "Todos los Objetos ", id: 0 , icon:"" } ,
-
-  { name: "Arte"              , id: 11 , icon:"bi bi-card-image" } ,
-
- 
-
--->
-
-
-<!--  FOOTER CATERGORIES -->
-<!--
-  <hr >
-  <span style="font-size: 21px;  padding: 0 10px; border-radius: 25px" class="bg-dark">
-        Categorias 
-  </span>
-  <br>
-
-
-<div class="d-flex  flex-wrap" >
-
-  <div class="p-1 m-2 justify-content-center" @click="filterByCategory(2)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-   <a href="#">
-      <text class="link-title-object">Libros</text>
-      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Books.png'" />
-    </a>
-  </div>
-   
-  <div class="p-1 m-2 " @click="filterByCategory(1)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    <a href="#">
-     <text class="link-title-object">Juegos</text>
-     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Games.png'" />
-    </a>
-  </div>
-
-  <div class="p-1 m-2 " @click="filterByCategory(7)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    <a href="#">
-      <text class="link-title-object">Juguetes</text>
-      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Juguetes.png'" />
-    </a>
-  </div>
-   <div class="p-1 m-2 " @click="filterByCategory(13)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    <a href="#">
-      <text class="link-title-object">Electrodomesticos</text>
-      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Electrodomesticos.png'" />
-    </a>
-  </div>
-
-  <div class="p-1 m-2 " @click="filterByCategory(12)"  style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    <a href="#">
-      <text class="link-title-object"> Computacion </text>
-      <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Computacion.png'" />
-    </a>
-  </div>
-  
-  <div class="p-1 m-2 "  @click="filterByCategory(5)" style="background-color:#000 ; max-height: 170px; max-width: 170px;" > 
-    <a href="#">
-      <text class="link-title-object">Deportes </text>
-     <img  class="m-0" style="max-height: 130px; max-width: 130px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Deportes.png'" />
-   </a>
-  </div>
-
-  <div class="p-1 m-2 " @click="filterByCategory(9)"  style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
-    <a href="#">
-      <text class="link-title-object"> Accesorios</text>
-     <img  class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Accesorios.png'" />
-    </a>
-  </div>
-
-  <div class="p-1 m-2 " @click="filterByCategory(4)"  style="background-color:#000 ; max-height: 350px; max-width: 350px;" > 
-    
-    <a href="#">
-      <text class="link-title-object"> Vestuario</text>
-     <img  class="m-0" style="max-height: 320px; max-width: 320px; border-radius: 6px;" :src="PATH_BANNER_IMG+'/Banner_Vestuario.png'" />
-    </a>
-  </div>
-
-
-</div>
-
--->
-
-
-<!-- -->
 
 
   </div> 
 
-
-   <!-- START  RIGHT SECTION Display only in Large devices -->
-    <!--
-     <div class="d-none d-lg-inline-block p-3" style="width:400px "> 
-    
-            <div v-if="category2display == 0 || category2display == 7 ">
-
-              
-                        
-              <div v-if="category2display != 7" class="category" style="padding-left:20px" >  
-                <text style="font-size: 25px;"> 
-                  Juguetes
-                </text>  
-                
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="21" :session_data=" session_data"/>
-                <p @click="selectedCategory(2)" class="text-end p-2 "> Ver Mas ... </p>
-              </div>
-              <div v-else>    
-                <br>
-                <ShowCategories v-on:showPublicObjectDetails="showPublicObjectDetails" :category="[7]" :limit="60" :session_data=" session_data"/>
-              </div>
-          </div>
-  
-    </div>
-  -->
-    <!-- END RIGHT SECTION Display only in Large devices -->
   
   </div>
 
@@ -691,12 +568,13 @@ import axios from 'axios'
   <br>
   <br>
   
-
-<div style="position: absolute" >
-  <div class="w-100 text-white d-flex justify-content-center p-2" style="background-color:#000 ;position: fixed;bottom: 0px; left:0px ">
-    <text @click="$router.push({ name: 'ViewAboutReusar' })">¿Que es Reusar.cl?</text>
+<!--
+<div v-if=" $route.name == 'mainView' && session_data==null " style="position: absolute" >
+  <div class="w-100 text-white d-flex justify-content-center p-2" style="background-color:#0D362B ;position: fixed;bottom: 0px; left:0px ">
+    <text style="font-size:20px" @click="$router.push({ name: 'ViewAboutReusar' })">¿Que es Reusar.cl?</text>
   </div>
 </div>
+-->
 
 </div>
 </template>
