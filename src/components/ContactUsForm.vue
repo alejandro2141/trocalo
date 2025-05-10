@@ -45,7 +45,7 @@ import axios from 'axios'
 
         <br>
         <!--    Como te sientes? <br>-->
-            <div class="m-0 d-flex justify-content-evenly">
+            <div class="m-0 d-flex justify-content-center">
                                 
                                 <text>
                                     <i @click="animo =1;" class="text-danger bi bi-emoji-angry display-3 m-2 " :class="{ 'border border-5 border-primary' : animo ==1 }"  style="border-radius: 30px; " > </i><br>
@@ -63,9 +63,10 @@ import axios from 'axios'
             </div>
 
             <br>
-            <div class="d-flex justify-content-evenly  ">
-                <div @click="showComments()"  type="" class=""> <text class="text-secondary"> Ver <br>comentarios </text></div>
-                <button @click="sendComments();showComments()"  type="button" class="btn btn-secondary"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
+            <div class="d-flex justify-content-center  ">
+                <div @click="showComments()"  type="" class="m-2"> <text class="text-secondary"> Ver <br>comentarios </text></div>
+
+                <button @click="sendComments();showComments()"  type="button" class="btn btn-secondary m-2"> <text> Enviar <i class="bi bi-send " ></i> </text></button>
             </div>
             <br>
     </div>
