@@ -124,7 +124,7 @@ import { PATH_PRODUCT_IMG , CATEGORIES } from '../../config.js'
             
                  <img @click="showPinchInfo=false" class="bg-dark m-4 " style="; border-radius: 5px; " :style="{'width': zoomWidth + 'px' }"  :src="main_image"  /> 
                 
-                <div  class="opacity-50 w-100 d-flex justify-content-center" style="position:fixed; top:0px;  z-index:102;" > 
+                <div  class="opacity-50 " style=" position:fixed; top:0px; left:0px;  z-index:102;" > 
                     <div>
                   
                         <button @click="zoomOut()" type="button" class=" btn btn-secondary m-2 p-2">
@@ -280,7 +280,7 @@ export default {
         {
             this.showObjectDetail=false 
             this.showZoomImage = true 
-            this.zoomWidth = 300 
+            this.zoomWidth = 600 
          
             if (this.showPinchInfo == true)
             {
@@ -290,7 +290,7 @@ export default {
 
         viewImage(image)
         {
-            this.zoomWidth = 300 
+            this.zoomWidth = 350 
             this.main_image = image
             console.log("image to view: "+image)    
         },
