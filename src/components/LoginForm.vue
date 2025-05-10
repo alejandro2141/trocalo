@@ -43,23 +43,32 @@ import { PATH_BANNER_IMG,BKND_CONFIG } from '../../config.js'
                    <input class="form-control form-control-lg" v-model="form_pass" id="form_pass" name="form_pass"  type="password" placeholder="Contraseña" aria-label=".form-control-lg example"  style=" border-radius: 15px;" >
                     <br/> 
 
-                    <i  type="submit" v-on:click="sendLogin()" class="btn  btn-lg btn-block text-white bg-secondary " style="width: 100%; border-radius: 15px;"  >
+                    <i  type="submit" v-on:click="sendLogin()" class="btn  btn-lg btn-block text-white bg-primary" style="width: 100%; border-radius: 15px;font-size:25px"  >
                       {{ login_message }} 
-                      <i class="m-2 p-2 bi bi-arrow-right-square"></i> 
+                      <i class="m-2 p-2  bi bi-rocket-takeoff"></i> 
                     </i>
                 </form>   
             </div>
  <!-- ***************************************** --> 
+ <br>
 
-            <div  v-if="!requestReceived" @click="showRecoverPassword=!showRecoverPassword; requestReceived=false" class="m-4 text-secondary"><small>¿Olvidaste tu contraseña?</small></div>
- 
+            <div  v-if="!requestReceived" @click="showRecoverPassword=!showRecoverPassword; requestReceived=false" class="m-4 text-secondary">
+
+                <div class="btn btn-success d-flex align-items-start m-2" style="border-radius: 15px;">
+                     <img :src="PATH_BANNER_IMG+'/AboutUs/AbuelaCambalache.png'" style="width: 40px;">
+
+                     <div class="p-2" style="font-size:20px">
+                        ¿Olvidaste tu contraseña?</div>
+                     </div>
+            </div>
+
             <div v-if="showRecoverPassword" style="width: 300px;">
                 <div class="mb-3" >
                     <label for="exampleInputEmail1" class="form-label">Ingrese su correo registrado</label>
                     <input v-model="emailToRecover" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     <div v-if="showErrorEmail" class="text-danger">Revise su dirección de Correo</div>
                     
-                    <div v-if="!showErrorEmail" id="emailHelp" class="">Enviaremos a su correo información para restablecer su contraseña</div>
+                    <div v-if="!showErrorEmail" id="emailHelp" class="">Le enviaremos información para restablecer su contraseña</div>
                 </div> 
                 
                 <button v-on:click="recoverPassword();  " type="button" class="btn btn-secondary">Recuperar</button>
@@ -93,14 +102,14 @@ data: function () {
             form_pass:null ,
 
             showRecoverPassword : false ,
-            login_message:"" ,
+            login_message:"Ingresar " ,
 			
 		 }
 	
     },
 
 	props : ['session_data'],
-  	emits : ['restartSession'] ,
+  	emits : ['restartSession','sessionCreated'] ,
 
     created () {
        
@@ -153,7 +162,7 @@ data: function () {
 
 
                   this.$emit('sessionCreated',session_data_result);
-                  console.log("session data created:"+JSON.stringify( session_data_result) )
+                  console.log("session data created in LoginForm:"+JSON.stringify( session_data_result) )
                   
                 }
                 else 
@@ -172,7 +181,63 @@ data: function () {
 
         },
 
+        async getObjectIdFromSocial()
+          {
+            const url = new URL(window.location.href);
+            console.log("param URL url :"+url)
+            var objid = url.searchParams.get("objid");
+            if (objid != null  )
+            {
+              console.log("param URL objid:"+objid)
+              return objid
+            }
+          },
 
+
+    async recoverPassword()
+    {
+      console.log("Recover Password "+ this.emailToRecover+" validacion:"+await this.validateEmail(this.emailToRecover) ) 
+     
+      if (await this.validateEmail(this.emailToRecover))
+      {
+          const json_request = {
+                  session_data : this.session_data,
+                  email : this.emailToRecover
+                              }
+          
+          if (this.emailToRecover != null  )
+              {
+                let json_response = await axios.post(BKND_CONFIG.BKND_HOST+"/private_send_recover_password",json_request );
+              }
+
+          this.showRecoverPassword = false 
+          this.requestReceived=true 
+          this.showInsertEmail_password = false     
+
+      }
+      else 
+      {
+        console.log("Desplegando error mensaje Formato Email")
+        this.showErrorEmail = true
+      }
+
+    },
+
+        async validateEmail(input) {
+
+          //var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+          var validRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,4}$/ 
+
+          if ( new String(input).match(validRegex)) {
+            console.log("Valid email address! "+input);
+            return true;
+          } 
+          else {
+            console.log("ERROR Invalid email address! "+input);
+            return false;
+          }
+
+        },
 
 
 
