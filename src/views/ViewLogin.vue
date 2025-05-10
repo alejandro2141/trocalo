@@ -24,17 +24,19 @@ import { PATH_BANNER_IMG,BKND_CONFIG } from '../../config.js'
    
     <div v-if="session_data!=null && session_data.user!=null" class="text-center" >
        
-        <div class="d-flex flex-row-reverse bd-highlight"> 
-                <a @click="$router.push('Welcome')" type="button" class=""><i class="display-2 bi bi-x-lg text-white"></i></a>
+        <div class="d-flex justify-content-end w-100 " style="">
+            <button @click="$router.push('Welcome')" type="button" class="btn btn-secondary m-1 p-2">
+                 <i  style="font-size:40px" class="p-2 m-0 bi bi-x-lg bg-secondary"></i> 
+            </button>
         </div>
        
-        <div style="height:10px"></div>
+    
 
         <Transition> 
-                <div v-if="showUserData">
-                        <UserData v-on:restartSession="$emit('sessionCreated',null )" :session_data="session_data"/>
+                <div v-if="showUserData"  class="d-flex justify-content-center">
+                        <UserData v-on:restartSession="$emit('sessionCreated',null )" style="width:370px" :session_data="session_data"/>
                         <hr>
-                  </div>
+                </div>
         </Transition>    
 
 
@@ -67,7 +69,7 @@ import { PATH_BANNER_IMG,BKND_CONFIG } from '../../config.js'
          <!-- CLOSE SESION -->
         <button  style="font-size:20px" type="button" class="btn btn-warning m-2 ">
           <text class="" style="" @click="$emit('sessionCreated',null ); " > 
-            
+            <img :src="PATH_BANNER_IMG+'/AboutUs/PerroPermuta_exit.png'" style="width: 50px;">
               &nbsp;&nbsp;&nbsp;&nbsp; Cerrar Sesion &nbsp; Exit &nbsp;&nbsp;
               <i class="bi bi-door-open"></i> 
           </text>
@@ -80,7 +82,7 @@ import { PATH_BANNER_IMG,BKND_CONFIG } from '../../config.js'
         <!-- CAMBIAR PASSWORD -->
         <button  style="font-size:20px"  type="button" class="btn btn-danger m-2"  >
           <text @click="showInsertEmail_password=!showInsertEmail_password" class="" style="border-radius:15px"  > 
-            
+            <img :src="PATH_BANNER_IMG+'/AboutUs/PerroPermuta_enojado.png'" style="width: 50px;">
             &nbsp;&nbsp;&nbsp;&nbsp; Cambiar Password  &nbsp;&nbsp;&nbsp;&nbsp;
             <i class="bi bi-key"></i>
           </text>
@@ -90,11 +92,24 @@ import { PATH_BANNER_IMG,BKND_CONFIG } from '../../config.js'
         <div v-if="showInsertEmail_password" class="position-absolute top-0 start-0 bg-dark w-100 ">
           <div class="d-flex justify-content-center w-100  ">
 
-            <div> 
+            <div > 
 
+            <!--
               <div class="d-flex justify-content-end">
                     <text @click="showInsertEmail_password=false" type="button" class=""><i class="display-2 bi bi-x-lg text-white" ></i></text>
               </div>
+            -->
+
+
+            <div class="d-flex justify-content-end w-100 " style="">
+                <button @click="showInsertEmail_password=false" type="button" class="btn btn-secondary m-1 p-2">
+                     <i  style="font-size:40px" class="p-2 m-0 bi bi-x-lg bg-secondary"></i> 
+                </button>
+            </div>
+
+
+
+
              
             <div style="height:200px"></div>
                 
@@ -170,7 +185,7 @@ import { PATH_BANNER_IMG,BKND_CONFIG } from '../../config.js'
           <div class="" style="border-radius:15px; " >
             <ContactUsForm :session_data='session_data'  v-if="true" />
           </div>
-          </Transition>    
+        </Transition>    
         <div style="height:200px"></div>
 
     </div>
@@ -178,14 +193,20 @@ import { PATH_BANNER_IMG,BKND_CONFIG } from '../../config.js'
     <!-- SESION IS NULL SO SHOW LOGIN -->
     <div v-else>
 
-    <LoginForm />
+    <LoginForm v-on:sessionCreated="sessionCreatedFunction" />
 
 
 <!-- REGISTER FORM -->
-            <div  v-if="!requestReceived" @click="showRegisterForm=!showRegisterForm; requestReceived=false" class="d-flex justify-content-center w-100">
-                <small class="text-secondary">Registarme</small>
+        <div class="d-flex justify-content-center">
+          <div style="width:320px" >
+
+            <div  v-if="!requestReceived" @click="showRegisterForm=!showRegisterForm; requestReceived=false" class="text-white btn  d-flex align-items-start m-2 p-3" style="border-radius: 15px; background-color: rgb(194, 126, 53);" >
+             <img :src="PATH_BANNER_IMG+'/AboutUs/PerroPermuta.png'" style="width: 50px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<text style="font-size:24px"> Registarme</text>
             </div>
-            
+
+          </div>
+        </div>
+
             <div v-if='showRegisterForm' class="position-absolute top-0 start-0 bg-dark w-100 h-100">
               
                 <div class="d-flex justify-content-end w-100 ">
@@ -291,6 +312,13 @@ export default {
 			},
 
   methods: {
+
+    sessionCreatedFunction(session_data_result)
+    {
+      console.log("Emit sesion created en ViewLogin "+JSON.stringify(session_data_result))
+       this.$emit('sessionCreated',session_data_result);
+
+    },
 
     async recoverPassword()
     {
