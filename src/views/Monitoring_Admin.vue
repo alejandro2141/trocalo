@@ -44,21 +44,52 @@ import { BKND_CONFIG } from '../../config.js'
         </div>
 
 
-        <text>Users Registered </text> <br>
+        <text>Users Registered    {{users.length }} </text> <br>
         <div class="border border-1 w-100" style="height:200px ; overflow: scroll;">
             <div v-for="user in users"  > 
                 <text class="" >
-                    {{JSON.stringify(user) }} 
+                   <!--  {{JSON.stringify(user) }} <br> -->
+                    {{user.id }} 
+                    {{user.names }} 
+                    {{user.last_name1 }} 
+                    {{user.last_name2 }} 
+                    {{user.email }} 
+                    {{user.phone }} 
+
+
                 </text>
             </div>
         </div>
 
         <text>Last 39 Users Objects </text> <br>
         <div class="border border-1 w-100" style="height:200px ; overflow: scroll;">
-            <div v-for="object in objects"  > 
+            <div v-for="object in objects"  class="d-flex justify-content-start"> 
+
+
+                
+                &nbsp;  <button type="button" @click="blockObject(object.id)" class="btn btn-warning m-2">Bloquear</button> &nbsp; 
+
                 <text class="" >
-                    {{JSON.stringify(object) }} 
+
+
+                   
+
+                    {{object.id }} 
+                    {{object.title }} 
+                    {{object.description }} 
+                    {{object.owner_id }} 
+                    {{object.owner_name }} 
+                    {{object.owner_email }} 
+                    {{object.img_ref1 }} 
+                    {{object.img_ref2 }} 
+                    {{object.img_ref3 }} 
+                    {{object.img_ref4 }} 
+                    {{object.img_ref5 }} 
+
+                    
                 </text>
+
+
             </div>
         </div>
 
@@ -149,6 +180,33 @@ export default {
 
 
   methods: {
+
+
+         async blockObject(id)
+        {
+
+            if (confirm("Confirmar para continuar") == true) {
+            
+  
+
+            console.log("Bloquear Objeto por Admin "+id)
+            const data = {
+                         id : id,
+                         }
+
+            let response_json = await axios.post(BKND_CONFIG.BKND_HOST+"/admin_private_delete_object",data );
+            //this.messages = response_json.data ; 
+            //this.getComments()
+            this.loadOrdered()
+
+            } else {
+                
+              }
+
+
+
+        },
+
 
         async sendLogin()
         {
