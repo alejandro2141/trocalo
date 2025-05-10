@@ -13,11 +13,9 @@ import { REGION_ZONES, BKND_CONFIG } from '../../config.js'
     <div v-if="showData">
    
             <div class="d-flex justify-content-between mt-3">
-              
             <!--
                 <i class="bi bi-person-bounding-box display-1 "></i>
             -->
-               
                    <p class="h4 text-center  mt-3  "> {{ session_data.name }} </p> 
                    <text></text>        
             <!--     <i class="display-1 bi bi-x-lg ml-0 text-primary"   aria-label="Close" v-on:click="closeTabUserConfig()" ></i> 
@@ -109,11 +107,6 @@ import { REGION_ZONES, BKND_CONFIG } from '../../config.js'
                 </div>
 
                 
-
-
-<br>
-<br>
-                
                 <div v-if="showEdit" >
 
                     <button   @click="showEdit=false" type="button" class="btn btn-secondary"> Cancelar  </button>
@@ -124,7 +117,7 @@ import { REGION_ZONES, BKND_CONFIG } from '../../config.js'
                         
                         
 
-                <div v-else>
+                <div v-else class="d-flex justify-content-end">
                     <button  @click="showEdit=true" type="button" class="btn btn-secondary"> Modificar mis datos <i class="bi bi-pencil"></i>  </button>
 
                 </div>
