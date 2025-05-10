@@ -31,6 +31,7 @@ import axios from 'axios'
 
 <div>
   <SpinnerLoading  :onOff=spinnerOn />
+  
 <!-- START DISPLAY MENU CATEGORIES --> 
 
   <div class="d-none d-lg-inline-block" style="margin-top: -40px;" >
