@@ -67,8 +67,8 @@ import { PATH_BANNER_IMG, CATEGORIES } from '../../config.js'
             </div>
 
             <div class="d-flex align-items-start">
-                <div>
                     
+                <div>
                 </div>
             </div>
 
