@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import { BKND_CONFIG } from '../../config.js'
+
 </script>
 
 
@@ -93,6 +94,7 @@ import { BKND_CONFIG } from '../../config.js'
             </div>
         </div>
 
+        <!--
         <text>Invitations </text> <br>
         <div class="border border-1 w-100" style="height:200px ; overflow: scroll;">
             <div v-for="invitation in invitations"  > 
@@ -101,12 +103,19 @@ import { BKND_CONFIG } from '../../config.js'
                 </text>
             </div>
         </div>
+        -->
 
         <text>Proposals </text> <br>
         <div class="border border-1 w-100" style="height:200px ; overflow: scroll;">
             <div v-for="proposal in proposals"  > 
                 <text class="" >
-                    {{JSON.stringify(proposal) }} 
+                    {{proposal.title}}
+                    id:{{proposal.id}}
+                    date:{{proposal.updated}}
+                    Creador: {{proposal.creator_name}}
+                    Destino: {{proposal.dest_owner_name}}
+                    Notif:{{proposal.notification_new_proposal_destination}}
+                    Status:{{proposal.status}}
                 </text>
             </div>
         </div>
