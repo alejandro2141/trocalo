@@ -44,7 +44,7 @@ const location = useRoute();
         </div>
 
         <div class="">
-            <FilterForSearchViewMinimal @click="categoryToSearch=null" v-on:filterByText="filterByText" v-on:filterByCategory="filterByCategory"  :session_data="session_data"  />
+            <FilterForSearchViewMinimal @click="categoryToSearch=null" v-on:filterByText="filterByText"   :session_data="session_data"  />
         </div> 
 
 
