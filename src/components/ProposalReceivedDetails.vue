@@ -46,7 +46,7 @@ import axios from 'axios'
 
           
           <div  style="font-size:16px "  class="text-start">
-            <b>@{{offer.source_owner_name}}</b> le interesa tu objeto/s:  
+            <b>@{{offer.source_owner_name}}</b> se intresa por tu:  
           </div>
           <!-- LIST MY OFFER OBJECT  -->
           <div v-for="obj in yourOfferObjects"  class="mb-4" > 
@@ -55,7 +55,7 @@ import axios from 'axios'
           <!-- END LIST MY OFFER OBJECT  --> 
          
           <div  style="font-size:16px "  class="text-start">
-            Te propone cambiarlo por los siguientes: 
+            Te propone cambiarlo por: 
           </div>
            <!-- LIST PARTNER OFFER OBJECT  -->
           <div v-for="obj in partnerOfferObjects"  > 
@@ -93,6 +93,14 @@ import axios from 'axios'
 
             </div>
 
+            <div  style="font-size:25px" class="mt-2 d-flex justify-content-center">
+            
+              <button @click="showEditProposal=true; showStep1=false "  type="button" class="btn btn-primary p-4">Contra Ofertar <i class="h3 bi bi-reply-all"></i>
+              </button>
+
+            </div>
+
+
           </div>
 
 
@@ -101,6 +109,8 @@ import axios from 'axios'
   <!-- ******************************* -->
   <!--       END SHOW STEP 1           -->
   <!-- ******************************* -->
+
+
 
   <!-- ******************************* -->
   <!--       ACCEPT PROPOSAL FLOW      -->
@@ -137,19 +147,18 @@ import axios from 'axios'
         
         <br>
 
-
-
       <!-- 
         <div class="fixed-bottom  d-flex justify-content-center display-1 text-success w-100 bg-dark p-3 " >
            <a @click="$emit('closeExchangeProposalReceived')" >  <i class="text-success bi bi-house"></i> </a>
         </div>
-      -->
-      
+      -->      
 
     </div>
   <!-- ******************************* -->
   <!--       END ACCEPT PROPOSAL FLOW  -->
   <!-- ******************************* -->
+
+
 
   <!-- ******************************* -->
   <!--       REJECT PROPOSAL FLOW      -->
@@ -185,8 +194,24 @@ import axios from 'axios'
         -->
 
 
-            <button @click="$router.push({ name: 'ViewSearch' })" type="button" class="btn btn-success">
-              <i class="bi bi-arrow-left-square"></i> Regresar</button>
+            <button  type="button" @click="$emit('closeModal')"  class="btn btn-success">
+            
+              <i class="bi bi-arrow-left-square"></i> Regresar
+
+             </button>
+
+
+
+<!--
+         <RouterLink    class="p-2"   to="/ViewProposalsReceived">
+             <button  type="button" class="btn btn-success">
+            
+              <i class="bi bi-arrow-left-square"></i> Regresar
+
+             </button>
+          </RouterLink>    
+-->
+
 
         </div>
 
@@ -198,7 +223,7 @@ import axios from 'axios'
 
     </div>
   <!-- ******************************* -->
-  <!--       END ACCEPT PROPOSAL FLOW  -->
+  <!--       END REJECT PROPOSAL  -->
   <!-- ******************************* -->
 
 
@@ -213,12 +238,12 @@ import axios from 'axios'
   <div v-if="showEditProposal" style="width: 350px;">
        <!-- TITLE -->
           <div  style="font-size:16px "  class="m-2 d-flex justify-content-center">
-             Modifica Propuesta para contra ofertar
+             Contra Oferta modificando la propuesta
           </div>
           <br>
 
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-            {{offer.source_owner_name}}  le interesa tu objeto:
+            @{{offer.source_owner_name}}  le interesa tu objeto:
           </div>
 
           <!-- LIST MY OBJECT-->
@@ -226,18 +251,24 @@ import axios from 'axios'
             
             <div v-for="obj in yourOfferObjects "  > 
               <div class="d-flex justify-content-start">
-                <InventoryObject  :horizontal_short='true' :showProductDetails='true' :object=obj  class="m-1" @click="showPartnerObjectDetailed=true"/> 
-                <div  style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > <i style="font-size:40px" @click="removeFromYourOfferObjects(obj)"  class=" bi bi-x-lg "></i> </div>
+                <InventoryObject  :display_horizontal_short='true' :showProductDetails='true' :object=obj  class="m-1" @click="showPartnerObjectDetailed=true"/> 
               </div>
             </div>
-
-            <div style="width:100px" class="d-flex justify-content-center" >
-                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="loadMyInventory();showMyInventory='true'; " ></i>
-            </div>
-         
           </div>
 
-          
+         <!-- Buttons to add or remove last objects  -->
+          <div class="d-flex align-items-start" >
+            <div style="width:110px ; height:100px" @click="loadMyInventory();showMyInventory='true';" class="m-1 d-flex justify-content-center border border-1 border-secondary " >
+                <i style="font-size:45px" class="m-3 bi bi-plus-lg text-white"></i>
+            </div>
+
+            <div  style="width:110px ; height:100px" @click="removeFromYourOfferObjects( yourOfferObjects[yourOfferObjects.length - 1] )" class="m-1 d-flex justify-content-center border border-1 border-secondary text-danger" > <i style="font-size:45px"   class=" bi bi-trash "></i> 
+            </div>
+
+        </div>
+         <!-- End Buttons  -->
+
+
           <div  style="font-size:16px "  class="m-2">
                 Y te ofrece los siguientes objetos : 
           </div>
@@ -248,36 +279,50 @@ import axios from 'axios'
             <div v-for="obj in partnerOfferObjects"  > 
               <div class="d-flex justify-content-start">
                 <InventoryObject :display_horizontal_short='true' :showProductDetails='true' :object=obj  @click="showPartnerObjectDetailed=true"/> 
-                <div style="" class="m-1 d-flex justify-content-center text-danger d-flex align-items-end opacity-50" > 
-                  <i style="font-size:40px" @click="removeFromPartnerOfferObjects(obj)"  class=" bi bi-x-lg "></i> 
-                </div>
               </div>
             </div>
 
-            <div style="width:100px" class="d-flex justify-content-center" >
-                <i style="font-size:25px" class="bi bi-plus-lg text-secondary" @click="loadPartnerInventory();showPartnerInventory='true';  " ></i>
+
+        <!-- Buttons to add or remove last objects  -->
+        <div class="d-flex align-items-start">
+            <div style="width:110px ; height:100px" class="m-1 d-flex justify-content-center border border-1 border-secondary " >
+                <i style="font-size:45px" class="m-3 bi bi-plus-lg text-white" @click="loadPartnerInventory() ; showPartnerInventory='true'; " ></i>
             </div>
 
-          </div>
+            <div  style="width:110px ; height:100px" class="m-1 d-flex justify-content-center border border-1 border-secondary text-danger" > <i style="font-size:45px" @click="removeFromPartnerOfferObjects(partnerOfferObjects[partnerOfferObjects.length - 1])"  class=" bi bi-trash "></i> 
+            </div>
+
+        </div>
+        <!-- End Buttons -->
+
+
+
 
           <br>
           <!-- FOOTER -->
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
-              <div   class="d-flex justify-content-between">
-                  <div @click="showEditProposal=false ;showStep1=true"  class="d-flex justify-content-center">
-                    <i class="bi bi-skip-start"></i> 
-                  </div>
-              
-                  <div @click="showEditProposalSummary=true; showEditProposal = false">
-                    <i class="bi bi-caret-right"></i> 
-                    <i class="bi bi-caret-right"></i> 
-                  </div>
+              <div   class="d-flex justify-content-center">
+
+                  <button @click="showEditProposal=false ;showStep1=true" type="button" class="btn btn-success" style="font-size: 26px;">
+                      <i class="bi bi-caret-left" style="font-size: 26px;"></i>
+                  </button> &nbsp; 
+
+                  <button @click="showEditProposalSummary=true; showEditProposal = false" type="button" class="btn btn-success" style="font-size: 26px;">Siguiente 
+                      <i class="bi bi-caret-right-fill" style="font-size: 26px;"></i>
+                      <i class="bi bi-caret-right" style="font-size: 26px;"></i>
+                      <i class="bi bi-caret-right" style="font-size: 26px;"></i>
+                  </button>
               </div>
           </div>
           <!-- END FOOTER -->
-      </div>
+
+
+          </div>
+
+
+          </div>
   <!-- ******************************* -->
-  <!--         SHOW EDIT PROPOSAL      -->
+  <!--        END  SHOW EDIT PROPOSAL      -->
   <!-- ******************************* -->
 
 
@@ -294,7 +339,7 @@ import axios from 'axios'
                     <i  @click="showPartnerInventory=false;"  style="font-size:50px;" class="display-1 bi bi-x-lg "></i>
                 </div>
                 <div  style="font-size:16px "  class="m-2">
-                    Agrega otros objetos del inventario de Kakito_123 a esta propuesta de cambio
+                    Agrega otros objetos del inventario de  @{{offer.source_owner_name}} a esta propuesta de cambio
                      <br>
   
                   <!--
@@ -311,7 +356,7 @@ import axios from 'axios'
                 <!-- <InventoryList /> -->
                 <div class="d-flex flex-wrap">
                   <div v-for="obj in DBPartnerInventoryObjects"   > 
-                    <InventoryObject @click="addRemoveFromPartnerOfferObjects_temp(obj)" :object=obj  :showProductDetails="false"  /> 
+                    <InventoryObject :display_horizontal_short='true' @click="addRemoveFromPartnerOfferObjects_temp(obj)" :object=obj  :showProductDetails="false"  /> 
                   </div>
                 </div>
   
@@ -343,9 +388,9 @@ import axios from 'axios'
               </div>
 
               <div  style="font-size:16px "  class="m-2">
-                  Mejora tu Propuesta agregando otros objetos de tu Inventario 
+                  Agrega mas objetos de tu Inventario
                   <br>
-                |<!--
+                <!--
                   <div class="d-flex justify-content-center"> 
                       <div  @click="showMyInventory=false;objectsOfferList=objectsOfferList.concat(objectsOfferList_temp); objectsOfferList_temp.length=0" class="border border-2 border-success w-25 text-center">
                           <i class="bi bi-check2 display-4 text-success p-1 m-1"></i>
@@ -358,7 +403,7 @@ import axios from 'axios'
             <!-- <InventoryList /> -->
               <div class="d-flex flex-wrap">
                   <div v-for="obj in DBmyInventoryObjects"   > 
-                    <InventoryObject @click="addRemoveFromYourOfferObjects_temp(obj)" :object=obj  :showProductDetails="false"  /> 
+                    <InventoryObject :display_horizontal_short='true'  @click="addRemoveFromYourOfferObjects_temp(obj)" :object=obj  :showProductDetails="false"  /> 
                   </div>
               </div>
             </div>
@@ -393,7 +438,7 @@ import axios from 'axios'
           </div>  
 
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-              {{offer.source_owner_name}} podria interesarle de mis objetos: 
+              Mis Objetos:  
           </div>
           <!-- LIST MY OBJECT/S  OF proposal-->
        
@@ -411,7 +456,7 @@ import axios from 'axios'
        
           
           <div  style="font-size:16px "  class="d-flex justify-content-start">
-               y me intresan los siguientes objetos de   {{offer.source_owner_name}}:
+               Objetos de @{{offer.source_owner_name}}:
           </div>
            
          
@@ -436,6 +481,7 @@ import axios from 'axios'
    
 
           <!-- FOOTER -->
+          <!--
           <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
 
             <div class="d-flex justify-content-between">
@@ -445,14 +491,38 @@ import axios from 'axios'
               </div>
 
               <div @click="sendProposalUpdated();showEditProposalSummaryConfirmation=true; showEditProposalSummary = false"  class="d-flex justify-content-center">
-                  <i class="bi bi-caret-right"></i> 
-                  <i class="bi bi-caret-right"></i> 
+                  <i class="bi bi-caret-right-fill"></i> 
+                  <i class="bi bi-caret-right-fill"></i>  
                   <i class="bi bi-caret-right"></i> 
               </div>
 
             </div>
 
           </div>
+          -->
+
+
+
+          <!-- FOOTER -->
+          <div class="fixed-bottom display-1 text-success w-100 bg-dark p-3 ">  
+              <div   class="d-flex justify-content-center">
+
+                  <button @click="showEditProposal=true; showEditProposalSummary = false" type="button" class="btn btn-success" style="font-size: 26px;">
+                      <i class="bi bi-caret-left" style="font-size: 26px;"></i>
+                  </button> &nbsp; 
+
+                  <button @click="sendProposalUpdated();showEditProposalSummaryConfirmation=true; showEditProposalSummary = false" type="button" class="btn btn-success" style="font-size: 26px;">Siguiente 
+                      <i class="bi bi-caret-right-fill" style="font-size: 26px;"></i>
+                      <i class="bi bi-caret-right-fill" style="font-size: 26px;"></i>
+                      <i class="bi bi-caret-right" style="font-size: 26px;"></i>
+                  </button>
+              </div>
+          </div>
+          <!-- END FOOTER -->
+
+
+
+
 
     </div>
   <!-- ******************************* -->
@@ -468,7 +538,7 @@ import axios from 'axios'
           <!-- TITLE -->
           <br>
           <div style="font-size:20px">
-            Modificaciones a la Propuesta de Intercambio Enviada  
+            Contra oferta envida a @{{offer.source_owner_name}}   
           </div>
           <br>
 
@@ -476,9 +546,7 @@ import axios from 'axios'
           </div>
           <br>
           
-          <div style="font-size:20px">
-            Puede seguir esta propuesta en <text @click="$router.push({ name: 'ViewProposalsSent' })" class="text-success">Enviadas</text>
-          </div>
+         
 
           <!-- END FOOTER -->
 
@@ -486,7 +554,7 @@ import axios from 'axios'
           <div class="fixed-bottom  text-success w-100 bg-dark p-3 ">  
               <div class="d-flex justify-content-center">
                 
-                <button @click="$router.push({ name: 'ViewSearch' })" type="button" class="btn btn-success">Regresar</button>
+                <button @click="$emit('closeModal')" type="button" class="btn btn-success">Continuar</button>
                   <!--
                  <a @click="$router.push({ name: 'ViewSearch' })" > <i style="font-size:40px" class="bi bi-house"></i> </a>-->
               </div>
